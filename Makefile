@@ -44,4 +44,13 @@ code_analyse:
 	cd $(GUI_PATH) && $(MAKE) code_analyse
 	cd $(AI_PATH) && $(MAKE) code_analyse
 
+zappy_server:
+	cd $(SERVER_PATH) && $(MAKE) re
+
+zappy_gui:
+	cd $(GUI_PATH) && $(MAKE) re
+
+zappy_ai:
+	cd $(AI_PATH) && $(MAKE) re
+
 .PHONY: all clean fclean re unit_tests tests_run code_analyse
