@@ -21,9 +21,9 @@ void get_client_input(server_t *server, client_t *client)
         return;
     }
     if (nb_byte >= BUFFER_SIZE) {
-        printf(RED("Client input is incompatible with the server.")"\n");
+        dprintf(2, RED("Client input is incompatible with the server.")"\n");
         remove_client(client);
         return;
     }
-    execute_client_input(server, client, cmd_data);
+    handle_client_input(server, client, cmd_data);
 }

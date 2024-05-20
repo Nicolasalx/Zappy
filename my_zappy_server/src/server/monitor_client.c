@@ -13,7 +13,7 @@ void monitor_client(server_t *server, int max_fd)
         &server->read_set, &server->write_set, NULL, NULL);
 
     if (nb_fd == -1) {
-        printf("Select fail\n");
+        dprintf(2, "Select fail\n");
         delete_server(server);
         my_exit(84);
     }
