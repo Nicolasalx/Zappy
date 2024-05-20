@@ -13,6 +13,7 @@ unit_tests
 zappy_gui
 zappy_ai
 zappy_server
+test_zappy_server
 
 # ? coverage
 *.gcda
