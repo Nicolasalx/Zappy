@@ -6,12 +6,11 @@
 */
 
 #include "zappy_gui.hpp"
-#include <iostream>
 
-void send_cmd_to_server(client_t *client, char *cmd)
+void Client::send_cmd_to_server(char *cmd, int nb_byte)
 {
-    if (FD_ISSET(client->fd, &client->write_set)) {
-        if (send(client->fd, cmd, strlen(cmd), 0) == -1) {
+    if (FD_ISSET(this->fd, &this->write_set)) {
+        if (send(this->fd, cmd, nb_byte, 0) == -1) {
             std::cout << "Fail to send message to server.\n";
         }
     }
