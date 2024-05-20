@@ -11,7 +11,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-void check_arg_validity(int argc, const char **argv, server_t *server)
+static void check_arg_validity(server_t *server, int team_count)
+{
+    if (server->args.port == NULL || server->args.width == NULL
+    || server->args.height == NULL || server->args.client_nb == NULL
+    || server->args.freq == NULL || team_count == 0) {
+        printf("Error: Invalid args\n");
+        my_exit(84);
+    }
+}
+
+void get_args(int argc, const char **argv, server_t *server)
 {
     char *args[] = {"-p", "-x", "-y", "-c", "-f"};
     int team_count = 0;
@@ -41,7 +51,7 @@ void check_arg_validity(int argc, const char **argv, server_t *server)
             server->args.freq = atoi(argv[i + 1]);
         }
     }
-
+    check_arg_validity(server, team_count);
     printf("port: %d\n", server->args.port);
     printf("width: %d\n", server->args.width);
     printf("height: %d\n", server->args.height);
