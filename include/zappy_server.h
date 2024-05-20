@@ -24,18 +24,28 @@
     #define BUFFER_SIZE 4096
     #define CLIENT_BUFFER_SIZE 4096
     #define CWD_SIZE 4096
+    #define MAX_TEAM_NB 100
 
 typedef struct {
     int fd;
 } client_t;
 
 typedef struct {
+    unsigned short port;
+    int width;
+    int height;
+    int client_nb;
+    int freq;
+    char *teams[MAX_TEAM_NB];
+} args_t;
+
+typedef struct {
     int fd;
     struct sockaddr_in address;
     fd_set read_set;
     fd_set write_set;
-    unsigned short port;
     client_t clients[MAX_CLIENT];
+    args_t args;
 } server_t;
 
 void check_arg_validity(int argc, const char **argv, server_t *server);
