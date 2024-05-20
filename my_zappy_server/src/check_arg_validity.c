@@ -11,21 +11,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "zappy_server.h"
-#include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include "zappy_server.h"
-#include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 void check_arg_validity(int argc, const char **argv, server_t *server)
 {
-    char args[30][30] = {"-p", "-x", "-y", "-c", "-f"};
+    char args[6][2] = {"-p", "-x", "-y", "-c", "-f"};
     int team_count = 0;
 
     for (int i = 1; i < argc; i++) {
