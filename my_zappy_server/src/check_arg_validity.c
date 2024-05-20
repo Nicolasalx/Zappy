@@ -9,19 +9,59 @@
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#include "zappy_server.h"
+#include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "zappy_server.h"
+#include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 void check_arg_validity(int argc, const char **argv, server_t *server)
 {
-    if (argc != 2) {
-        printf(RED("Too much or missing argument\n")
-        "\nUSAGE: ./myteams_server port\n"
-        "\tport is the port number on which the server socket listens.\n");
-        my_exit(84);
+    char args[30][30] = {"-p", "-x", "-y", "-c", "-f"};
+    int team_count = 0;
+
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-n") == 0) {
+            for (i = i + 1; i < argc && argv[i][0] != '-'; i++) {
+                server->args.teams[team_count] = strdup(argv[i]);
+                team_count += 1;
+            }
+            server->args.teams[team_count] = NULL;
+            i -= 1;
+        }
+        if (strcmp(argv[i], args[0]) == 0) {
+            server->args.port = atoi(argv[i + 1]);
+        }
+        if (strcmp(argv[i], args[1]) == 0) {
+            server->args.width = atoi(argv[i + 1]);
+        }
+        if (strcmp(argv[i], args[2]) == 0) {
+            server->args.height = atoi(argv[i + 1]);
+        }
+        if (strcmp(argv[i], args[3]) == 0) {
+            server->args.client_nb = atoi(argv[i + 1]);
+        }
+        if (strcmp(argv[i], args[4]) == 0) {
+            server->args.freq = atoi(argv[i + 1]);
+        }
     }
-    if (!my_str_only_cont(argv[1], "0123456789")
-    || strlen(argv[1]) > 5 || atoi(argv[1]) > MAX_PORT_NB) {
-        printf("Invalid port: "RED("%s")"\n", argv[1]);
-        my_exit(84);
+
+    printf("port: %d\n", server->args.port);
+    printf("width: %d\n", server->args.width);
+    printf("height: %d\n", server->args.height);
+    printf("client_nb: %d\n", server->args.client_nb);
+    printf("freq: %d\n", server->args.freq);
+
+    for (int i = 0; server->args.teams[i] != NULL; i++) {
+        printf("team: %s\n", server->args.teams[i]);
     }
-    server->port = atoi(argv[1]);
 }
+
