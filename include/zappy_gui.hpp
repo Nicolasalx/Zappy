@@ -8,42 +8,43 @@
 #ifndef MYTEAMS_CLIENT_H_
     #define MYTEAMS_CLIENT_H_
 
+    #include "my_tracked_exception.hpp"
+    #include "my_log.hpp"
     #include <sys/types.h>
     #include <sys/socket.h>
     #include <arpa/inet.h>
-    #include <unistd.h>
-    #include <stdio.h>
     #include <netinet/in.h>
     #include <sys/select.h>
-    #include <string.h>
-    #include <stdlib.h>
+    #include <unistd.h>
+    #include <iostream>
+    #include <string>
+    #include <memory>
 
     #define MAX_PORT_NB 65535
     #define BUFFER_SIZE 4096
     #define CMD_BUFFER_SIZE 4096
 
-typedef struct {
-    int fd;
-    fd_set read_set;
-    fd_set write_set;
-    unsigned short port;
-    struct sockaddr_in server_address;
-    char *cmd_buffer;
-} client_t;
-
-void check_arg_validity(int argc, const char **argv, client_t *client);
-void create_client(client_t *client);
-client_t *get_client(client_t *client);
-void init_client_set(client_t *client, int *max_fd);
-void monitor_input(client_t *client, int max_fd);
-
-void handle_new_input(client_t *client);
-void handle_new_message(client_t *client);
-void send_cmd_to_server(client_t *client, char *cmd);
-void handle_server_reply(char *reply_data);
-
-void lauch_client(client_t *client);
-void delete_client(client_t *client);
-void exit_client(int exit_value, const char *message);
+class Client {
+    public:
+        Client(int argc, const char **argv);
+        ~Client();
+        void create_client();
+        void init_client_set();
+        void launch_client();
+        void monitor_input();
+        void handle_new_input();
+        void handle_new_message();
+        void send_cmd_to_server(char *cmd, int nb_byte);
+        void handle_server_reply(char *reply_data);
+        void launch_graphic();
+    private:
+        int fd;
+        int max_fd = 0;
+        fd_set read_set;
+        fd_set write_set;
+        unsigned short port;
+        struct sockaddr_in server_address;
+        std::string cmd_buffer;
+};
 
 #endif /* !MYTEAMS_CLIENT_H_ */

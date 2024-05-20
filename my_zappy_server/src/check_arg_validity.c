@@ -9,19 +9,57 @@
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-void check_arg_validity(int argc, const char **argv, server_t *server)
+static void check_arg_validity(server_t *server, int team_count)
 {
-    if (argc != 2) {
-        printf(RED("Too much or missing argument\n")
-        "\nUSAGE: ./myteams_server port\n"
-        "\tport is the port number on which the server socket listens.\n");
+    if (server->args.port == NULL || server->args.width == NULL
+    || server->args.height == NULL || server->args.client_nb == NULL
+    || server->args.freq == NULL || team_count == 0) {
+        printf("Error: Invalid args\n");
         my_exit(84);
     }
-    if (!my_str_only_cont(argv[1], "0123456789")
-    || strlen(argv[1]) > 5 || atoi(argv[1]) > MAX_PORT_NB) {
-        printf("Invalid port: "RED("%s")"\n", argv[1]);
-        my_exit(84);
-    }
-    server->port = atoi(argv[1]);
 }
+
+void get_args(int argc, const char **argv, server_t *server)
+{
+    char *args[] = {"-p", "-x", "-y", "-c", "-f"};
+    int team_count = 0;
+
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-n") == 0) {
+            for (i = i + 1; i < argc && argv[i][0] != '-'; i++) {
+                server->args.teams[team_count] = strdup(argv[i]);
+                team_count += 1;
+            }
+            server->args.teams[team_count] = NULL;
+            i -= 1;
+        }
+        if (strcmp(argv[i], args[0]) == 0) {
+            server->args.port = atoi(argv[i + 1]);
+        }
+        if (strcmp(argv[i], args[1]) == 0) {
+            server->args.width = atoi(argv[i + 1]);
+        }
+        if (strcmp(argv[i], args[2]) == 0) {
+            server->args.height = atoi(argv[i + 1]);
+        }
+        if (strcmp(argv[i], args[3]) == 0) {
+            server->args.client_nb = atoi(argv[i + 1]);
+        }
+        if (strcmp(argv[i], args[4]) == 0) {
+            server->args.freq = atoi(argv[i + 1]);
+        }
+    }
+    check_arg_validity(server, team_count);
+    printf("port: %d\n", server->args.port);
+    printf("width: %d\n", server->args.width);
+    printf("height: %d\n", server->args.height);
+    printf("client_nb: %d\n", server->args.client_nb);
+    printf("freq: %d\n", server->args.freq);
+
+    for (int i = 0; server->args.teams[i] != NULL; i++) {
+        printf("team: %s\n", server->args.teams[i]);
+    }
+}
+

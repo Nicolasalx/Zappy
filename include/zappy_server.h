@@ -24,6 +24,7 @@
     #define BUFFER_SIZE 4096
     #define CLIENT_BUFFER_SIZE 4096
     #define CWD_SIZE 4096
+    #define MAX_TEAM_NB 100
 
     #define MAX_TEAMNAME_SIZE 128
     #define MAX_WAITING_CMD 10
@@ -48,18 +49,28 @@ typedef struct {
 } client_t;
 
 typedef struct {
+    unsigned short port;
+    int width;
+    int height;
+    int client_nb;
+    int freq;
+    char *teams[MAX_TEAM_NB];
+} args_t;
+
+typedef struct {
     int fd;
     struct sockaddr_in address;
     fd_set read_set;
     fd_set write_set;
-    unsigned short port;
     client_t clients[MAX_CLIENT];
+    args_t args;
 } server_t;
 
 extern const char **gui_cmd;
 extern const char **ai_cmd;
 
 void check_arg_validity(int argc, const char **argv, server_t *server);
+void get_args(int argc, const char **argv, server_t *server);
 void create_server(server_t *server);
 void init_server_set(server_t *server, int *max_fd);
 void monitor_client(server_t *server, int max_fd);

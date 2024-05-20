@@ -9,11 +9,13 @@
 
 int main(int argc, char const *argv[])
 {
-    client_t client = {0};
-
-    check_arg_validity(argc, argv, &client);
-    create_client(&client);
-    lauch_client(&client);
-    delete_client(&client);
+    try {
+        Client client(argc, argv);
+        client.create_client();
+        client.launch_client();
+    } catch (my::tracked_exception &e) {
+        my::log::error(e.what());
+        return 84;
+    }
     return 0;
 }

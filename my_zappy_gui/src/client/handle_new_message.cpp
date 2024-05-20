@@ -7,22 +7,23 @@
 
 #include "zappy_gui.hpp"
 
-void handle_new_message(client_t *client)
+void Client::handle_new_message()
 {
     char reply_data[BUFFER_SIZE] = {0};
     ssize_t size = 0;
 
-    if (!FD_ISSET(client->fd, &client->read_set)) {
+    if (!FD_ISSET(this->fd, &this->read_set)) {
         return;
     }
-    size = read(client->fd, &reply_data, sizeof(reply_data));
+    size = read(this->fd, &reply_data, sizeof(reply_data));
     if (size == 0) {
-        exit_client(0, "Server closed the connection.\n");
+        std::cout << "Server closed.\n";
+        exit(0);
     } else if (size == -1) {
-        exit_client(84, "Fail to read message.\n");
+        throw my::tracked_exception("Read failed.\n");
     }
     if (size >= BUFFER_SIZE) {
-        printf("Incompatible reply from the server.\n");
+        std::cout << "Incompatible reply from the server.\n";
         return;
     }
     handle_server_reply(reply_data);
