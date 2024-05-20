@@ -11,7 +11,7 @@
     #include <stdexcept>
     #include <string>
     #include <source_location>
-    #include <format>
+    #include <sstream>
     #include <iostream>
 
 namespace my::log
