@@ -9,13 +9,17 @@
 
 static void create_team_name(server_t *server)
 {
-    if (server->args.team_count == 0) {
+    if (server->team_count == 0) {
         printf("No team name set, default team names are Team1, Team2, Team3, Team4\n");
-        server->args.teams[0] = strdup("Team1");
-        server->args.teams[1] = strdup("Team2");
-        server->args.teams[2] = strdup("Team3");
-        server->args.teams[3] = strdup("Team4");
-        server->args.team_count = 4;
+        strcpy(server->team_list[0].name, "Team1");
+        server->team_list[0].remaining_place = server->client_nb;
+        strcpy(server->team_list[1].name, "Team2");
+        server->team_list[1].remaining_place = server->client_nb;
+        strcpy(server->team_list[2].name, "Team3");
+        server->team_list[2].remaining_place = server->client_nb;
+        strcpy(server->team_list[3].name, "Team4");
+        server->team_list[3].remaining_place = server->client_nb;
+        server->team_count = 4;
     }
 }
 
@@ -34,9 +38,9 @@ static void fill_arg(server_t *server)
         printf("No port set, default port is 4242\n");
         server->port = 4242;
     }
-    if (server->args.client_nb == -1) {
+    if (server->client_nb == -1) {
         printf("No client number set, default client number is 4\n");
-        server->args.client_nb = 4;
+        server->client_nb = 4;
     }
     if (server->freq == -1) {
         printf("No frequency set, default frequency is 100 tps\n");
@@ -55,7 +59,7 @@ void check_arg_validity(server_t *server)
     if (server->world.size_x <= 0 && server->world.size_y > 100 && server->world.size_y != -1) {
         my_error("Error: Height must be between 1 and 100", 84);
     }
-    if (server->args.client_nb <= 0 && server->args.client_nb > 100 && server->args.client_nb != -1) {
+    if (server->client_nb <= 0 && server->client_nb > 100 && server->client_nb != -1) {
         my_error("Error: Clients must be between 1 and 100", 84);
     }
     if (server->freq <= 0 && server->freq > 10000 && server->freq != -1) {

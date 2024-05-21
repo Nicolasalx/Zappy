@@ -67,22 +67,17 @@ typedef struct {
 } client_t;
 
 typedef struct {
-    int client_nb;
-    char *teams[MAX_TEAM_NB];
-    int team_count;
-} args_t;
-
-typedef struct {
     int port;
     int freq;
     int fd;
+    int team_count;
+    int client_nb;
     struct sockaddr_in address;
     fd_set read_set;
     fd_set write_set;
     client_t clients[MAX_CLIENT];
     world_t world;
     team_t team_list[MAX_TEAM_NB];
-    args_t args;
 } server_t;
 
 typedef struct {
