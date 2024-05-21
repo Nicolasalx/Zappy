@@ -13,19 +13,56 @@
 
 static void check_arg_validity(server_t *server, int team_count)
 {
-    if (server->args.port == NULL || server->args.width == NULL
-    || server->args.height == NULL || server->args.client_nb == NULL
-    || server->args.freq == NULL || team_count == 0) {
+    if (server->args.port == -1 || server->args.width == -1
+    || server->args.height == -1 || server->args.client_nb == -1
+    || server->args.freq == -1 || team_count == 0) {
         printf("Error: Invalid args\n");
         my_exit(84);
+    }
+    if (server->args.port < 0 || server->args.port > MAX_PORT_NB) {
+        printf("Error: Invalid port\n");
+        my_exit(84);
+    }
+    if (server->args.width <= 0) {
+        printf("Error: Width must be superior to 0\n");
+        my_exit(84);
+    }
+    if (server->args.height <= 0) {
+        printf("Error: Height must be superior to 0\n");
+        my_exit(84);
+    }
+    if (server->args.client_nb <= 0) {
+        printf("Error: Clients must be superior to 0\n");
+        my_exit(84);
+    }
+    if (server->args.freq <= 0) {
+        printf("Error: Frequency must be superior to 0\n");
+        my_exit(84);
+    }
+}
+
+const void set_args(server_t *server)
+{
+    server->args.port = -1;
+    server->args.width = -1;
+    server->args.height = -1;
+    server->args.client_nb = -1;
+    server->args.freq = -1;
+    for (int i = 0; i < MAX_TEAM_NB; i++) {
+        server->args.teams[i] = NULL;
     }
 }
 
 void get_args(int argc, const char **argv, server_t *server)
 {
-    char *args[] = {"-p", "-x", "-y", "-c", "-f"};
+    const char *args[] = {"-p", "-x", "-y", "-c", "-f"};
     int team_count = 0;
 
+    set_args(server);
+    if (argc == 2 && strcmp(argv[1], "-h") == 0) {
+        printf("USAGE: ./zappy_server -p port -x width -y height -n name1 name2 ... -c clientsNb -f freq\n");
+        my_exit(0);
+    }
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-n") == 0) {
             for (i = i + 1; i < argc && argv[i][0] != '-'; i++) {

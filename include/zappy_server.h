@@ -69,7 +69,6 @@ typedef struct {
 extern const char **gui_cmd;
 extern const char **ai_cmd;
 
-void check_arg_validity(int argc, const char **argv, server_t *server);
 void get_args(int argc, const char **argv, server_t *server);
 void create_server(server_t *server);
 void init_server_set(server_t *server, int *max_fd);
