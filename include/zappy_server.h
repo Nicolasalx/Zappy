@@ -119,5 +119,7 @@ void check_arg_validity(server_t *server);
 // gui command
 void msz_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void sgt_cmd(int nb_args, char **argv, client_t *client, server_t *server);
+void sst_cmd(int nb_args, char **argv, client_t *client, server_t *server);
+void sgt_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 
 #endif /* !MYTEAMS_SERVER_H_ */

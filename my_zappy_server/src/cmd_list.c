@@ -16,8 +16,8 @@ const gui_handler_t gui_cmd_handler[] =
     {"ppo", 1, NULL}, // player’s position
     {"plv", 1, NULL}, // player’s level
     {"pin", 1, NULL}, // player’s inventory
-    {"sgt", 0, NULL}, // time unit request
-    {"sst", 1, NULL}, // time unit modification
+    {"sgt", 0, sgt_cmd}, // time unit request
+    {"sst", 1, sst_cmd}, // time unit modification
     {NULL, 0, NULL}
 };
 
