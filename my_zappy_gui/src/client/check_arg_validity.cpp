@@ -35,6 +35,5 @@ Client::Client(int argc, const char **argv)
         }
     }
     this->port = std::atoi(argv[2]);
-    // this->cmd_buffer.reserve(CMD_BUFFER_SIZE);
     this->launch_graphic();
 }

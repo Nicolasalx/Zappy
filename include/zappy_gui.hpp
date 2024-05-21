@@ -19,10 +19,20 @@
     #include <iostream>
     #include <string>
     #include <memory>
+    #include <vector>
 
     #define MAX_PORT_NB 65535
     #define BUFFER_SIZE 4096
     #define CMD_BUFFER_SIZE 4096
+
+class GameState {
+    public:
+        GameState() {};
+        ~GameState() {};
+        void parse_server_reply(std::string reply_data);
+    private:
+        std::vector<std::vector<int>> map;
+};
 
 class Client {
     public:
@@ -45,6 +55,7 @@ class Client {
         unsigned short port;
         struct sockaddr_in server_address;
         std::string cmd_buffer;
+        GameState gameState;
 };
 
 #endif /* !MYTEAMS_CLIENT_H_ */

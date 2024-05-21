@@ -12,4 +12,5 @@ void handle_client_input(server_t *server, client_t *client, char *cmd)
     (void) server;
     (void) client;
     printf("client send: %s\n", cmd);
+    dprintf(client->fd, "%s\n", cmd);
 }

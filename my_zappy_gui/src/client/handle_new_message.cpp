@@ -26,5 +26,5 @@ void Client::handle_new_message()
         std::cout << "Incompatible reply from the server.\n";
         return;
     }
-    handle_server_reply(reply_data);
+    this->gameState.parse_server_reply(reply_data);
 }
