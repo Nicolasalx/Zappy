@@ -11,18 +11,13 @@ void handle_client_input(server_t *server, client_t *client, char *cmd)
 {
     (void) server;
     printf("client send: %s\n", cmd);
-    dprintf(client->fd, "%s\n", cmd);
     // check client type (is GRAPHICAL)
-    int nb_word = count_nb_word(cmd, " \t");
-    int *size_word = count_size_word(cmd, " \t", nb_word);
-    char **word = my_str_to_word(cmd, " \t", nb_word, size_word);
+    int nb_word = count_nb_word(cmd, " \t\n");
+    int *size_word = count_size_word(cmd, " \t\n", nb_word);
+    char **word = my_str_to_word(cmd, " \t\n", nb_word, size_word);
 
-    if (nb_word <= 0) {
-        send_msg_client(client->fd, "suc\n");
-        return;
-    }
     for (size_t i = 0; gui_cmd_handler[i].name != NULL; ++i) {
-        if (strcmp(word[0], gui_cmd_handler[i].name) == 0) {
+        if (nb_word > 0 && strcmp(word[0], gui_cmd_handler[i].name) == 0) {
             if (nb_word - 1 == gui_cmd_handler[i].nb_arg) {
                 if (gui_cmd_handler[i].method) {
                     gui_cmd_handler[i].method(nb_word - 1, &word[1], client, server);
@@ -32,7 +27,8 @@ void handle_client_input(server_t *server, client_t *client, char *cmd)
             } else {
                 send_msg_client(client->fd, "sbp\n");
             }
-            break;
+            return;
         }
     }
+    send_msg_client(client->fd, "suc\n");
 }
