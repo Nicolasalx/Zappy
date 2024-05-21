@@ -20,6 +20,8 @@
     #include <string>
     #include <memory>
     #include <vector>
+    #include <map>
+    #include <functional>
 
     #define MAX_PORT_NB 65535
     #define BUFFER_SIZE 4096
@@ -27,10 +29,14 @@
 
 class GameState {
     public:
-        GameState() {};
-        ~GameState() {};
+        GameState();
+        ~GameState();
         void parse_server_reply(std::string reply_data);
+        void msz(std::vector<std::string> args);
     private:
+        int width = 0;
+        int height = 0;
+        std::map<std::string, std::function<void(std::vector<std::string>)>> cmd_map;
         std::vector<std::vector<int>> map;
 };
 
