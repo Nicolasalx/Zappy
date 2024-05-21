@@ -31,7 +31,7 @@ void GameState::parse_server_reply(std::string reply_data)
             args.push_back(cmd.substr(0, cmd.find(" ")));
             cmd.erase(0, cmd.find(" ") + 1);
         }
-        // args.push_back(cmd);
+        args.push_back(cmd);
         // std::cout << "type: " << type << " args:";
         // for (auto arg : args) {
         //     std::cout << " " << arg;
