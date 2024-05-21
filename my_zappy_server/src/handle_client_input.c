@@ -22,7 +22,7 @@ void handle_client_input(server_t *server, client_t *client, char *cmd)
         return;
     }
     for (size_t i = 0; gui_cmd_handler[i].name != NULL; ++i) {
-        if (strcmp(word[0], gui_cmd_handler[i].name)) {
+        if (strcmp(word[0], gui_cmd_handler[i].name) == 0) {
             if (nb_word - 1 == gui_cmd_handler[i].nb_arg) {
                 if (gui_cmd_handler[i].method) {
                     gui_cmd_handler[i].method(nb_word - 1, &word[1], client, server);

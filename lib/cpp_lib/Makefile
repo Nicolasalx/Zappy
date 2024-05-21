@@ -22,9 +22,11 @@ OBJ			=	$(SRC:.cpp=.o)
 
 $(NAME): $(OBJ)
 	@if ar rc -o $(NAME) $(OBJ); then \
-		printf "\e[2m[\e[92mLINKING OK\e[0;2m] ar rc -o $(NAME) $(OBJ)\e[0m\n"; \
+		printf "\e[2m[\e[92mLINKING OK\e[0;2m]"; \
+		printf " ar rc -o $(NAME) $(OBJ)\e[0m\n"; \
 	else \
-		printf "\e[2m[\e[1;91mLINKING KO\e[0;2m] ar rc -o $(NAME) $(OBJ)\e[0m\n"; \
+		printf "\e[2m[\e[1;91mLINKING KO\e[0;2m]"; \
+		printf " ar rc -o $(NAME) $(OBJ)\e[0m\n"; \
 		exit 1; \
 	fi
 
