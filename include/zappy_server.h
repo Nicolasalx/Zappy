@@ -52,12 +52,20 @@ typedef enum {
     NB_ITEM
 } item_t;
 
+typedef enum {
+    N,
+    E,
+    S,
+    W
+} direction_t;
+
 typedef struct {
     int pos_x;
     int pos_y;
     int level;
     item_t inventory[NB_ITEM];
     team_t *team;
+    direction_t direction;
 } player_t;
 
 typedef struct {
@@ -116,5 +124,7 @@ void msz_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void sgt_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void sst_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void sgt_cmd(int nb_args, char **argv, client_t *client, server_t *server);
-
+void tna_cmd(int nb_args, char **argv, client_t *client, server_t *server);
+void plv_cmd(int nb_args, char **argv, client_t *client, server_t *server);
+void ppo_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 #endif /* !MYTEAMS_SERVER_H_ */

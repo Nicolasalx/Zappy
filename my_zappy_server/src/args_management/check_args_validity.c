@@ -33,14 +33,14 @@ static void fill_arg(server_t *server)
     if (server->world.size_x == -1 || server->world.size_y == -1) {
         my_error("Error: Map dimensions are not set", 84);
     }
+    if (server->client_nb == -1) {
+        printf("No client number set, default client number is 4\n");
+        server->client_nb = 4;
+    }
     create_team_name(server);
     if (server->port == -1) {
         printf("No port set, default port is 4242\n");
         server->port = 4242;
-    }
-    if (server->client_nb == -1) {
-        printf("No client number set, default client number is 4\n");
-        server->client_nb = 4;
     }
     if (server->freq == -1) {
         printf("No frequency set, default frequency is 100 tps\n");
