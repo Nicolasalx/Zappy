@@ -10,7 +10,29 @@
 void handle_client_input(server_t *server, client_t *client, char *cmd)
 {
     (void) server;
-    (void) client;
     printf("client send: %s\n", cmd);
     dprintf(client->fd, "%s\n", cmd);
+    // check client type (is GRAPHICAL)
+    int nb_word = count_nb_word(cmd, " \t");
+    int *size_word = count_size_word(cmd, " \t", nb_word);
+    char **word = my_str_to_word(cmd, " \t", nb_word, size_word);
+
+    if (nb_word <= 0) {
+        send_msg_client(client->fd, "suc\n");
+        return;
+    }
+    for (size_t i = 0; gui_cmd_handler[i].name != NULL; ++i) {
+        if (strcmp(word[0], gui_cmd_handler[i].name)) {
+            if (nb_word - 1 == gui_cmd_handler[i].nb_arg) {
+                if (gui_cmd_handler[i].method) {
+                    gui_cmd_handler[i].method(nb_word - 1, &word[1], client, server);
+                } else {
+                    send_msg_client(client->fd, "method not implemented\n");
+                }
+            } else {
+                send_msg_client(client->fd, "sbp\n");
+            }
+            break;
+        }
+    }
 }

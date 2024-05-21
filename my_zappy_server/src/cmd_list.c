@@ -7,20 +7,21 @@
 
 #include "zappy_server.h"
 
-const char **gui_cmd =
+const gui_handler_t gui_cmd_handler[] =
 {
-    "msz", // map size
-    "bct", // content of a tile
-    "mct", // content of the map (all the tiles)
-    "tna", // name of all the teams
-    "ppo", // player’s position
-    "plv", // player’s level
-    "pin", // player’s inventory
-    "sgt", // time unit request
-    "sst"  // time unit modification
+    {"msz", 0, NULL}, // map size
+    {"bct", 2, NULL}, // content of a tile
+    {"mct", 0, NULL}, // content of the map (all the tiles)
+    {"tna", 0, NULL}, // name of all the teams
+    {"ppo", 1, NULL}, // player’s position
+    {"plv", 1, NULL}, // player’s level
+    {"pin", 1, NULL}, // player’s inventory
+    {"sgt", 0, NULL}, // time unit request
+    {"sst", 1, NULL}, // time unit modification
+    {NULL, 0, NULL}
 };
 
-const char **ai_cmd =
+const char *ai_cmd[] =
 {
     "Forward",
     "Right",

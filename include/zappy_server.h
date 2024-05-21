@@ -63,11 +63,19 @@ typedef struct {
     fd_set read_set;
     fd_set write_set;
     client_t clients[MAX_CLIENT];
+    world_t world;
+    node_t *team_list;
     args_t args;
 } server_t;
 
-extern const char **gui_cmd;
-extern const char **ai_cmd;
+typedef struct {
+    char *name;
+    int nb_arg;
+    void (*method)(int, char **, client_t *, server_t *);
+} gui_handler_t;
+
+extern const gui_handler_t gui_cmd_handler[];
+extern const char *ai_cmd[];
 
 void get_args(int argc, const char **argv, server_t *server);
 void create_server(server_t *server);

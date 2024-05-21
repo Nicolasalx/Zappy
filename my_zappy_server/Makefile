@@ -9,7 +9,7 @@ SRC				:=	$(shell find src/ -name "*.c")
 
 CFLAGS			=	-Wall -Wextra \
 					-I../include/ -I../include/lib/c_lib/ \
-					$(ADDITIONAL_FLAGS) \
+					$(ADDITIONAL_FLAGS)
 
 NAME			=	../zappy_server
 
@@ -32,7 +32,7 @@ OBJ				=	$(SRC:.c=.o)
 
 $(NAME): $(OBJ)
 	@cd $(LIB_PATH) && $(MAKE) ADDITIONAL_FLAGS="$(ADDITIONAL_FLAGS)"
-	@if gcc -o $(NAME) $(OBJ) $(LIB_NAME) $(CFLAGS) $(LDFLAGS) $(LDLIBS); then\
+	@if gcc -o $(NAME) $(OBJ) $(LIB_NAME) $(CFLAGS); then\
 		printf "[\e[92mCOMPILATION OK\e[0m] "; \
 		printf "gcc -o $(NAME) $(OBJ) $(LIB_NAME) $(CFLAGS)\n"; \
 	else \
