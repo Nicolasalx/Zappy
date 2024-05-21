@@ -7,11 +7,8 @@
 
 #include "zappy_server.h"
 
-void handle_client_input(server_t *server, client_t *client, char *cmd)
+static void handle_gui_input(server_t *server, client_t *client, char *cmd)
 {
-    (void) server;
-    printf("client send: %s\n", cmd);
-    // check client type (is GRAPHICAL)
     int nb_word = count_nb_word(cmd, " \t\n");
     int *size_word = count_size_word(cmd, " \t\n", nb_word);
     char **word = my_str_to_word(cmd, " \t\n", nb_word, size_word);
@@ -31,4 +28,35 @@ void handle_client_input(server_t *server, client_t *client, char *cmd)
         }
     }
     send_msg_client(client->fd, "suc\n");
+}
+
+static void handle_ai_input(server_t *server, client_t *client, char *cmd)
+{
+    send_msg_client(client->fd, "method not implemented\n");
+}
+
+void handle_client_input(server_t *server, client_t *client, char *cmd)
+{
+    printf("client send: %s\n", cmd);
+
+    if (client->is_graphic) {
+        handle_gui_input(server, client, cmd);
+    } else if (client->player.team) {
+        handle_ai_input(server, client, cmd);
+    } else {
+        if (strcmp(cmd, "GRAPHIC\n") == 0) {
+            client->is_graphic = true;
+            // send info to client
+        } else {
+            for (int i = 0; i < server->team_count; ++i) {
+                if (strlen(cmd) > 1 && strncmp(cmd, server->team_list[i].name, strlen(cmd) - 1) == 0) {
+                    client->player.team = &server->team_list[i];
+                    init_player(client);
+                    // send info to client
+                    return;
+                }
+            }
+            send_msg_client(client->fd, "ko (not logged in)\n");
+        }
+    }
 }
