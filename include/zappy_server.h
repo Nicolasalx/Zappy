@@ -49,12 +49,13 @@ typedef struct {
 } client_t;
 
 typedef struct {
-    unsigned short port;
+    int port;
     int width;
     int height;
     int client_nb;
     int freq;
     char *teams[MAX_TEAM_NB];
+    int team_count;
 } args_t;
 
 typedef struct {
@@ -91,5 +92,15 @@ void remove_client(client_t *client);
 void get_client_input(server_t *server, client_t *client);
 void handle_client_input(server_t *server, client_t *client, char *cmd);
 void send_msg_client(int fd, char *reply);
+
+// args management
+void get_port_and_freq(const char **argv, server_t *server, int argc, const char **args);
+void get_map_size(const char **argv, server_t *server, int argc, const char **args);
+void get_clients_nb(const char **argv, server_t *server, int argc, const char **args);
+void get_teams_name(const char **argv, server_t *server, int i, int argc);
+void check_arg_validity(server_t *server);
+
+// gui command
+void msz_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 
 #endif /* !MYTEAMS_SERVER_H_ */
