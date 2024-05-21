@@ -7,7 +7,7 @@
 
 #include "zappy_server.h"
 
-void plv_cmd(int nb_args, char **argv, client_t *client, server_t *server)
+void plv_cmd(int, char **argv, client_t *client, server_t *)
 {
     char buffer[100] = {0};
     int id = atoi(argv[0]);

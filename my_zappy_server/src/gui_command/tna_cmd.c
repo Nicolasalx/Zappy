@@ -7,7 +7,7 @@
 
 #include "zappy_server.h"
 
-void tna_cmd(int nb_args, char **argv, client_t *client, server_t *server)
+void tna_cmd(int, char **, client_t *client, server_t *server)
 {
     char buffer[100] = {0};
 

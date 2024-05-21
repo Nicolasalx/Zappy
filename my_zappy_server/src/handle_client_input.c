@@ -38,8 +38,8 @@ static void handle_ai_input(server_t *server, client_t *client, char *cmd)
 void handle_client_input(server_t *server, client_t *client, char *cmd)
 {
     char buffer[100] = {0};
-    char buffer2[100] = {};
-    char buffer3[10000] = {};
+    char buffer2[100] = {0};
+    char buffer3[100] = {0};
 
     printf("client send: %s\n", cmd);
 
@@ -52,7 +52,7 @@ void handle_client_input(server_t *server, client_t *client, char *cmd)
             client->is_graphic = true;
             // send info to client
             // trust the process
-            sprintf(buffer3, "msz %d %d\nsgt %d", server->world.size_x, server->world.size_y, server->freq);
+            sprintf(buffer3, "msz %d %d\nsgt %d", server->world.size_x, server->world.size_y, (int)server->freq);
             send_msg_client(client->fd, buffer3);
         } else {
             for (int i = 0; i < server->team_count; ++i) {
