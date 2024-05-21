@@ -13,11 +13,11 @@
 
 static void set_args(server_t *server)
 {
-    server->args.port = -1;
-    server->args.width = -1;
-    server->args.height = -1;
+    server->port = -1;
+    server->world.size_x = -1;
+    server->world.size_y = -1;
     server->args.client_nb = -1;
-    server->args.freq = -1;
+    server->freq = -1;
     server->args.team_count = 0;
     for (int i = 0; i < MAX_TEAM_NB; i++) {
         server->args.teams[i] = NULL;

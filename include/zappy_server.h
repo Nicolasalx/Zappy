@@ -49,16 +49,14 @@ typedef struct {
 } client_t;
 
 typedef struct {
-    int port;
-    int width;
-    int height;
     int client_nb;
-    int freq;
     char *teams[MAX_TEAM_NB];
     int team_count;
 } args_t;
 
 typedef struct {
+    int port;
+    int freq;
     int fd;
     struct sockaddr_in address;
     fd_set read_set;

@@ -21,44 +21,44 @@ static void create_team_name(server_t *server)
 
 static void fill_arg(server_t *server)
 {
-    if (server->args.width == -1 && server->args.height == -1) {
+    if (server->world.size_x == -1 && server->world.size_y == -1) {
         printf("No map dimensions set, default is 10x10\n");
-        server->args.width = 10;
-        server->args.height = 10;
+        server->world.size_x = 10;
+        server->world.size_y = 10;
     }
-    if (server->args.width == -1 || server->args.height == -1) {
+    if (server->world.size_x == -1 || server->world.size_y == -1) {
         my_error("Error: Map dimensions are not set", 84);
     }
     create_team_name(server);
-    if (server->args.port == -1) {
+    if (server->port == -1) {
         printf("No port set, default port is 4242\n");
-        server->args.port = 4242;
+        server->port = 4242;
     }
     if (server->args.client_nb == -1) {
         printf("No client number set, default client number is 4\n");
         server->args.client_nb = 4;
     }
-    if (server->args.freq == -1) {
+    if (server->freq == -1) {
         printf("No frequency set, default frequency is 100 tps\n");
-        server->args.freq = 100;
+        server->freq = 100;
     }
 }
 
 void check_arg_validity(server_t *server)
 {
-    if ((server->args.port < 0 || server->args.port > MAX_PORT_NB) && server->args.port != -1) {
+    if ((server->port < 0 || server->port > MAX_PORT_NB) && server->port != -1) {
         my_error("Error: Port must be between 1 and 65535", 84);
     }
-    if (server->args.width <= 0 && server->args.width > 100 && server->args.width != -1) {
+    if (server->world.size_x <= 0 && server->world.size_y > 100 && server->world.size_x != -1) {
         my_error("Error: Width must be between 1 and 100", 84);
     }
-    if (server->args.height <= 0 && server->args.height > 100 && server->args.height != -1) {
+    if (server->world.size_x <= 0 && server->world.size_y > 100 && server->world.size_y != -1) {
         my_error("Error: Height must be between 1 and 100", 84);
     }
     if (server->args.client_nb <= 0 && server->args.client_nb > 100 && server->args.client_nb != -1) {
         my_error("Error: Clients must be between 1 and 100", 84);
     }
-    if (server->args.freq <= 0 && server->args.freq > 10000 && server->args.freq != -1) {
+    if (server->freq <= 0 && server->freq > 10000 && server->freq != -1) {
         my_error("Error: Frequency cannot be greater than 10000", 84);
     }
     fill_arg(server);

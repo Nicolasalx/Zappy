@@ -11,7 +11,7 @@ static void get_width(const char **argv, server_t *server, int i, const char **a
 {
     if (strcmp(argv[i], args[1]) == 0) {
         if (my_str_only_cont(argv[i + 1], "0123456789")) {
-            server->args.width = atoi(argv[i + 1]);
+            server->world.size_x = atoi(argv[i + 1]);
         }
         else {
             my_error("Error: Width must be a number", 84);
@@ -23,7 +23,7 @@ static void get_height(const char **argv, server_t *server, int i, const char **
 {
     if (strcmp(argv[i], args[2]) == 0) {
         if (my_str_only_cont(argv[i + 1], "0123456789")) {
-            server->args.height = atoi(argv[i + 1]);
+            server->world.size_y = atoi(argv[i + 1]);
         }
         else {
             my_error("Error: Height must be a number", 84);

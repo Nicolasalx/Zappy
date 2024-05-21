@@ -31,7 +31,7 @@ static void change_server_option(server_t *server)
 static void bind_server_address(server_t *server)
 {
     server->address.sin_family = AF_INET;
-    server->address.sin_port = htons(server->args.port);
+    server->address.sin_port = htons(server->port);
     server->address.sin_addr.s_addr = inet_addr("127.0.0.1");
     if (bind(server->fd, (struct sockaddr *) &server->address,
             sizeof(server->address)) == -1) {
