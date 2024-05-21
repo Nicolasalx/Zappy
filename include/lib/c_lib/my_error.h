@@ -27,6 +27,7 @@ typedef struct error_t {
 extern const error_t error_info[];
 extern const int size_error_info;
 
+void my_error(char *error, int exit_value);
 void my_puterror(const char *str);
 void print_fatal_error_and_exit(int error);
 void my_exit(int exit_value);
