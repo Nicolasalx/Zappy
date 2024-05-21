@@ -42,10 +42,29 @@ typedef struct {
     int remaining_place;
 } team_t;
 
+typedef enum {
+    FOOD,
+    LINEMATE,
+    DERAUMERE,
+    SIBUR,
+    MENDIANE,
+    PHIRAS,
+    THYSTAME,
+    NB_ITEM
+} item_t;
+
+typedef struct {
+    int pos_x;
+    int pos_y;
+    int level;
+    int inventory[NB_ITEM];
+} player_t;
+
 typedef struct {
     int fd;
     char team_name[MAX_TEAMNAME_SIZE + 1];
     node_t *waiting_cmd;
+    player_t player;
 } client_t;
 
 typedef struct {
