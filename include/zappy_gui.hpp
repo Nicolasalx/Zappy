@@ -53,7 +53,6 @@ class Client {
         void handle_new_input();
         void handle_new_message();
         void send_cmd_to_server(char *cmd, int nb_byte);
-        void handle_server_reply(char *reply_data);
         void launch_graphic();
     private:
         int fd;
