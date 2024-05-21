@@ -26,7 +26,7 @@
     #define CWD_SIZE 4096
     #define MAX_TEAM_NB 100
 
-    #define MAX_TEAMNAME_SIZE 128
+    #define MAX_TEAMNAME_SIZE 32
     #define MAX_WAITING_CMD 10
 
     #define NEW_CLIENT_MESSAGE "WELCOME\n"
@@ -37,7 +37,6 @@ typedef struct {
 } world_t;
 
 typedef struct {
-    int id;
     char name[MAX_TEAMNAME_SIZE + 1];
     int remaining_place;
 } team_t;
@@ -57,12 +56,12 @@ typedef struct {
     int pos_x;
     int pos_y;
     int level;
-    int inventory[NB_ITEM];
+    item_t inventory[NB_ITEM];
+    team_t *team;
 } player_t;
 
 typedef struct {
     int fd;
-    char team_name[MAX_TEAMNAME_SIZE + 1];
     node_t *waiting_cmd;
     player_t player;
 } client_t;
@@ -82,7 +81,7 @@ typedef struct {
     fd_set write_set;
     client_t clients[MAX_CLIENT];
     world_t world;
-    node_t *team_list;
+    team_t team_list[MAX_TEAM_NB];
     args_t args;
 } server_t;
 
