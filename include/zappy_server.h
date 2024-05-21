@@ -52,20 +52,13 @@ typedef enum {
     NB_ITEM
 } item_t;
 
-typedef enum {
-    N,
-    E,
-    S,
-    W
-} direction_t;
-
 typedef struct {
+    bool is_in_game;
     int pos_x;
     int pos_y;
     int level;
     item_t inventory[NB_ITEM];
     team_t *team;
-    direction_t direction;
 } player_t;
 
 typedef struct {
@@ -112,7 +105,6 @@ void remove_client(client_t *client);
 void get_client_input(server_t *server, client_t *client);
 void handle_client_input(server_t *server, client_t *client, char *cmd);
 void send_msg_client(int fd, char *reply);
-void handle_new_player(server_t *server, client_t *new_client);
 
 // args management
 void get_port_and_freq(const char **argv, server_t *server, int argc, const char **args);
