@@ -52,24 +52,18 @@ typedef enum {
     NB_ITEM
 } item_t;
 
-typedef enum {
-    N,
-    E,
-    S,
-    W
-} direction_t;
-
 typedef struct {
+    bool is_in_game;
     int pos_x;
     int pos_y;
     int level;
     item_t inventory[NB_ITEM];
     team_t *team;
-    direction_t direction;
 } player_t;
 
 typedef struct {
     int fd;
+    bool is_graphic;
     node_t *waiting_cmd;
     player_t player;
 } client_t;

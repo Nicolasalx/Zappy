@@ -22,6 +22,10 @@ static void set_args(server_t *server)
     for (int i = 0; i < MAX_TEAM_NB; i++) {
         server->team_list[i].remaining_place = -1;
     }
+    for (int i = 0; i < MAX_CLIENT; i++) {
+        server->clients[i].is_graphic = false;
+    
+    }
 }
 
 void get_args(int argc, const char **argv, server_t *server)
