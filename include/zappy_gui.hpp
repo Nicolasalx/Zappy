@@ -33,9 +33,11 @@ class GameState {
         ~GameState();
         void parse_server_reply(std::string reply_data);
         void msz(std::vector<std::string> args);
+        void sgt(std::vector<std::string> args);
     private:
         int width = 0;
         int height = 0;
+        int time_unit = 0;
         std::map<std::string, std::function<void(std::vector<std::string>)>> cmd_map;
         std::vector<std::vector<int>> map;
 };
