@@ -105,6 +105,7 @@ void remove_client(client_t *client);
 void get_client_input(server_t *server, client_t *client);
 void handle_client_input(server_t *server, client_t *client, char *cmd);
 void send_msg_client(int fd, char *reply);
+void handle_new_player(server_t *server, client_t *new_client);
 
 // args management
 void get_port_and_freq(const char **argv, server_t *server, int argc, const char **args);
