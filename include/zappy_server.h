@@ -70,10 +70,11 @@ typedef struct {
 
 typedef struct {
     int port;
-    int freq;
+    double freq;
     int fd;
     int team_count;
     int client_nb;
+    struct timeval last_update;
     struct sockaddr_in address;
     fd_set read_set;
     fd_set write_set;
@@ -121,4 +122,9 @@ void sgt_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void tna_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void plv_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void ppo_cmd(int nb_args, char **argv, client_t *client, server_t *server);
+
+// game
+void init_player(client_t *client);
+void update_simulation(server_t *server);
+
 #endif /* !MYTEAMS_SERVER_H_ */

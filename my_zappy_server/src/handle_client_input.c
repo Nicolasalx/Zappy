@@ -51,6 +51,7 @@ void handle_client_input(server_t *server, client_t *client, char *cmd)
             for (int i = 0; i < server->team_count; ++i) {
                 if (strlen(cmd) > 1 && strncmp(cmd, server->team_list[i].name, strlen(cmd) - 1) == 0) {
                     client->player.team = &server->team_list[i];
+                    init_player(client);
                     // send info to client
                     return;
                 }
