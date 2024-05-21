@@ -27,19 +27,45 @@
     #define BUFFER_SIZE 4096
     #define CMD_BUFFER_SIZE 4096
 
+enum {
+    FOOD,
+    LINEMATE,
+    DERAUMERE,
+    SIBUR,
+    MENDIANE,
+    PHIRAS,
+    THYSTAME
+};
+
+struct pos_t {
+    int x;
+    int y;
+};
+
+struct player_t {
+    int n;
+    pos_t pos;
+    int level;
+    int orientation;
+    std::string team_name;
+};
+
 class GameState {
     public:
         GameState();
         ~GameState();
         void parse_server_reply(std::string reply_data);
         void msz(std::vector<std::string> args);
+        void bct(std::vector<std::string> args);
+        void tna(std::vector<std::string> args);
         void sgt(std::vector<std::string> args);
     private:
-        int width = 0;
-        int height = 0;
+        pos_t map_size;
         int time_unit = 0;
         std::map<std::string, std::function<void(std::vector<std::string>)>> cmd_map;
-        std::vector<std::vector<int>> map;
+        std::vector<std::vector<pos_t>> object_pos;
+        std::vector<player_t> players_list;
+        std::vector<std::string> team_names;
 };
 
 class Client {
