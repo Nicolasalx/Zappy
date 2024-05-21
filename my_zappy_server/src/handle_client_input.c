@@ -37,6 +37,10 @@ static void handle_ai_input(server_t *server, client_t *client, char *cmd)
 
 void handle_client_input(server_t *server, client_t *client, char *cmd)
 {
+    char buffer[100] = {0};
+    char buffer2[100] = {};
+    char buffer3[10000] = {};
+
     printf("client send: %s\n", cmd);
 
     if (client->is_graphic) {
@@ -47,12 +51,19 @@ void handle_client_input(server_t *server, client_t *client, char *cmd)
         if (strcmp(cmd, "GRAPHIC\n") == 0) {
             client->is_graphic = true;
             // send info to client
+            // trust the process
+            sprintf(buffer3, "msz %d %d\nsgt %d", server->world.size_x, server->world.size_y, server->freq);
+            send_msg_client(client->fd, buffer3);
         } else {
             for (int i = 0; i < server->team_count; ++i) {
                 if (strlen(cmd) > 1 && strncmp(cmd, server->team_list[i].name, strlen(cmd) - 1) == 0) {
                     client->player.team = &server->team_list[i];
                     init_player(client);
-                    // send info to client
+                    server->team_list[i].remaining_place -= 1;
+                    sprintf(buffer, "%d\n", server->team_list[i].remaining_place);
+                    send_msg_client(client->fd, buffer);
+                    sprintf(buffer2, "%d %d\n", server->world.size_x, server->world.size_y);
+                    send_msg_client(client->fd, buffer2);
                     return;
                 }
             }
