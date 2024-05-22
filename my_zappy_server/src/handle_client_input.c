@@ -48,11 +48,10 @@ void handle_client_input(server_t *server, client_t *client, char *cmd)
     } else {
         if (strcmp(cmd, "GRAPHIC\n") == 0) {
             client->is_graphic = true;
-            // send info to client
-            // trust the process
-            sprintf(buffer, "msz %d %d\nsgt %d\n", server->world.size_x, server->world.size_y, (int)server->freq);
-            send_msg_client(client->fd, buffer);
-            memset(buffer, 0, sizeof(buffer));
+            msz_cmd(0, NULL, client, server);
+            sgt_cmd(0, NULL, client, server);
+            mct_cmd(0, NULL, client, server);
+            tna_cmd(0, NULL, client, server);
         } else {
             for (int i = 0; i < server->team_count; ++i) {
                 if (strlen(cmd) > 1 && strncmp(cmd, server->team_list[i].name, strlen(cmd) - 1) == 0) {
