@@ -7,6 +7,15 @@
 
 #include "zappy_gui.hpp"
 
+void Client::check_new_message(std::string reply_data)
+{
+    if (reply_data == "WELCOME\n") {
+        dprintf(this->fd, "GRAPHIC\n");
+    } else {
+        this->gameState.parse_server_reply(reply_data);
+    }
+}
+
 void Client::handle_new_message()
 {
     char reply_data[BUFFER_SIZE] = {0};
@@ -26,5 +35,5 @@ void Client::handle_new_message()
         std::cout << "Incompatible reply from the server.\n";
         return;
     }
-    this->gameState.parse_server_reply(reply_data);
+    this->check_new_message(reply_data);
 }

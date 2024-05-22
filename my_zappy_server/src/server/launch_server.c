@@ -34,6 +34,5 @@ void lauch_server(server_t *server)
         handle_new_connection(server);
         handle_active_client(server);
         update_simulation(server);
-        usleep(33);
     }
 }

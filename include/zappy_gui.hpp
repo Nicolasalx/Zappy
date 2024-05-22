@@ -48,6 +48,7 @@ struct player_t {
     int level;
     int orientation;
     std::string team_name;
+    std::vector<int> inventory;
 };
 
 class GameState {
@@ -58,6 +59,11 @@ class GameState {
         void msz(std::vector<std::string> args);
         void bct(std::vector<std::string> args);
         void tna(std::vector<std::string> args);
+        void pnw(std::vector<std::string> args);
+        void ppo(std::vector<std::string> args);
+        void plv(std::vector<std::string> args);
+        void pin(std::vector<std::string> args);
+        void pdi(std::vector<std::string> args);
         void sgt(std::vector<std::string> args);
     private:
         pos_t map_size;
@@ -78,6 +84,7 @@ class Client {
         void monitor_input();
         void handle_new_input();
         void handle_new_message();
+        void check_new_message(std::string reply_data);
         void send_cmd_to_server(char *cmd, int nb_byte);
         void launch_graphic();
     private:

@@ -13,6 +13,11 @@ GameState::GameState()
     cmd_map.emplace("msz", [this](std::vector<std::string> args) { this->msz(args); });
     cmd_map.emplace("bct", [this](std::vector<std::string> args) { this->bct(args); });
     cmd_map.emplace("tna", [this](std::vector<std::string> args) { this->tna(args); });
+    cmd_map.emplace("pnw", [this](std::vector<std::string> args) { this->pnw(args); });
+    cmd_map.emplace("ppo", [this](std::vector<std::string> args) { this->ppo(args); });
+    cmd_map.emplace("plv", [this](std::vector<std::string> args) { this->plv(args); });
+    cmd_map.emplace("pin", [this](std::vector<std::string> args) { this->pin(args); });
+    cmd_map.emplace("pdi", [this](std::vector<std::string> args) { this->pdi(args); });
     cmd_map.emplace("sgt", [this](std::vector<std::string> args) { this->sgt(args); });
 }
 
