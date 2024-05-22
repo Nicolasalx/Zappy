@@ -65,7 +65,7 @@ class GameState {
         void pin(std::vector<std::string> args);
         void pdi(std::vector<std::string> args);
         void sgt(std::vector<std::string> args);
-    private:
+
         pos_t map_size;
         int time_unit = 0;
         std::map<std::string, std::function<void(std::vector<std::string>)>> cmd_map;
