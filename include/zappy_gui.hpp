@@ -84,6 +84,7 @@ class Client {
         void monitor_input();
         void handle_new_input();
         void handle_new_message();
+        void get_args(int argc, const char **argv);
         void check_new_message(std::string reply_data);
         void send_cmd_to_server(char *cmd, int nb_byte);
         void launch_graphic();
@@ -95,6 +96,7 @@ class Client {
         unsigned short port;
         struct sockaddr_in server_address;
         std::string cmd_buffer;
+        std::string ip;
         GameState gameState;
 };
 

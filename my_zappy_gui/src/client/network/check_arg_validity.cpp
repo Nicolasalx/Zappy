@@ -10,30 +10,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void check_nb_arg(int argc)
+void Client::get_args(int argc, const char **argv)
 {
-    if (argc != 3) {
-        std::cout <<
-        "USAGE: ./myteams_cli ip port\n" <<
-        "\tip is the server ip address on which the server socket listens.\n" <<
-        "\tport is the port number on which the server socket listens.\n\n";
-        throw my::tracked_exception("Too much or missing argument.\n");
+    for (int i = 1; i < argc; i++) {
+        if (argv[i] == std::string("-p")) {
+            if (i + 1 >= argc)
+                throw my::tracked_exception("Invalid Port.\n");
+            this->port = std::atoi(argv[i + 1]);
+        }
+        if (argv[i] == std::string("-h")) {
+            if (i + 1 >= argc)
+                throw my::tracked_exception("Invalid Ip.\n");
+            this->ip = argv[i + 1];
+        }
+        if (argv[i] == std::string("-help")) {
+            std::cout << "USAGE: ./zappy_gui -p port -h ip" << std::endl;
+            exit(0);
+        }
+    }
+    if (this->ip == "localhost") {
+        this->ip = "127.0.0.1";
     }
 }
 
 Client::Client(int argc, const char **argv)
 {
-    check_nb_arg(argc);
-    std::string ip = argv[1];
-
-    if (ip == "localhost") {
-        inet_aton(argv[1], &this->server_address.sin_addr);
-    } else {
-        if (inet_aton(argv[1], &this->server_address.sin_addr) == 0) {
-            std::cout << "Invalid Ip: " << argv[1] << std::endl;
-            throw my::tracked_exception("Invalid Ip.\n");
-        }
+    this->ip = "127.0.0.1";
+    this->port = 8080;
+    this->get_args(argc, argv);
+    if (inet_aton(this->ip.c_str(), &this->server_address.sin_addr) == 0) {
+        throw my::tracked_exception("Invalid Ip.\n");
     }
-    this->port = std::atoi(argv[2]);
     this->launch_graphic();
 }
