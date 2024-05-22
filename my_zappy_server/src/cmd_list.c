@@ -10,7 +10,7 @@
 const gui_handler_t gui_cmd_handler[] =
 {
     {"msz", 0, msz_cmd}, // map size
-    {"bct", 2, NULL}, // content of a tile
+    {"bct", 2, bct_cmd}, // content of a tile
     {"mct", 0, mct_cmd}, // content of the map (all the tiles)
     {"tna", 0, tna_cmd}, // name of all the teams
     {"ppo", 1, ppo_cmd}, // player’s position
