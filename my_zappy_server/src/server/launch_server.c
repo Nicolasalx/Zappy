@@ -33,6 +33,8 @@ void lauch_server(server_t *server)
         monitor_client(server, max_fd);
         handle_new_connection(server);
         handle_active_client(server);
+
+        update_resource(server);
         update_simulation(server);
     }
 }

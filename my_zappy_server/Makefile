@@ -8,7 +8,7 @@
 SRC				:=	$(shell find src/ -name "*.c")
 
 CFLAGS			=	-Wall -Wextra \
-					-I../include/ -I../include/lib/c_lib/ \
+					-I../include/ -I../include/lib/c_lib/ -lm \
 					$(ADDITIONAL_FLAGS)
 
 NAME			=	../zappy_server

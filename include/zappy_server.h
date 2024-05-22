@@ -31,15 +31,7 @@
 
     #define NEW_CLIENT_MESSAGE "WELCOME\n"
 
-typedef struct {
-    int size_x;
-    int size_y;
-} world_t;
-
-typedef struct {
-    char name[MAX_TEAMNAME_SIZE + 1];
-    int remaining_place;
-} team_t;
+    #define RESOURCE_RESPAWN_FREQ 20.0
 
 typedef enum {
     FOOD,
@@ -53,11 +45,27 @@ typedef enum {
 } item_t;
 
 typedef struct {
+    int item[NB_ITEM];
+} tile_t;
+
+typedef struct {
+    int size_x;
+    int size_y;
+    tile_t **map;
+} world_t;
+
+typedef struct {
+    char name[MAX_TEAMNAME_SIZE + 1];
+    int remaining_place;
+} team_t;
+
+typedef struct {
     bool is_in_game;
     int pos_x;
     int pos_y;
     int level;
-    item_t inventory[NB_ITEM];
+    int inventory[NB_ITEM];
+    int food_time_unit;
     team_t *team;
 } player_t;
 
@@ -74,7 +82,9 @@ typedef struct {
     int fd;
     int team_count;
     int client_nb;
+    bool is_immortal;
     struct timeval last_update;
+    struct timeval last_resource_spawn;
     struct sockaddr_in address;
     fd_set read_set;
     fd_set write_set;
@@ -91,6 +101,8 @@ typedef struct {
 
 extern const gui_handler_t gui_cmd_handler[];
 extern const char *ai_cmd[];
+
+extern double resource_density[NB_ITEM];
 
 void get_args(int argc, const char **argv, server_t *server);
 void create_server(server_t *server);
@@ -122,9 +134,13 @@ void sgt_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void tna_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void plv_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void ppo_cmd(int nb_args, char **argv, client_t *client, server_t *server);
+void mct_cmd(int argc, char **argv, client_t *client, server_t *server);
 
 // game
 void init_player(client_t *client);
 void update_simulation(server_t *server);
+void create_world(server_t *server);
+void spawn_resource(server_t *server);
+void update_resource(server_t *server);
 
 #endif /* !MYTEAMS_SERVER_H_ */

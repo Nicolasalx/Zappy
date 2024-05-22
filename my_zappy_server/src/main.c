@@ -13,6 +13,7 @@ int main(int argc, char const *argv[])
 
     get_args(argc, argv, &server);
     create_server(&server);
+    create_world(&server);
     lauch_server(&server);
     delete_server(&server);
     free_all_alloc();
