@@ -7,7 +7,7 @@
 
 #include "zappy_server.h"
 
-void ppo_cmd(int nb_args, char **argv, client_t *client, server_t *server)
+void ppo_cmd(int, char **argv, client_t *client, server_t *)
 {
     char buffer[100] = {0};
     int id = atoi(argv[0]);

@@ -7,7 +7,7 @@
 
 #include "zappy_server.h"
 
-void sst_cmd(int nb_args, char **argv, client_t *client, server_t *server)
+void sst_cmd(int, char **argv, client_t *client, server_t *server)
 {
     char buffer[100] = {0};
     
@@ -15,6 +15,6 @@ void sst_cmd(int nb_args, char **argv, client_t *client, server_t *server)
     if (!my_str_only_cont(argv[0], "0123456789")) {
         send_msg_client(client->fd, "sbp\n");
     }
-    snprintf(buffer, sizeof(buffer), "sst %d\n", server->freq);
+    snprintf(buffer, sizeof(buffer), "sst %d\n", (int)server->freq);
     send_msg_client(client->fd, buffer);
 }

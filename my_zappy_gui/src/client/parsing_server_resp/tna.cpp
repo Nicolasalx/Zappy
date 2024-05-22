@@ -2,18 +2,18 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** sgt
+** tna
 */
 
 #include "zappy_gui.hpp"
 
-void GameState::sgt(std::vector<std::string> args)
+void GameState::tna(std::vector<std::string> args)
 {
-    if (args.size() != 1)
-        return;
-    // std::cout << "sgt" << std::endl;
+    for (auto team : args) {
+        this->team_names.push_back(team);
+    }
+    // std::cout << "tna" << std::endl;
     // for (auto arg : args) {
     //     std::cout << arg << std::endl;
     // }
-    time_unit = std::stoi(args[0]);
 }

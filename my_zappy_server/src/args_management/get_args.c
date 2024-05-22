@@ -19,12 +19,8 @@ static void set_args(server_t *server)
     server->client_nb = -1;
     server->freq = -1;
     server->team_count = 0;
-    for (int i = 0; i < MAX_TEAM_NB; i++) {
-        server->team_list[i].remaining_place = -1;
-    }
     for (int i = 0; i < MAX_CLIENT; i++) {
         server->clients[i].is_graphic = false;
-    
     }
 }
 

@@ -11,10 +11,10 @@ void GameState::msz(std::vector<std::string> args)
 {
     if (args.size() != 2)
         return;
-    std::cout << "msz" << std::endl;
-    for (auto arg : args) {
-        std::cout << arg << std::endl;
-    }
-    width = std::stoi(args[0]);
-    height = std::stoi(args[1]);
+    // std::cout << "msz" << std::endl;
+    // for (auto arg : args) {
+    //     std::cout << arg << std::endl;
+    // }
+    map_size.x = std::stoi(args[0]);
+    map_size.y = std::stoi(args[1]);
 }
