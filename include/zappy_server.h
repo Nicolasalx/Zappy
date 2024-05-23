@@ -109,6 +109,12 @@ typedef struct {
 } gui_handler_t;
 
 typedef struct {
+    void (*method)(char *, client_t *, server_t *);
+    char *args;
+    int time_to_wait;
+} waiting_cmd_t;
+
+typedef struct {
     char *name;
     bool has_arg;
     void (*method)(char *, client_t *, server_t *);
