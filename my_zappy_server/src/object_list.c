@@ -9,11 +9,11 @@
 
 const char *object_list[NB_ITEM] =
 {
-    "FOOD",
-    "LINEMATE",
-    "DERAUMERE",
-    "SIBUR",
-    "MENDIANE",
-    "PHIRAS",
-    "THYSTAME"
+    "food",
+    "linemate",
+    "deraumere",
+    "sibur",
+    "mendiane",
+    "phiras",
+    "thystame"
 };

@@ -12,6 +12,7 @@ void init_player(client_t *client, server_t *server)
     char buffer[100] = {0};
 
     client->player.inventory[FOOD] = 10;
+    client->player.level = 1;
     client->player.id = server->player_count;
     server->player_count += 1;
     client->player.team->remaining_place -= 1;
