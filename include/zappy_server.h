@@ -118,6 +118,7 @@ void remove_client(client_t *client);
 void get_client_input(server_t *server, client_t *client);
 void handle_client_input(server_t *server, client_t *client, char *cmd);
 void send_msg_client(int fd, char *reply);
+void handle_new_player(server_t *, client_t *new_client);
 
 // args management
 void get_port_and_freq(const char **argv, server_t *server, int argc, const char **args);
@@ -134,7 +135,8 @@ void sgt_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void tna_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void plv_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void ppo_cmd(int nb_args, char **argv, client_t *client, server_t *server);
-void mct_cmd(int argc, char **argv, client_t *client, server_t *server);
+void mct_cmd(int nb_args, char **argv, client_t *client, server_t *server);
+void bct_cmd(int nb_args, char **args, client_t *client, server_t *server);
 
 // game
 void init_player(client_t *client);
