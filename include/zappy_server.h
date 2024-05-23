@@ -146,5 +146,6 @@ void update_simulation(server_t *server);
 void create_world(server_t *server);
 void spawn_resource(server_t *server);
 void update_resource(server_t *server);
+void consume_food(server_t *server);
 
 #endif /* !MYTEAMS_SERVER_H_ */
