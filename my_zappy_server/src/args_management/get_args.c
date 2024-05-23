@@ -26,9 +26,17 @@ static void set_args(server_t *server)
     }
 }
 
+static void check_immortal(const char **argv, server_t *server, int i, const char **args)
+{
+    if (strcmp(argv[i], args[5]) == 0) {
+        server->is_immortal = true;
+        printf("Immortal set to true\n");
+    }
+}
+
 void get_args(int argc, const char **argv, server_t *server)
 {
-    const char *args[] = {"-p", "-x", "-y", "-c", "-f"};
+    const char *args[] = {"-p", "-x", "-y", "-c", "-f", "--immortal"};
 
     set_args(server);
     if (argc == 2 && strcmp(argv[1], "-h") == 0) {
@@ -40,7 +48,7 @@ void get_args(int argc, const char **argv, server_t *server)
         get_port_and_freq(argv, server, i, args);
         get_map_size(argv, server, i, args);
         get_clients_nb(argv, server, i, args);
+        check_immortal(argv, server, i, args);
     }
     check_arg_validity(server);
 }
-

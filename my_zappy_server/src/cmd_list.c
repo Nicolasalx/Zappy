@@ -15,24 +15,25 @@ const gui_handler_t gui_cmd_handler[] =
     {"tna", 0, tna_cmd}, // name of all the teams
     {"ppo", 1, ppo_cmd}, // player’s position
     {"plv", 1, plv_cmd}, // player’s level
-    {"pin", 1, NULL}, // player’s inventory
+    {"pin", 1, pin_cmd}, // player’s inventory
     {"sgt", 0, sgt_cmd}, // time unit request
     {"sst", 1, sst_cmd}, // time unit modification
     {NULL, 0, NULL}
 };
 
-const char *ai_cmd[] =
+const ai_handler_t ai_cmd_handler[] =
 {
-    "Forward",
-    "Right",
-    "Left",
-    "Look",
-    "Inventory",
-    "Broadcast",
-    "Connect_nbr",
-    "Fork",
-    "Eject",
-    "Take",
-    "Set",
-    "Incantation"
+    {"Forward\n", false, 7, forward_cmd},
+    {"Right\n", false, 7, right_cmd},
+    {"Left\n", false, 7, left_cmd},
+    {"Look\n", false, 7, NULL},
+    {"Inventory\n", false, 1, inventory_cmd},
+    {"Broadcast", true, 7, NULL},
+    {"Connect_nbr\n", false, 0, connect_nbr_cmd},
+    {"Fork\n", false, 42, NULL},
+    {"Eject\n", false, 7, NULL},
+    {"Take", true, 7, take_object_cmd},
+    {"Set", true, 7, set_object_cmd},
+    {"Incantation\n", false, 300, NULL},
+    {NULL, false, 0, NULL}
 };

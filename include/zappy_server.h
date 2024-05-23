@@ -49,7 +49,6 @@ typedef enum {
     EAST,
     SOUTH,
     WEST,
-    NB_ORIENTATION
 } orientation_t;
 
 typedef struct {
@@ -71,7 +70,7 @@ typedef struct {
     int id;
     int pos_x;
     int pos_y;
-    int orientation[NB_ORIENTATION];
+    orientation_t orientation;
     int level;
     int inventory[NB_ITEM];
     int food_time_unit;
@@ -109,10 +108,24 @@ typedef struct {
     void (*method)(int, char **, client_t *, server_t *);
 } gui_handler_t;
 
+typedef struct {
+    void (*method)(char *, client_t *, server_t *);
+    char *args;
+    int time_to_wait;
+} waiting_cmd_t;
+
+typedef struct {
+    char *name;
+    bool has_arg;
+    int waiting_time;
+    void (*method)(char *, client_t *, server_t *);
+} ai_handler_t;
+
 extern const gui_handler_t gui_cmd_handler[];
-extern const char *ai_cmd[];
+extern const ai_handler_t ai_cmd_handler[];
 
 extern double resource_density[NB_ITEM];
+extern const char *object_list[NB_ITEM];
 
 void get_args(int argc, const char **argv, server_t *server);
 void create_server(server_t *server);
@@ -149,6 +162,24 @@ void plv_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void ppo_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void mct_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void bct_cmd(int nb_args, char **argv, client_t *client, server_t *server);
+void pin_cmd(int nb_args, char **argv, client_t *client, server_t *server);
+
+// gui reply
+void pnw_reply(server_t *server, client_t *client);
+void pdi_reply(server_t *server, client_t *client);
+void pdr_reply(server_t *server, client_t *client, int nb_resource);
+void pgt_reply(server_t *server, client_t *client, int nb_resource);
+void smg_reply(server_t *server, client_t *client, char *message);
+void ppo_reply(server_t *server, client_t *client);
+
+// ai command
+void inventory_cmd(char *argv, client_t *client, server_t *server);
+void forward_cmd(char *argv, client_t *client, server_t *server);
+void right_cmd(char *argv, client_t *client, server_t *server);
+void left_cmd(char *argv, client_t *client, server_t *server);
+void connect_nbr_cmd(char *argv, client_t *client, server_t *server);
+void take_object_cmd(char *argv, client_t *client, server_t *server);
+void set_object_cmd(char *argv, client_t *client, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);

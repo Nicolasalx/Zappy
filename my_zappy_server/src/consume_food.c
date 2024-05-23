@@ -7,7 +7,7 @@
 
 #include "zappy_server.h"
 
-static void check_player_death(client_t *client)
+static void check_player_death(client_t *client, server_t *server)
 {
     client->player.food_time_unit += 1;
     if (client->player.food_time_unit > 126) {
@@ -16,6 +16,7 @@ static void check_player_death(client_t *client)
         if (client->player.inventory[FOOD] <= 0) {
             send_msg_client(client->fd, "dead\n");
             printf(YELLOW("A client has been closed")"\n");
+            pdi_reply(server, client);
             remove_client(client);
         }
     }
@@ -32,6 +33,6 @@ void consume_food(server_t *server)
         || !server->clients[i].player.team) {
             continue;
         }
-        check_player_death(&server->clients[i]);
+        check_player_death(&server->clients[i], server);
     }
 }

@@ -16,12 +16,16 @@ void get_client_input(server_t *server, client_t *client)
         return;
     }
     if (nb_byte == 0) {
-        printf(YELLOW("A client has")"\n");
+        printf(YELLOW("A client has left")"\n");
+        if (client->player.id != -1)
+            pdi_reply(server, client);
         remove_client(client);
         return;
     }
     if (nb_byte >= BUFFER_SIZE) {
         dprintf(2, RED("Client input is incompatible with the server.")"\n");
+        if (client->player.id != -1)
+            pdi_reply(server, client);
         remove_client(client);
         return;
     }

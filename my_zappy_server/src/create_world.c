@@ -11,7 +11,9 @@
 void create_world(server_t *server)
 {
     srand(time(NULL));
-    server->world.map = (tile_t **) malloc_gn_board(server->world.size_y,
-        server->world.size_x, sizeof(**server->world.map));
+    server->world.map = my_calloc(sizeof(tile_t *) * (server->world.size_y + 1));
+    for (int i = 0; i < server->world.size_y; ++i) {
+        server->world.map[i] = my_calloc(sizeof(tile_t) * server->world.size_x);
+    }
     spawn_resource(server);
 }
