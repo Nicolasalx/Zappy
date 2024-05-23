@@ -18,10 +18,10 @@ static bool search_spawn_egg(client_t *client, server_t *server)
                 client->player.pos_x = GET_DATA(chosen_one, egg_t)->pos_x;
                 client->player.pos_y = GET_DATA(chosen_one, egg_t)->pos_y;
                 client->player.team->remaining_place -= 1;
-                ebo_reply(server, client, GET_DATA(chosen_one, egg_t));
+                ebo_reply(server, GET_DATA(chosen_one, egg_t));
                 delete_node(&client->player.team->egg_list, chosen_one);
                 // ! maybe call edi for egg 'death'
-                return;
+                return true;
             }
             chosen_one = chosen_one->next;
         }
