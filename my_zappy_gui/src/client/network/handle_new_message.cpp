@@ -10,7 +10,8 @@
 void Client::check_new_message(std::string reply_data)
 {
     if (reply_data == "WELCOME\n") {
-        dprintf(this->fd, "GRAPHIC\n");
+        char graphic_cmd[9] = "GRAPHIC\n";
+        this->send_cmd_to_server(graphic_cmd, 8);
     } else {
         this->gameState.parse_server_reply(reply_data);
     }

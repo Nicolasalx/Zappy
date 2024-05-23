@@ -42,6 +42,6 @@ Client::Client(int argc, const char **argv)
     if (inet_aton(this->ip.c_str(), &this->server_address.sin_addr) == 0) {
         throw my::tracked_exception("Invalid Ip.\n");
     }
-    std::thread graphic_thread(&Client::launch_graphic, this);
-    graphic_thread.detach();
+    this->graphic_thread = std::thread(&Client::launch_graphic, this);
+    this->graphic_thread.detach();
 }
