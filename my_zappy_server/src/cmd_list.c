@@ -26,7 +26,7 @@ const ai_handler_t ai_cmd_handler[] =
     {"Forward\n", false, 7, forward_cmd},
     {"Right\n", false, 7, right_cmd},
     {"Left\n", false, 7, left_cmd},
-    {"Look\n", false, 7, NULL},
+    {"Look\n", false, 7, look_cmd},
     {"Inventory\n", false, 1, inventory_cmd},
     {"Broadcast", true, 7, NULL},
     {"Connect_nbr\n", false, 0, connect_nbr_cmd},
