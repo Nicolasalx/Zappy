@@ -15,6 +15,9 @@
     #include <arpa/inet.h>
     #include <netinet/in.h>
     #include <sys/select.h>
+    #include <raylib.h>
+    #include <rlgl.h>
+    #include <raymath.h>
     #include <unistd.h>
     #include <iostream>
     #include <string>
@@ -22,10 +25,13 @@
     #include <vector>
     #include <map>
     #include <functional>
+    #include <thread>
 
     #define MAX_PORT_NB 65535
     #define BUFFER_SIZE 4096
     #define CMD_BUFFER_SIZE 4096
+    #define WINDOW_WIDTH 1920 / 2
+    #define WINDOW_HEIGHT 1080 / 2
 
 enum {
     FOOD,
@@ -98,6 +104,34 @@ class Client {
         std::string cmd_buffer;
         std::string ip;
         GameState gameState;
+        std::thread graphic_thread;
+};
+
+class Graphic {
+    public:
+        Graphic();
+        ~Graphic();
+        //init
+        void init_camera();
+        void init_sky_box();
+        void set_fps(int fps);
+        //loop
+        void loop();
+        //event
+        void event();
+        void change_cursor();
+        void window_resize();
+        //draw
+        void draw_3D();
+        void draw_2D();
+        void draw_sky_box();
+
+    private:
+        Camera3D camera;
+        Model sky_box;
+        int window_width = WINDOW_WIDTH;
+        int window_height = WINDOW_HEIGHT;
+        bool cursor = false;
 };
 
 #endif /* !MYTEAMS_CLIENT_H_ */
