@@ -14,6 +14,7 @@ Graphic::Graphic()
     this->init_camera();
     this->set_fps(60);
     this->init_sky_box();
+    this->init_player();
 }
 
 Graphic::~Graphic()
@@ -56,4 +57,16 @@ void Graphic::init_sky_box()
 void Graphic::init_island()
 {
     ;
+}
+
+void Graphic::init_player()
+{
+    Model player = LoadModel("assets/model.iqm");
+    this->model_list.push_back(player);
+    int animsCount = 1;
+    ModelAnimation *anims = LoadModelAnimations("assets/model.iqm", &animsCount);
+    Texture2D texture = LoadTexture("assets/test_texture.png");
+    SetMaterialTexture(&this->model_list[0].materials[0], MATERIAL_MAP_DIFFUSE, texture);
+    this->animation_list.push_back(anims);
+    this->model_list[0].transform = MatrixRotateXYZ((Vector3){-90.0f * (PI / 180), 0.0f, 0.0f});
 }

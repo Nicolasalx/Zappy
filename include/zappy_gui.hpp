@@ -115,6 +115,7 @@ class Graphic {
         void init_camera();
         void init_sky_box();
         void init_island();
+        void init_player();
         void set_fps(int fps);
         //loop
         void loop();
@@ -126,11 +127,13 @@ class Graphic {
         void draw_3D();
         void draw_2D();
         void draw_sky_box();
+        void draw_3D_models();
 
     private:
         Camera3D camera;
         Model sky_box;
-        std::vector<Model> scene_model;
+        std::vector<Model> model_list;
+        std::vector<ModelAnimation*> animation_list;
         int window_width = WINDOW_WIDTH;
         int window_height = WINDOW_HEIGHT;
         bool cursor = false;
