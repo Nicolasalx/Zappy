@@ -181,6 +181,7 @@ void ppo_reply(server_t *server, client_t *client);
 void pin_reply(server_t *server, client_t *client);
 void pnw_reply(server_t *server, client_t *client);
 void enw_reply(server_t *server, client_t *client, egg_t *new_egg);
+void pfk_reply(server_t *server, client_t *client);
 
 // ai command
 void inventory_cmd(char *argv, client_t *client, server_t *server);
