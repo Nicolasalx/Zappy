@@ -20,9 +20,6 @@ void add_client(server_t *server, client_t *client)
 
 void remove_client(client_t *client)
 {
-    if (client->fd) {
-        printf(YELLOW("A client has been closed")"\n");
-        close(client->fd);
-    }
+    close(client->fd);
     memset(client, 0, sizeof(client_t));
 }

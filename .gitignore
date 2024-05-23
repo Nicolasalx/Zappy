@@ -14,6 +14,7 @@ zappy_gui
 zappy_ai
 zappy_server
 test_zappy_server
+server_source/
 
 # ? coverage
 *.gcda
