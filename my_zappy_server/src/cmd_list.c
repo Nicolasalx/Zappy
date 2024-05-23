@@ -15,7 +15,7 @@ const gui_handler_t gui_cmd_handler[] =
     {"tna", 0, tna_cmd}, // name of all the teams
     {"ppo", 1, ppo_cmd}, // player’s position
     {"plv", 1, plv_cmd}, // player’s level
-    {"pin", 1, NULL}, // player’s inventory
+    {"pin", 1, pin_cmd}, // player’s inventory
     {"sgt", 0, sgt_cmd}, // time unit request
     {"sst", 1, sst_cmd}, // time unit modification
     {NULL, 0, NULL}

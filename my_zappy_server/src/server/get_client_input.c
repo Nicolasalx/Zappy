@@ -16,7 +16,7 @@ void get_client_input(server_t *server, client_t *client)
         return;
     }
     if (nb_byte == 0) {
-        printf(YELLOW("A client has")"\n");
+        printf(YELLOW("A client has left")"\n");
         remove_client(client);
         return;
     }

@@ -49,7 +49,6 @@ typedef enum {
     EAST,
     SOUTH,
     WEST,
-    NB_ORIENTATION
 } orientation_t;
 
 typedef struct {
@@ -71,7 +70,7 @@ typedef struct {
     int id;
     int pos_x;
     int pos_y;
-    int orientation[NB_ORIENTATION];
+    orientation_t orientation;
     int level;
     int inventory[NB_ITEM];
     int food_time_unit;
@@ -149,6 +148,14 @@ void plv_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void ppo_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void mct_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void bct_cmd(int nb_args, char **argv, client_t *client, server_t *server);
+void pin_cmd(int nb_args, char **argv, client_t *client, server_t *server);
+
+// gui reply
+void pnw_reply(server_t *server, client_t *client);
+void pdi_reply(server_t *server, client_t *client);
+void pdr_reply(server_t *server, client_t *client, int nb_resource);
+void pgt_reply(server_t *server, client_t *client, int nb_resource);
+void smg_reply(server_t *server, client_t *client, char *message);
 
 // game
 void init_player(client_t *client, server_t *server);

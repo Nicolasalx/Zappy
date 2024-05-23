@@ -34,8 +34,6 @@ static void handle_new_player_client(server_t *server, client_t *client, char *c
 
 void handle_client_input(server_t *server, client_t *client, char *cmd)
 {
-    char buffer[100] = {0};
-
     printf("client send: %s\n", cmd);
 
     if (client->is_graphic) {
