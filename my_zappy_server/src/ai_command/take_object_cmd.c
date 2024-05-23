@@ -21,6 +21,7 @@ void take_object_cmd(char *argv, client_t *client, server_t *server)
                 client->player.inventory[i] += 1;
                 send_msg_client(client->fd, "ok\n");
                 pgt_reply(server, client, i);
+                pin_reply(server, client);
                 return;
             }
         }

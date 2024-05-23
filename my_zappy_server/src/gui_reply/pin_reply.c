@@ -1,0 +1,21 @@
+/*
+** EPITECH PROJECT, 2024
+** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
+** File description:
+** pin_reply
+*/
+
+#include "zappy_server.h"
+
+void pin_reply(server_t *server, client_t *client)
+{
+    char buffer[100] = {0};
+
+    for (int i = 0; i < MAX_CLIENT; i++) {
+        if (client[i].fd != 0 && server->clients[i].is_graphic == true) {
+            snprintf(buffer, sizeof(buffer), "pin %d %d %d %d %d %d %d %d %d %d\n", client->player.id, client->player.pos_x, client->player.pos_y, client->player.inventory[FOOD], client->player.inventory[LINEMATE], client->player.inventory[DERAUMERE],
+            client->player.inventory[SIBUR], client->player.inventory[MENDIANE], client->player.inventory[PHIRAS],
+            client->player.inventory[THYSTAME]);
+        }
+    }
+}
