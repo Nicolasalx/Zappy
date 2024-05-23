@@ -164,7 +164,10 @@ void pgt_reply(server_t *server, client_t *client, int nb_resource);
 void smg_reply(server_t *server, client_t *client, char *message);
 
 // ai command
-void inventory_cmd(char *arg, client_t *client, server_t *server);
+void inventory_cmd(char *argv, client_t *client, server_t *server);
+void forward_cmd(char *argv, client_t *client, server_t *server);
+void right_cmd(char *argv, client_t *client, server_t *server);
+void left_cmd(char *argv, client_t *client, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);

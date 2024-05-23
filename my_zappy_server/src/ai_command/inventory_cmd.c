@@ -7,6 +7,13 @@
 
 #include "zappy_server.h"
 
-void inventory_cmd(char *arg, client_t *client, server_t *server)
+void inventory_cmd(char *argv, client_t *client, server_t *server)
 {
+    char buffer[100] = {0};
+
+    snprintf(buffer, sizeof(buffer), "[food %d, linemate %d, deraumere %d, sibur %d, mendiane %d, phiras %d, thystame %d]\n",
+    client->player.inventory[FOOD], client->player.inventory[LINEMATE], client->player.inventory[DERAUMERE],
+    client->player.inventory[SIBUR], client->player.inventory[MENDIANE], client->player.inventory[PHIRAS],
+    client->player.inventory[THYSTAME]);
+    send_msg_client(client->fd, buffer);
 }

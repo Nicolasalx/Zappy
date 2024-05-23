@@ -23,9 +23,9 @@ const gui_handler_t gui_cmd_handler[] =
 
 const ai_handler_t ai_cmd_handler[] =
 {
-    {"Forward\n", false, NULL},
-    {"Right\n", false, NULL},
-    {"Left\n", false, NULL},
+    {"Forward\n", false, forward_cmd},
+    {"Right\n", false, right_cmd},
+    {"Left\n", false, left_cmd},
     {"Look\n", false, NULL},
     {"Inventory\n", false, inventory_cmd},
     {"Broadcast", true, NULL},
