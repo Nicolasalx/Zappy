@@ -23,17 +23,17 @@ const gui_handler_t gui_cmd_handler[] =
 
 const ai_handler_t ai_cmd_handler[] =
 {
-    {"Forward\n", false, forward_cmd},
-    {"Right\n", false, right_cmd},
-    {"Left\n", false, left_cmd},
-    {"Look\n", false, NULL},
-    {"Inventory\n", false, inventory_cmd},
-    {"Broadcast", true, NULL},
-    {"Connect_nbr\n", false, NULL},
-    {"Fork\n", false, NULL},
-    {"Eject\n", false, NULL},
-    {"Take", true, NULL},
-    {"Set", true, NULL},
-    {"Incantation\n", false, NULL},
-    {NULL, false, NULL}
+    {"Forward\n", false, 7, forward_cmd},
+    {"Right\n", false, 7, right_cmd},
+    {"Left\n", false, 7, left_cmd},
+    {"Look\n", false, 7, NULL},
+    {"Inventory\n", false, 1, inventory_cmd},
+    {"Broadcast", true, 7, NULL},
+    {"Connect_nbr\n", false, 0, NULL},
+    {"Fork\n", false, 42, NULL},
+    {"Eject\n", false, 7, NULL},
+    {"Take", true, 7, NULL},
+    {"Set", true, 7, NULL},
+    {"Incantation\n", false, 300, NULL},
+    {NULL, false, 0, NULL}
 };

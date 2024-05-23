@@ -117,6 +117,7 @@ typedef struct {
 typedef struct {
     char *name;
     bool has_arg;
+    int waiting_time;
     void (*method)(char *, client_t *, server_t *);
 } ai_handler_t;
 

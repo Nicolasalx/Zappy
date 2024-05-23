@@ -8,6 +8,21 @@
 #include <sys/time.h>
 #include "zappy_server.h"
 
+void execute_ai_command(server_t *server)
+{
+    for (size_t i = 0; i < MAX_CLIENT; ++i) {
+        if (server->clients[i].fd && server->clients[i].waiting_cmd) {
+            --GET_DATA(server->clients[i].waiting_cmd, waiting_cmd_t)->time_to_wait;
+            if (GET_DATA(server->clients[i].waiting_cmd, waiting_cmd_t)->time_to_wait <= 0) {
+                GET_DATA(server->clients[i].waiting_cmd, waiting_cmd_t)->method(
+                    GET_DATA(server->clients[i].waiting_cmd, waiting_cmd_t)->args, &server->clients[i], server);
+                my_free(GET_DATA(server->clients[i].waiting_cmd, waiting_cmd_t)->args);
+                delete_node(&server->clients[i].waiting_cmd, server->clients[i].waiting_cmd);
+            }
+        }
+    }
+}
+
 void update_simulation(server_t *server)
 {
     struct timeval current_time = {0};
@@ -17,6 +32,7 @@ void update_simulation(server_t *server)
     elapsed_time = (current_time.tv_sec - server->last_update.tv_sec) * 1000.0;
     elapsed_time += (current_time.tv_usec - server->last_update.tv_usec) / 1000.0;
     if (elapsed_time >= (1 / server->freq) * 1000.0) {
+        execute_ai_command(server);
         consume_food(server);
         gettimeofday(&server->last_update, NULL);
     }
