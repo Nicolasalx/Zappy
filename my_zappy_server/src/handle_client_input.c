@@ -7,34 +7,6 @@
 
 #include "zappy_server.h"
 
-static void handle_gui_input(server_t *server, client_t *client, char *cmd)
-{
-    int nb_word = count_nb_word(cmd, " \t\n");
-    int *size_word = count_size_word(cmd, " \t\n", nb_word);
-    char **word = my_str_to_word(cmd, " \t\n", nb_word, size_word);
-
-    for (size_t i = 0; gui_cmd_handler[i].name != NULL; ++i) {
-        if (nb_word > 0 && strcmp(word[0], gui_cmd_handler[i].name) == 0) {
-            if (nb_word - 1 == gui_cmd_handler[i].nb_arg) {
-                if (gui_cmd_handler[i].method) {
-                    gui_cmd_handler[i].method(nb_word - 1, &word[1], client, server);
-                } else {
-                    send_msg_client(client->fd, "method not implemented\n");
-                }
-            } else {
-                send_msg_client(client->fd, "sbp\n");
-            }
-            return;
-        }
-    }
-    send_msg_client(client->fd, "suc\n");
-}
-
-static void handle_ai_input(server_t *server, client_t *client, char *cmd)
-{
-    send_msg_client(client->fd, "sbp\n");
-}
-
 void handle_client_input(server_t *server, client_t *client, char *cmd)
 {
     char buffer[100] = {0};
@@ -59,7 +31,7 @@ void handle_client_input(server_t *server, client_t *client, char *cmd)
                     init_player(client, server);
                     for (int i = 0; i < MAX_CLIENT; i++) {
                         if (server->clients[i].is_graphic == true) {
-                            snprintf(buffer, sizeof(buffer), "pnw #%d %d %d %d %s\n", client->player.id, client->player.pos_x, client->player.pos_y, client->player.level, client->player.team->name);
+                            snprintf(buffer, sizeof(buffer), "pnw %d %d %d %d %d %s\n", client->player.id, client->player.pos_x, client->player.pos_y, client->player.orientation[NORTH], client->player.level, client->player.team->name);
                             send_msg_client(server->clients[i].fd, buffer);
                             memset(buffer, 0, sizeof(buffer));
                         }

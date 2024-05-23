@@ -44,6 +44,14 @@ typedef enum {
     NB_ITEM
 } item_t;
 
+typedef enum {
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST,
+    NB_ORIENTATION
+} orientation_t;
+
 typedef struct {
     int item[NB_ITEM];
 } tile_t;
@@ -64,6 +72,7 @@ typedef struct {
     int id;
     int pos_x;
     int pos_y;
+    int orientation[NB_ORIENTATION];
     int level;
     int inventory[NB_ITEM];
     int food_time_unit;
@@ -121,6 +130,8 @@ void get_client_input(server_t *server, client_t *client);
 void handle_client_input(server_t *server, client_t *client, char *cmd);
 void send_msg_client(int fd, char *reply);
 void handle_new_player(server_t *, client_t *new_client);
+void handle_gui_input(server_t *server, client_t *client, char *cmd);
+void handle_ai_input(server_t *server, client_t *client, char *cmd);
 
 // args management
 void get_port_and_freq(const char **argv, server_t *server, int argc, const char **args);
