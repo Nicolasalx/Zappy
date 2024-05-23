@@ -19,7 +19,7 @@ void Graphic::draw_3D()
 
 void Graphic::draw_2D()
 {
-    DrawText("Free camera default controls:", 20, 20, 10, BLACK);
+    DrawText("Free camera default controls:", window_width / 10 , window_height / 5, (window_height + window_width) / 100, BLACK);
     DrawText("- Mouse Wheel to Zoom in-out", 40, 40, 10, DARKGRAY);
     DrawText("- Mouse Wheel Pressed to Pan", 40, 60, 10, DARKGRAY);
     DrawText("- Z to zoom to (0, 0, 0)", 40, 80, 10, DARKGRAY);

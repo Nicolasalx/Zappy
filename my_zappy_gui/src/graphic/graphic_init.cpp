@@ -9,6 +9,7 @@
 
 Graphic::Graphic()
 {
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Zappy GUI");
     this->init_camera();
     this->set_fps(60);

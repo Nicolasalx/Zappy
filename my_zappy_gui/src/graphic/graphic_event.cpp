@@ -18,6 +18,14 @@ void Graphic::change_cursor()
     }
 }
 
+void Graphic::window_resize()
+{
+    if (IsWindowResized()) {
+        this->window_width = GetScreenWidth();
+        this->window_height = GetScreenHeight();
+    }
+}
+
 void Graphic::event()
 {
     if (IsCursorHidden()) UpdateCamera(&this->camera, CAMERA_FREE);
@@ -25,4 +33,5 @@ void Graphic::event()
         this->camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };
     }
     this->change_cursor();
+    this->window_resize();
 }

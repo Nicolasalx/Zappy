@@ -30,8 +30,8 @@
     #define MAX_PORT_NB 65535
     #define BUFFER_SIZE 4096
     #define CMD_BUFFER_SIZE 4096
-    #define WINDOW_WIDTH 1920
-    #define WINDOW_HEIGHT 1080
+    #define WINDOW_WIDTH 1920 / 2
+    #define WINDOW_HEIGHT 1080 / 2
 
 enum {
     FOOD,
@@ -120,6 +120,7 @@ class Graphic {
         //event
         void event();
         void change_cursor();
+        void window_resize();
         //draw
         void draw_3D();
         void draw_2D();
@@ -128,6 +129,8 @@ class Graphic {
     private:
         Camera3D camera;
         Model sky_box;
+        int window_width = WINDOW_WIDTH;
+        int window_height = WINDOW_HEIGHT;
         bool cursor = false;
 };
 
