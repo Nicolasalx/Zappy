@@ -52,4 +52,3 @@ void get_args(int argc, const char **argv, server_t *server)
     }
     check_arg_validity(server);
 }
-

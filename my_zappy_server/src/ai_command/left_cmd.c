@@ -24,4 +24,5 @@ void left_cmd(char *argv, client_t *client, server_t *server)
             break;
     }
     send_msg_client(client->fd, "ok\n");
+    ppo_reply(server, client);
 }
