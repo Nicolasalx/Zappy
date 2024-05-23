@@ -68,7 +68,6 @@ typedef struct {
 } team_t;
 
 typedef struct {
-    bool is_in_game;
     int id;
     int pos_x;
     int pos_y;
@@ -149,7 +148,7 @@ void tna_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void plv_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void ppo_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void mct_cmd(int nb_args, char **argv, client_t *client, server_t *server);
-void bct_cmd(int nb_args, char **args, client_t *client, server_t *server);
+void bct_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);
