@@ -168,6 +168,8 @@ void inventory_cmd(char *argv, client_t *client, server_t *server);
 void forward_cmd(char *argv, client_t *client, server_t *server);
 void right_cmd(char *argv, client_t *client, server_t *server);
 void left_cmd(char *argv, client_t *client, server_t *server);
+void take_object_cmd(char *argv, client_t *client, server_t *server);
+void connect_nbr_cmd(char *argv, client_t *client, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);

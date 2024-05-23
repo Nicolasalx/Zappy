@@ -29,10 +29,10 @@ const ai_handler_t ai_cmd_handler[] =
     {"Look\n", false, NULL},
     {"Inventory\n", false, inventory_cmd},
     {"Broadcast", true, NULL},
-    {"Connect_nbr\n", false, NULL},
+    {"Connect_nbr\n", false, connect_nbr_cmd},
     {"Fork\n", false, NULL},
     {"Eject\n", false, NULL},
-    {"Take", true, NULL},
+    {"Take", true, take_object_cmd},
     {"Set", true, NULL},
     {"Incantation\n", false, NULL},
     {NULL, false, NULL}
