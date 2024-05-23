@@ -183,6 +183,7 @@ void pnw_reply(server_t *server, client_t *client);
 void enw_reply(server_t *server, client_t *client, egg_t *new_egg);
 void pfk_reply(server_t *server, client_t *client);
 void ebo_reply(server_t *server, egg_t *new_egg);
+void bct_reply(server_t *server, int x, int y);
 
 // ai command
 void inventory_cmd(char *argv, client_t *client, server_t *server);

@@ -7,12 +7,6 @@
 
 #include "zappy_server.h"
 
-// XOOOOOOOOO 7
-// 789OOOOO56 8
-// 34OOOOOOO2 9
-
-// 0123456789
-
 static void get_item_str(char *buff, int *item)
 {
     bool first = true;
@@ -104,7 +98,7 @@ static void look_west(client_t *client, server_t *server)
     send_msg_client(client->fd, buff);
 }
 
-void look_cmd(char *argv, client_t *client, server_t *server)
+void look_cmd(char *, client_t *client, server_t *server)
 {
     --client->player.level;
     switch (client->player.orientation) {

@@ -7,7 +7,7 @@
 
 #include "zappy_server.h"
 
-void inventory_cmd(char *argv, client_t *client, server_t *server)
+void inventory_cmd(char *, client_t *client, server_t *)
 {
     char buffer[100] = {0};
 
