@@ -7,6 +7,15 @@
 
 #include "zappy_server.h"
 
+static void push_new_command(server_t *server, client_t *client,
+    ai_handler_t *command, char *arg)
+{
+    if (my_listlen(client->waiting_cmd) >= 10) {
+        return;
+    }
+
+}
+
 void handle_ai_input(server_t *server, client_t *client, char *cmd)
 {
     char *first_part = strpbrk(cmd, " \t");
@@ -15,15 +24,16 @@ void handle_ai_input(server_t *server, client_t *client, char *cmd)
     if (first_part) {
         for (; *arg != '\0' && (*arg == ' ' || *arg == '\t'); ++arg);
         *first_part = '\0';
+        first_part = cmd;
     } else {
         first_part = cmd;
         arg = NULL;
     }
-    printf("\"%s\"\n", first_part);
     for (int i = 0; ai_cmd_handler[i].name != NULL; ++i) {
         if (strcmp(first_part, ai_cmd_handler[i].name) == 0
         && ai_cmd_handler[i].has_arg == (arg != NULL)) {
             if (ai_cmd_handler[i].method) {
+                push_new_command(server, client, &ai_cmd_handler[i], arg);
                 ai_cmd_handler[i].method(arg, client, server);
                 return;
             } else {
