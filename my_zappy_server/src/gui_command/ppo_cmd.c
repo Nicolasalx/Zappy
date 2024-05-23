@@ -20,10 +20,10 @@ void ppo_cmd(int, char **argv, client_t *client, server_t *)
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (client[i].fd != 0 && client[i].is_graphic == false && client[i].player.id == id) {
             snprintf(buffer, sizeof(buffer), "ppo %d %d %d %d\n", id, 
-                client[id].player.pos_x, client[id].player.pos_y, client[i].player.orientation);
+                client[i].player.pos_x, client[i].player.pos_y, client[i].player.orientation);
             send_msg_client(client->fd, buffer);
             return;
         }
     }
-    send_msg_client(client->fd, "bsp\n");
+    send_msg_client(client->fd, "sbp\n");
 }
