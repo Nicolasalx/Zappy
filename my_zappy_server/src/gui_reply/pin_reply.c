@@ -11,11 +11,15 @@ void pin_reply(server_t *server, client_t *client)
 {
     char buffer[100] = {0};
 
+    snprintf(buffer, sizeof(buffer), "pin %d %d %d %d %d %d %d %d %d %d\n",
+        client->player.id, client->player.pos_x, client->player.pos_y,
+        client->player.inventory[FOOD], client->player.inventory[LINEMATE],
+        client->player.inventory[DERAUMERE], client->player.inventory[SIBUR],
+        client->player.inventory[MENDIANE], client->player.inventory[PHIRAS],
+        client->player.inventory[THYSTAME]);
     for (int i = 0; i < MAX_CLIENT; i++) {
-        if (client[i].fd != 0 && server->clients[i].is_graphic == true) {
-            snprintf(buffer, sizeof(buffer), "pin %d %d %d %d %d %d %d %d %d %d\n", client->player.id, client->player.pos_x, client->player.pos_y, client->player.inventory[FOOD], client->player.inventory[LINEMATE], client->player.inventory[DERAUMERE],
-            client->player.inventory[SIBUR], client->player.inventory[MENDIANE], client->player.inventory[PHIRAS],
-            client->player.inventory[THYSTAME]);
+        if (server->clients[i].fd != 0 && server->clients[i].is_graphic == true) {
+            send_msg_client(server->clients[i].fd, buffer);
         }
     }
 }

@@ -30,7 +30,7 @@ const ai_handler_t ai_cmd_handler[] =
     {"Inventory\n", false, 1, inventory_cmd},
     {"Broadcast", true, 7, NULL},
     {"Connect_nbr\n", false, 0, connect_nbr_cmd},
-    {"Fork\n", false, 42, NULL},
+    {"Fork\n", false, 42, fork_cmd},
     {"Eject\n", false, 7, NULL},
     {"Take", true, 7, take_object_cmd},
     {"Set", true, 7, set_object_cmd},

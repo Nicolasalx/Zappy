@@ -7,7 +7,7 @@
 
 #include "zappy_server.h"
 
-void ppo_cmd(int, char **argv, client_t *client, server_t *)
+void ppo_cmd(int, char **argv, client_t *client, server_t *server)
 {
     char buffer[100] = {0};
     int id = 0;
@@ -18,9 +18,9 @@ void ppo_cmd(int, char **argv, client_t *client, server_t *)
     }
     id = atoi(argv[0]);
     for (int i = 0; i < MAX_CLIENT; i++) {
-        if (client[i].fd != 0 && client[i].is_graphic == false && client[i].player.id == id) {
+        if (server->clients[i].fd != 0 && server->clients[i].is_graphic == false && server->clients[i].player.id == id) {
             snprintf(buffer, sizeof(buffer), "ppo %d %d %d %d\n", id, 
-                client[i].player.pos_x, client[i].player.pos_y, client[i].player.orientation);
+                server->clients[i].player.pos_x, server->clients[i].player.pos_y, server->clients[i].player.orientation);
             send_msg_client(client->fd, buffer);
             return;
         }

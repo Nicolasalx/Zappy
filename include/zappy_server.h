@@ -62,8 +62,15 @@ typedef struct {
 } world_t;
 
 typedef struct {
+    int pos_x;
+    int pos_y;
+    int nb;
+} egg_t;
+
+typedef struct {
     char name[MAX_TEAMNAME_SIZE + 1];
     int remaining_place;
+    node_t *egg_list;
 } team_t;
 
 typedef struct {
@@ -92,6 +99,7 @@ typedef struct {
     int client_nb;
     bool is_immortal;
     int player_count;
+    int egg_count;
     struct timeval last_update;
     struct timeval last_resource_spawn;
     struct sockaddr_in address;
@@ -172,6 +180,7 @@ void smg_reply(server_t *server, client_t *client, char *message);
 void ppo_reply(server_t *server, client_t *client);
 void pin_reply(server_t *server, client_t *client);
 void pnw_reply(server_t *server, client_t *client);
+void enw_reply(server_t *server, client_t *client, egg_t *new_egg);
 
 // ai command
 void inventory_cmd(char *argv, client_t *client, server_t *server);
@@ -182,6 +191,7 @@ void connect_nbr_cmd(char *argv, client_t *client, server_t *server);
 void take_object_cmd(char *argv, client_t *client, server_t *server);
 void set_object_cmd(char *argv, client_t *client, server_t *server);
 void look_cmd(char *argv, client_t *client, server_t *server);
+void fork_cmd(char *argv, client_t *client, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);
