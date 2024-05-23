@@ -21,18 +21,19 @@ const gui_handler_t gui_cmd_handler[] =
     {NULL, 0, NULL}
 };
 
-const char *ai_cmd[] =
+const ai_handler_t ai_cmd_handler[] =
 {
-    "Forward",
-    "Right",
-    "Left",
-    "Look",
-    "Inventory",
-    "Broadcast",
-    "Connect_nbr",
-    "Fork",
-    "Eject",
-    "Take",
-    "Set",
-    "Incantation"
+    {"Forward\n", false, NULL},
+    {"Right\n", false, NULL},
+    {"Left\n", false, NULL},
+    {"Look\n", false, NULL},
+    {"Inventory\n", false, inventory_cmd},
+    {"Broadcast", true, NULL},
+    {"Connect_nbr\n", false, NULL},
+    {"Fork\n", false, NULL},
+    {"Eject\n", false, NULL},
+    {"Take", true, NULL},
+    {"Set", true, NULL},
+    {"Incantation\n", false, NULL},
+    {NULL, false, NULL}
 };

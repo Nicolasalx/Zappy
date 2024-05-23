@@ -109,8 +109,14 @@ typedef struct {
     void (*method)(int, char **, client_t *, server_t *);
 } gui_handler_t;
 
+typedef struct {
+    char *name;
+    bool has_arg;
+    void (*method)(char *, client_t *, server_t *);
+} ai_handler_t;
+
 extern const gui_handler_t gui_cmd_handler[];
-extern const char *ai_cmd[];
+extern const ai_handler_t ai_cmd_handler[];
 
 extern double resource_density[NB_ITEM];
 
@@ -149,6 +155,9 @@ void plv_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void ppo_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void mct_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void bct_cmd(int nb_args, char **argv, client_t *client, server_t *server);
+
+// ai command
+void inventory_cmd(char *arg, client_t *client, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);
