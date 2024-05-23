@@ -34,7 +34,7 @@ void handle_ai_input(server_t *server, client_t *client, char *cmd)
         && ai_cmd_handler[i].has_arg == (arg != NULL)) {
             if (ai_cmd_handler[i].method) {
                 push_new_command(server, client, &ai_cmd_handler[i], arg);
-                // ai_cmd_handler[i].method(arg, client, server);
+                ai_cmd_handler[i].method(arg, client, server);
                 return;
             } else {
                 send_msg_client(client->fd, "ko: method not implemented\n");
