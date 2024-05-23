@@ -61,6 +61,7 @@ typedef struct {
 
 typedef struct {
     bool is_in_game;
+    int id;
     int pos_x;
     int pos_y;
     int level;
@@ -83,6 +84,7 @@ typedef struct {
     int team_count;
     int client_nb;
     bool is_immortal;
+    int player_count;
     struct timeval last_update;
     struct timeval last_resource_spawn;
     struct sockaddr_in address;
@@ -139,7 +141,7 @@ void mct_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void bct_cmd(int nb_args, char **args, client_t *client, server_t *server);
 
 // game
-void init_player(client_t *client);
+void init_player(client_t *client, server_t *server);
 void update_simulation(server_t *server);
 void create_world(server_t *server);
 void spawn_resource(server_t *server);

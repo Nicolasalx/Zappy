@@ -19,8 +19,10 @@ static void set_args(server_t *server)
     server->client_nb = -1;
     server->freq = -1;
     server->team_count = 0;
+    server->player_count = 0;
     for (int i = 0; i < MAX_CLIENT; i++) {
         server->clients[i].is_graphic = false;
+        server->clients[i].player.id = -1;
     }
 }
 

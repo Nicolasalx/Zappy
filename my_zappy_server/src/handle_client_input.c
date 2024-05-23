@@ -56,14 +56,14 @@ void handle_client_input(server_t *server, client_t *client, char *cmd)
             for (int i = 0; i < server->team_count; ++i) {
                 if (strlen(cmd) > 1 && strncmp(cmd, server->team_list[i].name, strlen(cmd) - 1) == 0) {
                     client->player.team = &server->team_list[i];
-                    init_player(client);
-                    server->team_list[i].remaining_place -= 1;
-                    sprintf(buffer, "%d\n", server->team_list[i].remaining_place);
-                    send_msg_client(client->fd, buffer);
-                    memset(buffer, 0, sizeof(buffer));
-                    sprintf(buffer, "%d %d\n", server->world.size_x, server->world.size_y);
-                    send_msg_client(client->fd, buffer);
-                    memset(buffer, 0, sizeof(buffer));
+                    init_player(client, server);
+                    for (int i = 0; i < MAX_CLIENT; i++) {
+                        if (server->clients[i].is_graphic == true) {
+                            snprintf(buffer, sizeof(buffer), "pnw #%d %d %d %d %s\n", client->player.id, client->player.pos_x, client->player.pos_y, client->player.level, client->player.team->name);
+                            send_msg_client(server->clients[i].fd, buffer);
+                            memset(buffer, 0, sizeof(buffer));
+                        }
+                    }
                     return;
                 }
             }
