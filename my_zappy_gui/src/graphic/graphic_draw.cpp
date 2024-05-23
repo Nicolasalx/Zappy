@@ -16,3 +16,8 @@ void Graphic::draw_sky_box()
     rlEnableBackfaceCulling();
     rlEnableDepthMask();
 }
+
+void Graphic::draw_3D_models()
+{
+    DrawModel(this->model_list[0], (Vector3){0, 1, 0}, 4.0f, WHITE);
+}
