@@ -9,11 +9,23 @@
 
 static void handle_new_graphic_client(server_t *server, client_t *client)
 {
+    char buffer[100] = {0};
+
     client->is_graphic = true;
     msz_cmd(0, NULL, client, server);
     sgt_cmd(0, NULL, client, server);
     mct_cmd(0, NULL, client, server);
     tna_cmd(0, NULL, client, server);
+    for (int i = 0; i < MAX_CLIENT; i++) {
+        if (server->clients[i].fd != 0 && server->clients[i].player.team) {
+            snprintf(buffer, sizeof(buffer), "pnw %d %d %d %d %d %s\n",
+                server->clients[i].player.id, server->clients[i].player.pos_x,
+                server->clients[i].player.pos_y, server->clients[i].player.orientation + 1,
+                server->clients[i].player.level, server->clients[i].player.team->name);
+            send_msg_client(client->fd, buffer);
+            memset(buffer, 0, sizeof(buffer));
+        }
+    }
 }
 
 static void handle_new_player_client(server_t *server, client_t *client, char *cmd)
