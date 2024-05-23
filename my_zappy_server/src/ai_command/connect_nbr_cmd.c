@@ -17,6 +17,6 @@ void connect_nbr_cmd(char *argv, client_t *client, server_t *server)
             nb_team += 1;
         }
     }
-    sprintf(buffer, "%d\n", nb_team);
+    snprintf(buffer, sizeof(buffer), "%d\n", nb_team);
     send_msg_client(client->fd, buffer);
 }

@@ -124,6 +124,7 @@ extern const gui_handler_t gui_cmd_handler[];
 extern const ai_handler_t ai_cmd_handler[];
 
 extern double resource_density[NB_ITEM];
+extern const char *object_list[NB_ITEM];
 
 void get_args(int argc, const char **argv, server_t *server);
 void create_server(server_t *server);
@@ -168,14 +169,16 @@ void pdi_reply(server_t *server, client_t *client);
 void pdr_reply(server_t *server, client_t *client, int nb_resource);
 void pgt_reply(server_t *server, client_t *client, int nb_resource);
 void smg_reply(server_t *server, client_t *client, char *message);
+void ppo_reply(server_t *server, client_t *client);
 
 // ai command
 void inventory_cmd(char *argv, client_t *client, server_t *server);
 void forward_cmd(char *argv, client_t *client, server_t *server);
 void right_cmd(char *argv, client_t *client, server_t *server);
 void left_cmd(char *argv, client_t *client, server_t *server);
-void take_object_cmd(char *argv, client_t *client, server_t *server);
 void connect_nbr_cmd(char *argv, client_t *client, server_t *server);
+void take_object_cmd(char *argv, client_t *client, server_t *server);
+void set_object_cmd(char *argv, client_t *client, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);

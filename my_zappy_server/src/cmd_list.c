@@ -33,7 +33,7 @@ const ai_handler_t ai_cmd_handler[] =
     {"Fork\n", false, NULL},
     {"Eject\n", false, NULL},
     {"Take", true, take_object_cmd},
-    {"Set", true, NULL},
+    {"Set", true, set_object_cmd},
     {"Incantation\n", false, NULL},
     {NULL, false, NULL}
 };
