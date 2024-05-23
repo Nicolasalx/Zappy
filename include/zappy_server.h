@@ -176,12 +176,13 @@ void pin_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void pdi_reply(server_t *server, client_t *client);
 void pdr_reply(server_t *server, client_t *client, int nb_resource);
 void pgt_reply(server_t *server, client_t *client, int nb_resource);
-void smg_reply(server_t *server, client_t *client, char *message);
+void smg_reply(server_t *server, char *message);
 void ppo_reply(server_t *server, client_t *client);
 void pin_reply(server_t *server, client_t *client);
 void pnw_reply(server_t *server, client_t *client);
 void enw_reply(server_t *server, client_t *client, egg_t *new_egg);
 void pfk_reply(server_t *server, client_t *client);
+void ebo_reply(server_t *server, egg_t *new_egg);
 
 // ai command
 void inventory_cmd(char *argv, client_t *client, server_t *server);

@@ -19,4 +19,5 @@ void fork_cmd(char *, client_t *client, server_t *server)
     ++client->player.team->remaining_place;
     pfk_reply(server, client);
     enw_reply(server, client, new_egg);
+    send_msg_client(client->fd, "ok\n");
 }
