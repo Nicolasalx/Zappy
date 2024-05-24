@@ -53,4 +53,5 @@ zappy_gui:
 zappy_ai:
 	cd $(AI_PATH) && $(MAKE) re
 
-.PHONY: all clean fclean re unit_tests tests_run code_analyse
+.PHONY: all clean fclean re unit_tests tests_run code_analyse \
+	zappy_server zappy_gui zappy_ai

@@ -7,11 +7,62 @@
 
 #include "zappy_server.h"
 
-static void push_new_command(client_t *client,
+static void get_all_elevation_mate(server_t *server, client_t *client)
+{
+    for (int i = 0; i < MAX_CLIENT; ++i)
+    {
+        if (server->clients[i].fd != 0
+            && server->clients[i].player.team == client->player.team
+            && server->clients[i].player.pos_x == client->player.pos_x
+            && server->clients[i].player.pos_y == client->player.pos_y
+            && server->clients[i].player.level == client->player.level) {
+            server->clients[i].in_incentation = true;
+        }
+    }
+}
+
+static bool no_current_elevation(server_t *server, client_t *client)
+{
+    for (int i = 0; i < MAX_CLIENT; ++i)
+    {
+        if (server->clients[i].fd != 0
+            && server->clients[i].player.team == client->player.team
+            && server->clients[i].in_incentation) {
+            return false;
+        }
+    }
+    return true;
+}
+
+static bool handle_elevation_cmd(server_t *server, client_t *client, const ai_handler_t *command)
+{
+    bool elev_req = false;
+
+    if (command->method != incatation_cmd) {
+        return true;
+    }
+    if (!no_current_elevation(server, client)) {
+        return false;
+    }
+    elev_req = check_elevation_req(client, server, client->player.level);
+    if (elev_req) {
+        send_msg_client(client->fd, "Elevation underway\n");
+        get_all_elevation_mate(server, client);
+    } else {
+        send_msg_client(client->fd, "ko\n");
+    }
+    pic_reply(server, client);
+    return elev_req;
+}
+
+static void push_new_command(server_t *server, client_t *client,
     const ai_handler_t *command, char *arg)
 {
     if (my_listlen(client->waiting_cmd) >= 10) {
         printf(MAGENTA("[WARNING] command ignored\n"));
+        return;
+    }
+    if (!handle_elevation_cmd(server, client, command)) {
         return;
     }
     waiting_cmd_t *new_cmd = my_calloc(sizeof(waiting_cmd_t));
@@ -24,7 +75,7 @@ static void push_new_command(client_t *client,
     append_node(&client->waiting_cmd, create_node(new_cmd));
 }
 
-void handle_ai_input(server_t *, client_t *client, char *cmd)
+void handle_ai_input(server_t *server, client_t *client, char *cmd)
 {
     char *first_part = strpbrk(cmd, " \t");
     char *arg = first_part;
@@ -41,7 +92,7 @@ void handle_ai_input(server_t *, client_t *client, char *cmd)
         if (strcmp(first_part, ai_cmd_handler[i].name) == 0
         && ai_cmd_handler[i].has_arg == (arg != NULL)) {
             if (ai_cmd_handler[i].method) {
-                push_new_command(client, &ai_cmd_handler[i], arg);
+                push_new_command(server, client, &ai_cmd_handler[i], arg);
                 return;
             } else {
                 send_msg_client(client->fd, "ko: method not implemented\n");
