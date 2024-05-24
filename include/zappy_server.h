@@ -100,6 +100,7 @@ typedef struct {
     bool is_graphic;
     node_t *waiting_cmd;
     player_t player;
+    node_t *incentation_mate;
     bool in_incentation;
 } client_t;
 
@@ -215,7 +216,7 @@ void set_object_cmd(char *argv, client_t *client, server_t *server);
 void look_cmd(char *argv, client_t *client, server_t *server);
 void fork_cmd(char *argv, client_t *client, server_t *server);
 void incatation_cmd(char *, client_t *client, server_t *server);
-bool check_elevation_req(client_t *client, server_t *server, int level);
+bool check_elevation_req(client_t *client, server_t *server, int level, bool last_check);
 void broadcast_cmd(char *argv, client_t *client, server_t *server);
 void eject_cmd(char *argv, client_t *client, server_t *server);
 

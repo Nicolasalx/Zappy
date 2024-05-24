@@ -12,9 +12,7 @@ void execute_ai_command(server_t *server)
 {
     for (size_t i = 0; i < MAX_CLIENT; ++i) {
         if (server->clients[i].fd
-        && server->clients[i].waiting_cmd
-        && (!server->clients[i].in_incentation
-        || GET_DATA(server->clients[i].waiting_cmd, waiting_cmd_t)->method == incatation_cmd)) {
+        && server->clients[i].waiting_cmd && !server->clients[i].in_incentation) {
             --GET_DATA(server->clients[i].waiting_cmd, waiting_cmd_t)->time_to_wait;
             if (GET_DATA(server->clients[i].waiting_cmd, waiting_cmd_t)->time_to_wait <= 0) {
                 GET_DATA(server->clients[i].waiting_cmd, waiting_cmd_t)->method(

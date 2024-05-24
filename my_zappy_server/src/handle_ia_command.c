@@ -9,29 +9,27 @@
 
 static void get_all_elevation_mate(server_t *server, client_t *client)
 {
-    for (int i = 0; i < MAX_CLIENT; ++i)
-    {
-        if (server->clients[i].fd != 0
-            && server->clients[i].player.team == client->player.team
-            && server->clients[i].player.pos_x == client->player.pos_x
-            && server->clients[i].player.pos_y == client->player.pos_y
-            && server->clients[i].player.level == client->player.level) {
-            server->clients[i].in_incentation = true;
-        }
-    }
-}
+    client_t **mate = NULL;
+    int nb_mate = 0;
 
-static bool no_current_elevation(server_t *server, client_t *client)
-{
-    for (int i = 0; i < MAX_CLIENT; ++i)
-    {
-        if (server->clients[i].fd != 0
-            && server->clients[i].player.team == client->player.team
-            && server->clients[i].in_incentation) {
-            return false;
+    for (int i = 0; i < MAX_CLIENT; ++i) {
+        if (nb_mate >= elevation_requirement[client->player.level - 1].nb_players) {
+            return;
+        }
+        if (server->clients[i].fd != 0 && server->clients[i].player.id != client->player.id
+        && server->clients[i].player.team == client->player.team
+        && server->clients[i].player.pos_x == client->player.pos_x
+        && server->clients[i].player.pos_y == client->player.pos_y
+        && server->clients[i].player.level == client->player.level
+        && !server->clients[i].incentation_mate
+        && !server->clients[i].in_incentation) {
+            mate = my_calloc(sizeof(client_t *));
+            *mate = &server->clients[i];
+            (*mate)->in_incentation = true;
+            append_node(&client->incentation_mate, create_node(mate));
+            ++nb_mate;
         }
     }
-    return true;
 }
 
 static bool handle_elevation_cmd(server_t *server, client_t *client, const ai_handler_t *command)
@@ -41,10 +39,7 @@ static bool handle_elevation_cmd(server_t *server, client_t *client, const ai_ha
     if (command->method != incatation_cmd) {
         return true;
     }
-    if (!no_current_elevation(server, client)) {
-        return false;
-    }
-    elev_req = check_elevation_req(client, server, client->player.level);
+    elev_req = check_elevation_req(client, server, client->player.level, false);
     if (elev_req) {
         send_msg_client(client->fd, "Elevation underway\n");
         get_all_elevation_mate(server, client);
