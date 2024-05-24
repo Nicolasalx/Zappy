@@ -7,9 +7,11 @@
 
 #include "zappy_server.h"
 
-static bool check_elevation_req(client_t *client, server_t *server, int level)
+bool check_elevation_req(client_t *client, server_t *server, int level)
 {
     elevation_requirement_t req = elevation_requirement[level - 1];
+
+    int nb_player = 0;
 
     if (server->world.map[client->player.pos_y][client->player.pos_x].item[DERAUMERE] > req.deraumere)
         return false;
@@ -23,13 +25,24 @@ static bool check_elevation_req(client_t *client, server_t *server, int level)
         return false;
     if (server->world.map[client->player.pos_y][client->player.pos_x].item[THYSTAME] > req.thystame)
         return false;
-    // check si il y a assez de joueurs de la team sur la case du joueur qui a fait la commande
+    for (int i = 0; i < MAX_CLIENT; i++) {
+        if (server->clients[i].fd != 0 && strcmp(server->clients[i].player.team->name, client->player.team->name) == 0) {
+            if (server->clients[i].player.pos_x == client->player.pos_x &&
+                server->clients[i].player.pos_y == client->player.pos_y &&
+                server->clients[i].player.level == client->player.level) {
+                nb_player += 1;
+            }
+        }
+    }
+    if (nb_player < req.nb_players)
+        return false;
     return true;
 }
 
 void incatation_cmd(char *, client_t *client, server_t *server)
 {
     char buffer[100] = {0};
+    
     if (check_elevation_req(client, server, client->player.level + 1) == false) {
         send_msg_client(client->fd, "ko\n");
         return;
