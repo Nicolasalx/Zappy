@@ -10,6 +10,9 @@
 static void get_width(const char **argv, server_t *server, int i, const char **args)
 {
     if (strcmp(argv[i], args[1]) == 0) {
+        if (argv[i + 1] == NULL) {
+            my_error("Error: Width must be specified", 84);
+        }
         if (!my_str_only_cont(argv[i + 1], "0123456789")) {
             my_error("Error: Width must be a number", 84);
         }
@@ -20,6 +23,9 @@ static void get_width(const char **argv, server_t *server, int i, const char **a
 static void get_height(const char **argv, server_t *server, int i, const char **args)
 {
     if (strcmp(argv[i], args[2]) == 0) {
+        if (argv[i + 1] == NULL) {
+            my_error("Error: Height must be specified", 84);
+        }
         if (!my_str_only_cont(argv[i + 1], "0123456789")) {
             my_error("Error: Height must be a number", 84);
         }

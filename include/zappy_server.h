@@ -202,6 +202,7 @@ void pie_reply(server_t *server, client_t *client, bool success);
 void plv_reply(server_t *server, client_t *client);
 void pbc_reply(server_t *server, client_t *client, char *message);
 void pex_reply(server_t *server, client_t *client);
+void edi_reply(server_t *server, client_t *client, egg_t *new_egg);
 
 // ai command
 void inventory_cmd(char *argv, client_t *client, server_t *server);
