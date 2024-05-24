@@ -17,6 +17,7 @@ static bool search_spawn_egg(client_t *client, server_t *server)
             if ((rand() % nb_egg) == 0) {
                 client->player.pos_x = GET_DATA(chosen_one, egg_t)->pos_x;
                 client->player.pos_y = GET_DATA(chosen_one, egg_t)->pos_y;
+                client->player.orientation = rand() % 4;
                 client->player.team->remaining_place -= 1;
                 ebo_reply(server, GET_DATA(chosen_one, egg_t));
                 delete_node(&client->player.team->egg_list, chosen_one);
