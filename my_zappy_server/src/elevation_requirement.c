@@ -7,7 +7,8 @@
 
 #include "zappy_server.h"
 
-elevation_requirement_t requirements[] = {
+const elevation_requirement_t elevation_requirement[] =
+{
     {1, 1, 1, 0, 0, 0, 0, 0},
     {2, 2, 1, 1, 1, 0, 0, 0},
     {3, 2, 2, 0, 1, 0, 2, 0},
