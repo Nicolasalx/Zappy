@@ -7,11 +7,6 @@
 
 #include "zappyAi.hpp"
 
-void Ai::GetCommand::parseResponseFormat()
-{
-    
-}
-
 void Ai::GetCommand::parseServerReply(Client &client, const std::string &reply_data, Player &player)
 {
     std::list<Ai::CommandType> _queue = client.getQueue();
@@ -23,10 +18,8 @@ void Ai::GetCommand::parseServerReply(Client &client, const std::string &reply_d
     Ai::CommandType cmdType = _queue.front();
     switch (cmdType) {
         case TEAM:
-            std::cout << "TEAM PARSING!\n";
-            player.setPlayerTeam();
-            client.enableSendCommand();
             // Check ok / ko
+            this->parseTeam(client, reply_data, player);
             break;
         case FORWARD:
             std::cout << "FORWARD PARSING!\n";
@@ -47,8 +40,7 @@ void Ai::GetCommand::parseServerReply(Client &client, const std::string &reply_d
             // Check Look Parsing
             break;
         case INVENTORY:
-            this->parseInventory(reply_data, player);
-            client.enableSendCommand();
+            this->parseInventory(client, reply_data, player);
             break;
         case BROADCAST_TEXT:
             // Check ok
