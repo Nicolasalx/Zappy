@@ -7,6 +7,19 @@
 
 #include "zappy_server.h"
 
+static void remove_elevation_req(client_t *client, server_t *server, int level)
+{
+    elevation_requirement_t req = elevation_requirement[level - 1];
+
+    server->world.map[client->player.pos_y][client->player.pos_x].item[DERAUMERE] -= req.deraumere;
+    server->world.map[client->player.pos_y][client->player.pos_x].item[LINEMATE] -= req.linemate;
+    server->world.map[client->player.pos_y][client->player.pos_x].item[MENDIANE] -= req.mendiane;
+    server->world.map[client->player.pos_y][client->player.pos_x].item[PHIRAS] -= req.phiras;
+    server->world.map[client->player.pos_y][client->player.pos_x].item[SIBUR] -= req.sibur;
+    server->world.map[client->player.pos_y][client->player.pos_x].item[THYSTAME] -= req.thystame;
+    bct_reply(server, client->player.pos_x, client->player.pos_y);
+}
+
 bool check_elevation_req(client_t *client, server_t *server, int level)
 {
     elevation_requirement_t req = elevation_requirement[level - 1];
@@ -74,9 +87,11 @@ void incatation_cmd(char *, client_t *client, server_t *server)
         pie_reply(server, client, false);
         return;
     }
+    pie_reply(server, client, true);
+    remove_elevation_req(client, server, client->player.level);
     client->player.level += 1;
     end_elevation(server, client);
     snprintf(buffer, sizeof(buffer), "Current level: %d\n", client->player.level);
     send_msg_client(client->fd, buffer);
-    pie_reply(server, client, true);
+    plv_reply(server, client);
 }

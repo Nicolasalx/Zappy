@@ -201,6 +201,7 @@ void ebo_reply(server_t *server, egg_t *new_egg);
 void bct_reply(server_t *server, int x, int y);
 void pic_reply(server_t *server, client_t *client);
 void pie_reply(server_t *server, client_t *client, bool success);
+void plv_reply(server_t *server, client_t *client);
 
 // ai command
 void inventory_cmd(char *argv, client_t *client, server_t *server);
