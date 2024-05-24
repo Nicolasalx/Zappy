@@ -28,9 +28,13 @@ void Graphic::draw_map()
 
 void Graphic::draw_object()
 {
-    for (int i = 0; i < 7; i++) {
-        for (auto &food : this->gameState->object_pos[i]) {
-            DrawModel(this->model_list[i], (Vector3){food.x * SCALE + object_padding[i][0], 0.5f, food.y * SCALE + object_padding[i][0]}, 1.0f, RED);
+    for (int i = 0; i < this->gameState->map_size.x; i++) {
+        for (int j = 0; j < this->gameState->map_size.y; j++) {
+            for (int k = 0; k < 7; k++) {
+                if (this->gameState->object_pos[j][i][k] != 0) {
+                    DrawModel(this->model_list[k], (Vector3){i * SCALE + object_padding[k][0], 0.5f, j * SCALE + object_padding[k][1]}, 1.0f, RED);
+                }
+            }
         }
     }
 }
@@ -39,14 +43,7 @@ void Graphic::draw_player()
 {
     for (auto &player : this->gameState->players_list) {
         //DrawModel(this->model_list[PLAYER], (Vector3){player.pos.x * SCALE, 0.5f, player.pos.y * SCALE}, 1.0f, BLUE);
-        std::cout << player.orientation << std::endl;
-        if (player.orientation == 1)
-            DrawModelEx(this->model_list[PLAYER], (Vector3){player.pos.x * SCALE, 0.5f, player.pos.y * SCALE}, (Vector3){0, 1, 0}, 180, (Vector3){1, 1, 1}, WHITE);
-        else if (player.orientation == 2)
-            DrawModelEx(this->model_list[PLAYER], (Vector3){player.pos.x * SCALE, 0.5f, player.pos.y * SCALE}, (Vector3){0, 1, 0}, 90, (Vector3){1, 1, 1}, WHITE);
-        else if (player.orientation == 3)
-            DrawModelEx(this->model_list[PLAYER], (Vector3){player.pos.x * SCALE, 0.5f, player.pos.y * SCALE}, (Vector3){0, 1, 0}, 0, (Vector3){1, 1, 1}, WHITE);
-        else if (player.orientation == 4)
-            DrawModelEx(this->model_list[PLAYER], (Vector3){player.pos.x * SCALE, 0.5f, player.pos.y * SCALE}, (Vector3){0, 1, 0}, 270, (Vector3){1, 1, 1}, WHITE);
+        //std::cout << player.orientation << std::endl;
+        DrawModelEx(this->model_list[PLAYER], (Vector3){player.pos.x * SCALE, 0.5f, player.pos.y * SCALE}, (Vector3){0, 1, 0}, player_orientation[player.orientation], (Vector3){1, 1, 1}, WHITE);
     }
 }

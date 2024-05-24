@@ -79,7 +79,7 @@ class GameState {
         pos_t map_size;
         int time_unit = 0;
         std::map<std::string, std::function<void(std::vector<std::string>)>> cmd_map;
-        std::vector<std::vector<pos_t>> object_pos;
+        std::vector<std::vector<std::vector<int>>> object_pos;
         std::vector<player_t> players_list;
         std::vector<std::string> team_names;
 };

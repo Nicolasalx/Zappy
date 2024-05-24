@@ -19,6 +19,10 @@ Graphic::Graphic(GameState *gameState)
     this->init_island();
     this->init_player();
     this->init_object_padding();
+    this->player_orientation[1] = 180;
+    this->player_orientation[2] = 90;
+    this->player_orientation[3] = 0;
+    this->player_orientation[4] = 270;
 }
 
 Graphic::~Graphic()
