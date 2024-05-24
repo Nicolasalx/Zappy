@@ -33,6 +33,8 @@
 
     #define RESOURCE_RESPAWN_FREQ 20.0
 
+
+
 typedef enum {
     FOOD,
     LINEMATE,
@@ -50,6 +52,17 @@ typedef enum {
     SOUTH,
     WEST,
 } orientation_t;
+
+typedef struct {
+    int level;
+    int nb_players;
+    int linemate;
+    int deraumere;
+    int sibur;
+    int mendiane;
+    int phiras;
+    int thystame;
+} elevation_requirement_t;
 
 typedef struct {
     int item[NB_ITEM];
@@ -131,6 +144,7 @@ typedef struct {
 
 extern const gui_handler_t gui_cmd_handler[];
 extern const ai_handler_t ai_cmd_handler[];
+extern const elevation_requirement_t elevation_requirement[];
 
 extern double resource_density[NB_ITEM];
 extern const char *object_list[NB_ITEM];
@@ -195,6 +209,7 @@ void take_object_cmd(char *argv, client_t *client, server_t *server);
 void set_object_cmd(char *argv, client_t *client, server_t *server);
 void look_cmd(char *argv, client_t *client, server_t *server);
 void fork_cmd(char *argv, client_t *client, server_t *server);
+void incatation_cmd(char *, client_t *client, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);
