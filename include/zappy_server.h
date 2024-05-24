@@ -210,6 +210,7 @@ void set_object_cmd(char *argv, client_t *client, server_t *server);
 void look_cmd(char *argv, client_t *client, server_t *server);
 void fork_cmd(char *argv, client_t *client, server_t *server);
 void incatation_cmd(char *, client_t *client, server_t *server);
+bool check_elevation_req(client_t *client, server_t *server, int level);
 
 // game
 void init_player(client_t *client, server_t *server);
