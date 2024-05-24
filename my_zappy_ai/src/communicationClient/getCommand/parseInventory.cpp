@@ -40,18 +40,13 @@ void Ai::GetCommand::extractItemInventory(const std::string &itemStr, Player &pl
     }
 }
 
-void Ai::GetCommand::parseInventory(const std::string &reply_data, Player &player)
+void Ai::GetCommand::parseInventory(Client &client, const std::string &reply_data, Player &player)
 {
-    std::cout << "ENTER INVENTORY: " << reply_data << "\n";
     try {
         std::string extractedContent = extractContentBetweenBrackets(reply_data);
 
         std::vector<std::string> listItem;
         my::split_string(extractedContent, ",", listItem);
-
-        std::cout << "CONTENT: " << extractedContent << "\n";
-        std::cout << "SIZE: " << listItem.size() << "\n";
-
 
         if (listItem.size() != 7) {
             throw my::tracked_exception("Inventory gived is incorrect !");
@@ -59,6 +54,7 @@ void Ai::GetCommand::parseInventory(const std::string &reply_data, Player &playe
         for (const auto &item: listItem) {
             extractItemInventory(item, player);
         }
+        client.enableSendCommand();
     } catch(const my::tracked_exception &exception) {
         std::cerr << exception.what() << '\n';
     }
