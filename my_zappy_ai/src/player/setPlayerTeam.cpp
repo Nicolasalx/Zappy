@@ -7,7 +7,10 @@
 
 #include "zappyAi.hpp"
 
-void Ai::Player::setPlayerTeam()
+void Ai::Player::setDataTeam(int nbSlots, int xAxis, int yAxis)
 {
     _clientHasaTeam = true;
+    this->nbSlotsTeam = nbSlots;
+    this->dimensionWorld.x = xAxis;
+    this->dimensionWorld.y = yAxis;
 }

@@ -12,7 +12,6 @@ void Ai::Player::setElemToInventory(Item item, int nbElem)
     switch(item) {
         case FOOD:
             this->inventory.food = nbElem;
-            std::cout << "REAL FOOD: " << this->inventory.food << "\n";
             break;
         case LINEMATE:
             this->inventory.linemate = nbElem;
