@@ -36,6 +36,11 @@
 
 namespace Ai
 {
+    struct DimensionWorld {
+        int x = 0;
+        int y = 0;
+    };
+
     enum CommandType {
         TEAM,
         FORWARD,
@@ -100,13 +105,17 @@ namespace Ai
             void engineAI(Client &client);
 
             void setElemToInventory(Item item, int nbElem);
-            void setPlayerTeam();
+            void setDataTeam(int nbSlots, int xAxis, int yAxis);
 
         private:
             PostCommand postCmd;
 
             Inventory inventory;
+
             int nbSlotsTeam = 0;
+            int nbTeamUnusedSlots = 0;
+            DimensionWorld dimensionWorld;
+
             bool _clientHasaTeam = false;
     };
 
@@ -114,10 +123,10 @@ namespace Ai
     {
         public:
             void parseServerReply(Client &client, const std::string &reply_data, Player &player);
-            void parseResponseFormat();
-            void parseInventory(const std::string &reply_data, Player &player);
+            void parseInventory(Client &client, const std::string &reply_data, Player &player);
             std::string extractContentBetweenBrackets(const std::string &input);
             void extractItemInventory(const std::string &itemStr, Player &player);
+            void parseTeam(Client &client, const std::string &reply_data, Player &player);
 
         private:
     };
@@ -154,7 +163,6 @@ namespace Ai
             void setQueue(const std::list<Ai::CommandType> &queue);
 
             void insertInQueue(CommandType commandType);
-            void parseInventory();
 
             bool canSendCommand();
             void enableSendCommand();
