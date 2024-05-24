@@ -12,7 +12,7 @@
     - Se déplace à une prochaine case puis remange
 */
 
-#include "zappy_ai.hpp"
+#include "zappyAi.hpp"
 
 int main(int argc, char const *argv[])
 {

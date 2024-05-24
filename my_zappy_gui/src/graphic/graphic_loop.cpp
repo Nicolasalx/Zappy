@@ -11,7 +11,9 @@ void Graphic::draw_3D()
 {
     BeginMode3D(this->camera);
     this->draw_sky_box();
-    this->draw_3D_models();
+    this->draw_player();
+    this->draw_object();
+    this->draw_map();
     DrawGrid(20, 1.0f);
     EndMode3D();
 }

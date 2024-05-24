@@ -33,9 +33,6 @@ static void eject_egg_from_tile(client_t *client, server_t *server)
 
 void eject_cmd(char *, client_t *client, server_t *server)
 {
-    char buffer[100] = {0};
-
-    snprintf(buffer, sizeof(buffer), "eject: %d\n", client->player.orientation);
     for (int i = 0; i < MAX_CLIENT; ++i) {
         if (server->clients[i].fd != 0 && server->clients[i].is_graphic != true
         && server->clients[i].player.pos_x == client->player.pos_x
@@ -44,21 +41,24 @@ void eject_cmd(char *, client_t *client, server_t *server)
             switch (client->player.orientation) {
                 case NORTH:
                     server->clients[i].player.pos_y = (server->clients[i].player.pos_y - 1 + server->world.size_y) % server->world.size_y;
+                    send_msg_client(server->clients[i].fd, "eject: 3\n");
                     break;
                 case EAST:
                     server->clients[i].player.pos_x = (server->clients[i].player.pos_x + 1) % server->world.size_x;
+                    send_msg_client(server->clients[i].fd, "eject: 4\n");
                     break;
                 case SOUTH:
                     server->clients[i].player.pos_y = (server->clients[i].player.pos_y + 1) % server->world.size_y;
+                    send_msg_client(server->clients[i].fd, "eject: 1\n");
                     break;
                 case WEST:
                     server->clients[i].player.pos_x = (server->clients[i].player.pos_x - 1 + server->world.size_x) % server->world.size_x;
+                    send_msg_client(server->clients[i].fd, "eject: 2\n");
                     break;
             }
             pex_reply(server, &server->clients[i]);
             ppo_reply(server, &server->clients[i]);
             eject_egg_from_tile(client, server);
-            send_msg_client(server->clients[i].fd, buffer);
         }
     }
 }
