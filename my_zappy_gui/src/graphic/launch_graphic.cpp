@@ -9,6 +9,6 @@
 
 void Client::launch_graphic()
 {
-    Graphic graphic;
+    Graphic graphic(&this->gameState);
     graphic.loop();
 }

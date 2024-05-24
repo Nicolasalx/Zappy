@@ -7,7 +7,7 @@
 
 #include "zappy_server.h"
 
-void right_cmd(char *argv, client_t *client, server_t *server)
+void right_cmd(char *, client_t *client, server_t *server)
 {
     switch (client->player.orientation) {
         case NORTH:

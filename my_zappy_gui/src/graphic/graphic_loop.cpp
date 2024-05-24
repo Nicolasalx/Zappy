@@ -11,8 +11,9 @@ void Graphic::draw_3D()
 {
     BeginMode3D(this->camera);
     this->draw_sky_box();
-    DrawCube((Vector3){ 0.0f, 0.0f, 0.0f }, 2.0f, 2.0f, 2.0f, RED);
-    DrawCubeWires((Vector3){ 0.0f, 0.0f, 0.0f }, 2.0f, 2.0f, 2.0f, MAROON);
+    this->draw_player();
+    this->draw_object();
+    this->draw_map();
     DrawGrid(20, 1.0f);
     EndMode3D();
 }

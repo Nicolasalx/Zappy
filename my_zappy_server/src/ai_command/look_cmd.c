@@ -7,18 +7,23 @@
 
 #include "zappy_server.h"
 
-// XOOOOOOOOO 7
-// 789OOOOO56 8
-// 34OOOOOOO2 9
-
-// 0123456789
-
-static void get_item_str(char *buff, int *item)
+static void get_item_str(char *buff, int x, int y, server_t *server)
 {
     bool first = true;
 
+    for (int i = 0; i < MAX_CLIENT; ++i) {
+        if (server->clients[i].fd != 0
+            && server->clients[i].player.pos_x == x
+            && server->clients[i].player.pos_y == y) {
+            if (!first) {
+                strcat(buff, " ");
+            }
+            strcat(buff, "player");
+            first = false;
+        }
+    }
     for (int i = 0; i < NB_ITEM; ++i) {
-        for (int j = 0; j < item[i]; ++j) {
+        for (int j = 0; j < server->world.map[y][x].item[i]; ++j) {
             if (!first) {
                 strcat(buff, " ");
             }
@@ -35,9 +40,8 @@ static void look_north(client_t *client, server_t *server)
     strcpy(buff, "[");
     for (int i = 0; i <= client->player.level; ++i) {
         for (int x = (client->player.pos_x - i); x <= (client->player.pos_x + i); ++x) {
-            get_item_str(buff, server->world.map
-                [(client->player.pos_y - i + server->world.size_y) % server->world.size_y]
-                [(x + server->world.size_x) % server->world.size_x].item);
+            get_item_str(buff, (x + server->world.size_x) % server->world.size_x,
+                (client->player.pos_y - i + server->world.size_y) % server->world.size_y, server);
             if (x < (client->player.pos_x + i) || i < client->player.level) {
                 strcat(buff, ",");
             }
@@ -54,9 +58,9 @@ static void look_south(client_t *client, server_t *server)
     strcpy(buff, "[");
     for (int i = 0; i <= client->player.level; ++i) {
         for (int x = (client->player.pos_x - i); x <= (client->player.pos_x + i); ++x) {
-            get_item_str(buff, server->world.map
-                [(client->player.pos_y + i) % server->world.size_y]
-                [(x + server->world.size_x) % server->world.size_x].item);
+            get_item_str(buff,
+                (x + server->world.size_x) % server->world.size_x,
+                (client->player.pos_y + i) % server->world.size_y, server);
             if (x < (client->player.pos_x + i) || i < client->player.level) {
                 strcat(buff, ",");
             }
@@ -73,9 +77,9 @@ static void look_east(client_t *client, server_t *server)
     strcpy(buff, "[");
     for (int i = 0; i <= client->player.level; ++i) {
         for (int y = (client->player.pos_y - i); y <= (client->player.pos_y + i); ++y) {
-            get_item_str(buff, server->world.map
-                [(y + server->world.size_y) % server->world.size_y]
-                [(client->player.pos_x + i) % server->world.size_x].item);
+            get_item_str(buff,
+                (client->player.pos_x + i) % server->world.size_x,
+                (y + server->world.size_y) % server->world.size_y, server);
             if (y < (client->player.pos_y + i) || i < client->player.level) {
                 strcat(buff, ",");
             }
@@ -92,9 +96,8 @@ static void look_west(client_t *client, server_t *server)
     strcpy(buff, "[");
     for (int i = 0; i <= client->player.level; ++i) {
         for (int y = (client->player.pos_y - i); y <= (client->player.pos_y + i); ++y) {
-            get_item_str(buff, server->world.map
-                [(y + server->world.size_y) % server->world.size_y]
-                [(client->player.pos_x - i + server->world.size_x) % server->world.size_x].item);
+            get_item_str(buff, (client->player.pos_x - i + server->world.size_x) % server->world.size_x,
+                (y + server->world.size_y) % server->world.size_y, server);
             if (y < (client->player.pos_y + i) || i < client->player.level) {
                 strcat(buff, ",");
             }
@@ -104,9 +107,8 @@ static void look_west(client_t *client, server_t *server)
     send_msg_client(client->fd, buff);
 }
 
-void look_cmd(char *argv, client_t *client, server_t *server)
+void look_cmd(char *, client_t *client, server_t *server)
 {
-    --client->player.level;
     switch (client->player.orientation) {
         case NORTH:
             look_north(client, server);
@@ -121,5 +123,4 @@ void look_cmd(char *argv, client_t *client, server_t *server)
             look_west(client, server);
             break;
     }
-    ++client->player.level;
 }
