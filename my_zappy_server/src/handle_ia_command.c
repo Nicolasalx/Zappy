@@ -11,14 +11,27 @@ static void get_all_elevation_mate(server_t *server, client_t *client)
 {
     for (int i = 0; i < MAX_CLIENT; ++i)
     {
-        if (server->clients[i].fd != 0 && &server->clients[i] != client
+        if (server->clients[i].fd != 0
             && server->clients[i].player.team == client->player.team
             && server->clients[i].player.pos_x == client->player.pos_x
             && server->clients[i].player.pos_y == client->player.pos_y
             && server->clients[i].player.level == client->player.level) {
-            append_node(&client->incentation_mate, create_node(&server->clients[i]));
+            server->clients[i].in_incentation = true;
         }
     }
+}
+
+static bool no_current_elevation(server_t *server, client_t *client)
+{
+    for (int i = 0; i < MAX_CLIENT; ++i)
+    {
+        if (server->clients[i].fd != 0
+            && server->clients[i].player.team == client->player.team
+            && server->clients[i].in_incentation) {
+            return false;
+        }
+    }
+    return true;
 }
 
 static bool handle_elevation_cmd(server_t *server, client_t *client, const ai_handler_t *command)
@@ -28,14 +41,17 @@ static bool handle_elevation_cmd(server_t *server, client_t *client, const ai_ha
     if (command->method != incatation_cmd) {
         return true;
     }
-    if (client->incentation_mate != NULL) {
+    if (!no_current_elevation(server, client)) {
         return false;
     }
-    elev_req = check_elevation_req(client, server, client->player.level + 1);
+    elev_req = check_elevation_req(client, server, client->player.level);
     if (elev_req) {
+        send_msg_client(client->fd, "Elevation underway\n");
         get_all_elevation_mate(server, client);
-        pic_reply(server, client);
+    } else {
+        send_msg_client(client->fd, "ko\n");
     }
+    pic_reply(server, client);
     return elev_req;
 }
 

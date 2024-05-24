@@ -100,7 +100,6 @@ static void look_west(client_t *client, server_t *server)
 
 void look_cmd(char *, client_t *client, server_t *server)
 {
-    --client->player.level;
     switch (client->player.orientation) {
         case NORTH:
             look_north(client, server);
@@ -115,5 +114,4 @@ void look_cmd(char *, client_t *client, server_t *server)
             look_west(client, server);
             break;
     }
-    ++client->player.level;
 }
