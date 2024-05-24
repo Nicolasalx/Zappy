@@ -31,7 +31,7 @@ const ai_handler_t ai_cmd_handler[] =
     {"Broadcast", true, 7, broadcast_cmd},
     {"Connect_nbr\n", false, 0, connect_nbr_cmd},
     {"Fork\n", false, 42, fork_cmd},
-    {"Eject\n", false, 7, NULL},
+    {"Eject\n", false, 7, eject_cmd},
     {"Take", true, 7, take_object_cmd},
     {"Set", true, 7, set_object_cmd},
     {"Incantation\n", false, 300, incatation_cmd},

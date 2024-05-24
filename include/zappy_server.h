@@ -201,6 +201,7 @@ void pic_reply(server_t *server, client_t *client);
 void pie_reply(server_t *server, client_t *client, bool success);
 void plv_reply(server_t *server, client_t *client);
 void pbc_reply(server_t *server, client_t *client, char *message);
+void pex_reply(server_t *server, client_t *client);
 
 // ai command
 void inventory_cmd(char *argv, client_t *client, server_t *server);
@@ -215,6 +216,7 @@ void fork_cmd(char *argv, client_t *client, server_t *server);
 void incatation_cmd(char *, client_t *client, server_t *server);
 bool check_elevation_req(client_t *client, server_t *server, int level);
 void broadcast_cmd(char *argv, client_t *client, server_t *server);
+void eject_cmd(char *argv, client_t *client, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);
