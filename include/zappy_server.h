@@ -102,6 +102,7 @@ typedef struct {
     bool is_graphic;
     node_t *waiting_cmd;
     player_t player;
+    node_t *incentation_mate;
 } client_t;
 
 typedef struct {
