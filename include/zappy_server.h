@@ -33,8 +33,6 @@
 
     #define RESOURCE_RESPAWN_FREQ 20.0
 
-
-
 typedef enum {
     FOOD,
     LINEMATE,
