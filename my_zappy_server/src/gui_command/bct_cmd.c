@@ -13,8 +13,10 @@ void bct_cmd(int, char **argv, client_t *client, server_t *server)
     int x = atoi(argv[0]);
     int y = atoi(argv[1]);
 
-    if (x < 0 || x >= server->world.size_x || y < 0 || y >= server->world.size_y ||
-        (!my_str_only_cont(argv[0], "0123456789") || !my_str_only_cont(argv[1], "0123456789"))) {
+    if (x < 0 || x >= server->world.size_x || y < 0
+    || y >= server->world.size_y ||
+    (!my_str_only_cont(argv[0], "0123456789")
+    || !my_str_only_cont(argv[1], "0123456789"))) {
         send_msg_client(client->fd, "sbp\n");
         return;
     }
