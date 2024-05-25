@@ -34,7 +34,9 @@ void lauch_server(server_t *server)
         handle_new_connection(server);
         handle_active_client(server);
 
-        update_resource(server);
-        update_simulation(server);
+        if (!server->end_game) {
+            update_resource(server);
+            update_simulation(server);
+        }
     }
 }

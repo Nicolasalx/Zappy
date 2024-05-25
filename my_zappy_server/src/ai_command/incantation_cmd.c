@@ -106,7 +106,7 @@ static void end_elevation(server_t *server, client_t *client)
     free_linked_list(&client->incentation_mate);
 }
 
-static bool condition_win(server_t *server)
+static team_t *condition_win(server_t *server)
 {
     int nb_player_lvl_8[MAX_TEAM_NB] = {0};
     int team = 0;
@@ -116,15 +116,17 @@ static bool condition_win(server_t *server)
             team = server->clients[i].player.team;
             nb_player_lvl_8[team] += 1;
             if (nb_player_lvl_8[team] >= 6) {
-                return true;
+                return server->clients[i].player.team;
             }
         }
     }
-    return false;
+    return NULL;
 }
 
 void incatation_cmd(char *, client_t *client, server_t *server)
 {
+    team_t *winning_team = NULL;
+
     if (check_elevation_req(client, server, client->player.level, true) == false) {
         cancel_elevation(client);
         send_msg_client(client->fd, "ko\n");
@@ -135,9 +137,9 @@ void incatation_cmd(char *, client_t *client, server_t *server)
     plv_reply(server, client);
     remove_elevation_req(client, server, client->player.level);
     end_elevation(server, client);
-    if (condition_win(server, client)) {
-        seg_reply(server, client);
-        // qu'est ce qu'il doit se passer si y'a un gagnant ? en attendant j'exit 0
-        my_exit(0);
+    winning_team = condition_win(server);
+    if (winning_team) {
+        seg_reply(server, winning_team);
+        server->end_game = true;
     }
 }

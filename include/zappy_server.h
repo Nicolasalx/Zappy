@@ -113,6 +113,7 @@ typedef struct {
     bool is_immortal;
     int player_count;
     int egg_count;
+    bool end_game;
     struct timeval last_update;
     struct timeval last_resource_spawn;
     struct sockaddr_in address;
@@ -204,7 +205,7 @@ void plv_reply(server_t *server, client_t *client);
 void pbc_reply(server_t *server, client_t *client, char *message);
 void pex_reply(server_t *server, client_t *client);
 void edi_reply(server_t *server, client_t *client, egg_t *new_egg);
-void seg_reply(server_t *server, client_t *client);
+void seg_reply(server_t *server, team_t *winner_team);
 
 // ai command
 void inventory_cmd(char *argv, client_t *client, server_t *server);
