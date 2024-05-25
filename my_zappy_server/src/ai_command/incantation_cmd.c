@@ -99,9 +99,8 @@ static void end_elevation(server_t *server, client_t *client)
     }
     do {
         (*GET_DATA(current, client_t *))->player.level += 1;
-        snprintf(buffer, sizeof(buffer), "Current level: %d\n", (*GET_DATA(current, client_t *))->player.level);
         send_msg_client((*GET_DATA(current, client_t *))->fd, buffer);
-        memset(buffer, 0, sizeof(buffer));
+        plv_reply(server, (*GET_DATA(current, client_t *)));
         current = current->next;
     } while (current != client->incentation_mate);
     free_linked_list(&client->incentation_mate);
