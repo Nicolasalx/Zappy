@@ -27,7 +27,8 @@ static void set_args(server_t *server)
     }
 }
 
-static void check_immortal(const char **argv, server_t *server, int i, const char **args)
+static void check_immortal(const char **argv,
+    server_t *server, int i, const char **args)
 {
     if (strcmp(argv[i], args[5]) == 0) {
         server->is_immortal = true;

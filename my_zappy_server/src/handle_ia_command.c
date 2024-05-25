@@ -15,12 +15,11 @@ static void get_all_elevation_mate(server_t *server, client_t *client)
     for (int i = 0; i < MAX_CLIENT; ++i) {
         if (nb_mate >= elevation_req[client->player.level - 1].nb_players)
             return;
-        if (server->clients[i].fd != 0
-        && server->clients[i].player.id != client->player.id
-        && server->clients[i].player.pos_x == client->player.pos_x
-        && server->clients[i].player.pos_y == client->player.pos_y
-        && server->clients[i].player.level == client->player.level
-        && !server->clients[i].incentation_mate
+        if (server->clients[i].fd != 0 && server->clients[i].player.id
+        != client->player.id && server->clients[i].player.pos_x ==
+        client->player.pos_x && server->clients[i].player.pos_y ==
+        client->player.pos_y && server->clients[i].player.level ==
+        client->player.level && !server->clients[i].incentation_mate
         && !server->clients[i].in_incentation) {
             mate = my_calloc(sizeof(client_t *));
             *mate = &server->clients[i];

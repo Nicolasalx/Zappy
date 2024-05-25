@@ -172,6 +172,10 @@ void remove_elevation_req(client_t *client, server_t *server, int level);
 bool check_elevation_req(client_t *client, server_t *server,
     int level, bool last_check);
 bool is_part_of_elevation(client_t *client, client_t *mate);
+void append_with_space_if_needed(char *buff, const char *str, bool *first);
+void get_item_str(char *buff, int x, int y, server_t *server);
+void append_with_coma_if_needed_x(client_t *client, char *buff, int x, int i);
+void append_with_coma_if_needed_y(client_t *client, char *buff, int y, int i);
 
 // args management
 void get_port_and_freq(const char **argv,
@@ -227,7 +231,8 @@ void set_object_cmd(char *argv, client_t *client, server_t *server);
 void look_cmd(char *argv, client_t *client, server_t *server);
 void fork_cmd(char *argv, client_t *client, server_t *server);
 void incatation_cmd(char *, client_t *client, server_t *server);
-bool check_elevation_req(client_t *client, server_t *server, int level, bool last_check);
+bool check_elevation_req(client_t *client,
+    server_t *server, int level, bool last_check);
 void broadcast_cmd(char *argv, client_t *client, server_t *server);
 void eject_cmd(char *argv, client_t *client, server_t *server);
 
