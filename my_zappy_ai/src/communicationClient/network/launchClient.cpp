@@ -15,7 +15,7 @@ void closeClient(int) // ! Why this function is not in the class ?
 
 void Ai::Client::launchClient()
 {
-    Ai::Player player;
+    Ai::Player player(*this);
 
     std::signal(SIGINT, closeClient);
     while (true) {
