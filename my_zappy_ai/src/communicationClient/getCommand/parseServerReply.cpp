@@ -71,7 +71,7 @@ void Ai::GetCommand::parseServerReply(Client &client, const std::string &reply_d
             this->parseTeam(client, reply_data, player);
             break;
         case FORWARD:
-            client.enableSendCommand();
+            this->parseForward(client, player);
             break;
         case RIGHT:
             client.enableSendCommand();
