@@ -109,15 +109,16 @@ static void end_elevation(server_t *server, client_t *client)
 static team_t *condition_win(server_t *server)
 {
     int nb_player_lvl_8[MAX_TEAM_NB] = {0};
-    int team = 0;
 
-    for (int i = 0; i < MAX_CLIENT; ++i) {
-        if (server->clients[i].fd != 0 && server->clients[i].player.level == 8) {
-            team = server->clients[i].player.team;
-            nb_player_lvl_8[team] += 1;
-            if (nb_player_lvl_8[team] >= 6) {
-                return server->clients[i].player.team;
+    for (int i = 0; i < server->team_count; ++i) {
+        for (int j = 0; j < MAX_CLIENT; ++j) {
+            if (server->clients[j].fd != 0 && server->clients[j].player.team == &server->team_list[i]
+            && server->clients[j].player.level == 8) {
+                nb_player_lvl_8[i] += 1;
             }
+        }
+        if (nb_player_lvl_8[i] >= 6) {
+            return &server->team_list[i];
         }
     }
     return NULL;
