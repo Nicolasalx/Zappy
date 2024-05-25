@@ -58,7 +58,8 @@ struct player_t {
     int orientation;
     std::string team_name;
     std::vector<int> inventory;
-
+    int animation_nbr;
+    int anim_frame_counter;
 };
 
 class GameState {

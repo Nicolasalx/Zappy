@@ -65,21 +65,23 @@ void Graphic::init_sky_box()
 void Graphic::init_island()
 {
     //avec un cube pour l'instant
-    Mesh cube = GenMeshCube(3.0f, 3.0f, 3.0f);
-    Model island = LoadModelFromMesh(cube);
+    
+    Model island = LoadModel("assets/plateform.obj");
+    Texture2D texture = LoadTexture("assets/plateform1.png");
+    SetMaterialTexture(&island.materials[0], MATERIAL_MAP_DIFFUSE, texture);
     this->model_list.push_back(island);
 }
 
 void Graphic::init_player()
 {
-    Model player = LoadModel("assets/model.iqm");
-    Texture2D texture = LoadTexture("assets/test_texture.png");
+    Model player = LoadModel("assets/Astronaut.iqm");
+    Texture2D texture = LoadTexture("assets/AstronautColor.png");
     SetMaterialTexture(&player.materials[0], MATERIAL_MAP_DIFFUSE, texture);
     player.transform = MatrixRotateXYZ((Vector3){-90.0f * (PI / 180), 0.0f, 0.0f});
     this->model_list.push_back(player);
 
-    int animsCount = 1;
-    this->player_animation = LoadModelAnimations("assets/model.iqm", &animsCount);
+    int animsCount = 5;
+    this->player_animation = LoadModelAnimations("assets/Astronaut.iqm", &animsCount);
 }
 
 void Graphic::init_object()

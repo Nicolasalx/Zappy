@@ -22,6 +22,8 @@ void GameState::pnw(std::vector<std::string> args)
     new_player.orientation = std::stoi(args[3]);
     new_player.level = std::stoi(args[4]);
     new_player.team_name = args[5];
+    new_player.animation_nbr = 0;
+    new_player.anim_frame_counter = 32;
     for (int i = 0; i < 7; i++) {
         new_player.inventory.push_back(0);
     }

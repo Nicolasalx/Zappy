@@ -14,16 +14,16 @@ void Graphic::draw_3D()
     this->draw_player();
     this->draw_object();
     this->draw_map();
-    DrawGrid(20, 1.0f);
+    DrawGrid(10, 1.0f);
     EndMode3D();
 }
 
 void Graphic::draw_2D()
 {
-    DrawText("Free camera default controls:", window_width / 10 , window_height / 5, (window_height + window_width) / 100, BLACK);
-    DrawText("- Mouse Wheel to Zoom in-out", 40, 40, 10, DARKGRAY);
-    DrawText("- Mouse Wheel Pressed to Pan", 40, 60, 10, DARKGRAY);
-    DrawText("- Z to zoom to (0, 0, 0)", 40, 80, 10, DARKGRAY);
+    // DrawText("Free camera default controls:", window_width / 10 , window_height / 5, (window_height + window_width) / 100, BLACK);
+    // DrawText("- Mouse Wheel to Zoom in-out", 40, 40, 10, DARKGRAY);
+    // DrawText("- Mouse Wheel Pressed to Pan", 40, 60, 10, DARKGRAY);
+    // DrawText("- Z to zoom to (0, 0, 0)", 40, 80, 10, DARKGRAY);
 }
 
 void Graphic::loop()
