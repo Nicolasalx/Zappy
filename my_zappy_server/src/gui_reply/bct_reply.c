@@ -22,7 +22,8 @@ void bct_reply(server_t *server, int x, int y)
         server->world.map[y][x].item[PHIRAS],
         server->world.map[y][x].item[THYSTAME]);
     for (int i = 0; i < MAX_CLIENT; i++) {
-        if (server->clients[i].fd != 0 && server->clients[i].is_graphic == true) {
+        if (server->clients[i].fd != 0
+        && server->clients[i].is_graphic == true) {
             send_msg_client(server->clients[i].fd, buffer);
         }
     }

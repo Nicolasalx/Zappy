@@ -13,7 +13,8 @@ void pdr_reply(server_t *server, client_t *client, int resource)
 
     snprintf(buffer, sizeof(buffer), "pdr %d %d\n", client->player.id, resource);
     for (int i = 0; i < MAX_CLIENT; i++) {
-        if (server->clients[i].fd != 0 && server->clients[i].is_graphic == true) {
+        if (server->clients[i].fd != 0
+        && server->clients[i].is_graphic == true) {
             send_msg_client(server->clients[i].fd, buffer);
         }
     }
