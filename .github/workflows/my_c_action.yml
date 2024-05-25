@@ -21,7 +21,7 @@ jobs:
 
     - name: check compilation
       run: |
-          sudo dnf install raylib-devel
+          sudo dnf install raylib-devel -y
           echo "## 🚀 Compilation result" >> $GITHUB_STEP_SUMMARY
           {
             set +e

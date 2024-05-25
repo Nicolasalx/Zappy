@@ -9,7 +9,6 @@
 
 GameState::GameState()
 {
-    object_pos.resize(7);
     cmd_map.emplace("msz", [this](std::vector<std::string> args) { this->msz(args); });
     cmd_map.emplace("bct", [this](std::vector<std::string> args) { this->bct(args); });
     cmd_map.emplace("tna", [this](std::vector<std::string> args) { this->tna(args); });

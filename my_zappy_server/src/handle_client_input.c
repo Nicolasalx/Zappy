@@ -46,8 +46,10 @@ static void handle_new_player_client(server_t *server, client_t *client, char *c
 
 void handle_client_input(server_t *server, client_t *client, char *cmd)
 {
-    printf("client send: %s\n", cmd);
-
+    if (server->end_game) {
+        send_msg_client(client->fd, "End of Game\n");
+        return;
+    }
     if (client->is_graphic) {
         handle_gui_input(server, client, cmd);
     } else if (client->player.team) {

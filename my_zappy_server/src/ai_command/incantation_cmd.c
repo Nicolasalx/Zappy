@@ -28,7 +28,6 @@ static bool is_part_of_elevation(client_t *client, client_t *mate)
         return false;
     }
     do {
-        printf("TEST = %d == %d\n", (*GET_DATA(current, client_t *))->player.id, mate->player.id);
         if ((*GET_DATA(current, client_t *))->player.id == mate->player.id) {
             return true;
         }
@@ -56,7 +55,7 @@ bool check_elevation_req(client_t *client, server_t *server, int level, bool las
     if (server->world.map[client->player.pos_y][client->player.pos_x].item[THYSTAME] < req.thystame)
         return false;
     for (int i = 0; i < MAX_CLIENT; ++i) {
-        if (server->clients[i].fd != 0 && server->clients[i].player.team == client->player.team
+        if (server->clients[i].fd != 0
         && server->clients[i].player.id != client->player.id &&
         server->clients[i].player.pos_x == client->player.pos_x &&
         server->clients[i].player.pos_y == client->player.pos_y &&
@@ -81,6 +80,7 @@ static void cancel_elevation(client_t *client)
     }
     do {
         (*GET_DATA(current, client_t *))->in_incentation = false;
+        send_msg_client((*GET_DATA(current, client_t *))->fd, "ko\n");
         current = current->next;
     } while (current != client->incentation_mate);
     free_linked_list(&client->incentation_mate);
@@ -89,22 +89,45 @@ static void cancel_elevation(client_t *client)
 static void end_elevation(server_t *server, client_t *client)
 {
     node_t *current = client->incentation_mate;
+    char buffer[100] = {0};
 
+    client->player.level += 1;
+    snprintf(buffer, sizeof(buffer), "Current level: %d\n", client->player.level);
+    send_msg_client(client->fd, buffer);
     if (client->incentation_mate == NULL) {
         return;
     }
     do {
-        send_msg_client((*GET_DATA(current, client_t *))->fd, "dead\n");
-        pdi_reply(server, (*GET_DATA(current, client_t *)));
-        remove_client((*GET_DATA(current, client_t *)));
+        (*GET_DATA(current, client_t *))->player.level += 1;
+        send_msg_client((*GET_DATA(current, client_t *))->fd, buffer);
+        plv_reply(server, (*GET_DATA(current, client_t *)));
         current = current->next;
     } while (current != client->incentation_mate);
     free_linked_list(&client->incentation_mate);
 }
 
+static team_t *condition_win(server_t *server)
+{
+    int nb_player_lvl_8 = 0;
+
+    for (int i = 0; i < server->team_count; ++i) {
+        for (int j = 0; j < MAX_CLIENT; ++j) {
+            if (server->clients[j].fd != 0 && server->clients[j].player.team == &server->team_list[i]
+            && server->clients[j].player.level == 8) {
+                nb_player_lvl_8 += 1;
+            }
+        }
+        if (nb_player_lvl_8 >= 6) {
+            return &server->team_list[i];
+        }
+        nb_player_lvl_8 = 0;
+    }
+    return NULL;
+}
+
 void incatation_cmd(char *, client_t *client, server_t *server)
 {
-    char buffer[100] = {0};
+    team_t *winning_team = NULL;
 
     if (check_elevation_req(client, server, client->player.level, true) == false) {
         cancel_elevation(client);
@@ -115,8 +138,10 @@ void incatation_cmd(char *, client_t *client, server_t *server)
     pie_reply(server, client, true);
     plv_reply(server, client);
     remove_elevation_req(client, server, client->player.level);
-    client->player.level += 1;
     end_elevation(server, client);
-    snprintf(buffer, sizeof(buffer), "Current level: %d\n", client->player.level);
-    send_msg_client(client->fd, buffer);
+    winning_team = condition_win(server);
+    if (winning_team) {
+        seg_reply(server, winning_team);
+        server->end_game = true;
+    }
 }
