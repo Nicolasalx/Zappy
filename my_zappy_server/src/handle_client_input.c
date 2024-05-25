@@ -7,6 +7,29 @@
 
 #include "zappy_server.h"
 
+static void eggs_info(server_t *server)
+{
+    char buffer[100] = {0};
+    node_t *current = NULL;
+
+    for (int i = 0; i < server->team_count; ++i) {
+        current = server->team_list[i].egg_list;
+
+        if (server->team_list[i].egg_list == NULL) {
+            return;
+        }
+        do {
+            snprintf(buffer, sizeof(buffer), "%d %d %d\n", GET_DATA(current, egg_t)->nb, GET_DATA(current, egg_t)->pos_x, GET_DATA(current, egg_t)->pos_y);
+            smg_reply(server, buffer);
+            memset(buffer, 0, sizeof(buffer));    
+            if (server->team_list[i].egg_list == NULL) {
+                return;
+            }
+            current = current->next;
+        } while (current != server->team_list[i].egg_list);
+    }
+}
+
 static void handle_new_graphic_client(server_t *server, client_t *client)
 {
     char buffer[100] = {0};
@@ -16,6 +39,7 @@ static void handle_new_graphic_client(server_t *server, client_t *client)
     sgt_cmd(0, NULL, client, server);
     mct_cmd(0, NULL, client, server);
     tna_cmd(0, NULL, client, server);
+    eggs_info(server);
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0 && server->clients[i].player.team) {
             snprintf(buffer, sizeof(buffer), "pnw %d %d %d %d %d %s\n",

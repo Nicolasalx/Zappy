@@ -44,7 +44,6 @@ void broadcast_cmd(char *argv, client_t *client, server_t *server)
             send_msg_client(server->clients[i].fd, buffer);
         }
     }
-    send_msg_client(client->fd, "ok\n");
     pbc_reply(server, client, message);
 
 //    char buffer[100] = {0};
