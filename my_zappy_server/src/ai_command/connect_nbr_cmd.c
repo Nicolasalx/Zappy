@@ -12,11 +12,6 @@ void connect_nbr_cmd(char *, client_t *client, server_t *server)
     char buffer[100] = {0};
     int nb_team = 0;
 
-    for (int i = 0; i < server->team_count; i++) {
-        if (server->team_list[i].remaining_place >= server->client_nb) {
-            nb_team += 1;
-        }
-    }
-    snprintf(buffer, sizeof(buffer), "%d\n", nb_team);
+    snprintf(buffer, sizeof(buffer), "%d\n", client->player.team->remaining_place);
     send_msg_client(client->fd, buffer);
 }
