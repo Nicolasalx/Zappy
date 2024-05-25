@@ -22,4 +22,5 @@ void remove_client(client_t *client)
 {
     close(client->fd);
     memset(client, 0, sizeof(client_t));
+    client->player.team->remaining_place += 1;
 }
