@@ -146,7 +146,7 @@ typedef struct {
 
 extern const gui_handler_t gui_cmd_handler[];
 extern const ai_handler_t ai_cmd_handler[];
-extern const elevation_requirement_t elevation_requirement[];
+extern const elevation_requirement_t elevation_req[];
 
 extern double resource_density[NB_ITEM];
 extern const char *object_list[NB_ITEM];
@@ -168,6 +168,9 @@ void send_msg_client(int fd, char *reply);
 void handle_new_player(server_t *, client_t *new_client);
 void handle_gui_input(server_t *server, client_t *client, char *cmd);
 void handle_ai_input(server_t *server, client_t *client, char *cmd);
+void remove_elevation_req(client_t *client, server_t *server, int level);
+bool check_elevation_req(client_t *client, server_t *server,
+    int level, bool last_check);
 
 // args management
 void get_port_and_freq(const char **argv, server_t *server, int argc, const char **args);
