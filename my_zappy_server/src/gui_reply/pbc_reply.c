@@ -11,7 +11,7 @@ void pbc_reply(server_t *server, client_t *client, char *message)
 {
     char buffer[100] = {0};
 
-    snprintf(buffer, sizeof(buffer), "pbc %d %s\n", client->player.orientation + 1, message);
+    snprintf(buffer, sizeof(buffer), "pbc %d %s\n", client->player.id, message);
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0 && server->clients[i].is_graphic == true) {
             send_msg_client(server->clients[i].fd, buffer);
