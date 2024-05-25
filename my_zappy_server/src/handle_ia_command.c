@@ -13,10 +13,10 @@ static void get_all_elevation_mate(server_t *server, client_t *client)
     int nb_mate = 0;
 
     for (int i = 0; i < MAX_CLIENT; ++i) {
-        if (nb_mate >= elevation_requirement[client->player.level - 1].nb_players) {
+        if (nb_mate >= elevation_req[client->player.level - 1].nb_players)
             return;
-        }
-        if (server->clients[i].fd != 0 && server->clients[i].player.id != client->player.id
+        if (server->clients[i].fd != 0
+        && server->clients[i].player.id != client->player.id
         && server->clients[i].player.pos_x == client->player.pos_x
         && server->clients[i].player.pos_y == client->player.pos_y
         && server->clients[i].player.level == client->player.level
@@ -32,14 +32,16 @@ static void get_all_elevation_mate(server_t *server, client_t *client)
     }
 }
 
-static bool handle_elevation_cmd(server_t *server, client_t *client, const ai_handler_t *command)
+static bool handle_elevation_cmd(server_t *server,
+    client_t *client, const ai_handler_t *command)
 {
     bool elev_req = false;
 
     if (command->method != incatation_cmd) {
         return true;
     }
-    elev_req = check_elevation_req(client, server, client->player.level, false);
+    elev_req = check_elevation_req(client, server,
+        client->player.level, false);
     if (elev_req) {
         send_msg_client(client->fd, "Elevation underway\n");
         get_all_elevation_mate(server, client);
@@ -53,6 +55,8 @@ static bool handle_elevation_cmd(server_t *server, client_t *client, const ai_ha
 static void push_new_command(server_t *server, client_t *client,
     const ai_handler_t *command, char *arg)
 {
+    waiting_cmd_t *new_cmd = my_calloc(sizeof(waiting_cmd_t));
+
     if (my_listlen(client->waiting_cmd) >= 10) {
         printf(MAGENTA("[WARNING] command ignored\n"));
         return;
@@ -60,8 +64,6 @@ static void push_new_command(server_t *server, client_t *client,
     if (!handle_elevation_cmd(server, client, command)) {
         return;
     }
-    waiting_cmd_t *new_cmd = my_calloc(sizeof(waiting_cmd_t));
-
     if (arg) {
         new_cmd->args = my_strdup(arg);
     }
