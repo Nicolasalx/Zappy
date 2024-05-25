@@ -20,7 +20,8 @@ void add_client(server_t *server, client_t *client)
 
 void remove_client(client_t *client)
 {
-    client->player.team->remaining_place += 1;
+    if (client->player.team)
+        client->player.team->remaining_place += 1;
     close(client->fd);
     memset(client, 0, sizeof(client_t));
 }
