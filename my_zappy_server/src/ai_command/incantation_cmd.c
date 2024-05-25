@@ -66,7 +66,8 @@ static team_t *condition_win(server_t *server)
 
     for (int i = 0; i < server->team_count; ++i) {
         for (int j = 0; j < MAX_CLIENT; ++j) {
-            if (server->clients[j].fd != 0 && server->clients[j].player.team == &server->team_list[i]
+            if (server->clients[j].fd != 0
+            && server->clients[j].player.team == &server->team_list[i]
             && server->clients[j].player.level == 8) {
                 nb_player_lvl_8 += 1;
             }
@@ -83,7 +84,7 @@ void incatation_cmd(char *, client_t *client, server_t *server)
 {
     team_t *winning_team = NULL;
 
-    if (!check_elevation_req(client, server,client->player.level, true)) {
+    if (!check_elevation_req(client, server, client->player.level, true)) {
         cancel_elevation(client);
         send_msg_client(client->fd, "ko\n");
         pie_reply(server, client, false);

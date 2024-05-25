@@ -10,7 +10,7 @@
 void set_object_cmd(char *argv, client_t *client, server_t *server)
 {
     char *object = strtok(argv, "\n");
-    
+
     for (int i = 0; i < NB_ITEM; i++) {
         if (strcmp(object, object_list[i]) == 0) {
             if (client->player.inventory[i] > 0) {

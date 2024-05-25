@@ -27,9 +27,11 @@ static void create_egg(server_t *server)
 void create_world(server_t *server)
 {
     srand(time(NULL));
-    server->world.map = my_calloc(sizeof(tile_t *) * (server->world.size_y + 1));
+    server->world.map = my_calloc(sizeof(tile_t *) *
+        (server->world.size_y + 1));
     for (int i = 0; i < server->world.size_y; ++i) {
-        server->world.map[i] = my_calloc(sizeof(tile_t) * server->world.size_x);
+        server->world.map[i] = my_calloc(sizeof(tile_t) *
+        server->world.size_x);
     }
     spawn_resource(server);
     create_egg(server);

@@ -14,14 +14,15 @@ static void eggs_info(server_t *server)
 
     for (int i = 0; i < server->team_count; ++i) {
         current = server->team_list[i].egg_list;
-
         if (server->team_list[i].egg_list == NULL) {
             return;
         }
         do {
-            snprintf(buffer, sizeof(buffer), "%d %d %d\n", GET_DATA(current, egg_t)->nb, GET_DATA(current, egg_t)->pos_x, GET_DATA(current, egg_t)->pos_y);
+            snprintf(buffer, sizeof(buffer), "%d %d %d\n",
+            GET_DATA(current, egg_t)->nb, GET_DATA(current, egg_t)->pos_x,
+            GET_DATA(current, egg_t)->pos_y);
             smg_reply(server, buffer);
-            memset(buffer, 0, sizeof(buffer));    
+            memset(buffer, 0, sizeof(buffer));
             if (server->team_list[i].egg_list == NULL) {
                 return;
             }
@@ -44,8 +45,10 @@ static void handle_new_graphic_client(server_t *server, client_t *client)
         if (server->clients[i].fd != 0 && server->clients[i].player.team) {
             snprintf(buffer, sizeof(buffer), "pnw %d %d %d %d %d %s\n",
                 server->clients[i].player.id, server->clients[i].player.pos_x,
-                server->clients[i].player.pos_y, server->clients[i].player.orientation + 1,
-                server->clients[i].player.level, server->clients[i].player.team->name);
+                server->clients[i].player.pos_y,
+                server->clients[i].player.orientation + 1,
+                server->clients[i].player.level,
+                server->clients[i].player.team->name);
             send_msg_client(client->fd, buffer);
             memset(buffer, 0, sizeof(buffer));
         }

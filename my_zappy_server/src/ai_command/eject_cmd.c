@@ -38,7 +38,8 @@ static void eject_egg_from_tile(client_t *client, server_t *server)
     }
 }
 
-static void eject_player_in_orientation(server_t *server, client_t *client, int i)
+static void eject_player_in_orientation(server_t *server,
+    client_t *client, int i)
 {
     if (client->player.orientation == NORTH) {
         server->clients[i].player.pos_y = (server->clients[i].player.pos_y

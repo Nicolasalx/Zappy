@@ -174,10 +174,14 @@ bool check_elevation_req(client_t *client, server_t *server,
 bool is_part_of_elevation(client_t *client, client_t *mate);
 
 // args management
-void get_port_and_freq(const char **argv, server_t *server, int argc, const char **args);
-void get_map_size(const char **argv, server_t *server, int argc, const char **args);
-void get_clients_nb(const char **argv, server_t *server, int argc, const char **args);
-void get_teams_name(const char **argv, server_t *server, int i, int argc);
+void get_port_and_freq(const char **argv,
+    server_t *server, int argc, const char **args);
+void get_map_size(const char **argv,
+    server_t *server, int argc, const char **args);
+void get_clients_nb(const char **argv,
+    server_t *server, int argc, const char **args);
+void get_teams_name(const char **argv,
+    server_t *server, int i, int argc);
 void check_arg_validity(server_t *server);
 
 // gui command
