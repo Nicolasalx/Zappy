@@ -9,8 +9,6 @@
     #define CLIENT_H_
 
     #include "commandType.hpp"
-    #include "getCommand.hpp"
-    #include "postCommand.hpp"
     #include <sys/types.h>
     #include <sys/socket.h>
     #include <arpa/inet.h>
@@ -31,6 +29,7 @@
     #include <list>
     #include <regex>
     #include <string>
+    #include "tile.hpp"
 
 namespace Ai
 {
@@ -50,6 +49,8 @@ namespace Ai
             bool checkMessage(const std::string &replyData);
             bool checkEjection(const std::string &replyData);
             void parseLook(Client &client, const std::string &reply_data, Ai::Player &player);
+            void parseOneTile(const std::string &tileStr, std::vector<Ai::Tile> &map);
+            void parseForward(Client &client, Player &player);
 
         private:
     };
