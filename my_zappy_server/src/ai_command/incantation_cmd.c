@@ -107,18 +107,19 @@ static void end_elevation(server_t *server, client_t *client)
     free_linked_list(&client->incentation_mate);
 }
 
-static bool condition_win(server_t *server, client_t *client)
+static bool condition_win(server_t *server)
 {
-    int nb_player_lvl_8 = 0;
+    int nb_player_lvl_8[MAX_TEAM_NB] = {0};
+    int team = 0;
 
     for (int i = 0; i < MAX_CLIENT; ++i) {
-        if (server->clients[i].fd != 0 && server->clients[i].player.team == client->player.team
-        && server->clients[i].player.level == 8) {
-            nb_player_lvl_8 += 1;
+        if (server->clients[i].fd != 0 && server->clients[i].player.level == 8) {
+            team = server->clients[i].player.team;
+            nb_player_lvl_8[team] += 1;
+            if (nb_player_lvl_8[team] >= 6) {
+                return true;
+            }
         }
-    }
-    if (nb_player_lvl_8 >= 6) {
-        return true;
     }
     return false;
 }
