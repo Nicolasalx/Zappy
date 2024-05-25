@@ -29,6 +29,10 @@
     #include <cstring>
     #include <list>
     #include <regex>
+    #include <string>
+
+    #include "client.hpp"
+    #include "postCommand.hpp"
 
     #define MAX_PORT_NB 65535
     #define BUFFER_SIZE 4096
@@ -41,23 +45,14 @@ namespace Ai
         int y = 0;
     };
 
-    enum CommandType {
-        TEAM,
-        FORWARD,
-        RIGHT,
-        LEFT,
-        LOOK,
-        INVENTORY,
-        BROADCAST_TEXT,
-        CONNECT_NBR,
-        FORK,
-        EJECT,
-        TAKE_OBJECT,
-        SET_OBJECT,
-        INCANTATION
+    enum Orientation {
+        NORTH,
+        EAST,
+        SOUTH,
+        WEST,
     };
 
-    typedef enum {
+    enum Item {
         FOOD,
         LINEMATE,
         DERAUMERE,
@@ -65,28 +60,6 @@ namespace Ai
         MENDIANE,
         PHIRAS,
         THYSTAME
-    } Item;
-
-    class Client;
-
-    class PostCommand
-    {
-        public:
-            void broadcastText(Client &client);
-            void connectNbr(Client &client);
-            void eject(Client &client);
-            void fork(Client &client);
-            void forward(Client &client);
-            void incantation(Client &client);
-            void inventory(Client &client);
-            void left(Client &client);
-            void right(Client &client);
-            void setObject(Client &client);
-            void takeObject(Client &client);
-            void look(Client &client);
-            void linkTeam(Ai::Client &client);
-
-        private:
     };
 
     struct Inventory {
@@ -99,94 +72,33 @@ namespace Ai
         int thystame = 0;
     };
 
+    struct Tile {
+        Inventory elements;
+        int player = 0;
+    };
+
     class Player
     {
         public:
+            Player(const Client& client) : _client(client) {}
             void engineAI(Client &client);
-
             void setElemToInventory(Item item, int nbElem);
             void setDataTeam(int nbSlots, int xAxis, int yAxis);
+            void setNbUnusedSlots(int nbSlots);
+            void sendCommand(const CommandType &commandType);
+            void sendCommand(const CommandType &commandType, const std::string &text);
+            void nextInstructionAi(Client &client);
 
         private:
             PostCommand postCmd;
-
             Inventory inventory;
+            std::vector<Tile> _contentLook;
 
-            int nbSlotsTeam = 0;
-            int nbTeamUnusedSlots = 0;
+            int _nbSlotsTeam = 0;
+            int _nbTeamUnusedSlots = 0;
             DimensionWorld dimensionWorld;
-
             bool _clientHasaTeam = false;
-    };
-
-    class GetCommand
-    {
-        public:
-            void parseServerReply(Client &client, const std::string &reply_data, Player &player);
-            void parseInventory(Client &client, const std::string &reply_data, Player &player);
-            std::string extractContentBetweenBrackets(const std::string &input);
-            void extractItemInventory(const std::string &itemStr, Player &player);
-            void parseTeam(Client &client, const std::string &reply_data, Player &player);
-
-        private:
-    };
-
-    class Client {
-        public:
-            Client(int argc, const char **argv);
-            ~Client();
-            void createClient();
-            void initClientSet();
-            void launchClient();
-            void monitorInput();
-            void handleNewInput();
-            void handleNewMessage(Player &player);
-            void getArgs(int argc, const char **argv);
-            void checkNewMessage(Player &player, const std::string &reply_data);
-            void sendCmdToServer(char *cmd, int nb_byte);
-            std::string getNextArg(int argc, const char **argv, int i);
-            static bool charIsInStr(char c, const std::string &strToAnalyze);
-            static int getInt(const std::string &str);
-            bool isConnected();
-
-            void displayHelp();
-            void getPort(int argc, const char **argv, int index);
-            void analyseIP(int argc, const char **argv, int index);
-            void getTeamNameParsing(int argc, const char **argv, int index);
-
-            bool isValidIPv4(const std::string &str);
-            bool isValidIPv6(const std::string &str);
-            bool isValidIP(const std::string &str);
-
-            std::string getTeamName();
-            std::list<CommandType> getQueue();
-            void setQueue(const std::list<Ai::CommandType> &queue);
-
-            void insertInQueue(CommandType commandType);
-
-            bool canSendCommand();
-            void enableSendCommand();
-            void disableSendCommand();
-
-        private:
-            int fd = 0;
-            int maxFd = 0;
-            fd_set readSet;
-            fd_set writeSet;
-            struct sockaddr_in serverAddress;
-            std::string cmdBuffer = "";
-
-            bool _isConnected = false;
-
-            std::string ip = "";
-            unsigned short port = 0;
-            std::string teamName = "";
-
-            PostCommand postCmd;
-            GetCommand getCmd;
-
-            std::list<CommandType> _queueCommand;
-            bool _cmdCanBeSend = true;
+            Client _client;
     };
 }
 
