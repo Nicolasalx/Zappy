@@ -102,6 +102,22 @@ static void end_elevation(server_t *server, client_t *client)
     free_linked_list(&client->incentation_mate);
 }
 
+static bool condition_win(server_t *server, client_t *client)
+{
+    int nb_player_lvl_8 = 0;
+
+    for (int i = 0; i < MAX_CLIENT; ++i) {
+        if (server->clients[i].fd != 0 && server->clients[i].player.team == client->player.team
+        && server->clients[i].player.level == 8) {
+            nb_player_lvl_8 += 1;
+        }
+    }
+    if (nb_player_lvl_8 >= 6) {
+        return true;
+    }
+    return false;
+}
+
 void incatation_cmd(char *, client_t *client, server_t *server)
 {
     char buffer[100] = {0};
@@ -119,4 +135,9 @@ void incatation_cmd(char *, client_t *client, server_t *server)
     end_elevation(server, client);
     snprintf(buffer, sizeof(buffer), "Current level: %d\n", client->player.level);
     send_msg_client(client->fd, buffer);
+    if (condition_win(server, client)) {
+        seg_reply(server, client);
+        // qu'est ce qu'il doit se passer si y'a un gagnant ? en attendant j'exit 0
+        my_exit(0);
+    }
 }
