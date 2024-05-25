@@ -17,7 +17,6 @@ static void get_all_elevation_mate(server_t *server, client_t *client)
             return;
         }
         if (server->clients[i].fd != 0 && server->clients[i].player.id != client->player.id
-        && server->clients[i].player.team == client->player.team
         && server->clients[i].player.pos_x == client->player.pos_x
         && server->clients[i].player.pos_y == client->player.pos_y
         && server->clients[i].player.level == client->player.level
@@ -27,6 +26,7 @@ static void get_all_elevation_mate(server_t *server, client_t *client)
             *mate = &server->clients[i];
             (*mate)->in_incentation = true;
             append_node(&client->incentation_mate, create_node(mate));
+            send_msg_client(server->clients[i].fd, "Elevation underway\n");
             ++nb_mate;
         }
     }
