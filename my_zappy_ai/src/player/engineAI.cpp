@@ -28,3 +28,12 @@ void Ai::Player::engineAI(Client &client)
     }
     nextInstructionAi(client);
 }
+
+/*
+    - Look:
+
+    Rempli le vector de tile "_contentLook"
+    Il est vider seulement si on refait Look ou Forward, on peut donc stocker les informations de la case et faire d'autres actions
+
+
+*/
