@@ -45,17 +45,6 @@ typedef enum {
 } item_t;
 
 typedef enum {
-    N,
-    NE,
-    E,
-    SE,
-    S,
-    SW,
-    W,
-    NW,
-} orienttion_broadcast_t;
-
-typedef enum {
     NORTH,
     EAST,
     SOUTH,
