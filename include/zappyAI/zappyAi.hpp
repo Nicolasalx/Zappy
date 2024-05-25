@@ -33,6 +33,10 @@
 
     #include "client.hpp"
     #include "postCommand.hpp"
+    #include "tile.hpp"
+    #include "inventory.hpp"
+    #include "item.hpp"
+    #include "dimensionWorld.hpp"
 
     #define MAX_PORT_NB 65535
     #define BUFFER_SIZE 4096
@@ -40,43 +44,6 @@
 
 namespace Ai
 {
-    struct DimensionWorld {
-        int x = 0;
-        int y = 0;
-    };
-
-    enum Orientation {
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST,
-    };
-
-    enum Item {
-        FOOD,
-        LINEMATE,
-        DERAUMERE,
-        SIBUR,
-        MENDIANE,
-        PHIRAS,
-        THYSTAME
-    };
-
-    struct Inventory {
-        int food = 0;
-        int linemate = 0;
-        int deraumere = 0;
-        int sibur = 0;
-        int mendiane = 0;
-        int phiras = 0;
-        int thystame = 0;
-    };
-
-    struct Tile {
-        Inventory elements;
-        int player = 0;
-    };
-
     class Player
     {
         public:
@@ -88,6 +55,7 @@ namespace Ai
             void sendCommand(const CommandType &commandType);
             void sendCommand(const CommandType &commandType, const std::string &text);
             void nextInstructionAi(Client &client);
+            void setMap(std::vector<Tile> listTile);
 
         private:
             PostCommand postCmd;
