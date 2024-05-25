@@ -18,6 +18,7 @@
     #include <sys/select.h>
     #include <string.h>
     #include <stdlib.h>
+    #include <math.h>
 
     #define MAX_CLIENT FD_SETSIZE
     #define MAX_PORT_NB 65535
