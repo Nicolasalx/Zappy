@@ -114,7 +114,7 @@ static team_t *condition_win(server_t *server)
         for (int j = 0; j < MAX_CLIENT; ++j) {
             if (server->clients[j].fd != 0 && server->clients[j].player.team == &server->team_list[i]
             && server->clients[j].player.level == 8) {
-                nb_player_lvl_8[i] += 1;
+                nb_player_lvl_8 += 1;
             }
         }
         if (nb_player_lvl_8 >= 6) {
