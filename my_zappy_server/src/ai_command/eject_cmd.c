@@ -32,32 +32,34 @@ static bool eject_egg(client_t *client, server_t *server, int i)
 static void eject_egg_from_tile(client_t *client, server_t *server)
 {
     for (int i = 0; i < server->team_count; ++i) {
-        if (eject_egg(server, &server->clients[i], client) == true) {
+        if (eject_egg(client, server, i)) {
             return;
         }
     }
 }
 
-void eject_player(server_t *server, client_t *client, int i)
+static void eject_player_in_orientation(server_t *server, client_t *client, int i)
 {
-    switch (client->player.orientation) {
-        case NORTH:
-            server->clients[i].player.pos_y = (server->clients[i].player.pos_y
-                - 1 + server->world.size_y) % server->world.size_y;
-            send_msg_client(server->clients[i].fd, "eject: 3\n");
-        case EAST:
-            server->clients[i].player.pos_x = (server->clients[i].player.pos_x
-                + 1) % server->world.size_x;
-            send_msg_client(server->clients[i].fd, "eject: 4\n");
-        case SOUTH:
-            server->clients[i].player.pos_y = (server->clients[i].player.pos_y
-                + 1) % server->world.size_y;
-            send_msg_client(server->clients[i].fd, "eject: 1\n");
-        case WEST:
-            server->clients[i].player.pos_x = (server->clients[i].player.pos_x
-                - 1 + server->world.size_x) % server->world.size_x;
-            send_msg_client(server->clients[i].fd, "eject: 2\n");
-        }
+    if (client->player.orientation == NORTH) {
+        server->clients[i].player.pos_y = (server->clients[i].player.pos_y
+            - 1 + server->world.size_y) % server->world.size_y;
+        send_msg_client(server->clients[i].fd, "eject: 3\n");
+    }
+    if (client->player.orientation == EAST) {
+        server->clients[i].player.pos_x = (server->clients[i].player.pos_x
+            + 1) % server->world.size_x;
+        send_msg_client(server->clients[i].fd, "eject: 4\n");
+    }
+    if (client->player.orientation == SOUTH) {
+        server->clients[i].player.pos_y = (server->clients[i].player.pos_y
+            + 1) % server->world.size_y;
+        send_msg_client(server->clients[i].fd, "eject: 1\n");
+    }
+    if (client->player.orientation == WEST) {
+        server->clients[i].player.pos_x = (server->clients[i].player.pos_x
+            - 1 + server->world.size_x) % server->world.size_x;
+        send_msg_client(server->clients[i].fd, "eject: 2\n");
+    }
 }
 
 void eject_cmd(char *, client_t *client, server_t *server)
@@ -67,7 +69,7 @@ void eject_cmd(char *, client_t *client, server_t *server)
         && server->clients[i].player.pos_x == client->player.pos_x
         && server->clients[i].player.pos_y == client->player.pos_y
         && server->clients[i].player.id != client->player.id) {
-            eject_player(server, client, i);
+            eject_player_in_orientation(server, client, i);
             pex_reply(server, &server->clients[i]);
             ppo_reply(server, &server->clients[i]);
             eject_egg_from_tile(client, server);

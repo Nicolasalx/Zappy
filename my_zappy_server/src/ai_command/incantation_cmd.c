@@ -7,7 +7,7 @@
 
 #include "zappy_server.h"
 
-static bool is_part_of_elevation(client_t *client, client_t *mate)
+bool is_part_of_elevation(client_t *client, client_t *mate)
 {
     node_t *current = client->incentation_mate;
 

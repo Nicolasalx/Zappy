@@ -171,6 +171,7 @@ void handle_ai_input(server_t *server, client_t *client, char *cmd);
 void remove_elevation_req(client_t *client, server_t *server, int level);
 bool check_elevation_req(client_t *client, server_t *server,
     int level, bool last_check);
+bool is_part_of_elevation(client_t *client, client_t *mate);
 
 // args management
 void get_port_and_freq(const char **argv, server_t *server, int argc, const char **args);
