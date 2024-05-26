@@ -20,7 +20,8 @@ void level_cmd(int, char **argv, server_t *server)
     }
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0 && server->clients[i].player.id == id
-        && server->clients[i].is_graphic == false) {
+        && server->clients[i].is_graphic == false
+        && server->clients[i].player.team) {
             server->clients[i].player.level = level;
             plv_reply(server, &server->clients[i]);
             return;

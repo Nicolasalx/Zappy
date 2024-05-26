@@ -7,11 +7,36 @@
 
 #include "zappy_server.h"
 
-void give_cmd(int, char **argv, server_t *server)
+static bool add_to_inventory(server_t *server, int i, int nb, char **argv)
 {
+    for (int j = 0; j < NB_ITEM; j++) {
+        if (strcmp(argv[1], object_list[j]) == 0) {
+            server->clients[i].player.inventory[j] += nb;
+            pin_reply(server, &server->clients[i]);
+            return true;
+        }
+    }
+    return false;
+}
+
+static bool check_client(server_t *server, char **argv, int i)
+{
+    bool is_player_id = false;
     int id = atoi(argv[0]);
     int nb = atoi(argv[2]);
-    bool is_player_id = false;
+
+    if (server->clients[i].fd != 0 && server->clients[i].player.id == id
+    && server->clients[i].is_graphic == false
+    && server->clients[i].player.team) {
+        if (add_to_inventory(server, i, nb, argv))
+            return true;
+    }
+    return false;
+}
+
+void give_cmd(int, char **argv, server_t *server)
+{
+    int nb = atoi(argv[2]);
 
     if (!my_str_only_cont(argv[0], "0123456789")
     || !my_str_only_cont(argv[2], "0123456789")
@@ -20,21 +45,8 @@ void give_cmd(int, char **argv, server_t *server)
         return;
     }
     for (int i = 0; i < MAX_CLIENT; i++) {
-        if (server->clients[i].fd != 0 && server->clients[i].player.id == id
-        && server->clients[i].is_graphic == false) {
-            is_player_id = true;
-            for (int j = 0; j < NB_ITEM; j++) {
-                if (strcmp(argv[1], object_list[j]) == 0) {
-                    server->clients[i].player.inventory[j] += nb;
-                    pin_reply(server, &server->clients[i]);
-                    return;
-                }
-            }
-        }
+        if (check_client(server, argv, i))
+            return;
     }
-    if (!is_player_id) {
-        printf("Error: client not found\n");   
-        return;
-    }
-    printf("Error: invalid object name\n");
+    printf("Error: invalid argument\n");
 }

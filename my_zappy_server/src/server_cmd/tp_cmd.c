@@ -37,7 +37,8 @@ void tp_cmd(int, char **argv, server_t *server)
         return;
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0 && server->clients[i].player.id == id
-        && server->clients[i].is_graphic == false) {
+        && server->clients[i].is_graphic == false
+        && server->clients[i].player.team) {
             server->clients[i].player.pos_x = x;
             server->clients[i].player.pos_y = y;
             server->clients[i].player.orientation = o - 1;
