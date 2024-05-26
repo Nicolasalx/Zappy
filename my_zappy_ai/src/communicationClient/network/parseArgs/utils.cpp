@@ -5,7 +5,8 @@
 ** utils
 */
 
-#include "zappyAi.hpp"
+#include "client.hpp"
+#include "my_tracked_exception.hpp"
 
 std::string Ai::Client::getNextArg(int argc, const char **argv, int i)
 {

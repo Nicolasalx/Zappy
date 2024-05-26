@@ -5,7 +5,8 @@
 ** check_arg_validity
 */
 
-#include "zappyAi.hpp"
+#include "client.hpp"
+#include "my_tracked_exception.hpp"
 
 void Ai::Client::getArgs(int argc, const char **argv)
 {

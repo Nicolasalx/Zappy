@@ -5,7 +5,7 @@
 ** clientIsConnected
 */
 
-#include "zappyAi.hpp"
+#include "client.hpp"
 
 bool Ai::Client::isConnected()
 {

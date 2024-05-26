@@ -5,7 +5,7 @@
 ** getTeamName
 */
 
-#include "zappyAi.hpp"
+#include "client.hpp"
 
 void Ai::Client::getTeamNameParsing(int argc, const char **argv, int index)
 {

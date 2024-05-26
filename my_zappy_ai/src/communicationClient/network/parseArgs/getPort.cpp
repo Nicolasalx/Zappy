@@ -5,6 +5,7 @@
 ** getPort
 */
 
+#include "client.hpp"
 #include "zappyAi.hpp"
 
 void Ai::Client::getPort(int argc, const char **argv, int index)

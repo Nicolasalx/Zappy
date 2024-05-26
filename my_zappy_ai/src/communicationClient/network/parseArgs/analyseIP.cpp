@@ -5,7 +5,8 @@
 ** analyseIP
 */
 
-#include "zappyAi.hpp"
+#include "client.hpp"
+#include "my_tracked_exception.hpp"
 
 void Ai::Client::analyseIP(int argc, const char **argv, int index)
 {

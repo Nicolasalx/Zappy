@@ -5,7 +5,7 @@
 ** displayHelp
 */
 
-#include "zappyAi.hpp"
+#include "client.hpp"
 
 void Ai::Client::displayHelp()
 {
