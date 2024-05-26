@@ -39,6 +39,9 @@ static void get_teams_name_error(const char **argv, server_t *server, int i)
     if (is_team_name_taken(argv[i], server)) {
         my_error("Error: Team name already taken", 84);
     }
+    if (strcmp(argv[i], "GRAPHIC") == 0) {
+        my_error("Error: Team name cannot be GRAPHIC", 84);
+    }
 }
 
 void get_teams_name(const char **argv,
