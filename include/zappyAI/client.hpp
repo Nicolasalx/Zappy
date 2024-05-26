@@ -31,6 +31,8 @@
     #include <string>
     #include "tile.hpp"
 
+    #include "orientation.hpp"
+
 namespace Ai
 {
     class Client;
@@ -45,12 +47,15 @@ namespace Ai
             void extractItemInventory(const std::string &itemStr, Ai::Player &player);
             void parseTeam(Client &client, const std::string &reply_data, Ai::Player &player);
             void parseNbSlotsUnused(Client &client, const std::string &reply_data, Ai::Player &player);
-            bool checkBasicEvent(const std::string &replyData);
-            bool checkMessage(const std::string &replyData);
-            bool checkEjection(const std::string &replyData);
+            bool checkBasicEvent(const std::string &replyData, Player &player);
+            bool parseMessage(const std::string &replyData, Player &player);
+            bool parseEjection(const std::string &replyData, Player &player);
             void parseLook(Client &client, const std::string &reply_data, Ai::Player &player);
             void parseOneTile(const std::string &tileStr, std::vector<Ai::Tile> &map);
             void parseForward(Client &client, Player &player);
+            Orientation analyseOrientation(const std::string orientationStr);
+            std::string removeChar(const std::string &input, char c);
+            void parseIncantation(const std::string &replyData, Client &client, std::list<Ai::CommandType> &queue, Player &player);
 
         private:
     };
@@ -67,8 +72,8 @@ namespace Ai
             void inventory(Client &client);
             void left(Client &client);
             void right(Client &client);
-            void setObject(Client &client);
-            void takeObject(Client &client);
+            void setObject(Ai::Client &client, const std::string &object);
+            void takeObject(Ai::Client &client, const std::string &object);
             void look(Client &client);
             void linkTeam(Ai::Client &client);
 
@@ -92,22 +97,17 @@ namespace Ai
             static bool charIsInStr(char c, const std::string &strToAnalyze);
             static int getInt(const std::string &str);
             bool isConnected();
-
             void displayHelp();
             void getPort(int argc, const char **argv, int index);
             void analyseIP(int argc, const char **argv, int index);
             void getTeamNameParsing(int argc, const char **argv, int index);
-
             bool isValidIPv4(const std::string &str);
             bool isValidIPv6(const std::string &str);
             bool isValidIP(const std::string &str);
-
             std::string getTeamName();
             std::list<Ai::CommandType> getQueue();
             void setQueue(const std::list<Ai::CommandType> &queue);
-
             void insertInQueue(Ai::CommandType commandType);
-
             bool canSendCommand();
             void enableSendCommand();
             void disableSendCommand();
