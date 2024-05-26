@@ -247,6 +247,8 @@ void eject_cmd(char *argv, client_t *client, server_t *server);
 
 // server command
 void tp_cmd(int argc, char **argv, server_t *server);
+void level_cmd(int argc, char **argv, server_t *server);
+
 
 // game
 void init_player(client_t *client, server_t *server);
