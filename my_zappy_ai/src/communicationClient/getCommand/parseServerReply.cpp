@@ -6,6 +6,20 @@
 */
 
 #include "zappyAi.hpp"
+#include "getCommand.hpp"
+#include "split_string.hpp"
+#include "orientation.hpp"
+
+bool Ai::GetCommand::checkBasicEvent(const std::string &replyData, Player &player)
+{
+    if (this->parseMessage(replyData, player)) {
+        return true;
+    }
+    if (this->parseEjection(replyData, player)) {
+        return true;
+    }
+    return false;
+}
 
 void Ai::GetCommand::parseServerReply(Client &client, const std::string &reply_data, Player &player)
 {
@@ -14,65 +28,61 @@ void Ai::GetCommand::parseServerReply(Client &client, const std::string &reply_d
     if (_queue.empty()) {
         return;
     }
-
+    if (checkBasicEvent(reply_data, player)) {
+        return;
+    }
     Ai::CommandType cmdType = _queue.front();
     switch (cmdType) {
         case TEAM:
-            // Check ok / ko
+            // Check ok / ko -> What we do if ko
+
+            // Si plus de place dans l'équipe -> Fork
+            // TeamName existe pas -> Exit
+
             this->parseTeam(client, reply_data, player);
             break;
         case FORWARD:
-            std::cout << "FORWARD PARSING!\n";
-            // Check ok
-            client.enableSendCommand();
+            this->parseForward(client, player);
             break;
         case RIGHT:
-            // Check ok
             client.enableSendCommand();
             break;
         case LEFT:
             client.enableSendCommand();
-            // Check ok
             break;
         case LOOK:
-            std::cout << "LOOK PARSING!\n";
-            client.enableSendCommand();
-            // Check Look Parsing
+            this->parseLook(client, reply_data, player);
             break;
         case INVENTORY:
             this->parseInventory(client, reply_data, player);
             break;
         case BROADCAST_TEXT:
-            // Check ok
             client.enableSendCommand();
             break;
         case CONNECT_NBR:
-            // Check Number
-            client.enableSendCommand();
+            this->parseNbSlotsUnused(client, reply_data, player);
             break;
         case FORK:
-            // Check ok
             client.enableSendCommand();
             break;
         case EJECT:
-            // Check ok
             client.enableSendCommand();
             break;
         case TAKE_OBJECT:
-            // Check ok / ko
+            player.setRefreshInventory(true);
             client.enableSendCommand();
             break;
         case SET_OBJECT:
-            // Check ok / ko
+            player.setRefreshInventory(true);
             client.enableSendCommand();
             break;
         case INCANTATION:
-            // Check Elevation underway
-            // Current level: (number) / ko
-            client.enableSendCommand();
+            this->parseIncantation(reply_data, client, _queue, player);
             break;
     }
-    _queue.pop_front();
+    if (cmdType != INCANTATION) {
+        _queue.pop_front();
+    }
     client.setQueue(_queue);
     std::cout << reply_data << "\n";
 }

@@ -5,7 +5,7 @@
 ** parseInventory
 */
 
-#include "zappyAi.hpp"
+#include "getCommand.hpp"
 #include "split_string.hpp"
 
 void Ai::GetCommand::extractItemInventory(const std::string &itemStr, Player &player)
@@ -59,4 +59,3 @@ void Ai::GetCommand::parseInventory(Client &client, const std::string &reply_dat
         std::cerr << exception.what() << '\n';
     }
 }
-

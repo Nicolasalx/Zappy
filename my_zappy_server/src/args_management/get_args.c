@@ -27,7 +27,8 @@ static void set_args(server_t *server)
     }
 }
 
-static void check_immortal(const char **argv, server_t *server, int i, const char **args)
+static void check_immortal(const char **argv,
+    server_t *server, int i, const char **args)
 {
     if (strcmp(argv[i], args[5]) == 0) {
         server->is_immortal = true;
@@ -41,10 +42,10 @@ void get_args(int argc, const char **argv, server_t *server)
 
     set_args(server);
     if (argc == 2 && strcmp(argv[1], "-h") == 0) {
-        printf("USAGE: ./zappy_server -p port -x width -y height -n name1 name2 ... -c clientsNb -f freq\n");
+        printf("USAGE: ./zappy_server -p port -x width -y "
+        "height -n name1 name2 ... -c clientsNb -f freq\n");
         my_exit(0);
     }
-    // todo fix le seg fault si argc est pas assez grand pour faire agrv i + 1
     for (int i = 1; i < argc; i++) {
         get_teams_name(argv, server, i, argc);
         get_port_and_freq(argv, server, i, args);

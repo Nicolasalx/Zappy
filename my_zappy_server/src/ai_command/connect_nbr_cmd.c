@@ -11,6 +11,7 @@ void connect_nbr_cmd(char *, client_t *client, server_t *)
 {
     char buffer[100] = {0};
 
-    snprintf(buffer, sizeof(buffer), "%d\n", client->player.team->remaining_place);
+    snprintf(buffer, sizeof(buffer), "%d\n",
+        client->player.team->remaining_place);
     send_msg_client(client->fd, buffer);
 }

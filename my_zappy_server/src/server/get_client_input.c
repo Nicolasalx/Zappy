@@ -12,9 +12,8 @@ void get_client_input(server_t *server, client_t *client)
     char cmd_data[BUFFER_SIZE] = {0};
     ssize_t nb_byte = read(client->fd, &cmd_data, sizeof(cmd_data));
 
-    if (nb_byte == -1) {
+    if (nb_byte == -1)
         return;
-    }
     if (nb_byte == 0) {
         printf(YELLOW("A client has left")"\n");
         if (client->player.id != -1)

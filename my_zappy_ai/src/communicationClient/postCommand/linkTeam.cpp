@@ -5,7 +5,7 @@
 ** linkTeam
 */
 
-#include "zappyAi.hpp"
+#include "postCommand.hpp"
 
 void Ai::PostCommand::linkTeam(Ai::Client &client)
 {

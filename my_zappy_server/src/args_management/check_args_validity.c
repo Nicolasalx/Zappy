@@ -10,7 +10,8 @@
 static void create_team_name(server_t *server)
 {
     if (server->team_count == 0) {
-        printf("No team name set, default team names are Team1, Team2, Team3, Team4\n");
+        printf("No team name set, default team names are "
+            "Team1, Team2, Team3, Team4\n");
         strcpy(server->team_list[0].name, "Team1");
         server->team_list[0].remaining_place = server->client_nb;
         strcpy(server->team_list[1].name, "Team2");
@@ -30,9 +31,8 @@ static void fill_arg(server_t *server)
         server->world.size_x = 10;
         server->world.size_y = 10;
     }
-    if (server->world.size_x == -1 || server->world.size_y == -1) {
+    if (server->world.size_x == -1 || server->world.size_y == -1)
         my_error("Error: Map dimensions are not set", 84);
-    }
     if (server->client_nb == -1) {
         printf("No client number set, default client number is 4\n");
         server->client_nb = 4;
@@ -50,19 +50,20 @@ static void fill_arg(server_t *server)
 
 void check_arg_validity(server_t *server)
 {
-    if ((server->port < 0 || server->port > MAX_PORT_NB) && server->port != -1) {
+    if ((server->port < 0 || server->port > MAX_PORT_NB) &&
+    server->port != -1) {
         my_error("Error: Port must be between 1 and 65535", 84);
     }
-    if (server->world.size_x <= 0 && server->world.size_y > 100 && server->world.size_x != -1) {
+    if (server->world.size_x <= 0 && server->world.size_y > 100) {
         my_error("Error: Width must be between 1 and 100", 84);
     }
-    if (server->world.size_x <= 0 && server->world.size_y > 100 && server->world.size_y != -1) {
+    if (server->world.size_x <= 0 && server->world.size_y > 100) {
         my_error("Error: Height must be between 1 and 100", 84);
     }
-    if (server->client_nb <= 0 && server->client_nb > 100 && server->client_nb != -1) {
+    if (server->client_nb <= 0 && server->client_nb > 100) {
         my_error("Error: Clients must be between 1 and 100", 84);
     }
-    if (server->freq <= 0 && server->freq > 10000 && server->freq != -1) {
+    if (server->freq <= 0 && server->freq > 10000) {
         my_error("Error: Frequency cannot be greater than 10000", 84);
     }
     fill_arg(server);

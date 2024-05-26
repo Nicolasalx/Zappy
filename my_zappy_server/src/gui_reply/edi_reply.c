@@ -13,7 +13,8 @@ void edi_reply(server_t *server, client_t *, egg_t *new_egg)
 
     snprintf(buffer, sizeof(buffer), "edi %d\n", new_egg->nb);
     for (int i = 0; i < MAX_CLIENT; i++) {
-        if (server->clients[i].fd != 0 && server->clients[i].is_graphic == true) {
+        if (server->clients[i].fd != 0
+        && server->clients[i].is_graphic == true) {
             send_msg_client(server->clients[i].fd, buffer);
         }
     }

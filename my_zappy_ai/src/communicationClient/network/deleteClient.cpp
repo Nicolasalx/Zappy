@@ -5,7 +5,7 @@
 ** delete_client
 */
 
-#include "zappyAi.hpp"
+#include "client.hpp"
 
 Ai::Client::~Client()
 {

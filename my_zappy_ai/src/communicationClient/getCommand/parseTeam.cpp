@@ -5,7 +5,7 @@
 ** parseTeam
 */
 
-#include "zappyAi.hpp"
+#include "getCommand.hpp"
 #include "split_string.hpp"
 
 void Ai::GetCommand::parseTeam(Client &client, const std::string &reply_data, Player &player)

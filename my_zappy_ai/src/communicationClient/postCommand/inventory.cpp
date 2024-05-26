@@ -5,7 +5,7 @@
 ** inventory
 */
 
-#include "zappyAi.hpp"
+#include "postCommand.hpp"
 
 void Ai::PostCommand::inventory(Ai::Client &client)
 {

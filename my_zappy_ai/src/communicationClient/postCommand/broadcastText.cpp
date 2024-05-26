@@ -5,12 +5,14 @@
 ** broadcastText
 */
 
-#include "zappyAi.hpp"
+#include "postCommand.hpp"
 
-void Ai::PostCommand::broadcastText(Ai::Client &client)
+void Ai::PostCommand::broadcastText(Ai::Client &client, const std::string &text)
 {
-    char command[] = "Broadcast text\n";
+    std::string command_str = "Broadcast " + text + "\n";
+    char command[256];
 
+    strcpy(command, command_str.c_str());
     client.sendCmdToServer(command, sizeof(command));
     client.insertInQueue(BROADCAST_TEXT);
     client.disableSendCommand();

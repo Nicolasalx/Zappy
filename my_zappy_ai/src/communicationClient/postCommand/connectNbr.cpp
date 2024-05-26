@@ -5,7 +5,7 @@
 ** connectNbr
 */
 
-#include "zappyAi.hpp"
+#include "postCommand.hpp"
 
 void Ai::PostCommand::connectNbr(Ai::Client &client)
 {

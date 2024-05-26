@@ -10,7 +10,8 @@ SRC				:=	$(shell find src/ -name "*.cpp")
 CPPFLAGS		=	-std=c++20 -Wall -Wextra \
 					$(ADDITIONAL_FLAGS)
 
-INCLUDE_PATH	=	-I../include/ -I../include/lib/cpp_lib/ -I../include/zappyAI/
+INCLUDE_PATH	=	-I../include/ \
+					-I../include/lib/cpp_lib/ -I../include/zappyAI/
 
 NAME			=	../zappy_ai
 

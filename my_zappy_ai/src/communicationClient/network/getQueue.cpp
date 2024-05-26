@@ -5,13 +5,12 @@
 ** getQueue
 */
 
-#include "zappyAi.hpp"
+#include "client.hpp"
 
 void Ai::Client::setQueue(const std::list<Ai::CommandType> &queue)
 {
     this->_queueCommand = queue;
 }
-
 
 std::list<Ai::CommandType> Ai::Client::getQueue()
 {

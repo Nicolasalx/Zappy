@@ -5,12 +5,14 @@
 ** takeObject
 */
 
-#include "zappyAi.hpp"
+#include "postCommand.hpp"
 
-void Ai::PostCommand::takeObject(Ai::Client &client)
+void Ai::PostCommand::takeObject(Ai::Client &client, const std::string &object)
 {
-    char command[] = "Take object\n";
+    std::string command_str = "Take " + object + "\n";
+    char command[256];
 
+    strcpy(command, command_str.c_str());
     client.sendCmdToServer(command, sizeof(command));
     client.insertInQueue(TAKE_OBJECT);
     client.disableSendCommand();

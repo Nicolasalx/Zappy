@@ -11,9 +11,11 @@ void pgt_reply(server_t *server, client_t *client, int resource)
 {
     char buffer[100] = {0};
 
-    snprintf(buffer, sizeof(buffer), "pgt %d %d\n", client->player.id, resource);
+    snprintf(buffer, sizeof(buffer), "pgt %d %d\n",
+        client->player.id, resource);
     for (int i = 0; i < MAX_CLIENT; i++) {
-        if (server->clients[i].fd != 0 && server->clients[i].is_graphic == true) {
+        if (server->clients[i].fd != 0
+        && server->clients[i].is_graphic == true) {
             send_msg_client(server->clients[i].fd, buffer);
         }
     }
