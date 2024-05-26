@@ -37,3 +37,9 @@ const ai_handler_t ai_cmd_handler[] =
     {"Incantation\n", false, 300, incatation_cmd},
     {NULL, false, 0, NULL}
 };
+
+const server_handler_t server_cmd_handler[] =
+{
+    {"tp", 4, tp_cmd, "tp [n player] [x] [y] [orientation]"},
+    {NULL, 0, NULL, NULL}
+};

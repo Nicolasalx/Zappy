@@ -144,11 +144,19 @@ typedef struct {
     void (*method)(char *, client_t *, server_t *);
 } ai_handler_t;
 
+typedef struct {
+    char *name;
+    int nb_arg;
+    void (*method)(int, char **, server_t *);
+    char *usage;
+} server_handler_t;
+
 extern const gui_handler_t gui_cmd_handler[];
 extern const ai_handler_t ai_cmd_handler[];
+extern const server_handler_t server_cmd_handler[];
 extern const elevation_requirement_t elevation_req[];
 
-extern double resource_density[NB_ITEM];
+extern const double resource_density[NB_ITEM];
 extern const char *object_list[NB_ITEM];
 
 void get_args(int argc, const char **argv, server_t *server);
@@ -168,6 +176,7 @@ void send_msg_client(int fd, char *reply);
 void handle_new_player(server_t *, client_t *new_client);
 void handle_gui_input(server_t *server, client_t *client, char *cmd);
 void handle_ai_input(server_t *server, client_t *client, char *cmd);
+void handle_server_input(server_t *server);
 void remove_elevation_req(client_t *client, server_t *server, int level);
 bool check_elevation_req(client_t *client, server_t *server,
     int level, bool last_check);
@@ -235,6 +244,9 @@ bool check_elevation_req(client_t *client,
     server_t *server, int level, bool last_check);
 void broadcast_cmd(char *argv, client_t *client, server_t *server);
 void eject_cmd(char *argv, client_t *client, server_t *server);
+
+// server command
+void tp_cmd(int argc, char **argv, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);

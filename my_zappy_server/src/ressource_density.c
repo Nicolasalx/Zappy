@@ -7,7 +7,7 @@
 
 #include "zappy_server.h"
 
-double resource_density[NB_ITEM] = {
+const double resource_density[NB_ITEM] = {
     [FOOD] = 0.5,
     [LINEMATE] = 0.3,
     [DERAUMERE] = 0.15,

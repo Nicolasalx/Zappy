@@ -11,7 +11,8 @@
 void handle_active_client(server_t *server)
 {
     for (size_t i = 0; i < MAX_CLIENT; ++i) {
-        if (FD_ISSET(server->clients[i].fd, &server->read_set)) {
+        if (server->clients[i].fd != 0 &&
+        FD_ISSET(server->clients[i].fd, &server->read_set)) {
             get_client_input(server, &server->clients[i]);
         }
     }
@@ -32,6 +33,7 @@ void lauch_server(server_t *server)
         init_server_set(server, &max_fd);
         monitor_client(server, max_fd);
         handle_new_connection(server);
+        handle_server_input(server);
         handle_active_client(server);
         if (!server->end_game) {
             update_resource(server);
