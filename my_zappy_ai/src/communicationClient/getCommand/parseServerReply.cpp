@@ -6,45 +6,16 @@
 */
 
 #include "zappyAi.hpp"
+#include "getCommand.hpp"
 #include "split_string.hpp"
+#include "orientation.hpp"
 
-bool Ai::GetCommand::checkMessage(const std::string &replyData)
+bool Ai::GetCommand::checkBasicEvent(const std::string &replyData, Player &player)
 {
-    // Check => message <orientation>, <text> => Received a message
-    std::vector<std::string> vectorMessage;
-    my::split_string(replyData, " ", vectorMessage);
-    if (vectorMessage.size() == 3 && vectorMessage.at(0) == "message") {
-        // Continue to parse the string
+    if (this->parseMessage(replyData, player)) {
         return true;
     }
-    return false;
-}
-
-bool Ai::GetCommand::checkEjection(const std::string &replyData)
-{
-    // Check => eject: <number> => Player eject from direction
-    std::vector<std::string> vectorEject;
-    my::split_string(replyData, ":", vectorEject);
-    if (vectorEject.size() == 2 && vectorEject.at(0) == "eject") {
-        std::string strToClean = vectorEject.at(1);
-        strToClean.erase(std::remove(strToClean.begin(), strToClean.end(), ' '), strToClean.end());
-
-        // Get int from strToClean and after move the actual player to the case which depend of the destination
-        // Check this enum for the number => orientation_t
-        return true;
-    }
-    return false;
-}
-
-bool Ai::GetCommand::checkBasicEvent(const std::string &replyData)
-{
-    if (replyData == "dead") {
-        std::exit(0); // Handle the death of the player
-    }
-    if (checkMessage(replyData)) {
-        return true;
-    }
-    if (checkEjection(replyData)) {
+    if (this->parseEjection(replyData, player)) {
         return true;
     }
     return false;
@@ -57,7 +28,7 @@ void Ai::GetCommand::parseServerReply(Client &client, const std::string &reply_d
     if (_queue.empty()) {
         return;
     }
-    if (checkBasicEvent(reply_data)) {
+    if (checkBasicEvent(reply_data, player)) {
         return;
     }
     Ai::CommandType cmdType = _queue.front();
@@ -95,24 +66,23 @@ void Ai::GetCommand::parseServerReply(Client &client, const std::string &reply_d
             client.enableSendCommand();
             break;
         case EJECT:
-            // Check ok / ko
             client.enableSendCommand();
             break;
         case TAKE_OBJECT:
-            // Check ok / ko
+            player.setRefreshInventory(true);
             client.enableSendCommand();
             break;
         case SET_OBJECT:
-            // Check ok / ko
+            player.setRefreshInventory(true);
             client.enableSendCommand();
             break;
         case INCANTATION:
-            // Check Elevation underway
-            // Current level: (number) / ko
-            client.enableSendCommand();
+            this->parseIncantation(reply_data, client, _queue, player);
             break;
     }
-    _queue.pop_front();
+    if (cmdType != INCANTATION) {
+        _queue.pop_front();
+    }
     client.setQueue(_queue);
     std::cout << reply_data << "\n";
 }

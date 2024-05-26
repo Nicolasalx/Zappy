@@ -5,7 +5,7 @@
 ** parseNbSlotsUnused
 */
 
-#include "zappyAi.hpp"
+#include "getCommand.hpp"
 
 void Ai::GetCommand::parseNbSlotsUnused(Client &client, const std::string &reply_data, Player &player)
 {
