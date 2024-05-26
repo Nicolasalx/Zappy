@@ -5,7 +5,7 @@
 ** fork
 */
 
-#include "zappyAi.hpp"
+#include "postCommand.hpp"
 
 void Ai::PostCommand::fork(Ai::Client &client)
 {

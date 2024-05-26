@@ -5,7 +5,7 @@
 ** forward
 */
 
-#include "zappyAi.hpp"
+#include "postCommand.hpp"
 
 void Ai::PostCommand::forward(Ai::Client &client)
 {

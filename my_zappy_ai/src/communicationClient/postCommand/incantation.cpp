@@ -5,7 +5,7 @@
 ** incantation
 */
 
-#include "zappyAi.hpp"
+#include "postCommand.hpp"
 
 void Ai::PostCommand::incantation(Ai::Client &client)
 {

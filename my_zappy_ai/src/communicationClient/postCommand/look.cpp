@@ -5,7 +5,7 @@
 ** look
 */
 
-#include "zappyAi.hpp"
+#include "postCommand.hpp"
 
 void Ai::PostCommand::look(Ai::Client &client)
 {

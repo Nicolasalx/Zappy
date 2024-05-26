@@ -5,7 +5,7 @@
 ** right
 */
 
-#include "zappyAi.hpp"
+#include "postCommand.hpp"
 
 void Ai::PostCommand::right(Ai::Client &client)
 {

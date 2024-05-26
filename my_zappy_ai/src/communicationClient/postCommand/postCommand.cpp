@@ -9,10 +9,13 @@
 
 void Ai::Player::sendCommand(const CommandType &commandType, const std::string &text)
 {
-    if (commandType != BROADCAST_TEXT) {
-        return;
+    if (commandType == BROADCAST_TEXT) {
+        this->postCmd.broadcastText(_client, text);
+    } else if (commandType == TAKE_OBJECT) {
+        this->postCmd.takeObject(_client, text);
+    } else if (commandType == SET_OBJECT) {
+        this->postCmd.setObject(_client, text);
     }
-    this->postCmd.broadcastText(_client, text);
 }
 
 void Ai::Player::sendCommand(const CommandType &commandType)
@@ -44,12 +47,6 @@ void Ai::Player::sendCommand(const CommandType &commandType)
             break;
         case EJECT:
             this->postCmd.eject(_client);
-            break;
-        case TAKE_OBJECT:
-            this->postCmd.takeObject(_client);
-            break;
-        case SET_OBJECT:
-            this->postCmd.setObject(_client);
             break;
         case INCANTATION:
             this->postCmd.incantation(_client);

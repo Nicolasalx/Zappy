@@ -5,7 +5,7 @@
 ** broadcastText
 */
 
-#include "zappyAi.hpp"
+#include "postCommand.hpp"
 
 void Ai::PostCommand::broadcastText(Ai::Client &client, const std::string &text)
 {
