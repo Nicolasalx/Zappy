@@ -5,11 +5,10 @@
 ** parseForward
 */
 
-#include "zappyAi.hpp"
+#include "getCommand.hpp"
 
 void Ai::GetCommand::parseForward(Client &client, Player &player)
 {
-    std::vector<Tile> map;
-    player.setMap(map);
+    player.setRefreshLook(true);
     client.enableSendCommand();
 }
