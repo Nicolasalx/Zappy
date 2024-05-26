@@ -25,9 +25,6 @@ int calculate_direction(client_t *src, client_t *dest)
         direction = 6;
     if (dx < 0 && dy > 0)
         direction = 8;
-    direction = ((direction - (dest->player.orientation * 2)) % 8);
-    if (direction == 0)
-        direction = 8;
     return direction;
 }
 
@@ -47,5 +44,6 @@ void broadcast_cmd(char *argv, client_t *client, server_t *server)
             send_msg_client(server->clients[i].fd, buffer);
         }
     }
+    send_msg_client(client->fd, "ok\n");
     pbc_reply(server, client, message);
 }
