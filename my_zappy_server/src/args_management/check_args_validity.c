@@ -50,7 +50,8 @@ static void fill_arg(server_t *server)
 
 void check_arg_validity(server_t *server)
 {
-    if (server->port < 0 || server->port > MAX_PORT_NB) {
+    if ((server->port < 0 || server->port > MAX_PORT_NB) &&
+    server->port != -1) {
         my_error("Error: Port must be between 1 and 65535", 84);
     }
     if (server->world.size_x <= 0 && server->world.size_y > 100) {
