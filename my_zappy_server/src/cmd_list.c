@@ -45,5 +45,6 @@ const server_handler_t server_cmd_handler[] =
     {"give", 3, give_cmd, "give [n player] [resource] [quantity]"},
     {"pause", 0, pause_cmd, "pause"},
     {"resume", 0, resume_cmd, "resume"},
+    {"immortal", 1, immortal_cmd, "immortal [true/false]"},
     {NULL, 0, NULL, NULL}
 };

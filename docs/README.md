@@ -18,7 +18,7 @@ USAGE: ./zappy_server -p port -x width -y height -n name1 name2 ... -c clientsNb
 
 ### Port Configuration
 
-You can configure a port in the range of 1 to 65535 using the -p <port> option. Note that ports between 1 and 1024 require root privileges. To connect to the server, use the localhost IP address and the specified port.
+You can configure a port in the range of 1 to 65535 using the -p `port` option. Note that ports between 1 and 1024 require root privileges. To connect to the server, use the localhost IP address and the specified port.
 
 ### World Map
 
@@ -36,15 +36,15 @@ There are several resources on the map, which can vary in rarity, but there is a
 
 ### Team Configuration
 
-You can define up to 100 teams using the -n <name1> <name2> ... option, separating each team name with a space. Note that the name GRAPHIC is reserved for the graphical client and cannot be used as a team name.
+You can define up to 100 teams using the -n `name1` `name2` ... option, separating each team name with a space. Note that the name GRAPHIC is reserved for the graphical client and cannot be used as a team name.
 
 ### Team Capacity
 
-You can set the team member capacity using the -c <clientsNb> option. Although the capacity can be extended with a fork command, it is limited to a maximum of 100 members per team. When a client dies, their spot is returned to the team.
+You can set the team member capacity using the -c `clientsNb` option. Although the capacity can be extended with a fork command, it is limited to a maximum of 100 members per team. When a client dies, their spot is returned to the team.
 
 ### Frequency
 
-You can set a frequency between 1 and 10,000 using the -f <freq> option. The frequency controls the simulation tick rate, affecting the timing of commands, food generation, and other events.
+You can set a frequency between 1 and 10,000 using the -f `freq` option. The frequency controls the simulation tick rate, affecting the timing of commands, food generation, and other events.
 
 ### AI Communication Protocol
 
@@ -138,7 +138,7 @@ You can type commands on the server to have action with players.
 
 You can use this command to teleport a player to a position.
 
-Usage: tp <id> <x> <y> <o>
+Usage: tp `id` `x` `y` `o`
 > id is the id of the player
 > x and y have to be between the map size
 > o is the orientation of the player that have to be a number between 1 and 4
@@ -147,23 +147,23 @@ Usage: tp <id> <x> <y> <o>
 
 You can use this command to give resources in the inventory of a player.
 
-Usage: give <id> <ressource> <nb>
+Usage: give `id` `ressource` `quantity`
 > id is the id of the player
 > ressource have to be between food, linemate, deraumere, sibur, mendiane, phiras, thystame.
-> nb is the number of a resources. It has to be between 1 and 100.
+> quantity is the number of a resources. It has to be between 1 and 100.
 
 ### Kill command
 
 You can use this command to kill a player.
 
-Usage: kill <id>
+Usage: kill `id`
 > id is the id of the player
 
 ### Level command
 
 You can use this command to change the level of a player.
 
-Usage: give <id> <level>
+Usage: give `id` `level`
 > id is the id of the player
 > level is represented by a number. It has to be between 1 and 8.
 
@@ -171,8 +171,8 @@ Usage: give <id> <level>
 
 You can use this command to controls food management.
 
-Usage: immortal <bool>
-Bool is a boolean variable that controls whether food decreases or not. Its value must be either true or false.
+Usage: immortal `bool`
+> bool is a boolean variable that controls whether food decreases or not. Its value must be either true or false.
 
 ### Pause and resume command
 
