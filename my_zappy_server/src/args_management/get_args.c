@@ -21,6 +21,8 @@ static void set_args(server_t *server)
     server->team_count = 0;
     server->player_count = 0;
     server->egg_count = 0;
+    server->end_game = false;
+    server->pause_game = false;
     for (int i = 0; i < MAX_CLIENT; i++) {
         server->clients[i].is_graphic = false;
         server->clients[i].player.id = -1;

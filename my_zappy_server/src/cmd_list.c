@@ -43,5 +43,7 @@ const server_handler_t server_cmd_handler[] =
     {"tp", 4, tp_cmd, "tp [n player] [x] [y] [orientation]"},
     {"level", 2, level_cmd, "level [n player] [k level]"},
     {"give", 3, give_cmd, "give [n player] [resource] [quantity]"},
+    {"pause", 0, pause_cmd, "pause"},
+    {"resume", 0, resume_cmd, "resume"},
     {NULL, 0, NULL, NULL}
 };

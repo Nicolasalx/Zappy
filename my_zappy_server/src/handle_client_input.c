@@ -77,6 +77,10 @@ void handle_client_input(server_t *server, client_t *client, char *cmd)
         send_msg_client(client->fd, "End of Game\n");
         return;
     }
+    if (server->pause_game) {
+        send_msg_client(client->fd, "Game is paused\n");
+        return;
+    }
     if (client->is_graphic) {
         handle_gui_input(server, client, cmd);
     } else if (client->player.team) {
