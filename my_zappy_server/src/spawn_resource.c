@@ -44,7 +44,7 @@ void spawn_resource(server_t *server)
             nb_spawn[i] = 1;
         }
     }
-    for (int i = 0; i < server->world.size_y; ++i) {
+    for (int i = 0; i < NB_ITEM; ++i) {
         count_ressource(server, i, count_spawn);
     }
     for (int i = 0; i < NB_ITEM; ++i) {
