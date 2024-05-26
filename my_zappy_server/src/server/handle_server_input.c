@@ -27,7 +27,7 @@ static void handle_new_server_cmd(char *cmd, server_t *server)
             return;
         }
     }
-    printf("Unknow command.\n");
+    printf("Unknown command.\n");
 }
 
 void handle_server_input(server_t *server)
