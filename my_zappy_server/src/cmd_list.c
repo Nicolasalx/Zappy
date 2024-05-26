@@ -41,7 +41,6 @@ const ai_handler_t ai_cmd_handler[] =
 const server_handler_t server_cmd_handler[] =
 {
     {"tp", 4, tp_cmd, "tp [n player] [x] [y] [orientation]"},
-    {"level", 2, level_cmd, "tp [n player] [k level]"},
-
+    {"level", 2, level_cmd, "level [n player] [k level]"},
     {NULL, 0, NULL, NULL}
 };
