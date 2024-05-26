@@ -18,7 +18,7 @@ static void eggs_info(server_t *server)
             return;
         }
         do {
-            snprintf(buffer, sizeof(buffer), "%d %d %d\n",
+            snprintf(buffer, sizeof(buffer), "%d %d %d",
             GET_DATA(current, egg_t)->nb, GET_DATA(current, egg_t)->pos_x,
             GET_DATA(current, egg_t)->pos_y);
             smg_reply(server, buffer);
