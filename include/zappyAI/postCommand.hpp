@@ -8,10 +8,12 @@
 #ifndef POSTCOMMAND_H_
     #define POSTCOMMAND_H_
 
+    #include "client.hpp"
 
 namespace Ai
 {
-
+    class Client;
+    class Player;
 }
 
 #endif /* !POSTCOMMAND_H_ */
