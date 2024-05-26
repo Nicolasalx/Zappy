@@ -22,9 +22,15 @@ void Ai::Player::engineAI(Client &client)
     if (!this->_clientHasaTeam) {
         this->sendCommand(TEAM);
         this->sendCommand(LOOK);
-        // this->sendCommand(INVENTORY);
-        // this->sendCommand(FORWARD);
-        // this->sendCommand(INVENTORY);
+    }
+
+    if (this->_refreshInventory) {
+        this->sendCommand(INVENTORY);
+        this->setRefreshInventory(false);
+    }
+    if (this->_refreshLook) {
+        this->sendCommand(LOOK);
+        this->setRefreshLook(false);
     }
     nextInstructionAi(client);
 }
