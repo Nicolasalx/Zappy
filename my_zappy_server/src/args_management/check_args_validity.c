@@ -54,16 +54,16 @@ void check_arg_validity(server_t *server)
     server->port != -1) {
         my_error("Error: Port must be between 1 and 65535", 84);
     }
-    if (server->world.size_x <= 0 && server->world.size_y > 100) {
+    if (server->world.size_x <= 0 || server->world.size_y > 100) {
         my_error("Error: Width must be between 1 and 100", 84);
     }
-    if (server->world.size_x <= 0 && server->world.size_y > 100) {
+    if (server->world.size_x <= 0 || server->world.size_y > 100) {
         my_error("Error: Height must be between 1 and 100", 84);
     }
-    if (server->client_nb <= 0 && server->client_nb > 100) {
+    if (server->client_nb <= 0 || server->client_nb > 100) {
         my_error("Error: Clients must be between 1 and 100", 84);
     }
-    if (server->freq <= 0 && server->freq > 10000) {
+    if (server->freq <= 0 || server->freq > 10000) {
         my_error("Error: Frequency cannot be greater than 10000", 84);
     }
     fill_arg(server);
