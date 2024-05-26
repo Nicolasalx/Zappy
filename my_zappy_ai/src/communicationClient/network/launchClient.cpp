@@ -5,9 +5,10 @@
 ** launch_client
 */
 
+#include "client.hpp"
 #include "zappyAi.hpp"
 
-void closeClient(int) // ! Why this function is not in the class ?
+void closeClient(int)
 {
     std::cout << "Client closed." << std::endl;
     std::exit(0);

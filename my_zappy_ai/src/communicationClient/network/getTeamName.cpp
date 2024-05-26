@@ -5,7 +5,7 @@
 ** linkTeam
 */
 
-#include "zappyAi.hpp"
+#include "client.hpp"
 
 std::string Ai::Client::getTeamName()
 {

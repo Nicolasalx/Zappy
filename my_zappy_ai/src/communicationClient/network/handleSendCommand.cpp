@@ -5,7 +5,7 @@
 ** parseInventory
 */
 
-#include "zappyAi.hpp"
+#include "client.hpp"
 
 bool Ai::Client::canSendCommand()
 {

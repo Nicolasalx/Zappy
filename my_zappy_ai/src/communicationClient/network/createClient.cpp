@@ -5,7 +5,8 @@
 ** create_client
 */
 
-#include "zappyAi.hpp"
+#include "client.hpp"
+#include "my_tracked_exception.hpp"
 
 void Ai::Client::createClient()
 {

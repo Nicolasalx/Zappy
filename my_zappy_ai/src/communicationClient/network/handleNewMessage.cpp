@@ -5,11 +5,14 @@
 ** handle_new_message
 */
 
+#include "client.hpp"
 #include "zappyAi.hpp"
+#include "my_tracked_exception.hpp"
 
 void Ai::Client::checkNewMessage(Player &player, const std::string &reply_data)
 {
     if (reply_data == "WELCOME\n") {
+        std::cout << reply_data;
         this->_isConnected = true;
     }
     if (_isConnected) {
@@ -27,7 +30,7 @@ void Ai::Client::handleNewMessage(Player &player)
     }
     size = read(this->fd, &reply_data, sizeof(reply_data));
     if (size == 0) {
-        std::cout << "Server closed." << std::endl;
+        std::cout << "dead" << "\n";
         std::exit(0);
     } else if (size == -1) {
         throw my::tracked_exception("Read failed.\n");

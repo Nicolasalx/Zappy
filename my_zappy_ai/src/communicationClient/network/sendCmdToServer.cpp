@@ -5,7 +5,7 @@
 ** send_cmd_to_server
 */
 
-#include "zappyAi.hpp"
+#include "client.hpp"
 
 void Ai::Client::sendCmdToServer(char *cmd, int nb_byte)
 {
