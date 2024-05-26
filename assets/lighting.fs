@@ -15,7 +15,7 @@ out vec4 finalColor;
 
 // NOTE: Add here your custom variables
 
-#define     MAX_LIGHTS              4
+#define     4              4
 #define     LIGHT_DIRECTIONAL       0
 #define     LIGHT_POINT             1
 
@@ -28,7 +28,7 @@ struct Light {
 };
 
 // Input lighting values
-uniform Light lights[MAX_LIGHTS];
+uniform Light lights[4];
 uniform vec4 ambient;
 uniform vec3 viewPos;
 
@@ -43,7 +43,7 @@ void main()
 
     // NOTE: Implement here your fragment shader code
 
-    for (int i = 0; i < MAX_LIGHTS; i++)
+    for (int i = 0; i < 4; i++)
     {
         if (lights[i].enabled == 1)
         {

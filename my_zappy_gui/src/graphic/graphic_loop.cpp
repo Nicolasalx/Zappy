@@ -10,13 +10,13 @@
 void Graphic::draw_3D()
 {
     BeginMode3D(this->camera);
-    BeginShaderMode(light_shader);
+    // BeginShaderMode(light_shader);
     this->draw_sky_box();
     this->draw_player();
     this->draw_object();
     this->draw_map();
     DrawGrid(10, 1.0f);
-    EndShaderMode();
+    // EndShaderMode();
     EndMode3D();
 }
 

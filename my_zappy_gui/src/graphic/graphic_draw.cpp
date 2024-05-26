@@ -32,7 +32,7 @@ void Graphic::draw_object()
         for (int j = 0; j < this->gameState->map_size.y; j++) {
             for (int k = 0; k < 7; k++) {
                 if (this->gameState->object_pos[j][i][k] != 0) {
-                    DrawModel(this->model_list[k], (Vector3){i * SCALE + object_padding[k][0], 0.5f, j * SCALE + object_padding[k][1]}, 0.5f, RED);
+                    DrawModel(this->model_list[k], (Vector3){i * SCALE + object_padding[k][0], 0.5f, j * SCALE + object_padding[k][1]}, 0.4f, WHITE);
                 }
             }
         }
@@ -43,6 +43,6 @@ void Graphic::draw_player()
 {
     for (auto &player : this->gameState->players_list) {
         update_animation(player);
-        DrawModelEx(this->model_list[PLAYER], (Vector3){player.real_pos.x * SCALE, 0.5f, player.real_pos.y * SCALE}, (Vector3){0, 1, 0}, player_orientation[player.orientation], (Vector3){3, 3, 3}, WHITE);
+        DrawModelEx(this->model_list[PLAYER], (Vector3){player.real_pos.x * SCALE, 0.5f, player.real_pos.y * SCALE}, (Vector3){0, 1, 0}, player.real_orientation, (Vector3){3, 3, 3}, WHITE);
     }
 }

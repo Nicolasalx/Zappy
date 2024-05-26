@@ -8,7 +8,7 @@
 SRC				:=	$(shell find src/ -name "*.cpp")
 
 CPPFLAGS		=	-std=c++20 -Wall -Wextra -lraylib -lGL \
-					-lm -lpthread -ldl -lrt -lX11 -g3 \
+					-lm -lpthread -ldl -lrt -lX11 \
 					$(ADDITIONAL_FLAGS)
 
 INCLUDE_PATH	=	-I../include/ -I../include/lib/cpp_lib/

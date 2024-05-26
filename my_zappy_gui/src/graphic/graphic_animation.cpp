@@ -35,4 +35,10 @@ void Graphic::update_animation(player_t &player)
     if (player.real_pos.y > player.pos.y) {
         player.real_pos.y -= 0.05f;
     }
+    if (player_orientation[player.orientation] > player.real_orientation) {
+        player.real_orientation += 2;
+    }
+    if (player_orientation[player.orientation] < player.real_orientation) {
+        player.real_orientation -= 2;
+    }
 }
