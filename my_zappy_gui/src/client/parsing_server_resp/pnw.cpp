@@ -19,6 +19,8 @@ void GameState::pnw(std::vector<std::string> args)
     new_player.n = std::stoi(args[0]);
     new_player.pos.x = std::stoi(args[1]);
     new_player.pos.y = std::stoi(args[2]);
+    new_player.real_pos.x = std::stoi(args[1]);
+    new_player.real_pos.y = std::stoi(args[2]);
     new_player.orientation = std::stoi(args[3]);
     new_player.level = std::stoi(args[4]);
     new_player.team_name = args[5];

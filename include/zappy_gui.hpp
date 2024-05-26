@@ -47,13 +47,14 @@ enum {
 };
 
 struct pos_t {
-    int x;
-    int y;
+    float x;
+    float y;
 };
 
 struct player_t {
     int n;
     pos_t pos;
+    pos_t real_pos;
     int level;
     int orientation;
     std::string team_name;
@@ -123,6 +124,7 @@ class Graphic {
         void init_player();
         void init_object();
         void init_object_padding();
+        void init_lighting();
         void set_fps(int fps);
         //loop
         void loop();
@@ -130,6 +132,7 @@ class Graphic {
         void event();
         void change_cursor();
         void window_resize();
+        void update_animation(player_t &player);
         //draw
         void draw_3D();
         void draw_2D();
@@ -145,6 +148,8 @@ class Graphic {
         std::map<int, int> player_orientation;
         float object_padding[7][2];
         ModelAnimation *player_animation;
+        Shader light_shader;
+        // Light light;
         int window_width = WINDOW_WIDTH;
         int window_height = WINDOW_HEIGHT;
         bool cursor = false;

@@ -42,13 +42,7 @@ void Graphic::draw_object()
 void Graphic::draw_player()
 {
     for (auto &player : this->gameState->players_list) {
-        if (player.anim_frame_counter != 0) {
-            UpdateModelAnimation(this->model_list[PLAYER], player_animation[player.animation_nbr], player.anim_frame_counter);
-            player.anim_frame_counter++;
-            if (player.anim_frame_counter >= player_animation[player.animation_nbr].frameCount) {
-                player.anim_frame_counter = 0;
-            }
-        }
-        DrawModelEx(this->model_list[PLAYER], (Vector3){player.pos.x * SCALE, 0.5f, player.pos.y * SCALE}, (Vector3){0, 1, 0}, player_orientation[player.orientation], (Vector3){3, 3, 3}, WHITE);
+        update_animation(player);
+        DrawModelEx(this->model_list[PLAYER], (Vector3){player.real_pos.x * SCALE, 0.5f, player.real_pos.y * SCALE}, (Vector3){0, 1, 0}, player_orientation[player.orientation], (Vector3){3, 3, 3}, WHITE);
     }
 }
