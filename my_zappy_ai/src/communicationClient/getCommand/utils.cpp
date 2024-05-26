@@ -5,7 +5,7 @@
 ** utils
 */
 
-#include "zappyAi.hpp"
+#include "getCommand.hpp"
 
 std::string Ai::GetCommand::extractContentBetweenBrackets(const std::string &input)
 {
@@ -18,4 +18,15 @@ std::string Ai::GetCommand::extractContentBetweenBrackets(const std::string &inp
         return "";
     }
     return input.substr(start + 1, end - start - 1);
+}
+
+std::string Ai::GetCommand::removeChar(const std::string &input, char c)
+{
+    std::string result;
+    for (char ch: input) {
+        if (ch != c) {
+            result += ch;
+        }
+    }
+    return result;
 }
