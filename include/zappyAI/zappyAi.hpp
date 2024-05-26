@@ -37,6 +37,7 @@
     #include "inventory.hpp"
     #include "item.hpp"
     #include "dimensionWorld.hpp"
+    #include "message.hpp"
 
     #define MAX_PORT_NB 65535
     #define BUFFER_SIZE 4096
@@ -56,17 +57,25 @@ namespace Ai
             void sendCommand(const CommandType &commandType, const std::string &text);
             void nextInstructionAi(Client &client);
             void setMap(std::vector<Tile> listTile);
+            void setRefreshInventory(bool refresh);
+            void setRefreshLook(bool refresh);
+            void setNewMessage(const Message &message);
+            void setNewLevel(int level);
 
         private:
             PostCommand postCmd;
-            Inventory inventory;
-            std::vector<Tile> _contentLook;
-
+            bool _refreshInventory = false;
+            bool _refreshLook = false;
             int _nbSlotsTeam = 0;
             int _nbTeamUnusedSlots = 0;
             DimensionWorld dimensionWorld;
             bool _clientHasaTeam = false;
             Client _client;
+
+            Inventory inventory;
+            std::vector<Tile> _contentLook;
+            std::vector<Message> _listMessage;
+            int _level = 0;
     };
 }
 
