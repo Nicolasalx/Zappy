@@ -18,9 +18,9 @@ static void eggs_info(server_t *server)
             return;
         }
         do {
-            snprintf(buffer, sizeof(buffer), "%d %d %d",
+            snprintf(buffer, sizeof(buffer), "%d %d %d %s",
             GET_DATA(current, egg_t)->nb, GET_DATA(current, egg_t)->pos_x,
-            GET_DATA(current, egg_t)->pos_y);
+            GET_DATA(current, egg_t)->pos_y, server->team_list[i].name);
             smg_reply(server, buffer);
             memset(buffer, 0, sizeof(buffer));
             if (server->team_list[i].egg_list == NULL) {
