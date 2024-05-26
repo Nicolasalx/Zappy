@@ -65,6 +65,7 @@ static void eject_player_in_orientation(server_t *server,
 
 void eject_cmd(char *, client_t *client, server_t *server)
 {
+    bool ejected = false;
     for (int i = 0; i < MAX_CLIENT; ++i) {
         if (server->clients[i].fd != 0 && server->clients[i].is_graphic != true
         && server->clients[i].player.pos_x == client->player.pos_x
@@ -74,6 +75,12 @@ void eject_cmd(char *, client_t *client, server_t *server)
             pex_reply(server, &server->clients[i]);
             ppo_reply(server, &server->clients[i]);
             eject_egg_from_tile(client, server);
+            ejected = true;
         }
+    }
+    if (ejected) {
+        send_msg_client(client->fd, "ok\n");
+    } else {
+        send_msg_client(client->fd, "ko\n");
     }
 }
