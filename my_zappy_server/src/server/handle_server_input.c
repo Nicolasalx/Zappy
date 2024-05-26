@@ -22,7 +22,7 @@ static void handle_new_server_cmd(char *cmd, server_t *server)
                     printf("method not implemented\n");
                 }
             } else {
-                printf("%s\n", server_cmd_handler->usage);
+                printf("%s\n", server_cmd_handler[i].usage);
             }
             return;
         }
