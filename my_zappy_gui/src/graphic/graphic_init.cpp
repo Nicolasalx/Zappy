@@ -19,6 +19,7 @@ Graphic::Graphic(GameState *gameState)
     this->init_island();
     this->init_player();
     this->init_object_padding();
+    this->init_lighting();
     this->player_orientation[1] = 180;
     this->player_orientation[2] = 90;
     this->player_orientation[3] = 0;
@@ -68,6 +69,7 @@ void Graphic::init_island()
     
     Model island = LoadModel("assets/plateform.obj");
     Texture2D texture = LoadTexture("assets/plateform1.png");
+    SetTextureFilter(texture, TEXTURE_FILTER_TRILINEAR);
     SetMaterialTexture(&island.materials[0], MATERIAL_MAP_DIFFUSE, texture);
     this->model_list.push_back(island);
 }
@@ -122,4 +124,14 @@ void Graphic::init_object_padding()
         this->object_padding[i][0] = cos((PI / 180.0f) * (i * 50.0f));
         this->object_padding[i][1] = sin((PI / 180.0f) * (i * 50.0f));
     }
+}
+
+void Graphic::init_lighting()
+{
+    light_shader = LoadShader(TextFormat("assets/lighting.vs", 330),
+                               TextFormat("assets/lighting.fs", 330));
+    light_shader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(light_shader, "viewPos");
+    float test[4] = { 0.1f, 0.1f, 0.1f, 1.0f };
+    int ambientLoc = GetShaderLocation(light_shader, "ambient");
+    SetShaderValue(light_shader, ambientLoc, test, SHADER_UNIFORM_VEC4);
 }
