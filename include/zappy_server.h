@@ -18,6 +18,7 @@
     #include <sys/select.h>
     #include <string.h>
     #include <stdlib.h>
+    #include <math.h>
 
     #define MAX_CLIENT FD_SETSIZE
     #define MAX_PORT_NB 65535
@@ -145,7 +146,7 @@ typedef struct {
 
 extern const gui_handler_t gui_cmd_handler[];
 extern const ai_handler_t ai_cmd_handler[];
-extern const elevation_requirement_t elevation_requirement[];
+extern const elevation_requirement_t elevation_req[];
 
 extern double resource_density[NB_ITEM];
 extern const char *object_list[NB_ITEM];
@@ -167,12 +168,24 @@ void send_msg_client(int fd, char *reply);
 void handle_new_player(server_t *, client_t *new_client);
 void handle_gui_input(server_t *server, client_t *client, char *cmd);
 void handle_ai_input(server_t *server, client_t *client, char *cmd);
+void remove_elevation_req(client_t *client, server_t *server, int level);
+bool check_elevation_req(client_t *client, server_t *server,
+    int level, bool last_check);
+bool is_part_of_elevation(client_t *client, client_t *mate);
+void append_with_space_if_needed(char *buff, const char *str, bool *first);
+void get_item_str(char *buff, int x, int y, server_t *server);
+void append_with_coma_if_needed_x(client_t *client, char *buff, int x, int i);
+void append_with_coma_if_needed_y(client_t *client, char *buff, int y, int i);
 
 // args management
-void get_port_and_freq(const char **argv, server_t *server, int argc, const char **args);
-void get_map_size(const char **argv, server_t *server, int argc, const char **args);
-void get_clients_nb(const char **argv, server_t *server, int argc, const char **args);
-void get_teams_name(const char **argv, server_t *server, int i, int argc);
+void get_port_and_freq(const char **argv,
+    server_t *server, int argc, const char **args);
+void get_map_size(const char **argv,
+    server_t *server, int argc, const char **args);
+void get_clients_nb(const char **argv,
+    server_t *server, int argc, const char **args);
+void get_teams_name(const char **argv,
+    server_t *server, int i, int argc);
 void check_arg_validity(server_t *server);
 
 // gui command
@@ -218,7 +231,8 @@ void set_object_cmd(char *argv, client_t *client, server_t *server);
 void look_cmd(char *argv, client_t *client, server_t *server);
 void fork_cmd(char *argv, client_t *client, server_t *server);
 void incatation_cmd(char *, client_t *client, server_t *server);
-bool check_elevation_req(client_t *client, server_t *server, int level, bool last_check);
+bool check_elevation_req(client_t *client,
+    server_t *server, int level, bool last_check);
 void broadcast_cmd(char *argv, client_t *client, server_t *server);
 void eject_cmd(char *argv, client_t *client, server_t *server);
 
