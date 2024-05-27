@@ -56,6 +56,16 @@ typedef enum {
 } cmd_list_t;
 
 typedef struct {
+    int food;
+    int linemate;
+    int deraumere;
+    int sibur;
+    int mendiane;
+    int phiras;
+    int thystame;
+} inventory_t;
+
+typedef struct {
     int fd;
     fd_set read_set;
     fd_set write_set;
@@ -70,13 +80,14 @@ typedef struct {
     size_t buffer_size;
     cmd_list_t last_cmd;
     strategy_t *strategy;
+    inventory_t *inventory;
 } client_t;
 
-//typedef struct {
-//    char *name;
-//    bool has_arg;
-//    void (*method)(client_t *, char *);
-//} reply_handler_t;
+typedef struct {
+    char *name;
+    bool has_arg;
+    void (*method)(client_t *, char *);
+} reply_handler_t;
 
 //extern const reply_handler_t reply_handler[];
 
