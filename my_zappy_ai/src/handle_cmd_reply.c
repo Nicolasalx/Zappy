@@ -9,12 +9,10 @@
 
 void handle_cmd_reply(client_t *client, char *reply)
 {
-    // ! set last cmd var (ex: client->last_cmd = INVENTORY;)
-
     if (reply && strncmp("eject: ", reply, 7) == 0) {
 
     } else if (reply && strncmp("message ", reply, 8) == 0) {
-
+        broadcast_reply(client, reply);
     } else if (reply && strcmp("dead\n", reply) == 0) {
         printf("dead\n");
     } else {
@@ -27,6 +25,6 @@ void handle_cmd_reply(client_t *client, char *reply)
                 }
             }
         }
+        pop_cmd_to_make(client);
     }
-
 }

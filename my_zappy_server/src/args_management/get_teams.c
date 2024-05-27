@@ -53,7 +53,7 @@ void get_teams_name(const char **argv,
             get_teams_name_error(argv, server, i);
             strcpy(server->team_list[server->team_count].name, argv[i]);
             server->team_list[server->team_count].
-            remaining_place = server->client_nb;
+            remaining_spot = server->client_nb;
             server->team_count += 1;
         }
         i -= 1;

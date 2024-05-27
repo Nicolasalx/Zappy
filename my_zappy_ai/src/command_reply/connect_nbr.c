@@ -9,5 +9,6 @@
 
 void connect_nbr_command(client_t *client, char *reply)
 {
-
+    printf("Connect_nbr\n");
+    client->remaining_spots = atoi(reply);
 }

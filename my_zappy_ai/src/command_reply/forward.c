@@ -10,6 +10,4 @@
 void forward_command(client_t *client, char *reply)
 {
     printf("FORWARD %s\n", reply);
-    client->last_cmd = INVENTORY;
-    send_cmd_to_server(client, "Inventory\n");
 }

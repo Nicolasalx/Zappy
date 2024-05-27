@@ -37,7 +37,8 @@ typedef enum {
     NOT_SET,
     FARMER,
     QUEEN,
-    DEAD_FORK
+    DEAD_FORK,
+    NB_STRATEGY
 } strategy_t;
 
 typedef enum {
@@ -81,16 +82,6 @@ typedef enum {
 } cmd_list_t;
 
 typedef struct {
-    int food;
-    int linemate;
-    int deraumere;
-    int sibur;
-    int mendiane;
-    int phiras;
-    int thystame;
-} inventory_t;
-
-typedef struct {
     int fd;
     fd_set read_set;
     fd_set write_set;
@@ -103,11 +94,20 @@ typedef struct {
     char team_name[MAX_TEAMNAME_SIZE + 1];
     char *reply_buffer;
     size_t buffer_size;
-    cmd_list_t last_cmd;
-    strategy_t *strategy;
+    strategy_t strategy;
     int inventory[NB_ITEM];
     int content_look[MAX_LOOK_SIZE][TILE_NB_ELEM];
+    int shared_inventory[NB_ITEM];
+    int instruction_index;
+    int remaining_spots;
+    node_t *cmd_to_make;
+    cmd_list_t last_cmd;
 } client_t;
+
+typedef struct {
+    cmd_list_t cmd_type;
+    char *arg;
+} cmd_to_make_t;
 
 typedef struct {
     cmd_list_t cmd_type;
@@ -118,20 +118,15 @@ extern const reply_handler_t reply_handler[];
 
 extern node_t *child_list;
 
-typedef struct {
-    void (**current_instruction)(client_t *);
-    void (**method)(client_t *);
-} cmd_to_make_t;
-
-extern cmd_to_make_t strategy_handler_t[];
-extern const char *object_list[NB_ITEM];
-extern const char *tile_list[TILE_NB_ELEM];
 
 //{
 //    incantation_command,
 //    try_take_food,
 //    forward_command
 //}
+extern void (*strategy_handler[NB_STRATEGY][10])(client_t *);
+extern const char *object_list[NB_ITEM];
+extern const char *tile_list[TILE_NB_ELEM];
 
 void check_arg_validity(int argc, const char **argv, client_t *client);
 void get_args(int argc, const char **argv, client_t *client);
@@ -151,6 +146,9 @@ void exit_client(int exit_value, const char *message);
 
 void create_new_ai(int port, struct in_addr *address, char *team_name);
 void wait_for_child(void);
+
+void push_new_command(client_t *client, cmd_list_t cmd_type, char *cmd);
+void pop_cmd_to_make(client_t *client);
 
 // reply handler
 void first_action(client_t *client, char *reply);

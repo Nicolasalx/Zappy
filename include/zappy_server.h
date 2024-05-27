@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** myteams_server
+** zappy_server
 */
 
 #ifndef ZAPPY_SERVER_H_
@@ -81,7 +81,7 @@ typedef struct {
 
 typedef struct {
     char name[MAX_TEAMNAME_SIZE + 1];
-    int remaining_place;
+    int remaining_spot;
     node_t *egg_list;
 } team_t;
 
