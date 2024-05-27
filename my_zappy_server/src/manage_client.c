@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** B-NWP-400-PAR-4-1-myftp-thibaud.cathala
+** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
 ** manage_client
 */
@@ -20,8 +20,10 @@ void add_client(server_t *server, client_t *client)
 
 void remove_client(client_t *client)
 {
-    if (client->player.team)
+    if (client->player.team) {
         client->player.team->remaining_place += 1;
+    }
+    my_free(client->cmd_buffer);
     if (client->fd != 0) {
         close(client->fd);
     }
