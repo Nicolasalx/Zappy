@@ -31,7 +31,7 @@ static void set_args(server_t *server)
 
 void get_args(int argc, const char **argv, server_t *server)
 {
-    const char *args[] = {"-p", "-x", "-y", "-c", "-f", "--immortal"};
+    const char *args[] = {"-p", "-x", "-y", "-c", "-f"};
 
     set_args(server);
     if (argc == 2 && strcmp(argv[1], "-h") == 0) {
