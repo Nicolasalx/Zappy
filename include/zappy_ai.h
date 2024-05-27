@@ -21,7 +21,7 @@
 
     #define MAX_PORT_NB 65535
     #define BUFFER_SIZE 4096
-    #define CMD_BUFFER_SIZE 4096
+    #define CMD_BUFFER_SIZE 100000
     #define NEW_CLIENT_MESSAGE "WELCOME\n"
     #define MAX_TEAMNAME_SIZE 32
 
