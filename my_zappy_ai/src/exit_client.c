@@ -15,3 +15,4 @@ void exit_client(int exit_value, const char *message)
     delete_client(get_client(NULL));
     my_exit(exit_value);
 }
+
