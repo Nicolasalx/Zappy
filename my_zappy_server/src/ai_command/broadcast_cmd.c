@@ -30,11 +30,11 @@ int calculate_direction(client_t *src, client_t *dest)
 
 void broadcast_cmd(char *argv, client_t *client, server_t *server)
 {
-    char buffer[100] = {0};
+    char buffer[BUFFER_SIZE + 1] = {0};
     char *message = strtok(argv, "\n");
     int direction = 0;
 
-    if (message == NULL) {
+    if (message == NULL || strlen(message) > (BUFFER_SIZE - 100)) {
         message = "\0";
     }
     for (int i = 0; i < MAX_CLIENT; ++i) {
