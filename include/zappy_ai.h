@@ -69,16 +69,6 @@ typedef enum {
 } cmd_list_t;
 
 typedef struct {
-    int food;
-    int linemate;
-    int deraumere;
-    int sibur;
-    int mendiane;
-    int phiras;
-    int thystame;
-} inventory_t;
-
-typedef struct {
     int fd;
     fd_set read_set;
     fd_set write_set;
@@ -93,7 +83,9 @@ typedef struct {
     size_t buffer_size;
     strategy_t strategy;
     int inventory[NB_ITEM];
+    int shared_inventory[NB_ITEM];
     int instruction_index;
+    int remaining_spots;
     node_t *cmd_to_make;
     cmd_list_t last_cmd;
 } client_t;
@@ -113,6 +105,7 @@ extern const reply_handler_t reply_handler[];
 extern node_t *child_list;
 
 extern void (*strategy_handler[NB_STRATEGY][10])(client_t *);
+extern const char *object_list[NB_ITEM];
 
 void check_arg_validity(int argc, const char **argv, client_t *client);
 void get_args(int argc, const char **argv, client_t *client);

@@ -9,7 +9,7 @@
 
 void forward_command(client_t *client, char *reply)
 {
-//    printf("FORWARD\n");
-//    client->last_cmd = FORWARD;
-//    send_cmd_to_server(client, "Forward\n");
+    printf("Forward\n");
+    client->last_cmd = FORWARD;
+    push_new_command(client, BROADCAST, "Forward\n");
 }

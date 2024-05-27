@@ -9,5 +9,6 @@
 
 void broadcast_command(client_t *client, char *reply)
 {
-
+    printf("Broadcast\n");
+    client->last_cmd = BROADCAST;
 }

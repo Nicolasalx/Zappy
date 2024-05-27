@@ -9,5 +9,6 @@
 
 void set_command(client_t *client, char *reply)
 {
-
+    printf("Set\n");
+    client->last_cmd = SET;
 }
