@@ -82,21 +82,29 @@ typedef enum {
 } cmd_list_t;
 
 typedef struct {
+    int id;
+    int inventory[NB_ITEM];
+    int content_look[MAX_LOOK_SIZE][TILE_NB_ELEM];
+    char team_name[MAX_TEAMNAME_SIZE + 1];
+} player_t;
+
+typedef struct {
+    int size_x;
+    int size_y;
+} world_t;
+
+typedef struct {
     int fd;
-    fd_set read_set;
-    fd_set write_set;
     int port;
     struct sockaddr_in server_address;
+    fd_set read_set;
+    fd_set write_set;
+    world_t world;
+    player_t player;
     log_state_t log_state;
-    int id;
-    int world_size_x;
-    int world_size_y;
-    char team_name[MAX_TEAMNAME_SIZE + 1];
     char *reply_buffer;
     size_t buffer_size;
     strategy_t strategy;
-    int inventory[NB_ITEM];
-    int content_look[MAX_LOOK_SIZE][TILE_NB_ELEM];
     int shared_inventory[NB_ITEM];
     int instruction_index;
     int remaining_spots;

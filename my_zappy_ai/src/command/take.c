@@ -16,7 +16,7 @@ void take_command(client_t *client, char *ressource)
     snprintf(buffer, sizeof(buffer), "Take %s\n", ressource);
     for (int i = 0; i < NB_ITEM; ++i)
         if (strcmp(ressource, object_list[i]) == 0) {
-            client->inventory[i] += 1;
+            client->player.inventory[i] += 1;
             client->shared_inventory[i] += 1;
             break;
         }

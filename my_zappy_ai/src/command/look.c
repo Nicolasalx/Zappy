@@ -19,7 +19,7 @@ void analyse_each_element_look(client_t *client, char *element, int tile_nb)
     for (int i = 0; word[i] != NULL; ++i) {
         for (int j = 0; j < TILE_NB_ELEM; j++) {
             if (strcmp(word[i], tile_list[j]) == 0) {
-                client->content_look[tile_nb][j] += 1;
+                client->player.content_look[tile_nb][j] += 1;
             }
         }
     }
@@ -35,7 +35,7 @@ void parse_look_command(client_t *client, char *reply)
     int *size_word = count_size_word_opt(reply, ",", nb_word);
     char **word = my_str_to_word_opt(reply, ",", nb_word, size_word);
 
-    memset(client->content_look, 0, sizeof(int) * MAX_LOOK_SIZE * TILE_NB_ELEM);
+    memset(client->player.content_look, 0, sizeof(int) * MAX_LOOK_SIZE * TILE_NB_ELEM);
     for (int i = 0; word[i] != NULL; ++i) {
         analyse_each_element_look(client, word[i], tile_nb);
         ++tile_nb;

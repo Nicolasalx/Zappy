@@ -35,7 +35,7 @@ void analyse_each_element_inventory(client_t *client, char *element)
     }
     for (int i = 0; i < NB_ITEM; i++) {
         if (strcmp(word[0], object_list[i]) == 0) {
-            client->inventory[i] = atoi(word[1]);
+            client->player.inventory[i] = atoi(word[1]);
         }
     }
 }
