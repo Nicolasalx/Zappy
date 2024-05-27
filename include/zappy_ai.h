@@ -102,6 +102,7 @@ typedef struct {
     int remaining_spots;
     node_t *cmd_to_make;
     cmd_list_t last_cmd;
+    int level_player;
 } client_t;
 
 typedef struct {
@@ -166,5 +167,7 @@ void set_command(client_t *client, char *reply);
 void incantation_command(client_t *client, char *reply);
 
 void remove_first_and_last_char(char **str);
+
+void queen_management(client_t *client);
 
 #endif /* !ZAPPY_AI_H_ */
