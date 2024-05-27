@@ -34,7 +34,7 @@ void get_args(int argc, const char **argv, server_t *server)
     const char *args[] = {"-p", "-x", "-y", "-c", "-f"};
 
     set_args(server);
-    if (argc == 2 && strcmp(argv[1], "-h") == 0) {
+    if (argc == 2 && strcmp(argv[1], "-help") == 0) {
         printf("USAGE: ./zappy_server -p port -x width -y "
         "height -n name1 name2 ... -c clientsNb -f freq\n");
         my_exit(0);
