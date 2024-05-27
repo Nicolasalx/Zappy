@@ -120,8 +120,8 @@ void Graphic::init_object()
     SetMaterialTexture(&phiras_model.materials[0], MATERIAL_MAP_DIFFUSE, texture_p);
     this->model_list.push_back(phiras_model);
     // thystame
-    Mesh thystame = GenMeshCylinder(0.5f, 1.0f, 32);
-    Model thystame_model = LoadModelFromMesh(thystame);
+    Model thystame_model = LoadModel("assets/thystame.obj");
+    Texture2D texture_t = LoadTexture("assets/texture_thystame.png");
     this->model_list.push_back(thystame_model);
 }
 
