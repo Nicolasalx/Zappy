@@ -19,16 +19,19 @@ void append_with_space_if_needed(char *buff, const char *str, bool *first)
 void get_item_str(char *buff, int x, int y, server_t *server)
 {
     bool first = true;
+    int nb_player = 0;
 
     for (int i = 0; i < MAX_CLIENT; ++i) {
         if (server->clients[i].fd != 0
             && server->clients[i].player.pos_x == x
-            && server->clients[i].player.pos_y == y) {
+            && server->clients[i].player.pos_y == y
+            && nb_player < 50) {
             append_with_space_if_needed(buff, "player", &first);
+            ++nb_player;
         }
     }
     for (int i = 0; i < NB_ITEM; ++i) {
-        for (int j = 0; j < server->world.map[y][x].item[i]; ++j) {
+        for (int j = 0; j < server->world.map[y][x].item[i] && j < 50; ++j) {
             append_with_space_if_needed(buff, object_list[i], &first);
         }
     }

@@ -34,6 +34,9 @@ void broadcast_cmd(char *argv, client_t *client, server_t *server)
     char *message = strtok(argv, "\n");
     int direction = 0;
 
+    if (message == NULL) {
+        message = "\0";
+    }
     for (int i = 0; i < MAX_CLIENT; ++i) {
         if (server->clients[i].fd != 0 && server->clients[i].is_graphic != true
         && server->clients[i].player.team

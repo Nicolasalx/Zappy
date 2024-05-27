@@ -9,7 +9,7 @@
 
 static void look_north(client_t *client, server_t *server)
 {
-    char buff[BUFFER_SIZE] = {0};
+    char buff[BUFFER_SIZE + 1] = {0};
 
     strcpy(buff, "[");
     for (int i = 0; i <= client->player.level; ++i) {
@@ -20,6 +20,8 @@ static void look_north(client_t *client, server_t *server)
                 (client->player.pos_y - i + server->world.size_y)
                 % server->world.size_y, server);
             append_with_coma_if_needed_x(client, buff, x, i);
+            send_msg_client(client->fd, buff);
+            memset(buff, 0, BUFFER_SIZE);
         }
     }
     strcat(buff, "]\n");
@@ -28,7 +30,7 @@ static void look_north(client_t *client, server_t *server)
 
 static void look_south(client_t *client, server_t *server)
 {
-    char buff[BUFFER_SIZE] = {0};
+    char buff[BUFFER_SIZE + 1] = {0};
 
     strcpy(buff, "[");
     for (int i = 0; i <= client->player.level; ++i) {
@@ -39,6 +41,8 @@ static void look_south(client_t *client, server_t *server)
                 (client->player.pos_y + i)
                 % server->world.size_y, server);
             append_with_coma_if_needed_x(client, buff, x, i);
+            send_msg_client(client->fd, buff);
+            memset(buff, 0, BUFFER_SIZE);
         }
     }
     strcat(buff, "]\n");
@@ -47,7 +51,7 @@ static void look_south(client_t *client, server_t *server)
 
 static void look_east(client_t *client, server_t *server)
 {
-    char buff[BUFFER_SIZE] = {0};
+    char buff[BUFFER_SIZE + 1] = {0};
 
     strcpy(buff, "[");
     for (int i = 0; i <= client->player.level; ++i) {
@@ -57,6 +61,8 @@ static void look_east(client_t *client, server_t *server)
                 (client->player.pos_x + i) % server->world.size_x,
                 (y + server->world.size_y) % server->world.size_y, server);
             append_with_coma_if_needed_y(client, buff, y, i);
+            send_msg_client(client->fd, buff);
+            memset(buff, 0, BUFFER_SIZE);
         }
     }
     strcat(buff, "]\n");
@@ -65,7 +71,7 @@ static void look_east(client_t *client, server_t *server)
 
 static void look_west(client_t *client, server_t *server)
 {
-    char buff[BUFFER_SIZE] = {0};
+    char buff[BUFFER_SIZE + 1] = {0};
 
     strcpy(buff, "[");
     for (int i = 0; i <= client->player.level; ++i) {
@@ -75,6 +81,8 @@ static void look_west(client_t *client, server_t *server)
             + server->world.size_x) % server->world.size_x,
                 (y + server->world.size_y) % server->world.size_y, server);
             append_with_coma_if_needed_y(client, buff, y, i);
+            send_msg_client(client->fd, buff);
+            memset(buff, 0, BUFFER_SIZE);
         }
     }
     strcat(buff, "]\n");
