@@ -113,6 +113,17 @@ void wait_for_child(void);
 
 // reply handler
 void first_action(client_t *client, char *reply);
-void forward(client_t *client, char *reply);
+void forward_command(client_t *client, char *reply);
+void right_command(client_t *client, char *reply);
+void left_command(client_t *client, char *reply);
+void look_command(client_t *client, char *reply);
+void inventory_command(client_t *client, char *reply);
+void broadcast_command(client_t *client, char *reply);
+void connect_nbr_command(client_t *client, char *reply);
+void fork_command(client_t *client, char *reply);
+void eject_command(client_t *client, char *reply);
+void take_command(client_t *client, char *reply);
+void set_command(client_t *client, char *reply);
+void incantation_command(client_t *client, char *reply);
 
 #endif /* !ZAPPY_AI_H_ */
