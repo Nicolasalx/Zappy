@@ -112,5 +112,7 @@ void create_new_ai(int port, struct in_addr *address, char *team_name);
 void wait_for_child(void);
 
 // reply handler
+void first_action(client_t *client, char *reply);
+void forward(client_t *client, char *reply);
 
 #endif /* !ZAPPY_AI_H_ */

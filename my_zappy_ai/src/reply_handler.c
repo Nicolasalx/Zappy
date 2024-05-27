@@ -9,8 +9,8 @@
 
 const reply_handler_t reply_handler[] =
 {
-    {NONE, NULL},
-    {FORWARD, NULL},
+    {NONE, first_action},
+    {FORWARD, forward},
     {RIGHT, NULL},
     {LEFT, NULL},
     {LOOK, NULL},
