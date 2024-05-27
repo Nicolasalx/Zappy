@@ -162,9 +162,6 @@ void pop_cmd_to_make(client_t *client);
 
 // reply handler
 void first_action_reply(client_t *client, char *reply);
-void forward_command_reply(client_t *client, char *reply);
-void right_command_reply(client_t *client, char *reply);
-void left_command_reply(client_t *client, char *reply);
 void look_command_reply(client_t *client, char *reply);
 void inventory_command_reply(client_t *client, char *reply);
 void broadcast_command_reply(client_t *client, char *reply);

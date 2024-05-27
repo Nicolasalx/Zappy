@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** first_action_reply
+** first_action_cmd_reply
 */
 
 #include "zappy_ai.h"

@@ -10,11 +10,11 @@
 
 void remove_first_and_last_char(char **str)
 {
+    int len = strlen(*str);
+
     if (*str == NULL) {
         return;
     }
-    int len = strlen(*str);
-
     if (len < 4) {
         return;
     }
@@ -51,9 +51,6 @@ void parse_inventory_command(client_t *client, char *reply)
     for (int i = 0; word[i] != NULL; ++i) {
         analyse_each_element_inventory(client, word[i]);
     }
-    //for (int i = 0; i < NB_ITEM; ++i) {
-    //    printf("ITEM: %s | NB: %d\n", object_list[i], client->inventory[i]);
-    //}
 }
 
 void inventory_command_reply(client_t *client, char *reply)
