@@ -93,7 +93,7 @@ void handle_server_reply(client_t *client, char *reply);
 void send_cmd_to_server(client_t *client, char *cmd);
 void handle_cmd_reply(client_t *client, char *reply);
 
-void lauch_client(client_t *client);
+void launch_client(client_t *client);
 void delete_client(client_t *client);
 void exit_client(int exit_value, const char *message);
 
