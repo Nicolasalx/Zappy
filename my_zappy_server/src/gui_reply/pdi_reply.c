@@ -11,6 +11,9 @@ void pdi_reply(server_t *server, client_t *client)
 {
     char buffer[100] = {0};
 
+    if (client->player.id == -1) {
+        return;
+    }
     snprintf(buffer, sizeof(buffer), "pdi %d\n", client->player.id);
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0
