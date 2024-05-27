@@ -25,7 +25,7 @@ void create_new_ai(int port, struct in_addr *address, char *team_name)
         strcpy(client.team_name, team_name);
         //check_arg_validity(argc, argv, &client);
         create_client(&client);
-        lauch_client(&client);
+        launch_client(&client);
         delete_client(&client);
         free_all_alloc();
         my_exit(0);

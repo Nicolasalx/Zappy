@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** lauch_client
+** launch_client
 */
 
 #include "zappy_ai.h"
@@ -13,7 +13,7 @@ void close_client(int)
     exit_client(0, NULL);
 }
 
-void lauch_client(client_t *client)
+void launch_client(client_t *client)
 {
     int max_fd = 0;
 

@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
     strcpy(client.team_name, "Team1");
     check_arg_validity(argc, argv, &client);
     create_client(&client);
-    lauch_client(&client);
+    launch_client(&client);
     delete_client(&client);
     wait_for_child();
     free_all_alloc();
