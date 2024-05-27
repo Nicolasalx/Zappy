@@ -98,6 +98,7 @@ void delete_client(client_t *client);
 void exit_client(int exit_value, const char *message);
 
 void create_new_ai(int port, struct in_addr *address, char *team_name);
+void wait_for_child(void);
 
 // reply handler
 
