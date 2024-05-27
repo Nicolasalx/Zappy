@@ -115,8 +115,7 @@ void Graphic::init_object()
     SetMaterialTexture(&mendiane_model.materials[0], MATERIAL_MAP_DIFFUSE, texture_m);
     this->model_list.push_back(mendiane_model);
     // phiras
-    Mesh phiras = GenMeshCylinder(0.5f, 1.0f, 32);
-    Model phiras_model = LoadModelFromMesh(phiras);
+    Model phiras_model = LoadModel("assets/phiras.obj");
     this->model_list.push_back(phiras_model);
     // thystame
     Mesh thystame = GenMeshCylinder(0.5f, 1.0f, 32);
