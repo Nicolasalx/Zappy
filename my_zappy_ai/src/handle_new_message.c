@@ -58,5 +58,5 @@ void handle_new_message(client_t *client)
         client->buffer_size = 0;
         return;
     }
-    buffering_input(client, reply);
+    buffering_input(client, reply, size);
 }
