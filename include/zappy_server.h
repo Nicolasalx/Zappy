@@ -188,6 +188,7 @@ void append_with_space_if_needed(char *buff, const char *str, bool *first);
 void get_item_str(char *buff, int x, int y, server_t *server);
 void append_with_coma_if_needed_x(client_t *client, char *buff, int x, int i);
 void append_with_coma_if_needed_y(client_t *client, char *buff, int y, int i);
+team_t *condition_win(server_t *server);
 
 // args management
 void get_port_and_freq(const char **argv,

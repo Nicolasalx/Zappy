@@ -60,7 +60,7 @@ static void end_elevation(server_t *server, client_t *client)
     free_linked_list(&client->incentation_mate);
 }
 
-static team_t *condition_win(server_t *server)
+team_t *condition_win(server_t *server)
 {
     int nb_player_lvl_8 = 0;
 
