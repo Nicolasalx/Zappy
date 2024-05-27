@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** look
+** look_command_reply
 */
 
 #include "zappy_ai.h"
@@ -51,7 +51,7 @@ void parse_look_command(client_t *client, char *reply)
     // }
 }
 
-void look_command(client_t *client, char *reply)
+void look_command_reply(client_t *client, char *reply)
 {
     parse_look_command(client, reply);
 }
