@@ -122,6 +122,7 @@ void Graphic::init_object()
     // thystame
     Model thystame_model = LoadModel("assets/thystame.obj");
     Texture2D texture_t = LoadTexture("assets/texture_thystame.png");
+    SetMaterialTexture(&thystame_model.materials[0], MATERIAL_MAP_DIFFUSE, texture_t);
     this->model_list.push_back(thystame_model);
 }
 
