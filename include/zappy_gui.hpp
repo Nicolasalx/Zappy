@@ -57,6 +57,7 @@ struct player_t {
     pos_t real_pos;
     int level;
     int orientation;
+    int real_orientation;
     std::string team_name;
     std::vector<int> inventory;
     int animation_nbr;
@@ -148,8 +149,7 @@ class Graphic {
         std::map<int, int> player_orientation;
         float object_padding[7][2];
         ModelAnimation *player_animation;
-        Shader light_shader;
-        // Light light;
+        // Shader light_shader;
         int window_width = WINDOW_WIDTH;
         int window_height = WINDOW_HEIGHT;
         bool cursor = false;

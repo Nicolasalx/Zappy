@@ -29,8 +29,8 @@ void Graphic::window_resize()
 void Graphic::event()
 {
     if (IsCursorHidden()) UpdateCamera(&this->camera, CAMERA_FREE);
-    float cameraPos[3] = { camera.position.x, camera.position.y, camera.position.z };
-    SetShaderValue(light_shader, light_shader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
+    // float cameraPos[3] = { camera.position.x, camera.position.y, camera.position.z };
+    // SetShaderValue(light_shader, light_shader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
     if (IsKeyPressed(KEY_Z)) {
         this->camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };
     }

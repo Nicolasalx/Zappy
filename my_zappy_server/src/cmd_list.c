@@ -41,7 +41,10 @@ const ai_handler_t ai_cmd_handler[] =
 const server_handler_t server_cmd_handler[] =
 {
     {"tp", 4, tp_cmd, "tp [n player] [x] [y] [orientation]"},
-    {"level", 2, level_cmd, "tp [n player] [k level]"},
-
+    {"level", 2, level_cmd, "level [n player] [k level]"},
+    {"give", 3, give_cmd, "give [n player] [resource] [quantity]"},
+    {"pause", 0, pause_cmd, "pause"},
+    {"resume", 0, resume_cmd, "resume"},
+    {"immortal", 1, immortal_cmd, "immortal [true/false]"},
     {NULL, 0, NULL, NULL}
 };

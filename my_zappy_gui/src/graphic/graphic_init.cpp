@@ -89,16 +89,20 @@ void Graphic::init_player()
 void Graphic::init_object()
 {
     // food
-    Mesh sphere = GenMeshSphere(0.5f, 32, 32);
-    Model food = LoadModelFromMesh(sphere);
+    Model food = LoadModel("assets/food.glb");
+    Texture2D texture = LoadTexture("assets/texture_food.png");
+    SetMaterialTexture(&food.materials[0], MATERIAL_MAP_DIFFUSE, texture);
+    food.transform = MatrixRotateXYZ((Vector3){90.0f * (PI / 180), 0.0f, 0.0f});
     this->model_list.push_back(food);
     // limenate
-    Mesh limenate = GenMeshCylinder(0.5f, 1.0f, 32);
-    Model limenate_model = LoadModelFromMesh(limenate);
+    Model limenate_model = LoadModel("assets/linemate.obj");
+    Texture2D texture_l = LoadTexture("assets/texture_linemate.png");
+    SetMaterialTexture(&limenate_model.materials[0], MATERIAL_MAP_DIFFUSE, texture_l);
     this->model_list.push_back(limenate_model);
     // deraumere
-    Mesh deraumere = GenMeshCone(0.5f, 1.0f, 32);
-    Model deraumere_model = LoadModelFromMesh(deraumere);
+    Model deraumere_model = LoadModel("assets/deraumere.obj");
+    Texture2D texture_d = LoadTexture("assets/texture_deraumere.png");
+    SetMaterialTexture(&deraumere_model.materials[0], MATERIAL_MAP_DIFFUSE, texture_d);
     this->model_list.push_back(deraumere_model);
     // sibur
     Mesh sibur = GenMeshTorus(0.5f, 1.0f, 32, 32);
@@ -128,10 +132,10 @@ void Graphic::init_object_padding()
 
 void Graphic::init_lighting()
 {
-    light_shader = LoadShader(TextFormat("assets/lighting.vs", 330),
-                               TextFormat("assets/lighting.fs", 330));
-    light_shader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(light_shader, "viewPos");
-    float test[4] = { 0.1f, 0.1f, 0.1f, 1.0f };
-    int ambientLoc = GetShaderLocation(light_shader, "ambient");
-    SetShaderValue(light_shader, ambientLoc, test, SHADER_UNIFORM_VEC4);
+    // light_shader = LoadShader(TextFormat("assets/lighting.vs", 330),
+    //                            TextFormat("assets/lighting.fs", 330));
+    // light_shader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(light_shader, "viewPos");
+    // float test[4] = { 0.1f, 0.1f, 0.1f, 1.0f };
+    // int ambientLoc = GetShaderLocation(light_shader, "ambient");
+    // SetShaderValue(light_shader, ambientLoc, test, SHADER_UNIFORM_VEC4);
 }

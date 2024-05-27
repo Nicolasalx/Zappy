@@ -117,6 +117,7 @@ typedef struct {
     int player_count;
     int egg_count;
     bool end_game;
+    bool pause_game;
     struct timeval last_update;
     struct timeval last_resource_spawn;
     struct sockaddr_in address;
@@ -250,7 +251,10 @@ void eject_cmd(char *argv, client_t *client, server_t *server);
 // server command
 void tp_cmd(int argc, char **argv, server_t *server);
 void level_cmd(int argc, char **argv, server_t *server);
-
+void give_cmd(int argc, char **argv, server_t *server);
+void pause_cmd(int argc, char **argv, server_t *server);
+void resume_cmd(int argc, char **argv, server_t *server);
+void immortal_cmd(int, char **argv, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);

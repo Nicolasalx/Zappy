@@ -20,7 +20,8 @@ void plv_cmd(int, char **argv, client_t *client, server_t *server)
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0
         && server->clients[i].is_graphic == false
-        && server->clients[i].player.id == id) {
+        && server->clients[i].player.id == id
+        && server->clients[i].player.team) {
             snprintf(buffer, sizeof(buffer), "plv %d %d\n",
             id, server->clients[i].player.level);
             send_msg_client(client->fd, buffer);
