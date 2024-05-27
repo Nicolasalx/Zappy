@@ -7,7 +7,7 @@
 
 #include "zappy_ai.h"
 
-void take_command(client_t *client, char *reply)
+void take_reply(client_t *client, char *reply)
 {
     printf("Take\n");
     client->last_cmd = TAKE;
