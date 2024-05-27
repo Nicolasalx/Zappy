@@ -13,7 +13,7 @@ static void create_egg(server_t *server)
     egg_t *new_egg = NULL;
 
     for (int i = 0; i < server->team_count; ++i) {
-        for (int j = 0; j < server->team_list[i].remaining_place; ++j) {
+        for (int j = 0; j < server->team_list[i].remaining_spot; ++j) {
             new_egg = my_calloc(sizeof(egg_t));
             new_egg->nb = server->egg_count;
             ++server->egg_count;
