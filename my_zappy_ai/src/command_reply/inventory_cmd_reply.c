@@ -62,7 +62,4 @@ void inventory_command_reply(client_t *client, char *reply)
         return;
     }
     parse_inventory_command(client, reply);
-
-    client->last_cmd = LOOK;
-    send_cmd_to_server(client, "Look\n");
 }

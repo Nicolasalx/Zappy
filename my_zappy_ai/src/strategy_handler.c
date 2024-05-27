@@ -10,6 +10,7 @@
 void (*strategy_handler[NB_STRATEGY][10])(client_t *) =
 {
     [NOT_SET] = {
+        queen_management,
         NULL
     },
     [FARMER] = {
