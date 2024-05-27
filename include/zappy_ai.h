@@ -114,12 +114,6 @@ extern node_t *child_list;
 
 extern void (*strategy_handler[NB_STRATEGY][10])(client_t *);
 
-//{
-//    incantation_command,
-//    try_take_food,
-//    forward_command
-//}
-
 void check_arg_validity(int argc, const char **argv, client_t *client);
 void get_args(int argc, const char **argv, client_t *client);
 void create_client(client_t *client);
