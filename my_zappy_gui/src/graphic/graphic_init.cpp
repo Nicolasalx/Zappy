@@ -20,6 +20,7 @@ Graphic::Graphic(GameState *gameState)
     this->init_player();
     this->init_object_padding();
     this->init_lighting();
+    this->init_2D();
     this->player_orientation[1] = 180;
     this->player_orientation[2] = 90;
     this->player_orientation[3] = 0;
@@ -142,4 +143,10 @@ void Graphic::init_lighting()
     // float test[4] = { 0.1f, 0.1f, 0.1f, 1.0f };
     // int ambientLoc = GetShaderLocation(light_shader, "ambient");
     // SetShaderValue(light_shader, ambientLoc, test, SHADER_UNIFORM_VEC4);
+}
+
+void Graphic::init_2D()
+{
+    Rectangle textBox = {window_width * 0.75f, window_height / 20.0f, window_width / 6.0f, window_height / 20.0f};
+    this->textBoxs.push_back(textBox);
 }
