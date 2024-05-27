@@ -105,9 +105,10 @@ void Graphic::init_object()
     SetMaterialTexture(&deraumere_model.materials[0], MATERIAL_MAP_DIFFUSE, texture_d);
     this->model_list.push_back(deraumere_model);
     // sibur
-    Mesh sibur = GenMeshTorus(0.5f, 1.0f, 32, 32);
-    Model sibur_model = LoadModelFromMesh(sibur);
-    this->model_list.push_back(sibur_model);
+    Model sibur = LoadModel("assets/sibur.obj");
+    Texture2D texture_s = LoadTexture("assets/texture_sibur.png");
+    SetMaterialTexture(&sibur.materials[0], MATERIAL_MAP_DIFFUSE, texture_s);
+    this->model_list.push_back(sibur);
     // mendiane
     Mesh mendiane = GenMeshCube(0.5f, 1.0f, 1.0f);
     Model mendiane_model = LoadModelFromMesh(mendiane);
