@@ -32,6 +32,29 @@ typedef enum {
     LOGGED
 } log_state_t;
 
+typedef enum {
+    NOT_SET,
+    FARMER,
+    QUEEN,
+    DEAD_FORK
+} strategy_t;
+
+typedef enum {
+    NONE,
+    FORWARD,
+    RIGHT,
+    LEFT,
+    LOOK,
+    INVENTORY,
+    BROADCAST,
+    CONNECT_NBR,
+    FORK,
+    EJECT,
+    TAKE,
+    SET,
+    INCANTATION
+} cmd_list_t;
+
 typedef struct {
     int fd;
     fd_set read_set;
@@ -45,15 +68,19 @@ typedef struct {
     char team_name[MAX_TEAMNAME_SIZE + 1];
     char *reply_buffer;
     size_t buffer_size;
+    cmd_list_t last_cmd;
+    strategy_t *strategy;
 } client_t;
 
-typedef struct {
-    char *name;
-    bool has_arg;
-    void (*method)(client_t *, char *);
-} reply_handler_t;
+//typedef struct {
+//    char *name;
+//    bool has_arg;
+//    void (*method)(client_t *, char *);
+//} reply_handler_t;
 
-extern const reply_handler_t reply_handler[];
+//extern const reply_handler_t reply_handler[];
+
+extern node_t *child_list;
 
 void check_arg_validity(int argc, const char **argv, client_t *client);
 void create_client(client_t *client);
@@ -64,10 +91,14 @@ void monitor_input(client_t *client, int max_fd);
 void handle_new_message(client_t *client);
 void handle_server_reply(client_t *client, char *reply);
 void send_cmd_to_server(client_t *client, char *cmd);
+void handle_cmd_reply(client_t *client, char *reply);
 
 void lauch_client(client_t *client);
 void delete_client(client_t *client);
 void exit_client(int exit_value, const char *message);
+
+void create_new_ai(int port, struct in_addr *address, char *team_name);
+void wait_for_child(void);
 
 // reply handler
 
