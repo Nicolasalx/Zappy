@@ -5,8 +5,8 @@
 ** myteams_server
 */
 
-#ifndef MYTEAMS_SERVER_H_
-    #define MYTEAMS_SERVER_H_
+#ifndef ZAPPY_SERVER_H_
+    #define ZAPPY_SERVER_H_
 
     #include "my_importall.h"
     #include <sys/types.h>
@@ -103,6 +103,8 @@ typedef struct {
     player_t player;
     node_t *incentation_mate;
     bool in_incentation;
+    char *cmd_buffer;
+    size_t buffer_size;
 } client_t;
 
 typedef struct {
@@ -258,4 +260,4 @@ void spawn_resource(server_t *server);
 void update_resource(server_t *server);
 void consume_food(server_t *server);
 
-#endif /* !MYTEAMS_SERVER_H_ */
+#endif /* !ZAPPY_SERVER_H_ */
