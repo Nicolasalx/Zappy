@@ -32,7 +32,7 @@
     #define CMD_BUFFER_SIZE 4096
     #define WINDOW_WIDTH 1920 / 2
     #define WINDOW_HEIGHT 1080 / 2
-    #define SCALE 4.0f
+    #define SCALE 6.0f
 
 enum {
     FOOD,
@@ -126,6 +126,7 @@ class Graphic {
         void init_object();
         void init_object_padding();
         void init_lighting();
+        void init_2D();
         void set_fps(int fps);
         //loop
         void loop();
@@ -149,6 +150,7 @@ class Graphic {
         std::map<int, int> player_orientation;
         float object_padding[7][2];
         ModelAnimation *player_animation;
+        std::vector<Rectangle> textBoxs;
         // Shader light_shader;
         int window_width = WINDOW_WIDTH;
         int window_height = WINDOW_HEIGHT;
