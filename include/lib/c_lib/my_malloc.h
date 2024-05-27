@@ -34,5 +34,9 @@ char **my_str_to_word_wm(const char *str, bool (*method)(char),
     int nb_word, const int *size_word);
 void **malloc_gn_adv_board(int nb_line, int *size_line, size_t size);
 void **malloc_gn_board(int nb_line, int size_line, size_t size);
+int count_nb_word_opt(const char *str, const char *delimiter);
+int *count_size_word_opt(const char *str, const char *delimiter, int nb_word);
+char **my_str_to_word_opt(const char *str, const char *delimiter,
+    int nb_word, const int *size_word);
 
 #endif /* !MY_MALLOC */
