@@ -36,8 +36,20 @@ typedef enum {
     NOT_SET,
     FARMER,
     QUEEN,
-    DEAD_FORK
+    DEAD_FORK,
+    NB_STRATEGY
 } strategy_t;
+
+typedef enum {
+    FOOD,
+    LINEMATE,
+    DERAUMERE,
+    SIBUR,
+    MENDIANE,
+    PHIRAS,
+    THYSTAME,
+    NB_ITEM
+} item_t;
 
 typedef enum {
     NONE,
@@ -79,10 +91,17 @@ typedef struct {
     char team_name[MAX_TEAMNAME_SIZE + 1];
     char *reply_buffer;
     size_t buffer_size;
+    strategy_t strategy;
+    int inventory[NB_ITEM];
+    int instruction_index;
+    node_t *cmd_to_make;
     cmd_list_t last_cmd;
-    strategy_t *strategy;
-    inventory_t *inventory;
 } client_t;
+
+typedef struct {
+    cmd_list_t cmd_type;
+    char *arg;
+} cmd_to_make_t;
 
 typedef struct {
     cmd_list_t cmd_type;
@@ -93,6 +112,9 @@ extern const reply_handler_t reply_handler[];
 
 extern node_t *child_list;
 
+extern void (*strategy_handler[NB_STRATEGY][10])(client_t *);
+
+void check_arg_validity(int argc, const char **argv, client_t *client);
 void get_args(int argc, const char **argv, client_t *client);
 void create_client(client_t *client);
 client_t *get_client(client_t *client);
@@ -110,6 +132,9 @@ void exit_client(int exit_value, const char *message);
 
 void create_new_ai(int port, struct in_addr *address, char *team_name);
 void wait_for_child(void);
+
+void push_new_command(client_t *client, cmd_list_t cmd_type, char *cmd);
+void pop_cmd_to_make(client_t *client);
 
 // reply handler
 void first_action(client_t *client, char *reply);
