@@ -23,6 +23,7 @@ void Graphic::window_resize()
     if (IsWindowResized()) {
         this->window_width = GetScreenWidth();
         this->window_height = GetScreenHeight();
+        this->textBoxs[0] = (Rectangle){window_width * 0.76f, window_height / 21.0f, window_width / 4.5f, window_height / 10.0f};
     }
 }
 
