@@ -112,14 +112,17 @@ void Graphic::init_object()
     // mendiane
     Model mendiane_model = LoadModel("assets/mendiane.obj");
     Texture2D texture_m = LoadTexture("assets/texture_mendiane.png");
+    SetMaterialTexture(&mendiane_model.materials[0], MATERIAL_MAP_DIFFUSE, texture_m);
     this->model_list.push_back(mendiane_model);
     // phiras
-    Mesh phiras = GenMeshCylinder(0.5f, 1.0f, 32);
-    Model phiras_model = LoadModelFromMesh(phiras);
+    Model phiras_model = LoadModel("assets/phiras.obj");
+    Texture2D texture_p = LoadTexture("assets/texture_phiras.png");
+    SetMaterialTexture(&phiras_model.materials[0], MATERIAL_MAP_DIFFUSE, texture_p);
     this->model_list.push_back(phiras_model);
     // thystame
-    Mesh thystame = GenMeshCylinder(0.5f, 1.0f, 32);
-    Model thystame_model = LoadModelFromMesh(thystame);
+    Model thystame_model = LoadModel("assets/thystame.obj");
+    Texture2D texture_t = LoadTexture("assets/texture_thystame.png");
+    SetMaterialTexture(&thystame_model.materials[0], MATERIAL_MAP_DIFFUSE, texture_t);
     this->model_list.push_back(thystame_model);
 }
 
