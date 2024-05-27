@@ -22,7 +22,7 @@ void create_new_ai(int port, struct in_addr *address, char *team_name)
 
         client.port = port;
         client.server_address.sin_addr = *address;
-        strcpy(client.team_name, team_name);
+        strcpy(client.player.team_name, team_name);
         //check_arg_validity(argc, argv, &client);
         create_client(&client);
         launch_client(&client);
