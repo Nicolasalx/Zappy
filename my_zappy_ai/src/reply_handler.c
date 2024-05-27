@@ -9,17 +9,18 @@
 
 const reply_handler_t reply_handler[] =
 {
-    {"Forward\n", false, NULL},
-    {"Right\n", false, NULL},
-    {"Left\n", false, NULL},
-    {"Look\n", false, NULL},
-    {"Inventory\n", false, NULL},
-    {"Broadcast", true, NULL},
-    {"Connect_nbr\n", false, NULL},
-    {"Fork\n", false, NULL},
-    {"Eject\n", false, NULL},
-    {"Take", true, NULL},
-    {"Set", true, NULL},
-    {"Incantation\n", false, NULL},
-    {NULL, false, NULL}
+    {NONE, NULL},
+    {FORWARD, NULL},
+    {RIGHT, NULL},
+    {LEFT, NULL},
+    {LOOK, NULL},
+    {INVENTORY, NULL},
+    {BROADCAST, NULL},
+    {CONNECT_NBR, NULL},
+    {FORK, NULL},
+    {EJECT, NULL},
+    {TAKE, NULL},
+    {SET, NULL},
+    {INCANTATION, NULL},
+    {0, NULL}
 };

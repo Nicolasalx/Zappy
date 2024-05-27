@@ -9,9 +9,22 @@
 
 void handle_cmd_reply(client_t *client, char *reply)
 {
-    if (!reply && client->last_cmd == NONE) {
-        // first command
-    }
-    // handle other cmd
     // ! set last cmd var (ex: client->last_cmd = INVENTORY;)
+    if (reply && strncmp("eject: ", reply, 7) == 0) {
+
+    } else if (reply && strncmp("message ", reply, 8) == 0) {
+
+    } else if (reply && strcmp("dead\n", reply) == 0) {
+        printf("dead\n");
+    } else {
+        for (int i = 0; i < NB_ACTION; ++i) {
+            if ((int) client->last_cmd == i) {
+                if (reply_handler[i].method) {
+                    reply_handler[i].method(client, reply);
+                } else {
+                    printf("Method not implemented.\n");
+                }
+            }
+        }
+    }
 }

@@ -52,7 +52,8 @@ typedef enum {
     EJECT,
     TAKE,
     SET,
-    INCANTATION
+    INCANTATION,
+    NB_ACTION
 } cmd_list_t;
 
 typedef struct {
@@ -84,12 +85,11 @@ typedef struct {
 } client_t;
 
 typedef struct {
-    char *name;
-    bool has_arg;
+    cmd_list_t cmd_type;
     void (*method)(client_t *, char *);
 } reply_handler_t;
 
-//extern const reply_handler_t reply_handler[];
+extern const reply_handler_t reply_handler[];
 
 extern node_t *child_list;
 
