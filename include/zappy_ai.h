@@ -24,6 +24,7 @@
     #define CMD_BUFFER_SIZE 100000
     #define NEW_CLIENT_MESSAGE "WELCOME\n"
     #define MAX_TEAMNAME_SIZE 32
+    #define MAX_LOOK_SIZE 81
 
 typedef enum {
     WAITING_WELCOME,
@@ -50,6 +51,18 @@ typedef enum {
     NB_ITEM
 } item_t;
 
+typedef enum {
+    TILE_FOOD,
+    TILE_LINEMATE,
+    TILE_DERAUMERE,
+    TILE_SIBUR,
+    TILE_MENDIANE,
+    TILE_PHIRAS,
+    TILE_THYSTAME,
+    TILE_PLAYER,
+    TILE_NB_ELEM
+} tile_t;
+    
 typedef enum {
     NONE,
     FORWARD,
@@ -93,6 +106,7 @@ typedef struct {
     cmd_list_t last_cmd;
     strategy_t *strategy;
     int inventory[NB_ITEM];
+    int content_look[MAX_LOOK_SIZE][TILE_NB_ELEM];
 } client_t;
 
 typedef struct {
@@ -110,6 +124,8 @@ typedef struct {
 } cmd_to_make_t;
 
 extern cmd_to_make_t strategy_handler_t[];
+extern const char *object_list[NB_ITEM];
+extern const char *tile_list[TILE_NB_ELEM];
 
 //{
 //    incantation_command,
@@ -150,5 +166,7 @@ void eject_command(client_t *client, char *reply);
 void take_command(client_t *client, char *reply);
 void set_command(client_t *client, char *reply);
 void incantation_command(client_t *client, char *reply);
+
+void remove_first_and_last_char(char **str);
 
 #endif /* !ZAPPY_AI_H_ */
