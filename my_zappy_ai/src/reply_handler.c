@@ -9,7 +9,7 @@
 
 const reply_handler_t reply_handler[] =
 {
-    {NONE, first_action},
+    {NONE, NULL},
     {FORWARD, forward_command},
     {RIGHT, right_command},
     {LEFT, left_command},
