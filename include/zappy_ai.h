@@ -70,7 +70,7 @@ typedef struct {
     int fd;
     fd_set read_set;
     fd_set write_set;
-    unsigned short port;
+    int port;
     struct sockaddr_in server_address;
     log_state_t log_state;
     int id;
@@ -93,7 +93,7 @@ extern const reply_handler_t reply_handler[];
 
 extern node_t *child_list;
 
-void check_arg_validity(int argc, const char **argv, client_t *client);
+void get_args(int argc, const char **argv, client_t *client);
 void create_client(client_t *client);
 client_t *get_client(client_t *client);
 void init_client_set(client_t *client, int *max_fd);
