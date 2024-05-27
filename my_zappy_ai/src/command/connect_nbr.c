@@ -9,5 +9,8 @@
 
 void connect_nbr_command(client_t *client, char *reply)
 {
+    printf("Connect_nbr\n");
+    client->last_cmd = CONNECT_NBR;
+    client->remaining_spots = atoi(reply);
 
 }
