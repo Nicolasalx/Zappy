@@ -21,7 +21,6 @@ static bool add_to_inventory(server_t *server, int i, int nb, char **argv)
 
 static bool check_client(server_t *server, char **argv, int i)
 {
-    bool is_player_id = false;
     int id = atoi(argv[0]);
     int nb = atoi(argv[2]);
 
