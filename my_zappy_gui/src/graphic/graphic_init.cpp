@@ -111,6 +111,7 @@ void Graphic::init_object()
     this->model_list.push_back(sibur);
     // mendiane
     Model mendiane_model = LoadModel("assets/mendiane.obj");
+    Texture2D texture_m = LoadTexture("assets/texture_mendiane.png");
     this->model_list.push_back(mendiane_model);
     // phiras
     Mesh phiras = GenMeshCylinder(0.5f, 1.0f, 32);
