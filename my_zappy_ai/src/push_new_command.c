@@ -21,8 +21,10 @@ void push_new_command(client_t *client, cmd_list_t cmd_type, char *cmd)
 void pop_cmd_to_make(client_t *client)
 {
     if (!client->cmd_to_make) {
-        strategy_handler[client->strategy][client->instruction_index](client);
-        ++client->instruction_index;
+        if (strategy_handler[client->strategy][client->instruction_index]) {
+            strategy_handler[client->strategy][client->instruction_index](client);
+            ++client->instruction_index;
+        }
         if (!strategy_handler[client->strategy][client->instruction_index]) {
             client->instruction_index = 0;
         }

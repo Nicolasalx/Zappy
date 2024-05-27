@@ -18,9 +18,9 @@ static bool get_map_size(client_t *client, char *reply)
     || !my_str_only_cont(word[1], "0123456789")) {
         return false;
     }
-    client->world_size_x = atoi(word[0]);
-    client->world_size_y = atoi(word[1]);
-    if (client->world_size_x <= 0 || client->world_size_y <= 0) {
+    client->world.size_x = atoi(word[0]);
+    client->world.size_y = atoi(word[1]);
+    if (client->world.size_x <= 0 || client->world.size_y <= 0) {
         return false;
     }
     return true;
@@ -32,12 +32,12 @@ static void handle_login(client_t *client, char *reply)
 
     if (client->log_state == WAITING_WELCOME
     && strcmp(reply, NEW_CLIENT_MESSAGE) == 0) {
-        snprintf(team_name, sizeof(team_name), "%s\n", client->team_name);
+        snprintf(team_name, sizeof(team_name), "%s\n", client->player.team_name);
         send_cmd_to_server(client, team_name);
         client->log_state = WAITING_ID;
     } else if (client->log_state == WAITING_ID
     && my_str_only_cont(reply, "0123456789\n")) {
-        client->id = atoi(reply);
+        client->player.id = atoi(reply);
         client->log_state = WAINTING_MAP_SIZE;
         handle_cmd_reply(client, NULL);
     } else if (client->log_state == WAINTING_MAP_SIZE

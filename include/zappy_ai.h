@@ -24,6 +24,7 @@
     #define CMD_BUFFER_SIZE 100000
     #define NEW_CLIENT_MESSAGE "WELCOME\n"
     #define MAX_TEAMNAME_SIZE 32
+    #define MAX_LOOK_SIZE 81
 
 typedef enum {
     WAITING_WELCOME,
@@ -52,6 +53,18 @@ typedef enum {
 } item_t;
 
 typedef enum {
+    TILE_FOOD,
+    TILE_LINEMATE,
+    TILE_DERAUMERE,
+    TILE_SIBUR,
+    TILE_MENDIANE,
+    TILE_PHIRAS,
+    TILE_THYSTAME,
+    TILE_PLAYER,
+    TILE_NB_ELEM
+} tile_t;
+    
+typedef enum {
     NONE,
     FORWARD,
     RIGHT,
@@ -69,33 +82,36 @@ typedef enum {
 } cmd_list_t;
 
 typedef struct {
-    int food;
-    int linemate;
-    int deraumere;
-    int sibur;
-    int mendiane;
-    int phiras;
-    int thystame;
-} inventory_t;
+    int id;
+    int inventory[NB_ITEM];
+    int content_look[MAX_LOOK_SIZE][TILE_NB_ELEM];
+    char team_name[MAX_TEAMNAME_SIZE + 1];
+    item_t last_item_taken;
+} player_t;
+
+typedef struct {
+    int size_x;
+    int size_y;
+} world_t;
 
 typedef struct {
     int fd;
-    fd_set read_set;
-    fd_set write_set;
     int port;
     struct sockaddr_in server_address;
+    fd_set read_set;
+    fd_set write_set;
+    world_t world;
+    player_t player;
     log_state_t log_state;
-    int id;
-    int world_size_x;
-    int world_size_y;
-    char team_name[MAX_TEAMNAME_SIZE + 1];
     char *reply_buffer;
     size_t buffer_size;
     strategy_t strategy;
-    int inventory[NB_ITEM];
+    int shared_inventory[NB_ITEM];
     int instruction_index;
+    int remaining_spots;
     node_t *cmd_to_make;
     cmd_list_t last_cmd;
+    int level_player;
 } client_t;
 
 typedef struct {
@@ -112,7 +128,15 @@ extern const reply_handler_t reply_handler[];
 
 extern node_t *child_list;
 
+
+//{
+//    incantation_command,
+//    try_take_food,
+//    forward_command
+//}
 extern void (*strategy_handler[NB_STRATEGY][10])(client_t *);
+extern const char *object_list[NB_ITEM];
+extern const char *tile_list[TILE_NB_ELEM];
 
 void check_arg_validity(int argc, const char **argv, client_t *client);
 void get_args(int argc, const char **argv, client_t *client);
@@ -137,18 +161,22 @@ void push_new_command(client_t *client, cmd_list_t cmd_type, char *cmd);
 void pop_cmd_to_make(client_t *client);
 
 // reply handler
-void first_action(client_t *client, char *reply);
-void forward_command(client_t *client, char *reply);
-void right_command(client_t *client, char *reply);
-void left_command(client_t *client, char *reply);
-void look_command(client_t *client, char *reply);
-void inventory_command(client_t *client, char *reply);
-void broadcast_command(client_t *client, char *reply);
-void connect_nbr_command(client_t *client, char *reply);
-void fork_command(client_t *client, char *reply);
-void eject_command(client_t *client, char *reply);
-void take_command(client_t *client, char *reply);
-void set_command(client_t *client, char *reply);
-void incantation_command(client_t *client, char *reply);
+void first_action_reply(client_t *client, char *reply);
+void forward_command_reply(client_t *client, char *reply);
+void right_command_reply(client_t *client, char *reply);
+void left_command_reply(client_t *client, char *reply);
+void look_command_reply(client_t *client, char *reply);
+void inventory_command_reply(client_t *client, char *reply);
+void broadcast_command_reply(client_t *client, char *reply);
+void connect_nbr_command_reply(client_t *client, char *reply);
+void fork_command_reply(client_t *client, char *reply);
+void eject_command_reply(client_t *client, char *reply);
+void take_command_reply(client_t *client, char *reply);
+void set_command_reply(client_t *client, char *reply);
+void incantation_command_reply(client_t *client, char *reply);
+
+void remove_first_and_last_char(char **str);
+
+void queen_management(client_t *client);
 
 #endif /* !ZAPPY_AI_H_ */

@@ -13,13 +13,13 @@ static void create_team_name(server_t *server)
         printf("No team name set, default team names are "
             "Team1, Team2, Team3, Team4\n");
         strcpy(server->team_list[0].name, "Team1");
-        server->team_list[0].remaining_place = server->client_nb;
+        server->team_list[0].remaining_spot = server->client_nb;
         strcpy(server->team_list[1].name, "Team2");
-        server->team_list[1].remaining_place = server->client_nb;
+        server->team_list[1].remaining_spot = server->client_nb;
         strcpy(server->team_list[2].name, "Team3");
-        server->team_list[2].remaining_place = server->client_nb;
+        server->team_list[2].remaining_spot = server->client_nb;
         strcpy(server->team_list[3].name, "Team4");
-        server->team_list[3].remaining_place = server->client_nb;
+        server->team_list[3].remaining_spot = server->client_nb;
         server->team_count = 4;
     }
 }

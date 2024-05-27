@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** myteams_client
+** zappy_gui.hpp
 */
 
-#ifndef MYTEAMS_CLIENT_H_
-    #define MYTEAMS_CLIENT_H_
+#ifndef ZAPPY_GUI_H_
+    #define ZAPPY_GUI_H_
 
     #include "my_tracked_exception.hpp"
     #include "my_log.hpp"
@@ -161,4 +161,4 @@ class Graphic {
         bool cursor = false;
 };
 
-#endif /* !MYTEAMS_CLIENT_H_ */
+#endif /* !ZAPPY_GUI_H_ */

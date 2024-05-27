@@ -47,14 +47,14 @@ static void get_team_name(const char **argv, client_t *client, int i, const char
             printf("Error: Team name is too long\n");
             my_exit(84);
         }
-        strcpy(client->team_name, argv[i + 1]);
+        strcpy(client->player.team_name, argv[i + 1]);
     }
 }
 
 static void set_args(client_t *client)
 {
     client->port = -1;
-    client->team_name[0] = '\0';
+    client->player.team_name[0] = '\0';
 }
 
 
@@ -62,8 +62,8 @@ void fill_args(client_t *client)
 {
     if (client->port == -1)
         client->port = 4242;
-    if (client->team_name[0] == '\0')
-        strcpy(client->team_name, "Team1");
+    if (client->player.team_name[0] == '\0')
+        strcpy(client->player.team_name, "Team1");
 }
 
 void get_args(int argc, const char **argv, client_t *client)
