@@ -40,6 +40,17 @@ typedef enum {
 } strategy_t;
 
 typedef enum {
+    FOOD,
+    LINEMATE,
+    DERAUMERE,
+    SIBUR,
+    MENDIANE,
+    PHIRAS,
+    THYSTAME,
+    NB_ITEM
+} item_t;
+
+typedef enum {
     NONE,
     FORWARD,
     RIGHT,
@@ -81,7 +92,7 @@ typedef struct {
     size_t buffer_size;
     cmd_list_t last_cmd;
     strategy_t *strategy;
-    inventory_t *inventory;
+    int inventory[NB_ITEM];
 } client_t;
 
 typedef struct {
@@ -92,6 +103,19 @@ typedef struct {
 extern const reply_handler_t reply_handler[];
 
 extern node_t *child_list;
+
+typedef struct {
+    void (**current_instruction)(client_t *);
+    void (**method)(client_t *);
+} cmd_to_make_t;
+
+extern cmd_to_make_t strategy_handler_t[];
+
+//{
+//    incantation_command,
+//    try_take_food,
+//    forward_command
+//}
 
 void check_arg_validity(int argc, const char **argv, client_t *client);
 void create_client(client_t *client);
