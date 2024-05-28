@@ -7,6 +7,11 @@
 
 #include "zappy_ai.h"
 
+// void broad_cast_cmd(client_t *client)
+// {
+//     send_command_broad_cast(client, "Queen role taken");
+// }
+
 bool command_come_from_my_team(client_t *client, const char *reply)
 {
     int nb_word = count_nb_word(reply, "|");
