@@ -45,6 +45,9 @@ void (*strategy_handler[NB_STRATEGY][10])(client_t *) =
         look_for_elem,
         take_elements_on_floor,
         move_next_case,
+        start_backtrace,
+        farmer_backtrace,
+        farmer_drop_items,
         NULL
     },
     [QUEEN] = {

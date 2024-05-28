@@ -193,6 +193,9 @@ void queen_eat(client_t *client);
 void queen_incantation(client_t *client);
 void queen_check_nb_food(client_t *client);
 void queen_create_child(client_t *client);
+void start_backtrace(client_t *client);
+void farmer_backtrace(client_t *client);
+void farmer_drop_items(client_t *client);
 
 void dead_fork(client_t *client);
 void wait_end_fork(client_t *client);
