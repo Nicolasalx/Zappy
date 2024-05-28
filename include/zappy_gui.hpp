@@ -18,7 +18,6 @@
     #include <raylib.h>
     #include <rlgl.h>
     #include <raymath.h>
-    #include <raymath.h>
     #include <unistd.h>
     #include <iostream>
     #include <string>
@@ -63,6 +62,13 @@ struct player_t {
     std::vector<int> inventory;
     int animation_nbr;
     int anim_frame_counter;
+};
+
+struct ray_info_t {
+    Ray ray;
+    BoundingBox box;
+    RayCollision collision;
+    int type;
 };
 
 class GameState {
@@ -137,6 +143,7 @@ class Graphic {
         void window_resize();
         void update_animation(player_t &player);
         void update_player_pos(player_t &player);
+        void click_event();
         //draw
         void draw_3D();
         void draw_2D();
@@ -154,7 +161,7 @@ class Graphic {
         float object_padding[7][2];
         ModelAnimation *player_animation;
         std::vector<Rectangle> textBoxs;
-        BoundingBox player_box;
+        ray_info_t rayInfo;
         // Shader light_shader;
         int window_width = WINDOW_WIDTH;
         int window_height = WINDOW_HEIGHT;

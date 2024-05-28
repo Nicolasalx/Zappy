@@ -42,11 +42,11 @@ void Graphic::draw_object()
 void Graphic::draw_player()
 {
     for (auto &player : this->gameState->players_list) {
-        this->player_box.min = (Vector3){player.real_pos.x * SCALE -1.0f, 0.0f, player.real_pos.y * SCALE - 1.0f};
-        this->player_box.max = (Vector3){player.real_pos.x * SCALE + 1.0f, 3.0f, player.real_pos.y * SCALE + 1.0f};
+        this->rayInfo.box.min = (Vector3){player.real_pos.x * SCALE -1.0f, 0.0f, player.real_pos.y * SCALE - 1.0f};
+        this->rayInfo.box.max = (Vector3){player.real_pos.x * SCALE + 1.0f, 3.0f, player.real_pos.y * SCALE + 1.0f};
         // player_box.min = Vector3Add(player_box.min, (Vector3){player.real_pos.x * SCALE, 0.0f, player.real_pos.y * SCALE});
         // player_box.max = Vector3Add(player_box.max, (Vector3){player.real_pos.x * SCALE, 0.0f, player.real_pos.y * SCALE});
-        DrawBoundingBox(this->player_box, RED);
+        DrawBoundingBox(this->rayInfo.box, RED);
         update_animation(player);
         DrawModelEx(this->model_list[PLAYER], (Vector3){player.real_pos.x * SCALE, 0.0f, player.real_pos.y * SCALE}, (Vector3){0, 1, 0}, player.real_orientation, (Vector3){3, 3, 3}, WHITE);
     }
