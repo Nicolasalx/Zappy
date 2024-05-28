@@ -75,7 +75,7 @@ void move_next_case(client_t *client)
             add_next_move(client, FORWARD);
             break;
     }
-    if (client->player.inventory[FOOD] > 5) {
+    if (my_listlen(client->player.cmd_list) >= 63) {
         client->instruction_index -= 2;
     }
 }
