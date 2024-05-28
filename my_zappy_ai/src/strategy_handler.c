@@ -58,6 +58,7 @@ void (*strategy_handler[NB_STRATEGY][10])(client_t *) =
         NULL
     },
     [QUEEN] = {
+        queen_management,
         NULL
     },
     [DEAD_FORK] = {

@@ -162,7 +162,6 @@ void push_new_command(client_t *client, cmd_list_t cmd_type, char *cmd);
 void pop_cmd_to_make(client_t *client);
 
 // reply handler
-void first_action_reply(client_t *client, char *reply);
 void look_command_reply(client_t *client, char *reply);
 void inventory_command_reply(client_t *client, char *reply);
 void broadcast_reply(client_t *client, char *reply);
@@ -175,5 +174,7 @@ void incantation_command_reply(client_t *client, char *reply);
 void remove_first_and_last_char(char **str);
 
 void queen_management(client_t *client);
+void send_command_broad_cast(client_t *client, const char *text);
+void drop_food(client_t *client);
 
 #endif /* !ZAPPY_AI_H_ */
