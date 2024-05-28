@@ -21,7 +21,7 @@ void handle_cmd_reply(client_t *client, char *reply)
                 if (reply_handler[i].method) {
                     reply_handler[i].method(client, reply);
                 } else {
-                    printf("Method not implemented.\n");
+                    //printf("Method not implemented.\n");
                 }
             }
         }

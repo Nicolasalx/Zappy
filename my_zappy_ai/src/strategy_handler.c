@@ -26,7 +26,7 @@ void determine_role(client_t *client)
 //        client->strategy = QUEEN;
 //        client->strategy = FARMER;
     }
-    push_new_command(client, LOOK, "Connect_nbr\n");
+    push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
 }
 
 // queen
@@ -43,6 +43,9 @@ void (*strategy_handler[NB_STRATEGY][10])(client_t *) =
         NULL
     },
     [FARMER] = {
+        look_for_elem,
+        take_elements_on_floor,
+        move_next_case,
         NULL
     },
     [QUEEN] = {
