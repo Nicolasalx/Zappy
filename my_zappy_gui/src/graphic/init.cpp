@@ -153,6 +153,6 @@ void Graphic::init_2D()
 {
     Rectangle textBox = {window_width * 0.76f, window_height / 21.0f, window_width / 4.5f, window_height / 10.0f};
     this->textBoxs.push_back(textBox);
-    Rectangle textBox2 = {window_width * 0.76f, window_height / 3.0f, window_width / 4.5f, window_height * 0.75};
+    Rectangle textBox2 = {window_width * 0.76f, window_height / 3.0f, window_width / 4.5f, window_height * 0.75f};
     this->textBoxs.push_back(textBox2);
 }
