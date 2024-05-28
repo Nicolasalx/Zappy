@@ -22,7 +22,7 @@ void Graphic::draw_player_info()
         for (auto &player : this->gameState->players_list) {
             if (player.n == this->rayInfo.id) {
                 DrawRectangleRec(textBoxs[1], CLITERAL(Color){200, 200, 255, 100});
-                DrawRectangleLines(window_width * 0.76f, window_height / 3.0f, window_width / 4.5f, window_height * 0.75, WHITE);
+                DrawRectangleLines(window_width * 0.78f, window_height / 2.1f, window_width / 5.0f, window_height * 0.35f, WHITE);
                 DrawText(TextFormat("Player: %d", player.n), window_width * 0.80, window_height * 0.5, window_width / 60, WHITE);
                 DrawText(TextFormat("Level: %d", player.level), window_width * 0.80, window_height * 0.54, window_width / 60, WHITE);
                 DrawText(TextFormat("Orientation: %d", player.orientation), window_width * 0.80, window_height * 0.58, window_width / 60, WHITE);
