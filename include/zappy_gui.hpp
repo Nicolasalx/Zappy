@@ -70,7 +70,8 @@ struct ray_info_t {
     RayCollision collision;
     int type;
     int id;
-    pos_t pos;
+    int x;
+    int y;
 };
 
 class GameState {
@@ -154,6 +155,7 @@ class Graphic {
         void draw_map();
         void draw_player();
         void draw_general_info();
+        void draw_player_info();
 
         GameState *gameState;
         Camera3D camera;
