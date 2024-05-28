@@ -12,4 +12,5 @@ void fork_command_reply(client_t *client, char *reply)
     if (strcmp(reply, "ok") == 0) {
         client->remaining_spots += 1;
     }
+    client->player.fork_end = true;
 }

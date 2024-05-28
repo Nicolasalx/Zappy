@@ -9,5 +9,14 @@
 
 void queen_management(client_t *client)
 {
-
+    push_new_command(client, BROADCAST, "I'm your queen");
+    push_new_command(client, INVENTORY, "Inventory\n");
+    if (client->player.inventory[FOOD] < 10) {
+        push_new_command(client, TAKE, "Take food\n");
+        push_new_command(client, TAKE, "Take food\n");
+        push_new_command(client, TAKE, "Take food\n");
+        push_new_command(client, TAKE, "Take food\n");
+        push_new_command(client, TAKE, "Take food\n");
+    }
+    push_new_command(client, INCANTATION, "Incantation\n");
 }

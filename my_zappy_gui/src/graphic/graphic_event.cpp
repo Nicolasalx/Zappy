@@ -37,9 +37,31 @@ void Graphic::click_event()
             this->rayInfo.collision.hit = false;
             this->rayInfo.collision = GetRayCollisionBox(this->rayInfo.ray, this->rayInfo.box);
             if (this->rayInfo.collision.hit && this->rayInfo.collision.distance <  __FLT_MAX__) {
-                std::cout << "Player " << player.n << " clicked\n";
+                this->rayInfo.type = PLAYER;
+                this->rayInfo.id = player.n;
+                std::cout << "Player " << player.n << " clicked" << std::endl;
+                return;
             }
         }
+        for (int y = 0; y < this->gameState->map_size.y; y++) {
+            for (int x = 0; x < this->gameState->map_size.y; x++) {
+                this->rayInfo.box.min = (Vector3){x * SCALE - 2.0f, -4.0f, y * SCALE - 2.0f};
+                this->rayInfo.box.max = (Vector3){x * SCALE + 2.0f, 0.0f, y * SCALE + 2.0f};
+                this->rayInfo.collision.hit = false;
+                this->rayInfo.collision = GetRayCollisionBox(this->rayInfo.ray, this->rayInfo.box);
+                if (this->rayInfo.collision.hit && this->rayInfo.collision.distance <  __FLT_MAX__) {
+                    this->rayInfo.type = ISLAND;
+                    this->rayInfo.pos.x = x;
+                    this->rayInfo.pos.y = y;
+                    std::cout << "Island clicked x = " << x << " y = " << y << std::endl;
+                    return;
+                }
+            }
+        }
+        this->rayInfo.type = 0;
+        this->rayInfo.id = 0;
+        this->rayInfo.pos.x = 0;
+        this->rayInfo.pos.y = 0;
     }
 }
 
