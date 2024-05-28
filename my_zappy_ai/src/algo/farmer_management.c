@@ -28,7 +28,7 @@ void take_elements_on_floor(client_t *client)
             char result[250] = {0};
             snprintf(result, sizeof(result), "Take %s\n", tile_list[i]);
             push_new_command(client, TAKE, result);
-            printf("EAT %s\n", tile_list[i]);
+            // printf("EAT %s\n", tile_list[i]);
             farmer_take_elem = true;
         }
     }
