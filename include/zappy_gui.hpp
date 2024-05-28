@@ -156,6 +156,7 @@ class Graphic {
         void draw_player();
         void draw_general_info();
         void draw_player_info();
+        void draw_tile_info();
 
         GameState *gameState;
         Camera3D camera;

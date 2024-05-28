@@ -39,3 +39,19 @@ void Graphic::draw_player_info()
         }
     }
 }
+
+void Graphic::draw_tile_info()
+{
+    if (this->rayInfo.type == ISLAND) {
+        DrawRectangleRec(textBoxs[2], CLITERAL(Color){200, 200, 255, 100});
+        DrawRectangleLines(window_width * 0.78f, window_height / 1.5f, window_width / 5.0f, window_height * 0.35f, WHITE);
+        DrawText(TextFormat("Tile: (%d, %d)", this->rayInfo.x, this->rayInfo.y), window_width * 0.80, window_height * 0.5, window_width / 60, WHITE);
+        DrawText(TextFormat("Food: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][FOOD]), window_width * 0.80, window_height * 0.54, window_width / 60, WHITE);
+        DrawText(TextFormat("Linemate: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][LINEMATE]), window_width * 0.80, window_height * 0.58, window_width / 60, WHITE);
+        DrawText(TextFormat("Deraumere: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][DERAUMERE]), window_width * 0.80, window_height * 0.62, window_width / 60, WHITE);
+        DrawText(TextFormat("Sibur: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][SIBUR]), window_width * 0.80, window_height * 0.66, window_width / 60, WHITE);
+        DrawText(TextFormat("Mendiane: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][MENDIANE]), window_width * 0.80, window_height * 0.70, window_width / 60, WHITE);
+        DrawText(TextFormat("Phiras: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][PHIRAS]), window_width * 0.80, window_height * 0.74, window_width / 60, WHITE);
+        DrawText(TextFormat("Thystame: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][THYSTAME]), window_width * 0.80, window_height * 0.78, window_width / 60, WHITE);
+    }
+}
