@@ -43,4 +43,8 @@ void parse_look_command(client_t *client, char *reply)
 void look_command_reply(client_t *client, char *reply)
 {
     parse_look_command(client, reply);
+
+    //for (int i = 0; i < TILE_NB_ELEM; ++i) {
+    //    printf("LOOK: ITEM: %s | NB: %d\n", tile_list[i], client->player.content_look[0][i]);
+    //}
 }

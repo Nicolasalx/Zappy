@@ -171,10 +171,19 @@ void take_command_reply(client_t *client, char *reply);
 void set_command_reply(client_t *client, char *reply);
 void incantation_command_reply(client_t *client, char *reply);
 
+// utils
 void remove_first_and_last_char(char **str);
 
-void queen_management(client_t *client);
+// broad cast
 void send_command_broad_cast(client_t *client, const char *text);
+
+// queen
+void queen_management(client_t *client);
 void drop_food(client_t *client);
+
+// Farmer
+void look_for_elem(client_t *client);
+void take_elements_on_floor(client_t *client);
+void move_next_case(client_t *client);
 
 #endif /* !ZAPPY_AI_H_ */
