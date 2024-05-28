@@ -161,7 +161,6 @@ void push_new_command(client_t *client, cmd_list_t cmd_type, char *cmd);
 void pop_cmd_to_make(client_t *client);
 
 // reply handler
-void first_action_reply(client_t *client, char *reply);
 void look_command_reply(client_t *client, char *reply);
 void inventory_command_reply(client_t *client, char *reply);
 void broadcast_reply(client_t *client, char *reply);
