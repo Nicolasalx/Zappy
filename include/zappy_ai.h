@@ -87,6 +87,7 @@ typedef struct {
     int content_look[MAX_LOOK_SIZE][TILE_NB_ELEM];
     char team_name[MAX_TEAMNAME_SIZE + 1];
     item_t last_item_taken;
+    node_t *cmd_list;
 } player_t;
 
 typedef struct {
