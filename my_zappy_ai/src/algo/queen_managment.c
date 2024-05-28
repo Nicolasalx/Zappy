@@ -7,18 +7,16 @@
 
 #include "zappy_ai.h"
 
-
-void broad_cast_cmd(client_t *client)
-{
-    send_command_broad_cast(client, "Queen role taken");
-}
-
-bool ok = false;
-
 void queen_management(client_t *client)
 {
-    if (!ok) {
-        broad_cast_cmd(client);
-        ok = true;
+    push_new_command(client, BROADCAST, "I'm your queen");
+    push_new_command(client, INVENTORY, "Inventory\n");
+    if (client->player.inventory[FOOD] < 10) {
+        push_new_command(client, TAKE, "Take food\n");
+        push_new_command(client, TAKE, "Take food\n");
+        push_new_command(client, TAKE, "Take food\n");
+        push_new_command(client, TAKE, "Take food\n");
+        push_new_command(client, TAKE, "Take food\n");
     }
+    push_new_command(client, INCANTATION, "Incantation\n");
 }
