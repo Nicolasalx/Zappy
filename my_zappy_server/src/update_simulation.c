@@ -47,8 +47,8 @@ void update_simulation(server_t *server)
     elapsed_time += (current_time.tv_usec -
     server->last_update.tv_usec) / 1000.0;
     if (elapsed_time >= (1 / server->freq) * 1000.0) {
-        execute_ai_command(server);
         consume_food(server);
+        execute_ai_command(server);
         gettimeofday(&server->last_update, NULL);
     }
 }

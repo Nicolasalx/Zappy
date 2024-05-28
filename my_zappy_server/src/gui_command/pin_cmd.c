@@ -11,18 +11,21 @@ static void print_inventory(server_t *server, client_t *client, int i)
 {
     char buffer[100] = {0};
 
-    snprintf(buffer, sizeof(buffer),
-        "pin %d %d %d %d %d %d %d %d %d %d\n", server->clients[i].player.id,
-        server->clients[i].player.pos_x,
-        server->clients[i].player.pos_y,
-        server->clients[i].player.inventory[FOOD],
-        server->clients[i].player.inventory[LINEMATE],
-        server->clients[i].player.inventory[DERAUMERE],
-        server->clients[i].player.inventory[SIBUR],
-        server->clients[i].player.inventory[MENDIANE],
-        server->clients[i].player.inventory[PHIRAS],
-        server->clients[i].player.inventory[THYSTAME]);
-        send_msg_client(client->fd, buffer);
+    if (server->clients[i].fd != 0 && server->clients[i].is_graphic == false
+    && server->clients[i].player.team) {
+        snprintf(buffer, sizeof(buffer),
+            "pin %d %d %d %d %d %d %d %d %d %d\n", server->clients[i].player.id,
+            server->clients[i].player.pos_x,
+            server->clients[i].player.pos_y,
+            server->clients[i].player.inventory[FOOD],
+            server->clients[i].player.inventory[LINEMATE],
+            server->clients[i].player.inventory[DERAUMERE],
+            server->clients[i].player.inventory[SIBUR],
+            server->clients[i].player.inventory[MENDIANE],
+            server->clients[i].player.inventory[PHIRAS],
+            server->clients[i].player.inventory[THYSTAME]);
+            send_msg_client(client->fd, buffer);
+    }
 }
 
 void pin_cmd(int, char **argv, client_t *client, server_t *server)

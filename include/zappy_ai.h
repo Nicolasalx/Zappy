@@ -87,7 +87,6 @@ typedef struct {
     int content_look[MAX_LOOK_SIZE][TILE_NB_ELEM];
     char team_name[MAX_TEAMNAME_SIZE + 1];
     item_t last_item_taken;
-    bool fork_end;
 } player_t;
 
 typedef struct {
@@ -185,5 +184,8 @@ void drop_food(client_t *client);
 void look_for_elem(client_t *client);
 void take_elements_on_floor(client_t *client);
 void move_next_case(client_t *client);
+void queen_get_inventory(client_t *client);
+void queen_eat(client_t *client);
+void queen_incantation(client_t *client);
 
 #endif /* !ZAPPY_AI_H_ */

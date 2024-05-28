@@ -14,6 +14,7 @@ void push_new_command(client_t *client, cmd_list_t cmd_type, char *cmd)
     cmd_to_make->cmd_type = cmd_type;
     if (cmd) {
         cmd_to_make->arg = my_strdup(cmd);
+        printf(RED("pushed cmd:")" %s\n", cmd);
     }
     append_node(&client->cmd_to_make, create_node(cmd_to_make));
 }
@@ -25,7 +26,7 @@ void pop_cmd_to_make(client_t *client)
             strategy_handler[client->strategy][client->instruction_index](client);
             ++client->instruction_index;
         }
-        if (!strategy_handler[client->strategy][client->instruction_index]) {
+        if (strategy_handler[client->strategy][client->instruction_index] == NULL) {
             client->instruction_index = 0;
         }
     }

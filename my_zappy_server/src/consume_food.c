@@ -13,13 +13,14 @@ static void check_player_death(client_t *client, server_t *server)
     if (client->player.food_time_unit > 126) {
         client->player.food_time_unit = 0;
         client->player.inventory[FOOD] -= 1;
-        pin_reply(server, client);
         if (client->player.inventory[FOOD] <= 0) {
             send_msg_client(client->fd, "dead\n");
             printf(YELLOW("A client has been closed")"\n");
             pdi_reply(server, client);
             remove_client(client);
+            return;
         }
+        pin_reply(server, client);
     }
 }
 

@@ -19,6 +19,7 @@ void set_object_cmd(char *argv, client_t *client, server_t *server)
                 [client->player.pos_x].item[i] += 1;
                 send_msg_client(client->fd, "ok\n");
                 pdr_reply(server, client, i);
+                pin_reply(server, client);
                 return;
             }
         }

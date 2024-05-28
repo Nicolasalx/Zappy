@@ -14,14 +14,17 @@ void get_nb_food(client_t *client)
 
 void determine_role(client_t *client)
 {
+    client->instruction_index = 0;
     if (client->player.content_look[0][TILE_FOOD] < 50) {
         client->strategy = DEAD_FORK;
+        push_new_command(client, LOOK, "Connect_nbr\n");
         return;
     }
     if (rand() % 10 == 9) {
         client->strategy = QUEEN;
     } else {
-        client->strategy = FARMER;
+        client->strategy = QUEEN;
+//        client->strategy = FARMER;
     }
     push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
 }
@@ -39,12 +42,8 @@ void dead_fork(client_t *client)
 
 void wait_end_fork(client_t *client)
 {
-    if (!client->player.fork_end) {
-        --client->instruction_index;
-        return;
-    }
     create_new_ai(client->port, &client->server_address.sin_addr, client->player.team_name);
-    client->player.fork_end = false;
+    drop_food(client);
 }
 
 void (*strategy_handler[NB_STRATEGY][10])(client_t *) =
@@ -61,13 +60,14 @@ void (*strategy_handler[NB_STRATEGY][10])(client_t *) =
         NULL
     },
     [QUEEN] = {
-        queen_management,
+        queen_get_inventory,
+        queen_eat,
+        queen_incantation,
         NULL
     },
     [DEAD_FORK] = {
         dead_fork,
         wait_end_fork,
-        drop_food,
         NULL
     },
 };
