@@ -174,5 +174,6 @@ void incantation_command_reply(client_t *client, char *reply);
 void remove_first_and_last_char(char **str);
 
 void queen_management(client_t *client);
+void drop_food(client_t *client);
 
 #endif /* !ZAPPY_AI_H_ */
