@@ -7,21 +7,6 @@
 
 #include "zappy_ai.h"
 
-/*1
-
-Resume
-TeamName|PID|ROLE|queen|
-TeamName|PID|ROLE|queen|
-TeamName|PID|ROLE|queen|
-TeamName|PID|ROLE|queen|
-TeamName|PID|ROLE|queen|
-TeamName|PID|ROLE|queen|
-TeamName|PID|ROLE|queen|
-
-TeamName|PID|ANNOUNCE FOOD|
-
-*/
-
 void send_command_broad_cast(client_t *client, const char *text)
 {
     char result[250] = {0};
