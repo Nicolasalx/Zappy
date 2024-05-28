@@ -38,6 +38,7 @@ static bool search_spawn_egg(client_t *client, server_t *server)
     } else {
         memset(&client->player, 0, sizeof(client->player));
         send_msg_client(client->fd, "ko\n");
+        // ! maybe close the client
         return false;
     }
 }
