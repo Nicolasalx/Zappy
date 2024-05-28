@@ -23,7 +23,7 @@ void take_elements_on_floor(client_t *client)
 {
     char buffer[100] = {0};
 
-    for (int i = 0; i < TILE_NB_ELEM; ++i) {
+    for (int i = 0; i < (TILE_NB_ELEM - 1); ++i) {
         if (client->player.content_look[0][i] > 0) {
             snprintf(buffer, sizeof(buffer), "Take %s\n", tile_list[i]);
             push_new_command(client, TAKE, buffer);
@@ -34,7 +34,7 @@ void take_elements_on_floor(client_t *client)
     push_new_command(client, INVENTORY, "Inventory\n");
 }
 
-void add_next_move(client_t *client, cmd_list_t action)
+static void add_next_move(client_t *client, cmd_list_t action)
 {
     cmd_list_t *new_action = my_calloc(sizeof(cmd_list_t));
     *new_action = action;
@@ -54,28 +54,28 @@ void move_next_case(client_t *client)
         case 1:
             printf("GO LEFT\n");
             push_new_command(client, LEFT, "Left\n");
-            add_next_move(client, RIGHT);
+            add_next_move(client, LEFT);
             push_new_command(client, FORWARD, "Forward\n");
             add_next_move(client, FORWARD);
             break;
         case 2:
             printf("GO BACK\n");
             push_new_command(client, LEFT, "Left\n");
-            add_next_move(client, RIGHT);
+            add_next_move(client, LEFT);
             push_new_command(client, LEFT, "Left\n");
-            add_next_move(client, RIGHT);
+            add_next_move(client, LEFT);
             push_new_command(client, FORWARD, "Forward\n");
             add_next_move(client, FORWARD);
             break;
         case 3:
             printf("GO RIGHT\n");
             push_new_command(client, RIGHT, "Right\n");
-            add_next_move(client, LEFT);
+            add_next_move(client, RIGHT);
             push_new_command(client, FORWARD, "Forward\n");
             add_next_move(client, FORWARD);
             break;
     }
-    if (my_listlen(client->player.cmd_list) >= 63) {
+    if (my_listlen(client->player.cmd_list) < 63) {
         client->instruction_index -= 2;
     }
 }
@@ -111,13 +111,14 @@ void farmer_drop_items(client_t *client)
 {
     char buffer[100] = {0};
 
-    for (int i = NB_ITEM; i > 0; --i) {
+    for (int i = NB_ITEM - 1; i >= 0; --i) {
         if (client->player.inventory[i] > 0) {
             snprintf(buffer, sizeof(buffer), "Set %s\n", object_list[i]);
             push_new_command(client, SET, buffer);
             memset(buffer, 0, sizeof(buffer));
+            client->player.inventory[i]--;
             break;
-        } 
+        }
     }
     client->instruction_index -= 1;
 }

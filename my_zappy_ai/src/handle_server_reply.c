@@ -44,7 +44,7 @@ static void handle_login(client_t *client, char *reply)
     && get_map_size(client, reply)) {
         client->log_state = LOGGED;
     } else {
-        printf(MAGENTA("Invalid command, waiting for welcome message")"\n");
+        exit_client(0, "No enought space in the team.\n");
     }
 }
 

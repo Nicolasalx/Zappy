@@ -20,10 +20,10 @@ void determine_role(client_t *client)
         push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
         return;
     }
-    if (rand() % 10 >= 7) {
-        client->strategy = QUEEN;
-    } else {
+    if (client->player.content_look[0][TILE_PLAYER] > 7) {
         client->strategy = FARMER;
+    } else {
+        client->strategy = QUEEN;
     }
     push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
 }

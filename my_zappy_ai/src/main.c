@@ -10,7 +10,7 @@
 int main(int argc, char const *argv[])
 {
     client_t client = {0};
-    
+
     srand(time(NULL));
     get_args(argc, argv, &client);
     create_client(&client);

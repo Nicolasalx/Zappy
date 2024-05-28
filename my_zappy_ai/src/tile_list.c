@@ -9,12 +9,12 @@
 
 const char *tile_list[TILE_NB_ELEM] =
 {
-    "food",
-    "linemate",
-    "deraumere",
-    "sibur",
-    "mendiane",
-    "phiras",
-    "thystame",
-    "player"
+    [TILE_FOOD] = "food",
+    [TILE_LINEMATE] = "linemate",
+    [TILE_DERAUMERE] = "deraumere",
+    [TILE_SIBUR] = "sibur",
+    [TILE_MENDIANE] = "mendiane",
+    [TILE_PHIRAS] = "phiras",
+    [TILE_THYSTAME] = "thystame",
+    [TILE_PLAYER] = "player"
 };

@@ -33,7 +33,8 @@ void queen_create_child(client_t *client)
 
 void queen_incantation(client_t *client)
 {
-    if (client->player.content_look[0][TILE_FOOD] < 10) {
+    if (client->player.content_look[0][TILE_FOOD] < 10
+    || client->player.content_look[0][TILE_PLAYER] < 3) {
         create_new_ai(client->port, &client->server_address.sin_addr, client->player.team_name);
     }
     push_new_command(client, INCANTATION, "Incantation\n");
