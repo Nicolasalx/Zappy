@@ -23,8 +23,9 @@ void Graphic::window_resize()
     if (IsWindowResized()) {
         this->window_width = GetScreenWidth();
         this->window_height = GetScreenHeight();
-        this->textBoxs[0] = (Rectangle){window_width * 0.76f, window_height / 21.0f, window_width / 4.5f, window_height / 10.0f};
-        this->textBoxs[1] = (Rectangle){window_width * 0.76f, window_height / 3.0f, window_width / 4.5f, window_height * 0.75f};
+        this->textBoxs[0] = (Rectangle){window_width * 0.78f, window_height / 25.0f, window_width / 5.0f, window_height / 10.0f};
+        this->textBoxs[1] = (Rectangle){window_width * 0.78f, window_height / 2.1f, window_width / 5.0f, window_height * 0.51f};
+        this->textBoxs[2] = (Rectangle){window_width * 0.78f, window_height / 2.1f, window_width / 5.0f, window_height * 0.40f};
     }
 }
 
@@ -66,12 +67,10 @@ void Graphic::click_event()
 
 void Graphic::event()
 {
+    frame_time = GetFrameTime();
     if (IsCursorHidden()) UpdateCamera(&this->camera, CAMERA_FREE);
     // float cameraPos[3] = { camera.position.x, camera.position.y, camera.position.z };
     // SetShaderValue(light_shader, light_shader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
-    if (IsKeyPressed(KEY_Z)) {
-        this->camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };
-    }
     this->change_cursor();
     this->window_resize();
     this->click_event();
