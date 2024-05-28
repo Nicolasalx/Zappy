@@ -14,8 +14,7 @@ void get_nb_food(client_t *client)
 
 void determine_role(client_t *client)
 {
-    client->strategy = FARMER;
-    /*if (client->player.content_look[0][TILE_FOOD] < 50) {
+    if (client->player.content_look[0][TILE_FOOD] < 50) {
         client->strategy = DEAD_FORK;
         return;
     }
@@ -23,7 +22,7 @@ void determine_role(client_t *client)
         client->strategy = QUEEN;
     } else {
         client->strategy = FARMER;
-    }*/
+    }
     push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
 }
 
