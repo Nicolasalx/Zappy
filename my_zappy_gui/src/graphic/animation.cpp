@@ -9,6 +9,11 @@
 
 void Graphic::update_player_pos(player_t &player)
 {
+    if (frame_time > 0.1f) {
+        player.real_pos.x = player.pos.x;
+        player.real_pos.y = player.pos.y;
+        return;
+    }
     if (player.real_pos.x < player.pos.x - 2) {
         player.real_pos.x = player.pos.x;
     }
@@ -37,6 +42,12 @@ void Graphic::update_player_pos(player_t &player)
 
 void Graphic::update_animation(player_t &player)
 {
+    if (frame_time > 0.1f) {
+        player.anim_frame_counter = 32;
+        player.real_orientation = player_orientation[player.orientation];
+        this->update_player_pos(player);
+        return;
+    }
     if (player.anim_frame_counter > 31 && player.anim_frame_counter < 151) {
         UpdateModelAnimation(this->model_list[PLAYER], player_animation[player.animation_nbr], player.anim_frame_counter);
         player.anim_frame_counter++;
