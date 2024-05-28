@@ -69,6 +69,8 @@ struct ray_info_t {
     BoundingBox box;
     RayCollision collision;
     int type;
+    int id;
+    pos_t pos;
 };
 
 class GameState {
