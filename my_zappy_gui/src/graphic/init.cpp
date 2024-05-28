@@ -151,8 +151,10 @@ void Graphic::init_lighting()
 
 void Graphic::init_2D()
 {
-    Rectangle textBox = {window_width * 0.76f, window_height / 21.0f, window_width / 4.5f, window_height / 10.0f};
+    Rectangle textBox = {window_width * 0.78f, window_height / 25.0f, window_width / 5.0f, window_height / 10.0f};
     this->textBoxs.push_back(textBox);
-    Rectangle textBox2 = {window_width * 0.76f, window_height / 3.0f, window_width / 4.5f, window_height * 0.75f};
+    Rectangle textBox2 = {window_width * 0.78f, window_height / 2.1f, window_width / 5.0f, window_height * 0.51f};
     this->textBoxs.push_back(textBox2);
+    Rectangle textBox3 = {window_width * 0.78f, window_height / 2.1f, window_width / 5.0f, window_height * 0.40f};
+    this->textBoxs.push_back(textBox3);
 }
