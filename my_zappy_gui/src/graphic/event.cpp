@@ -24,6 +24,7 @@ void Graphic::window_resize()
         this->window_width = GetScreenWidth();
         this->window_height = GetScreenHeight();
         this->textBoxs[0] = (Rectangle){window_width * 0.76f, window_height / 21.0f, window_width / 4.5f, window_height / 10.0f};
+        this->textBoxs[1] = (Rectangle){window_width * 0.76f, window_height / 3.0f, window_width / 4.5f, window_height * 0.75};
     }
 }
 
@@ -39,7 +40,6 @@ void Graphic::click_event()
             if (this->rayInfo.collision.hit && this->rayInfo.collision.distance <  __FLT_MAX__) {
                 this->rayInfo.type = PLAYER;
                 this->rayInfo.id = player.n;
-                std::cout << "Player " << player.n << " clicked" << std::endl;
                 return;
             }
         }
@@ -51,17 +51,16 @@ void Graphic::click_event()
                 this->rayInfo.collision = GetRayCollisionBox(this->rayInfo.ray, this->rayInfo.box);
                 if (this->rayInfo.collision.hit && this->rayInfo.collision.distance <  __FLT_MAX__) {
                     this->rayInfo.type = ISLAND;
-                    this->rayInfo.pos.x = x;
-                    this->rayInfo.pos.y = y;
-                    std::cout << "Island clicked x = " << x << " y = " << y << std::endl;
+                    this->rayInfo.x = x;
+                    this->rayInfo.y = y;
                     return;
                 }
             }
         }
         this->rayInfo.type = 0;
         this->rayInfo.id = 0;
-        this->rayInfo.pos.x = 0;
-        this->rayInfo.pos.y = 0;
+        this->rayInfo.x = 0;
+        this->rayInfo.y = 0;
     }
 }
 

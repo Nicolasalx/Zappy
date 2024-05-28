@@ -27,8 +27,8 @@ Graphic::Graphic(GameState *gameState)
     this->player_orientation[4] = 270;
     this->rayInfo.type = 0;
     this->rayInfo.id = 0;
-    this->rayInfo.pos.x = 0;
-    this->rayInfo.pos.y = 0;
+    this->rayInfo.x = 0;
+    this->rayInfo.y = 0;
 }
 
 Graphic::~Graphic()
@@ -153,4 +153,6 @@ void Graphic::init_2D()
 {
     Rectangle textBox = {window_width * 0.76f, window_height / 21.0f, window_width / 4.5f, window_height / 10.0f};
     this->textBoxs.push_back(textBox);
+    Rectangle textBox2 = {window_width * 0.76f, window_height / 3.0f, window_width / 4.5f, window_height * 0.75};
+    this->textBoxs.push_back(textBox2);
 }

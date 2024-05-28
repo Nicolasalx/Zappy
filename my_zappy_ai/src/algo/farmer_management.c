@@ -6,7 +6,7 @@
 */
 
 #include "zappy_ai.h"
-    
+
 /* TODO
     Detect if the farmer needs to go back
     Go back to the base
@@ -80,17 +80,5 @@ void move_next_case(client_t *client)
             push_new_command(client, FORWARD, "Forward\n");
             add_next_move(client, FORWARD);
             break;
-    }
-}
-
-void farmer_management(client_t *client)
-{
-    if (client->player.inventory[FOOD] < 50) {
-        push_new_command(client, TAKE, "Take food\n");
-        push_new_command(client, INVENTORY, "Inventory\n");
-    } else {
-        if (client->player.inventory[FOOD] < 10) {
-            push_new_command(client, SET, "Look\n");
-        }
     }
 }

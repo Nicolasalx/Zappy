@@ -23,6 +23,7 @@ void Graphic::draw_3D()
 void Graphic::draw_2D()
 {
     this->draw_general_info();
+    this->draw_player_info();
 }
 
 void Graphic::loop()
