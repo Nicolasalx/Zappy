@@ -17,7 +17,7 @@ void determine_role(client_t *client)
     client->instruction_index = 0;
     if (client->player.content_look[0][TILE_FOOD] < 50) {
         client->strategy = DEAD_FORK;
-        push_new_command(client, LOOK, "Connect_nbr\n");
+        push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
         return;
     }
     if (rand() % 10 >= 7) {

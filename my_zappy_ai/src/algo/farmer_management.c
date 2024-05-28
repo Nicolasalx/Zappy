@@ -21,22 +21,17 @@ void look_for_elem(client_t *client)
 
 void take_elements_on_floor(client_t *client)
 {
-    bool farmer_take_elem = false;
     char buffer[100] = {0};
-
 
     for (int i = 0; i < TILE_NB_ELEM; ++i) {
         if (client->player.content_look[0][i] > 0) {
             snprintf(buffer, sizeof(buffer), "Take %s\n", tile_list[i]);
             push_new_command(client, TAKE, buffer);
-            printf("TAKE %s\n", tile_list[i]);
-            farmer_take_elem = true;
+            printf("TAKE %s\n", buffer);
             memset(buffer, 0, sizeof(buffer));
         }
     }
-    // if (!farmer_take_elem) {
     push_new_command(client, INVENTORY, "Inventory\n");
-    // }
 }
 
 void add_next_move(client_t *client, cmd_list_t action)

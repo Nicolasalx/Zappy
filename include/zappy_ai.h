@@ -18,6 +18,7 @@
     #include <sys/select.h>
     #include <string.h>
     #include <stdlib.h>
+    #include <time.h>
 
     #define MAX_PORT_NB 65535
     #define BUFFER_SIZE 4096
