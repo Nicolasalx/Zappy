@@ -14,7 +14,7 @@ void handle_cmd_reply(client_t *client, char *reply)
     } else if (reply && strncmp("message ", reply, 8) == 0) {
         broadcast_reply(client, reply);
     } else if (reply && strcmp("dead\n", reply) == 0) {
-        printf("dead\n");
+        printf("dead: %d\n", client->strategy);
     } else {
         for (int i = 0; i < NB_ACTION; ++i) {
             if ((int) client->last_cmd == i) {

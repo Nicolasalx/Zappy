@@ -16,10 +16,8 @@ void queen_eat(client_t *client)
 {
     if (client->player.inventory[FOOD] < 20) {
         push_new_command(client, TAKE, "Take food\n");
-        push_new_command(client, TAKE, "Take food\n");
-        push_new_command(client, TAKE, "Take food\n");
-        push_new_command(client, TAKE, "Take food\n");
-        push_new_command(client, TAKE, "Take food\n");
+    } else {
+        push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
     }
 }
 
