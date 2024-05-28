@@ -19,8 +19,7 @@ static void choose_random_egg(server_t *server,
             client->player.orientation = rand() % 4;
             client->player.team->remaining_spot -= 1;
             ebo_reply(server, GET_DATA(chosen_one, egg_t));
-            // call edi quand un joueur spawn sur l'oeuf?
-            // edi_reply(server, client, GET_DATA(chosen_one, egg_t));
+            edi_reply(server, client, GET_DATA(chosen_one, egg_t));
             delete_node(&client->player.team->egg_list, chosen_one);
             return;
         }
