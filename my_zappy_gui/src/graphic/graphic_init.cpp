@@ -25,6 +25,10 @@ Graphic::Graphic(GameState *gameState)
     this->player_orientation[2] = 90;
     this->player_orientation[3] = 0;
     this->player_orientation[4] = 270;
+    this->rayInfo.type = 0;
+    this->rayInfo.id = 0;
+    this->rayInfo.pos.x = 0;
+    this->rayInfo.pos.y = 0;
 }
 
 Graphic::~Graphic()
