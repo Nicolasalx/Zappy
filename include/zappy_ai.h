@@ -18,6 +18,7 @@
     #include <sys/select.h>
     #include <string.h>
     #include <stdlib.h>
+    #include <time.h>
 
     #define MAX_PORT_NB 65535
     #define BUFFER_SIZE 4096
@@ -87,6 +88,7 @@ typedef struct {
     int content_look[MAX_LOOK_SIZE][TILE_NB_ELEM];
     char team_name[MAX_TEAMNAME_SIZE + 1];
     item_t last_item_taken;
+    node_t *cmd_list;
 } player_t;
 
 typedef struct {
@@ -177,8 +179,11 @@ void remove_first_and_last_char(char **str);
 void send_command_broad_cast(client_t *client, const char *text);
 
 // queen
-void queen_management(client_t *client);
-void drop_food(client_t *client);
+void queen_get_inventory(client_t *client);
+void queen_eat(client_t *client);
+void queen_check_nb_food(client_t *client);
+void queen_create_child(client_t *client);
+void queen_incantation(client_t *client);
 
 // Farmer
 void look_for_elem(client_t *client);
@@ -187,5 +192,13 @@ void move_next_case(client_t *client);
 void queen_get_inventory(client_t *client);
 void queen_eat(client_t *client);
 void queen_incantation(client_t *client);
+void queen_check_nb_food(client_t *client);
+void queen_create_child(client_t *client);
+void start_backtrace(client_t *client);
+void farmer_backtrace(client_t *client);
+void farmer_drop_items(client_t *client);
+
+void dead_fork(client_t *client);
+void wait_end_fork(client_t *client);
 
 #endif /* !ZAPPY_AI_H_ */

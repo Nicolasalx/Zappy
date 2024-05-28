@@ -18,15 +18,14 @@ void determine_role(client_t *client)
     // client->instruction_index = 0;
     // if (client->player.content_look[0][TILE_FOOD] < 50) {
     //     client->strategy = DEAD_FORK;
-    //     push_new_command(client, LOOK, "Connect_nbr\n");
+    //     push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
     //     return;
     // }
-    // if (rand() % 10 == 9) {
-    //     client->strategy = QUEEN;
+    // if (client->player.content_look[0][TILE_PLAYER] > 7) {
+    //     client->strategy = FARMER;
     // } else {
     //     client->strategy = QUEEN;
-//        client->strategy = FARMER;
-    //}
+    // }
     push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
 }
 
@@ -35,17 +34,6 @@ void determine_role(client_t *client)
 // ! fork
 // ! create new ai
 // ! drop
-
-void dead_fork(client_t *client)
-{
-    push_new_command(client, FORK, "Fork\n");
-}
-
-void wait_end_fork(client_t *client)
-{
-    create_new_ai(client->port, &client->server_address.sin_addr, client->player.team_name);
-    drop_food(client);
-}
 
 void (*strategy_handler[NB_STRATEGY][10])(client_t *) =
 {
@@ -58,11 +46,16 @@ void (*strategy_handler[NB_STRATEGY][10])(client_t *) =
         look_for_elem,
         take_elements_on_floor,
         move_next_case,
+        start_backtrace,
+        farmer_backtrace,
+        farmer_drop_items,
         NULL
     },
     [QUEEN] = {
         queen_get_inventory,
         queen_eat,
+        queen_check_nb_food,
+        queen_create_child,
         queen_incantation,
         NULL
     },

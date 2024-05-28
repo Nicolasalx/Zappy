@@ -30,6 +30,9 @@ static void buffering_input(server_t *server, client_t *client, char *command, s
         safe_strncat(client->cmd_buffer, &client->buffer_size, command, (end_cmd + 1) - start_cmd);
         handle_client_input(server, client, client->cmd_buffer);
 
+        if (!client->cmd_buffer) {
+            return;
+        }
         memset(client->cmd_buffer, 0, BUFFER_SIZE);
         client->buffer_size = 0;
         memmove(start_cmd, end_cmd + 1, strlen(end_cmd + 1) + 1);
