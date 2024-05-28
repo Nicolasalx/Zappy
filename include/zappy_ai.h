@@ -86,6 +86,7 @@ typedef struct {
     int inventory[NB_ITEM];
     int content_look[MAX_LOOK_SIZE][TILE_NB_ELEM];
     char team_name[MAX_TEAMNAME_SIZE + 1];
+    item_t last_item_taken;
 } player_t;
 
 typedef struct {
@@ -160,19 +161,15 @@ void push_new_command(client_t *client, cmd_list_t cmd_type, char *cmd);
 void pop_cmd_to_make(client_t *client);
 
 // reply handler
-void first_action(client_t *client, char *reply);
-void forward_command(client_t *client, char *reply);
-void right_command(client_t *client, char *reply);
-void left_command(client_t *client, char *reply);
-void look_command(client_t *client, char *reply);
-void inventory_command(client_t *client, char *reply);
-void broadcast_command(client_t *client, char *reply);
-void connect_nbr_command(client_t *client, char *reply);
-void fork_command(client_t *client, char *reply);
-void eject_command(client_t *client, char *reply);
-void take_command(client_t *client, char *reply);
-void set_command(client_t *client, char *reply);
-void incantation_command(client_t *client, char *reply);
+void first_action_reply(client_t *client, char *reply);
+void look_command_reply(client_t *client, char *reply);
+void inventory_command_reply(client_t *client, char *reply);
+void broadcast_reply(client_t *client, char *reply);
+void connect_nbr_command_reply(client_t *client, char *reply);
+void fork_command_reply(client_t *client, char *reply);
+void take_command_reply(client_t *client, char *reply);
+void set_command_reply(client_t *client, char *reply);
+void incantation_command_reply(client_t *client, char *reply);
 
 void remove_first_and_last_char(char **str);
 

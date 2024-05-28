@@ -25,7 +25,7 @@ void Client::handle_new_message()
     if (!FD_ISSET(this->fd, &this->read_set)) {
         return;
     }
-    size = read(this->fd, &reply_data, sizeof(reply_data));
+    size = read(this->fd, &reply_data, sizeof(reply_data) - 1);
     if (size == 0) {
         std::cout << "Server closed.\n";
         exit(0);

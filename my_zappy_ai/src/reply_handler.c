@@ -9,18 +9,18 @@
 
 const reply_handler_t reply_handler[] =
 {
-    {NONE, NULL},
-    {FORWARD, forward_command},
-    {RIGHT, right_command},
-    {LEFT, left_command},
-    {LOOK, look_command},
-    {INVENTORY, inventory_command},
-    {BROADCAST, broadcast_command},
-    {CONNECT_NBR, connect_nbr_command},
-    {FORK, fork_command},
-    {EJECT, eject_command},
-    {TAKE, take_command},
-    {SET, set_command},
-    {INCANTATION, incantation_command},
+    {NONE, first_action_reply},
+    {FORWARD, NULL},
+    {RIGHT, NULL},
+    {LEFT, NULL},
+    {LOOK, look_command_reply},
+    {INVENTORY, inventory_command_reply},
+    {BROADCAST, NULL},
+    {CONNECT_NBR, connect_nbr_command_reply},
+    {FORK, fork_command_reply},
+    {EJECT, NULL},
+    {TAKE, take_command_reply},
+    {SET, set_command_reply},
+    {INCANTATION, incantation_command_reply},
     {0, NULL}
 };

@@ -57,7 +57,6 @@ static void set_args(client_t *client)
     client->player.team_name[0] = '\0';
 }
 
-
 void fill_args(client_t *client)
 {
     if (client->port == -1)

@@ -37,7 +37,7 @@ void Client::get_args(int argc, const char **argv)
 Client::Client(int argc, const char **argv)
 {
     this->ip = "127.0.0.1";
-    this->port = 8080;
+    this->port = 4242;
     this->get_args(argc, argv);
     if (inet_aton(this->ip.c_str(), &this->server_address.sin_addr) == 0) {
         throw my::tracked_exception("Invalid Ip.\n");

@@ -7,6 +7,34 @@
 
 #include "zappy_gui.hpp"
 
+void Graphic::update_player_pos(player_t &player)
+{
+    if (player.real_pos.x < player.pos.x - 2) {
+        player.real_pos.x = player.pos.x;
+    }
+    if (player.real_pos.x > player.pos.x + 2) {
+        player.real_pos.x = player.pos.x;
+    }
+    if (player.real_pos.y < player.pos.y - 2) {
+        player.real_pos.y = player.pos.y;
+    }
+    if (player.real_pos.y > player.pos.y + 2) {
+        player.real_pos.y = player.pos.y;
+    }
+    if (player.real_pos.x < player.pos.x) {
+        player.real_pos.x += 0.05f;
+    }
+    if (player.real_pos.x > player.pos.x) {
+        player.real_pos.x -= 0.05f;
+    }
+    if (player.real_pos.y < player.pos.y) {
+        player.real_pos.y += 0.05f;
+    }
+    if (player.real_pos.y > player.pos.y) {
+        player.real_pos.y -= 0.05f;
+    }
+}
+
 void Graphic::update_animation(player_t &player)
 {
     if (player.anim_frame_counter > 31 && player.anim_frame_counter < 151) {
@@ -23,22 +51,11 @@ void Graphic::update_animation(player_t &player)
     if (player.anim_frame_counter == 182) {
         player.anim_frame_counter = 32;
     }
-    if (player.real_pos.x < player.pos.x) {
-        player.real_pos.x += 0.05f;
-    }
-    if (player.real_pos.x > player.pos.x) {
-        player.real_pos.x -= 0.05f;
-    }
-    if (player.real_pos.y < player.pos.y) {
-        player.real_pos.y += 0.05f;
-    }
-    if (player.real_pos.y > player.pos.y) {
-        player.real_pos.y -= 0.05f;
-    }
     if (player_orientation[player.orientation] > player.real_orientation) {
         player.real_orientation += 2;
     }
     if (player_orientation[player.orientation] < player.real_orientation) {
         player.real_orientation -= 2;
     }
+    this->update_player_pos(player);
 }

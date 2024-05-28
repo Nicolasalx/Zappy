@@ -7,16 +7,15 @@
 
 #include "zappy_ai.h"
 
-void incantation_command(client_t *client, char *reply)
+void incantation_command_reply(client_t *client, char *reply)
 {
-    if (strcmp(reply, "ko\n") == 0 || strcmp(reply, "Elevation underway\n") == 0) {
-        return;
-    }
-
     int nb_word = count_nb_word(reply, " ");
     int *size_word = count_size_word(reply, " ", nb_word);
     char **word = my_str_to_word(reply, " ", nb_word, size_word);
 
+    if (strcmp(reply, "ko\n") == 0 || strcmp(reply, "Elevation underway\n") == 0) {
+        return;
+    }
     if (nb_word != 2) {
         return;
     }

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** inventory
+** inventory_command_reply
 */
 
 #include "zappy_ai.h"
@@ -10,11 +10,11 @@
 
 void remove_first_and_last_char(char **str)
 {
+    int len = strlen(*str);
+
     if (*str == NULL) {
         return;
     }
-    int len = strlen(*str);
-
     if (len < 4) {
         return;
     }
@@ -51,12 +51,9 @@ void parse_inventory_command(client_t *client, char *reply)
     for (int i = 0; word[i] != NULL; ++i) {
         analyse_each_element_inventory(client, word[i]);
     }
-    //for (int i = 0; i < NB_ITEM; ++i) {
-    //    printf("ITEM: %s | NB: %d\n", object_list[i], client->inventory[i]);
-    //}
 }
 
-void inventory_command(client_t *client, char *reply)
+void inventory_command_reply(client_t *client, char *reply)
 {
     if (reply == NULL || (strlen(reply) && reply[0] != '[')) {
         return;

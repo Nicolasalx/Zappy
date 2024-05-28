@@ -147,6 +147,6 @@ void Graphic::init_lighting()
 
 void Graphic::init_2D()
 {
-    Rectangle textBox = {window_width * 0.75f, window_height / 20.0f, window_width / 6.0f, window_height / 20.0f};
+    Rectangle textBox = {window_width * 0.76f, window_height / 21.0f, window_width / 4.5f, window_height / 10.0f};
     this->textBoxs.push_back(textBox);
 }

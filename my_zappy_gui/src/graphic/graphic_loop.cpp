@@ -22,9 +22,7 @@ void Graphic::draw_3D()
 
 void Graphic::draw_2D()
 {
-    DrawText(TextFormat("Number of players: %03i", this->gameState->players_list.size()), window_width * 0.77, window_height / 20, window_width / 60, WHITE);
-    // DrawRectangleRec(textBoxs.front(), LIGHTGRAY);
-    DrawFPS(10, 10);
+    this->draw_general_info();
 }
 
 void Graphic::loop()

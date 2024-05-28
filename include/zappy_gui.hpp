@@ -64,6 +64,13 @@ struct player_t {
     int anim_frame_counter;
 };
 
+struct ray_info_t {
+    Ray ray;
+    BoundingBox box;
+    RayCollision collision;
+    int type;
+};
+
 class GameState {
     public:
         GameState();
@@ -135,6 +142,8 @@ class Graphic {
         void change_cursor();
         void window_resize();
         void update_animation(player_t &player);
+        void update_player_pos(player_t &player);
+        void click_event();
         //draw
         void draw_3D();
         void draw_2D();
@@ -142,6 +151,7 @@ class Graphic {
         void draw_object();
         void draw_map();
         void draw_player();
+        void draw_general_info();
 
         GameState *gameState;
         Camera3D camera;
@@ -151,6 +161,7 @@ class Graphic {
         float object_padding[7][2];
         ModelAnimation *player_animation;
         std::vector<Rectangle> textBoxs;
+        ray_info_t rayInfo;
         // Shader light_shader;
         int window_width = WINDOW_WIDTH;
         int window_height = WINDOW_HEIGHT;
