@@ -177,5 +177,6 @@ void incantation_command(client_t *client, char *reply);
 void remove_first_and_last_char(char **str);
 
 void queen_management(client_t *client);
+void send_command_broad_cast(client_t *client, const char *text);
 
 #endif /* !ZAPPY_AI_H_ */
