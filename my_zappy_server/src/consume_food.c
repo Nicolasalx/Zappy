@@ -18,6 +18,7 @@ static void check_player_death(client_t *client, server_t *server)
             printf(YELLOW("A client has been closed")"\n");
             pdi_reply(server, client);
             remove_client(client);
+            return;
         }
         pin_reply(server, client);
     }
