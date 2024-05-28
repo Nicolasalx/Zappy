@@ -12,22 +12,10 @@ void dead_fork(client_t *client)
     push_new_command(client, FORK, "Fork\n");
 }
 
-static void drop_food(client_t *client)
-{
-    push_new_command(client, SET, "Set food\n");
-    push_new_command(client, SET, "Set food\n");
-    push_new_command(client, SET, "Set food\n");
-    push_new_command(client, SET, "Set food\n");
-    push_new_command(client, SET, "Set food\n");
-    push_new_command(client, SET, "Set food\n");
-    push_new_command(client, SET, "Set food\n");
-    push_new_command(client, SET, "Set food\n");
-    push_new_command(client, SET, "Set food\n");
-    push_new_command(client, SET, "Set food\n");
-}
-
 void wait_end_fork(client_t *client)
 {
     create_new_ai(client->port, &client->server_address.sin_addr, client->player.team_name);
-    drop_food(client);
+    for (size_t i = 0; i < 10; ++i) {
+        push_new_command(client, SET, "Set food\n");
+    }
 }

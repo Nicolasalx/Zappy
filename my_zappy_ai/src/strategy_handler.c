@@ -20,11 +20,10 @@ void determine_role(client_t *client)
         push_new_command(client, LOOK, "Connect_nbr\n");
         return;
     }
-    if (rand() % 10 == 9) {
+    if (rand() % 10 >= 7) {
         client->strategy = QUEEN;
     } else {
-//        client->strategy = QUEEN;
-//        client->strategy = FARMER;
+        client->strategy = FARMER;
     }
     push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
 }
