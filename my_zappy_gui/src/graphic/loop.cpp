@@ -25,6 +25,7 @@ void Graphic::draw_2D()
     this->draw_general_info();
     this->draw_player_info();
     this->draw_tile_info();
+    this->draw_all_player_level();
 }
 
 void Graphic::loop()
