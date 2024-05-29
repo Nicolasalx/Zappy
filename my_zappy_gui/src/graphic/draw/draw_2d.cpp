@@ -38,10 +38,8 @@ void Graphic::draw_player_info()
     }
 }
 
-void Graphic::drawLevelPlayerPerTile()
+void Graphic::draw_all_player_level()
 {
-    double multiplicator = 0.08;
-
     for (int i = 0; i < 8; ++i) {
         this->listLevelPlayer[i] = 0;
     }
@@ -54,14 +52,12 @@ void Graphic::drawLevelPlayerPerTile()
         if (this->listLevelPlayer.size() == 8) {
             newInt = this->listLevelPlayer.at(i);
         }
-        DrawText(TextFormat("Level %d: %d", (i + 1), newInt), window_width * 0.07, window_height * multiplicator, window_width / 60, WHITE);
-        multiplicator += 0.05;
+        textBoxs[3].add_text(TextFormat("Level %d: %d", (i + 1), newInt), (i + 0.5f)/8.5f);
     }
 }
 
 void Graphic::draw_tile_info()
 {
-    drawLevelPlayerPerTile();
     if (this->rayInfo.type == ISLAND) {
         textBoxs[2].draw();
         textBoxs[2].add_text(TextFormat("Tile: (%d, %d)"), 0.5f/8.5f);
