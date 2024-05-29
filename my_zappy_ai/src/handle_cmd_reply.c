@@ -15,7 +15,9 @@ void handle_cmd_reply(client_t *client, char *reply)
         broadcast_reply(client, reply);
     } else if (reply && strcmp("dead\n", reply) == 0) {
         printf("dead: %d\n", client->strategy);
-    } else {
+    } else if (reply && strcmp(reply, "Elevation underway\n") == 0) {
+        return;
+    } {
         for (int i = 0; i < NB_ACTION; ++i) {
             if ((int) client->last_cmd == i) {
                 if (reply_handler[i].method) {
