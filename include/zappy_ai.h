@@ -39,6 +39,7 @@ typedef enum {
     FARMER,
     QUEEN,
     DEAD_FORK,
+    KILL_IT_SELF,
     NB_STRATEGY
 } strategy_t;
 
@@ -201,5 +202,8 @@ void farmer_drop_items(client_t *client);
 
 void dead_fork(client_t *client);
 void wait_end_fork(client_t *client);
+
+// kill it self
+void kill_it_self(client_t *client);
 
 #endif /* !ZAPPY_AI_H_ */
