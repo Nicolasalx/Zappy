@@ -74,6 +74,21 @@ struct ray_info_t {
     int y;
 };
 
+class TextBox {
+    public:
+        TextBox(float x, float y, float width, float height, int window_width, int window_height);
+        ~TextBox() = default;
+        void resize(int window_width, int window_height);
+        void draw();
+    private:
+        float _x;
+        float _y;
+        float _width;
+        float _height;
+        Rectangle _box;
+        Color _color;
+};
+
 class GameState {
     public:
         GameState();
@@ -129,6 +144,7 @@ class Graphic {
         Graphic(GameState *gameState);
         ~Graphic();
         //init
+        void init_window();
         void init_camera();
         void init_sky_box();
         void init_island();
@@ -166,7 +182,7 @@ class Graphic {
         std::map<int, int> player_orientation;
         float object_padding[7][2];
         ModelAnimation *player_animation;
-        std::vector<Rectangle> textBoxs;
+        std::vector<TextBox> textBoxs;
         ray_info_t rayInfo;
         // Shader light_shader;
         int window_width = WINDOW_WIDTH;
