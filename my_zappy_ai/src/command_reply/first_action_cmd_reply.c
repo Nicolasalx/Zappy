@@ -15,7 +15,7 @@ void send_command_broad_cast(client_t *client, const char *text)
     push_new_command(client, BROADCAST, result);
 }
 
-void broadcast_command(client_t *client, char *reply)
+void broadcast_command(client_t *, char *reply)
 {
     printf("%s\n", reply);
 }

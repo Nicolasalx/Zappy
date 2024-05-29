@@ -7,7 +7,7 @@
 
 #include "zappy_ai.h"
 
-void dead_reply(client_t *client, char *reply)
+void dead_reply(client_t *, char *)
 {
     return;
 }

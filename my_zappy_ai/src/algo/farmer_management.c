@@ -76,7 +76,7 @@ void move_next_case(client_t *client)
             break;
     }
     if (my_listlen(client->player.cmd_list) < 63) {
-        client->instruction_index -= 2;
+        client->instruction_index -= 3;
     }
 }
 

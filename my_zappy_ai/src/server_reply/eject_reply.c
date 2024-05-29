@@ -7,7 +7,7 @@
 
 #include "zappy_ai.h"
 
-void eject_reply(client_t *client, char *reply)
+void eject_reply(client_t *, char *)
 {
     return;
 }
