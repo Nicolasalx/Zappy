@@ -20,7 +20,7 @@ void determine_role(client_t *client)
         push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
         return;
     }
-    if (client->player.content_look[0][TILE_PLAYER] > 10 && rand() % 51 != 50) {
+    if (client->player.content_look[0][TILE_PLAYER] > 10 && rand() % 51 > 45) {
         if ((client->player.content_look[0][TILE_LINEMATE] < 20 ||
         client->player.content_look[0][TILE_DERAUMERE] < 10 ||
         client->player.content_look[0][TILE_SIBUR] < 10 ||
