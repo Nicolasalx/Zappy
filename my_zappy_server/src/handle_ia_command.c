@@ -31,6 +31,7 @@ static void get_all_elevation_mate(server_t *server, client_t *client)
     }
 }
 
+
 static bool handle_elevation_cmd(server_t *server,
     client_t *client, const ai_handler_t *command)
 {

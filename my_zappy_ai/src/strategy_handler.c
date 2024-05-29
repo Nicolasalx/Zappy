@@ -15,7 +15,7 @@ void get_nb_food(client_t *client)
 void determine_role(client_t *client)
 {
     client->instruction_index = 0;
-    if (client->player.content_look[0][TILE_FOOD] < 50) {
+    if (client->player.content_look[0][TILE_FOOD] < 75) {
         client->strategy = DEAD_FORK;
         push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
         return;
