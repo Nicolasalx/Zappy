@@ -174,6 +174,7 @@ class Graphic {
         void draw_general_info();
         void draw_player_info();
         void draw_tile_info();
+        void drawLevelPlayerPerTile();
 
         GameState *gameState;
         Camera3D camera;
