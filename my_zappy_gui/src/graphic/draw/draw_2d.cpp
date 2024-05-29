@@ -47,9 +47,7 @@ void Graphic::drawLevelPlayerPerTile()
         listLevelPlayer.push_back(0);
     }
     for (const auto &player: this->gameState->players_list) {
-        if (player.pos.x == this->rayInfo.x && player.pos.y == this->rayInfo.y) {
-            listLevelPlayer.at(player.level - 1) += 1;
-        }
+        listLevelPlayer.at(player.level - 1) += 1;
     }
     textBoxs[3].draw();
     for (int i = 0; i < 8; ++i) {
@@ -64,8 +62,8 @@ void Graphic::drawLevelPlayerPerTile()
 
 void Graphic::draw_tile_info()
 {
+    drawLevelPlayerPerTile();
     if (this->rayInfo.type == ISLAND) {
-        drawLevelPlayerPerTile();
         textBoxs[2].draw();
         textBoxs[2].add_text(TextFormat("Tile: (%d, %d)"), 0.5f/8.5f);
         textBoxs[2].add_text(TextFormat("Food: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][FOOD]), 1.5f/8.5f);
