@@ -53,6 +53,7 @@ static void end_elevation(server_t *server, client_t *client)
         return;
     }
     do {
+        (*GET_DATA(current, client_t *))->in_incentation = false;
         (*GET_DATA(current, client_t *))->player.level += 1;
         send_msg_client((*GET_DATA(current, client_t *))->fd, buffer);
         plv_reply(server, (*GET_DATA(current, client_t *)));
@@ -89,6 +90,7 @@ void incatation_cmd(char *, client_t *client, server_t *server)
         cancel_elevation(client);
         send_msg_client(client->fd, "ko\n");
         pie_reply(server, client, false);
+        printf("raté au deuxieme check\n");
         return;
     }
     remove_elevation_req(client, server, client->player.level);

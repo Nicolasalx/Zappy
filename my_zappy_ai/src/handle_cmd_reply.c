@@ -18,6 +18,7 @@ void handle_cmd_reply(client_t *client, char *reply)
     } else if (reply && strncmp("Current level:", reply, 14) == 0) {
         printf("Player has level up!\n");
     } else if (reply && strcmp(reply, "Elevation underway\n") == 0) {
+        client->last_cmd = INCANTATION;
         return;
     } else {
         for (int i = 0; i < NB_ACTION; ++i) {
