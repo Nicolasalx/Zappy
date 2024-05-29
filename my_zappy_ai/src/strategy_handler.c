@@ -14,18 +14,17 @@ void get_nb_food(client_t *client)
 
 void determine_role(client_t *client)
 {
-    client->strategy = FARMER;
-    // client->instruction_index = 0;
-    // if (client->player.content_look[0][TILE_FOOD] < 50) {
-    //     client->strategy = DEAD_FORK;
-    //     push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
-    //     return;
-    // }
-    // if (client->player.content_look[0][TILE_PLAYER] > 7) {
-    //     client->strategy = FARMER;
-    // } else {
-    //     client->strategy = QUEEN;
-    // }
+    client->instruction_index = 0;
+    if (client->player.content_look[0][TILE_FOOD] < 50) {
+        client->strategy = DEAD_FORK;
+        push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
+        return;
+    }
+    if (client->player.content_look[0][TILE_PLAYER] > 7) {
+        client->strategy = FARMER;
+    } else {
+        client->strategy = QUEEN;
+    }
     push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
 }
 
