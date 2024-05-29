@@ -33,5 +33,11 @@ void queen_incantation(client_t *client)
     || client->player.content_look[0][TILE_PLAYER] < 3) {
         create_new_ai(client->port, &client->server_address.sin_addr, client->player.team_name);
     }
+    if (client->player.content_look[0][TILE_FOOD] < 20) {
+        create_new_ai(client->port, &client->server_address.sin_addr, client->player.team_name);
+    }
     push_new_command(client, INCANTATION, "Incantation\n");
+    push_new_command(client, TAKE, "Take food\n");
+    push_new_command(client, TAKE, "Take food\n");
+    push_new_command(client, TAKE, "Take food\n");
 }

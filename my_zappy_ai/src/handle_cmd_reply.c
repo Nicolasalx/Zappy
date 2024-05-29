@@ -17,6 +17,8 @@ void handle_cmd_reply(client_t *client, char *reply)
         printf("dead: %d\n", client->strategy);
     } else if (reply && strncmp("Current level:", reply, 14) == 0) {
         printf("Player has level up!\n");
+    } else if (reply && strcmp(reply, "Elevation underway\n") == 0) {
+        return;
     } else {
         for (int i = 0; i < NB_ACTION; ++i) {
             if ((int) client->last_cmd == i) {
