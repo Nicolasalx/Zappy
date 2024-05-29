@@ -193,6 +193,7 @@ class Graphic {
         int window_height = WINDOW_HEIGHT;
         bool cursor = false;
         float frame_time = 0.0f;
+        std::vector<int> listLevelPlayer;
 };
 
 #endif /* !ZAPPY_GUI_H_ */

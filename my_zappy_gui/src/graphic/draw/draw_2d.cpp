@@ -40,20 +40,19 @@ void Graphic::draw_player_info()
 
 void Graphic::drawLevelPlayerPerTile()
 {
-    std::vector<int> listLevelPlayer;
     double multiplicator = 0.08;
 
     for (int i = 0; i < 8; ++i) {
-        listLevelPlayer.push_back(0);
+        this->listLevelPlayer.push_back(0);
     }
     for (const auto &player: this->gameState->players_list) {
-        listLevelPlayer.at(player.level - 1) += 1;
+        this->listLevelPlayer.at(player.level - 1) += 1;
     }
     textBoxs[3].draw();
     for (int i = 0; i < 8; ++i) {
         int newInt = 0;
-        if (listLevelPlayer.size() == 8) {
-            newInt = listLevelPlayer.at(i);
+        if (this->listLevelPlayer.size() == 8) {
+            newInt = this->listLevelPlayer.at(i);
         }
         DrawText(TextFormat("Level %d: %d", (i + 1), newInt), window_width * 0.07, window_height * multiplicator, window_width / 60, WHITE);
         multiplicator += 0.05;
