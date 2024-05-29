@@ -52,11 +52,11 @@ void handle_new_message(client_t *client)
     } else if (size < 0) {
         exit_client(84, RED("Fail to read message.\n"));
     }
-    if (size >= BUFFER_SIZE) {
-        dprintf(2, MAGENTA("[WARNING] too long command.")"\n");
-        memset(client->reply_buffer, 0, BUFFER_SIZE);
-        client->buffer_size = 0;
-        return;
-    }
+//    if (size >= BUFFER_SIZE) {
+//        dprintf(2, MAGENTA("[WARNING] too long command.")"\n");
+//        memset(client->reply_buffer, 0, BUFFER_SIZE);
+//        client->buffer_size = 0;
+//        return;
+//    }
     buffering_input(client, reply, size);
 }

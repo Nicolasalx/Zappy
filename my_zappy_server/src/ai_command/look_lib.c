@@ -31,7 +31,8 @@ void get_item_str(char *buff, int x, int y, server_t *server)
         }
     }
     for (int i = 0; i < NB_ITEM; ++i) {
-        for (int j = 0; j < server->world.map[y][x].item[i] && j < 50; ++j) {
+        for (int j = 0; j < server->world.map[y][x].item[i]
+            && ((i > FOOD && j < 20) || (i == FOOD && j < 100)); ++j) {
             append_with_space_if_needed(buff, object_list[i], &first);
         }
     }
