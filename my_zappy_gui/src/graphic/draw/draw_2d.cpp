@@ -43,6 +43,17 @@ void Graphic::draw_player_info()
 void Graphic::draw_tile_info()
 {
     if (this->rayInfo.type == ISLAND) {
+        std::vector<int> listLevelPlayer;
+        for (int i = 0; i < 7; ++i) {
+            listLevelPlayer.push_back(0);
+        }
+
+        for (const auto &player: this->gameState->players_list) {
+            if (player.pos.x == this->rayInfo.x && player.pos.y == this->rayInfo.y) {
+                listLevelPlayer.at(player.level) += 1;
+            }
+        }
+
         DrawRectangleRec(textBoxs[2], CLITERAL(Color){200, 200, 255, 100});
         DrawRectangleLines(window_width * 0.78f, window_height / 2.1f, window_width / 5.0f, window_height * 0.40f, WHITE);
         DrawText(TextFormat("Tile: (%d, %d)", this->rayInfo.x, this->rayInfo.y), window_width * 0.80, window_height * 0.5, window_width / 60, WHITE);
