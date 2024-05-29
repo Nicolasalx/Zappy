@@ -42,4 +42,5 @@ void Graphic::init_2D()
     this->textBoxs.push_back(TextBox(0.78f, 0.04f, 0.2f, 0.1f, window_width, window_height));
     this->textBoxs.push_back(TextBox(0.78f, 0.47f, 0.2f, 0.51f, window_width, window_height));
     this->textBoxs.push_back(TextBox(0.78f, 0.47f, 0.2f, 0.40f, window_width, window_height));
+    this->textBoxs.push_back(TextBox(0.01f, 0.07f, 0.2f, 0.40f, window_width, window_height));
 }

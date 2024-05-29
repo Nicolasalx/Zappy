@@ -37,12 +37,6 @@ void determine_role(client_t *client)
     push_new_command(client, CONNECT_NBR, "Connect_nbr\n");
 }
 
-// queen
-// dead fork
-// ! fork
-// ! create new ai
-// ! drop
-
 void (*strategy_handler[NB_STRATEGY][10])(client_t *) =
 {
     [NOT_SET] = {

@@ -15,10 +15,12 @@ void handle_cmd_reply(client_t *client, char *reply)
         broadcast_reply(client, reply);
     } else if (reply && strcmp("dead\n", reply) == 0) {
         printf("dead: %d\n", client->strategy);
+    } else if (reply && strncmp("Current level:", reply, 14) == 0) {
+        printf("Player has level up!\n");
     } else if (reply && strcmp(reply, "Elevation underway\n") == 0) {
         client->last_cmd = INCANTATION;
         return;
-    } {
+    } else {
         for (int i = 0; i < NB_ACTION; ++i) {
             if ((int) client->last_cmd == i) {
                 if (reply_handler[i].method) {

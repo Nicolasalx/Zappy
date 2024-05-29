@@ -38,9 +38,34 @@ void Graphic::draw_player_info()
     }
 }
 
+void Graphic::drawLevelPlayerPerTile()
+{
+    std::vector<int> listLevelPlayer;
+    double multiplicator = 0.08;
+
+    for (int i = 0; i < 8; ++i) {
+        listLevelPlayer.push_back(0);
+    }
+    for (const auto &player: this->gameState->players_list) {
+        if (player.pos.x == this->rayInfo.x && player.pos.y == this->rayInfo.y) {
+            listLevelPlayer.at(player.level - 1) += 1;
+        }
+    }
+    textBoxs[3].draw();
+    for (int i = 0; i < 8; ++i) {
+        int newInt = 0;
+        if (listLevelPlayer.size() == 8) {
+            newInt = listLevelPlayer.at(i);
+        }
+        DrawText(TextFormat("Level %d: %d", (i + 1), newInt), window_width * 0.07, window_height * multiplicator, window_width / 60, WHITE);
+        multiplicator += 0.05;
+    }
+}
+
 void Graphic::draw_tile_info()
 {
     if (this->rayInfo.type == ISLAND) {
+        drawLevelPlayerPerTile();
         textBoxs[2].draw();
         textBoxs[2].add_text(TextFormat("Tile: (%d, %d)"), 0.5f/8.5f);
         textBoxs[2].add_text(TextFormat("Food: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][FOOD]), 1.5f/8.5f);
