@@ -23,9 +23,9 @@ void Graphic::window_resize()
     if (IsWindowResized()) {
         this->window_width = GetScreenWidth();
         this->window_height = GetScreenHeight();
-        this->textBoxs[0] = (Rectangle){window_width * 0.78f, window_height / 25.0f, window_width / 5.0f, window_height / 10.0f};
-        this->textBoxs[1] = (Rectangle){window_width * 0.78f, window_height / 2.1f, window_width / 5.0f, window_height * 0.51f};
-        this->textBoxs[2] = (Rectangle){window_width * 0.78f, window_height / 2.1f, window_width / 5.0f, window_height * 0.40f};
+        for (auto &textBox : this->textBoxs) {
+            textBox.resize(this->window_width, this->window_height);
+        }
     }
 }
 

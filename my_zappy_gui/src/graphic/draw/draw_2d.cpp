@@ -9,8 +9,7 @@
 
 void Graphic::draw_general_info()
 {
-    DrawRectangleRec(textBoxs[0], CLITERAL(Color){200, 200, 255, 100});
-    DrawRectangleLines(window_width * 0.78f, window_height / 25.0f, window_width / 5.0f, window_height / 10.0f, WHITE);
+    textBoxs[0].draw();
     DrawText(TextFormat("Number of players: %d", this->gameState->players_list.size()), window_width * 0.79, window_height / 20, window_width / 60, WHITE);
     DrawText(TextFormat("Server frequency: %d", this->gameState->time_unit), window_width * 0.79, window_height / 10, window_width / 60, WHITE);
     DrawFPS(10, 10);
@@ -21,8 +20,7 @@ void Graphic::draw_player_info()
     if (this->rayInfo.type == PLAYER) {
         for (auto &player : this->gameState->players_list) {
             if (player.n == this->rayInfo.id) {
-                DrawRectangleRec(textBoxs[1], CLITERAL(Color){200, 200, 255, 100});
-                DrawRectangleLines(window_width * 0.78f, window_height / 2.1f, window_width / 5.0f, window_height * 0.51f, WHITE);
+                textBoxs[1].draw();
                 DrawText(TextFormat("Player: %d", player.n), window_width * 0.80, window_height * 0.5, window_width / 60, WHITE);
                 DrawText(TextFormat("Level: %d", player.level), window_width * 0.80, window_height * 0.54, window_width / 60, WHITE);
                 DrawText(TextFormat("Orientation: %d", player.orientation), window_width * 0.80, window_height * 0.58, window_width / 60, WHITE);
@@ -43,15 +41,14 @@ void Graphic::draw_player_info()
 void Graphic::draw_tile_info()
 {
     if (this->rayInfo.type == ISLAND) {
-        DrawRectangleRec(textBoxs[2], CLITERAL(Color){200, 200, 255, 100});
-        DrawRectangleLines(window_width * 0.78f, window_height / 2.1f, window_width / 5.0f, window_height * 0.40f, WHITE);
-        DrawText(TextFormat("Tile: (%d, %d)", this->rayInfo.x, this->rayInfo.y), window_width * 0.80, window_height * 0.5, window_width / 60, WHITE);
-        DrawText(TextFormat("Food: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][FOOD]), window_width * 0.80, window_height * 0.54, window_width / 60, WHITE);
-        DrawText(TextFormat("Linemate: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][LINEMATE]), window_width * 0.80, window_height * 0.58, window_width / 60, WHITE);
-        DrawText(TextFormat("Deraumere: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][DERAUMERE]), window_width * 0.80, window_height * 0.62, window_width / 60, WHITE);
-        DrawText(TextFormat("Sibur: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][SIBUR]), window_width * 0.80, window_height * 0.66, window_width / 60, WHITE);
-        DrawText(TextFormat("Mendiane: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][MENDIANE]), window_width * 0.80, window_height * 0.70, window_width / 60, WHITE);
-        DrawText(TextFormat("Phiras: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][PHIRAS]), window_width * 0.80, window_height * 0.74, window_width / 60, WHITE);
-        DrawText(TextFormat("Thystame: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][THYSTAME]), window_width * 0.80, window_height * 0.78, window_width / 60, WHITE);
+        textBoxs[2].draw();
+        textBoxs[2].add_text(TextFormat("Tile: (%d, %d)"), 0.5f/8.5f);
+        textBoxs[2].add_text(TextFormat("Food: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][FOOD]), 1.5f/8.5f);
+        textBoxs[2].add_text(TextFormat("Linemate: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][LINEMATE]), 2.5f/8.5f);
+        textBoxs[2].add_text(TextFormat("Deraumere: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][DERAUMERE]), 3.5f/8.5f);
+        textBoxs[2].add_text(TextFormat("Sibur: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][SIBUR]), 4.5f/8.5f);
+        textBoxs[2].add_text(TextFormat("Mendiane: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][MENDIANE]), 5.5f/8.5f);
+        textBoxs[2].add_text(TextFormat("Phiras: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][PHIRAS]), 6.5f/8.5f);
+        textBoxs[2].add_text(TextFormat("Thystame: %d", this->gameState->object_pos[this->rayInfo.y][this->rayInfo.x][THYSTAME]), 7.5f/8.5f);
     }
 }

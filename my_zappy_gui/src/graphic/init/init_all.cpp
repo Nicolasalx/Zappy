@@ -2,38 +2,17 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** graphic_class
+** init_all
 */
 
 #include "zappy_gui.hpp"
 
-Graphic::Graphic(GameState *gameState)
+void Graphic::init_window()
 {
-    this->gameState = gameState;
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Zappy GUI");
-    this->init_camera();
-    this->set_fps(60);
-    this->init_sky_box();
-    this->init_object();
-    this->init_island();
-    this->init_player();
-    this->init_object_padding();
-    this->init_lighting();
-    this->init_2D();
-    this->player_orientation[1] = 180;
-    this->player_orientation[2] = 90;
-    this->player_orientation[3] = 0;
-    this->player_orientation[4] = 270;
-    this->rayInfo.type = 0;
-    this->rayInfo.id = 0;
-    this->rayInfo.x = 0;
-    this->rayInfo.y = 0;
-}
-
-Graphic::~Graphic()
-{
-    CloseWindow();
+    this->window_width = GetScreenWidth();
+    this->window_height = GetScreenHeight();
 }
 
 void Graphic::init_camera()
@@ -70,8 +49,6 @@ void Graphic::init_sky_box()
 
 void Graphic::init_island()
 {
-    //avec un cube pour l'instant
-    
     Model island = LoadModel("assets/plateform.obj");
     Texture2D texture = LoadTexture("assets/plateform1.png");
     SetTextureFilter(texture, TEXTURE_FILTER_TRILINEAR);
@@ -147,14 +124,4 @@ void Graphic::init_lighting()
     // float test[4] = { 0.1f, 0.1f, 0.1f, 1.0f };
     // int ambientLoc = GetShaderLocation(light_shader, "ambient");
     // SetShaderValue(light_shader, ambientLoc, test, SHADER_UNIFORM_VEC4);
-}
-
-void Graphic::init_2D()
-{
-    Rectangle textBox = {window_width * 0.78f, window_height / 25.0f, window_width / 5.0f, window_height / 10.0f};
-    this->textBoxs.push_back(textBox);
-    Rectangle textBox2 = {window_width * 0.78f, window_height / 2.1f, window_width / 5.0f, window_height * 0.51f};
-    this->textBoxs.push_back(textBox2);
-    Rectangle textBox3 = {window_width * 0.78f, window_height / 2.1f, window_width / 5.0f, window_height * 0.40f};
-    this->textBoxs.push_back(textBox3);
 }
