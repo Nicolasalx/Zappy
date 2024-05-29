@@ -17,6 +17,20 @@ TextBox::TextBox(float x, float y, float width, float height, int window_width, 
     _color = {200, 200, 255, 100};
     this->_window_width = window_width;
     this->_window_height = window_height;
+    this->state = 0;
+}
+
+TextBox::TextBox(float x, float y, float width, float height, int window_width, int window_height, int state)
+{
+    this->_x = x;
+    this->_y = y;
+    this->_width = width;
+    this->_height = height;
+    _box = {window_width * _x, window_height * _y, window_width * _width, window_height * _height};
+    _color = {200, 200, 255, 100};
+    this->_window_width = window_width;
+    this->_window_height = window_height;
+    this->state = state;
 }
 
 void TextBox::resize(int window_width, int window_height)
