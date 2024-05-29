@@ -65,6 +65,46 @@ void Graphic::click_event()
     }
 }
 
+void Graphic::change_player_selected()
+{
+    if (IsKeyPressed(KEY_O)) {
+        for (size_t i = 0; i < this->gameState->players_list.size(); i++) {
+            if (gameState->players_list[i].n == this->rayInfo.id) {
+                if (i == this->gameState->players_list.size() - 1) {
+                    this->rayInfo.id = this->gameState->players_list[0].n;
+                } else {
+                    this->rayInfo.id = this->gameState->players_list[i + 1].n;
+                }
+                this->rayInfo.type = PLAYER;
+                return;
+            }
+        }
+        for (size_t i = 0; i < this->gameState->players_list.size(); i++) {
+            rayInfo.id = this->gameState->players_list[i].n;
+            this->rayInfo.type = PLAYER;
+            return;
+        }
+    }
+    if (IsKeyPressed(KEY_I)) {
+        for (size_t i = 0; i < this->gameState->players_list.size(); i++) {
+            if (gameState->players_list[i].n == this->rayInfo.id) {
+                if (i == 0) {
+                    this->rayInfo.id = this->gameState->players_list[this->gameState->players_list.size() - 1].n;
+                } else {
+                    this->rayInfo.id = this->gameState->players_list[i - 1].n;
+                }
+                this->rayInfo.type = PLAYER;
+                return;
+            }
+        }
+        for (size_t i = 0; i < this->gameState->players_list.size(); i++) {
+            rayInfo.id = this->gameState->players_list[i].n;
+            this->rayInfo.type = PLAYER;
+            return;
+        }
+    }
+}
+
 void Graphic::event()
 {
     frame_time = GetFrameTime();
@@ -74,4 +114,5 @@ void Graphic::event()
     this->change_cursor();
     this->window_resize();
     this->click_event();
+    this->change_player_selected();
 }
