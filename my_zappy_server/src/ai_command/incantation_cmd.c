@@ -90,10 +90,10 @@ void incatation_cmd(char *, client_t *client, server_t *server)
         pie_reply(server, client, false);
         return;
     }
-    pie_reply(server, client, true);
-    plv_reply(server, client);
     remove_elevation_req(client, server, client->player.level);
     end_elevation(server, client);
+    pie_reply(server, client, true);
+    plv_reply(server, client);
     winning_team = condition_win(server);
     if (winning_team) {
         seg_reply(server, winning_team);
