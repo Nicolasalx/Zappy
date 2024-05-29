@@ -147,6 +147,7 @@ class Graphic {
         void update_animation(player_t &player);
         void update_player_pos(player_t &player);
         void click_event();
+        void change_player_selected();
         //draw
         void draw_3D();
         void draw_2D();
