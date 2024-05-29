@@ -28,6 +28,7 @@ Graphic::Graphic(GameState *gameState)
     this->rayInfo.id = 0;
     this->rayInfo.x = 0;
     this->rayInfo.y = 0;
+    this->listLevelPlayer.resize(8);
 }
 
 Graphic::~Graphic()
