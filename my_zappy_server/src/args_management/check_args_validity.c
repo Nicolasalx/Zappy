@@ -69,5 +69,8 @@ void check_arg_validity(server_t *server)
     if ((server->freq <= 0 || server->freq > 10000) && server->freq != -1) {
         my_error("Error: Frequency cannot be greater than 10000", 84);
     }
+    if (server->team_count > 10) {
+        my_error("Error: You can't have more than 10 teams", 84);
+    }
     fill_arg(server);
 }
