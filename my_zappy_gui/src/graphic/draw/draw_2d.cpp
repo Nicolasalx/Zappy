@@ -42,8 +42,9 @@ void Graphic::drawLevelPlayerPerTile()
 {
     double multiplicator = 0.08;
 
+    this->listLevelPlayer.resize(8);
     for (int i = 0; i < 8; ++i) {
-        this->listLevelPlayer.push_back(0);
+        this->listLevelPlayer.at(i) = 0;
     }
     for (const auto &player: this->gameState->players_list) {
         this->listLevelPlayer.at(player.level - 1) += 1;
