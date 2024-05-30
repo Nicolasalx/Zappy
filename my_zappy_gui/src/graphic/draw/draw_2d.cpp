@@ -10,8 +10,8 @@
 void Graphic::draw_general_info()
 {
     textBoxs[0].draw();
-    DrawText(TextFormat("Number of players: %d", this->gameState->players_list.size()), window_width * 0.79, window_height / 20, window_width / 60, WHITE);
-    DrawText(TextFormat("Server frequency: %d", this->gameState->time_unit), window_width * 0.79, window_height / 10, window_width / 60, WHITE);
+    textBoxs[0].add_text(TextFormat("Number of players: %d", this->gameState->players_list.size()), 0.5f/2.5f);
+    textBoxs[0].add_text(TextFormat("Server frequency: %d", this->gameState->time_unit), 1.5f/2.5f);
     DrawFPS(10, 10);
 }
 
@@ -40,13 +40,15 @@ void Graphic::draw_player_info()
 
 void Graphic::draw_all_player_level()
 {
+    textBoxs[3].draw();
+    if (textBoxs[3].is_closed())
+        return;
     for (int i = 0; i < 8; ++i) {
         this->listLevelPlayer.at(i) = 0;
     }
     for (const auto &player: this->gameState->players_list) {
         this->listLevelPlayer.at(player.level - 1) += 1;
     }
-    textBoxs[3].draw();
     for (int i = 0; i < 8; ++i) {
         textBoxs[3].add_text(TextFormat("Level %d: %d", (i + 1), listLevelPlayer[i]), (i + 0.5f)/8.5f);
     }
