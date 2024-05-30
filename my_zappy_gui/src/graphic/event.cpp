@@ -62,6 +62,9 @@ void Graphic::click_event()
         this->rayInfo.id = 0;
         this->rayInfo.x = 0;
         this->rayInfo.y = 0;
+        for (auto &textBox : this->textBoxs) {
+            textBox.open_close();
+        }
     }
 }
 

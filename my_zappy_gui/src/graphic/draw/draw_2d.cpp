@@ -41,18 +41,14 @@ void Graphic::draw_player_info()
 void Graphic::draw_all_player_level()
 {
     for (int i = 0; i < 8; ++i) {
-        this->listLevelPlayer[i] = 0;
+        this->listLevelPlayer.at(i) = 0;
     }
     for (const auto &player: this->gameState->players_list) {
         this->listLevelPlayer.at(player.level - 1) += 1;
     }
     textBoxs[3].draw();
     for (int i = 0; i < 8; ++i) {
-        int newInt = 0;
-        if (this->listLevelPlayer.size() == 8) {
-            newInt = this->listLevelPlayer.at(i);
-        }
-        textBoxs[3].add_text(TextFormat("Level %d: %d", (i + 1), newInt), (i + 0.5f)/8.5f);
+        textBoxs[3].add_text(TextFormat("Level %d: %d", (i + 1), listLevelPlayer[i]), (i + 0.5f)/8.5f);
     }
 }
 
