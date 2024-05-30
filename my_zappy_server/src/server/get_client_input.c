@@ -11,7 +11,7 @@ static void safe_strncat(char *dest, size_t *size_dest, const char *src, size_t 
 {
     size_t size_src = strlen(src);
 
-    if ((*size_dest + size_src) >= BUFFER_SIZE) {
+    if ((*size_dest + size_src) >= BUFFER_SIZE - 1) {
         dprintf(2, MAGENTA("[WARNING] internal buffer full.")"\n");
         memset(dest, 0, BUFFER_SIZE);
         *size_dest = 0;
