@@ -40,9 +40,6 @@ void Graphic::draw_player_info()
 
 void Graphic::draw_all_player_level()
 {
-    double multiplicator = 0.08;
-
-    this->listLevelPlayer.resize(8);
     for (int i = 0; i < 8; ++i) {
         this->listLevelPlayer.at(i) = 0;
     }
@@ -51,11 +48,7 @@ void Graphic::draw_all_player_level()
     }
     textBoxs[3].draw();
     for (int i = 0; i < 8; ++i) {
-        int newInt = 0;
-        if (this->listLevelPlayer.size() == 8) {
-            newInt = this->listLevelPlayer.at(i);
-        }
-        textBoxs[3].add_text(TextFormat("Level %d: %d", (i + 1), newInt), (i + 0.5f)/8.5f);
+        textBoxs[3].add_text(TextFormat("Level %d: %d", (i + 1), listLevelPlayer[i]), (i + 0.5f)/8.5f);
     }
 }
 
