@@ -88,6 +88,7 @@ class TextBox {
         TextBox(float x, float y, float w, float h, int window_w, int window_h, int state);
         ~TextBox() = default;
         void open_close();
+        bool is_closed();
         void resize(int window_width, int window_height);
         void add_text(std::string text, float ypos);
         void draw();
