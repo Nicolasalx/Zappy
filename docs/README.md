@@ -44,7 +44,7 @@ You can set the team member capacity using the -c `clientsNb` option. Although t
 
 ### Frequency
 
-You can set a frequency between 1 and 10,000 using the -f `freq` option. The frequency controls the simulation tick rate, affecting the timing of commands, food generation, and other events.
+You can set a frequency between 1 and 150 using the -f `freq` option. The frequency controls the simulation tick rate, affecting the timing of commands, food generation, and other events.
 
 ### AI Communication Protocol
 
