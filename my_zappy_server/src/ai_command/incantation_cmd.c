@@ -90,7 +90,6 @@ void incatation_cmd(char *, client_t *client, server_t *server)
         cancel_elevation(client);
         send_msg_client(client->fd, "ko\n");
         pie_reply(server, client, false);
-        printf("raté au deuxieme check\n");
         return;
     }
     remove_elevation_req(client, server, client->player.level);
