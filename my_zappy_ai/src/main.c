@@ -20,9 +20,10 @@ int main(int argc, char const *argv[])
 {
     ai_thread_t ai_thread = {0};
     client_t client = {0};
+    ai_arg_t ai_arg = {0};
 
     get_thread_list(&ai_thread);
-    get_args(argc, argv);
+    get_args(argc, argv &ai_arg);
 
     pthread_mutex_init(&ai_thread.mutex, NULL);
     sem_init(&ai_thread.end_game, 0, 0);

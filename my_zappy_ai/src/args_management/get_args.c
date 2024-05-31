@@ -65,9 +65,8 @@ void fill_args(ai_arg_t *ai_arg)
         strcpy(ai_arg->team_name, "Team1");
 }
 
-void get_args(int argc, const char **argv)
+void get_args(int argc, const char **argv, ai_arg_t *ai_arg)
 {
-    ai_arg_t ai_arg = {0};
     const char *args[] = {"-p", "-h", "-n"};
 
     if (argc == 2 && strcmp(argv[1], "-help") == 0) {

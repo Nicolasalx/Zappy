@@ -150,7 +150,7 @@ extern void (*strategy_handler[NB_STRATEGY][10])(client_t *);
 extern const char *object_list[NB_ITEM];
 extern const char *tile_list[TILE_NB_ELEM];
 
-void get_args(int argc, const char **argv);
+void get_args(int argc, const char **argv, ai_arg_t *ai_arg);
 void create_client(client_t *client);
 void init_client_set(client_t *client, int *max_fd);
 void monitor_input(client_t *client, int max_fd);
