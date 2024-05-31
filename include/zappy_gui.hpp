@@ -138,6 +138,8 @@ namespace Gui
             void ppo(std::vector<std::string> args);
             void plv(std::vector<std::string> args);
             void pin(std::vector<std::string> args);
+            void pic(std::vector<std::string> args);
+            void pie(std::vector<std::string> args);
             void pdi(std::vector<std::string> args);
             void sgt(std::vector<std::string> args);
 
@@ -145,6 +147,7 @@ namespace Gui
             int time_unit = 0;
             std::map<std::string, std::function<void(std::vector<std::string>)>> cmd_map;
             std::vector<std::vector<std::vector<int>>> object_pos;
+            std::vector<incant_t> incant_list;
             std::vector<player_t> players_list;
             std::vector<std::string> team_names;
     };
@@ -214,6 +217,7 @@ namespace Gui
         void draw_player_info();
         void draw_tile_info();
         void draw_all_player_level();
+        void draw_particle();
 
         GameState *gameState;
         Camera3D camera;
