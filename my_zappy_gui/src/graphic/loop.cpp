@@ -39,5 +39,3 @@ void Graphic::loop()
     }
     exit(0);
 }
-
-

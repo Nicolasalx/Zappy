@@ -23,6 +23,7 @@
     #include <string>
     #include <memory>
     #include <vector>
+    #include <list>
     #include <map>
     #include <functional>
     #include <thread>
@@ -59,6 +60,11 @@ struct pos_t {
     float y;
 };
 
+struct incant_t {
+    int level;
+    pos_t pos;
+};
+
 struct player_t {
     int n;
     pos_t pos;
@@ -80,6 +86,19 @@ struct ray_info_t {
     int id;
     int x;
     int y;
+};
+
+class ParticleSystem {
+    public:
+        ParticleSystem();
+        ~ParticleSystem() = default;
+        void update_particle();
+        void draw();
+
+        pos_t pos;
+        std::list<float> particles;
+        size_t max_particles;
+        float velocity;
 };
 
 class TextBox {
@@ -117,6 +136,8 @@ class GameState {
         void ppo(std::vector<std::string> args);
         void plv(std::vector<std::string> args);
         void pin(std::vector<std::string> args);
+        void pic(std::vector<std::string> args);
+        void pie(std::vector<std::string> args);
         void pdi(std::vector<std::string> args);
         void sgt(std::vector<std::string> args);
 
@@ -124,6 +145,7 @@ class GameState {
         int time_unit = 0;
         std::map<std::string, std::function<void(std::vector<std::string>)>> cmd_map;
         std::vector<std::vector<std::vector<int>>> object_pos;
+        std::vector<incant_t> incant_list;
         std::vector<player_t> players_list;
         std::vector<std::string> team_names;
 };
@@ -180,6 +202,7 @@ class Graphic {
         void update_player_pos(player_t &player);
         void click_event();
         void change_player_selected();
+        void update_particle_list();
         //draw
         void draw_3D();
         void draw_2D();
@@ -200,6 +223,7 @@ class Graphic {
         float object_padding[7][2];
         ModelAnimation *player_animation;
         std::vector<TextBox> textBoxs;
+        std::vector<ParticleSystem> particle_systems;
         ray_info_t rayInfo;
         // Shader light_shader;
         int window_width = WINDOW_WIDTH;
