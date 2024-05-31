@@ -15,6 +15,8 @@
     #define WINDOW_HEIGHT 1080 / 2
     #define SCALE 6.0f
 
+    #include <raylib.h>
+
 namespace Gui
 {
     struct pos_t {
