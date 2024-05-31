@@ -38,12 +38,14 @@ void Graphic::loop()
     while (!WindowShouldClose()) {
         this->event();
         BeginDrawing();
-        if (isInMenu) {
-            this->menu();
-        } else {
-            this->draw_3D();
-            this->draw_2D();
-        }
+        //if (isInMenu) {
+        //    this->menu();
+        //} else {
+        //     this->draw_3D();
+        //     this->draw_2D();
+        // }
+        this->draw_3D();
+        this->draw_2D();
         EndDrawing();
     }
     exit(0);
