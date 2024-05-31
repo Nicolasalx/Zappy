@@ -6,13 +6,14 @@
 */
 
 #include "zappy_gui.hpp"
+#include "camera.hpp"
 
-void Gui::Graphic::init_camera()
+Gui::Camera::Camera()
 {
-    this->camera.position = (Vector3){ 10.0f, 10.0f, 10.0f };
-    this->camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };
-    this->camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };
-    this->camera.fovy = 90.0f;
-    this->camera.projection = CAMERA_PERSPECTIVE;
+    this->_data.position = (Vector3){ 10.0f, 10.0f, 10.0f };
+    this->_data.target = (Vector3){ 0.0f, 0.0f, 0.0f };
+    this->_data.up = (Vector3){ 0.0f, 1.0f, 0.0f };
+    this->_data.fovy = 90.0f;
+    this->_data.projection = CAMERA_PERSPECTIVE;
     DisableCursor();
 }
