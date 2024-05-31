@@ -29,7 +29,6 @@ static void buffering_input(server_t *server, client_t *client, char *command, s
     while (end_cmd != NULL) {
         safe_strncat(client->cmd_buffer, &client->buffer_size, command, (end_cmd + 1) - start_cmd);
         handle_client_input(server, client, client->cmd_buffer);
-
         if (!client->cmd_buffer) {
             return;
         }

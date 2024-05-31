@@ -56,13 +56,11 @@ void create_new_ai(int port, struct in_addr address, char *team_name)
     new_thread = my_calloc(sizeof(pthread_t));
     arg = my_calloc(sizeof(ai_arg_t));
     pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
-
     arg->port = port;
     arg->address = address;
     strcpy(arg->team_name, team_name);
     pthread_create(new_thread, NULL, create_new_ai_helper, arg);
     pthread_detach(*new_thread);
-
     pthread_mutex_lock(&get_thread_list(NULL)->mutex);
     append_node(&get_thread_list(NULL)->thread_list, create_node(new_thread));
     pthread_mutex_unlock(&get_thread_list(NULL)->mutex);

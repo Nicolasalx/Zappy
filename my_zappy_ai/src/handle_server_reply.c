@@ -34,15 +34,16 @@ static void handle_login(client_t *client, char *reply)
 
     if (client->log_state == WAITING_WELCOME
     && strcmp(reply, NEW_CLIENT_MESSAGE) == 0) {
-        snprintf(team_name, sizeof(team_name), "%s\n", client->player.team_name);
+        snprintf(team_name, sizeof(team_name),
+            "%s\n", client->player.team_name);
         send_cmd_to_server(client, team_name);
         client->log_state = WAITING_ID;
     } else if (client->log_state == WAITING_ID
     && my_str_only_cont(reply, "0123456789\n")) {
         client->player.id = atoi(reply);
-        client->log_state = WAINTING_MAP_SIZE;
+        client->log_state = WAITING_MAP_SIZE;
         handle_cmd_reply(client, NULL);
-    } else if (client->log_state == WAINTING_MAP_SIZE
+    } else if (client->log_state == WAITING_MAP_SIZE
     && get_map_size(client, reply)) {
         client->log_state = LOGGED;
     } else {

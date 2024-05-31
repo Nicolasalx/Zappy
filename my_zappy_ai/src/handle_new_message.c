@@ -29,7 +29,6 @@ static void buffering_input(client_t *client, char *command, size_t nb_byte)
     while (end_cmd != NULL) {
         safe_strncat(client->reply_buffer, &client->buffer_size, command, (end_cmd + 1) - start_cmd);
         handle_server_reply(client, client->reply_buffer);
-
         memset(client->reply_buffer, 0, CMD_BUFFER_SIZE);
         client->buffer_size = 0;
         memmove(start_cmd, end_cmd + 1, strlen(end_cmd + 1) + 1);
@@ -52,11 +51,11 @@ void handle_new_message(client_t *client)
     } else if (size < 0) {
         exit_client(client, 84, RED("Fail to read message.\n"));
     }
-//    if (size >= BUFFER_SIZE) {
-//        dprintf(2, MAGENTA("[WARNING] too long command.")"\n");
-//        memset(client->reply_buffer, 0, BUFFER_SIZE);
-//        client->buffer_size = 0;
-//        return;
-//    }
+    if (size > BUFFER_SIZE) {
+        dprintf(2, MAGENTA("[WARNING] too long command.")"\n");
+        memset(client->reply_buffer, 0, BUFFER_SIZE);
+        client->buffer_size = 0;
+        return;
+    }
     buffering_input(client, reply, size);
 }

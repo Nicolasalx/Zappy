@@ -32,10 +32,11 @@ static void handle_new_server_cmd(char *cmd, server_t *server)
 
 void handle_server_input(server_t *server)
 {
-    if (FD_ISSET(STDIN_FILENO, &server->read_set)) {
-        char cmd_data[BUFFER_SIZE] = {0};
-        ssize_t nb_byte = read(STDIN_FILENO, &cmd_data, sizeof(cmd_data) - 1);
+    char cmd_data[BUFFER_SIZE] = {0};
+    ssize_t nb_byte = 0;
 
+    if (FD_ISSET(STDIN_FILENO, &server->read_set)) {
+        nb_byte = read(STDIN_FILENO, &cmd_data, sizeof(cmd_data) - 1);
         if (nb_byte == -1 || nb_byte == 0)
             return;
         if (nb_byte >= BUFFER_SIZE) {

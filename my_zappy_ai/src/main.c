@@ -23,16 +23,12 @@ int main(int argc, char const *argv[])
 
     get_thread_list(&ai_thread);
     get_args(argc, argv, &ai_arg);
-
     pthread_mutex_init(&ai_thread.mutex, NULL);
     sem_init(&ai_thread.end_game, 0, 0);
-
     signal(SIGINT, close_ai);
     create_new_ai(ai_arg.port,
         ai_arg.address, ai_arg.team_name);
-
     sem_wait(&ai_thread.end_game);
-
     cancel_child();
     sem_destroy(&ai_thread.end_game);
     pthread_mutex_destroy(&ai_thread.mutex);
