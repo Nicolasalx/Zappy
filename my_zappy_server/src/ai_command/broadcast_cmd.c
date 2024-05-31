@@ -12,7 +12,9 @@ int calculate_direction(client_t *src, client_t *dest)
     int dx = dest->player.pos_x - src->player.pos_x;
     int dy = dest->player.pos_y - src->player.pos_y;
     int direction = 0;
-
+    
+    if (dx == dy)
+        return 0;
     if (abs(dx) > abs(dy))
         direction = (dx > 0) ? 3 : 7;
     else
