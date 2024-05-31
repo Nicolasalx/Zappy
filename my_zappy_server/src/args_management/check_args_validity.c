@@ -62,14 +62,14 @@ void check_arg_validity(server_t *server)
     && server->world.size_y != -1) {
         my_error("Error: Height must be between 1 and 100", 84);
     }
-    if ((server->client_nb <= 0 || server->client_nb > 100)
+    if ((server->client_nb <= 0 || server->client_nb > MAX_PLAYER_PER_TEAM)
     && server->client_nb != -1) {
         my_error("Error: Clients must be between 1 and 100", 84);
     }
     if ((server->freq <= 0 || server->freq > 150) && server->freq != -1) {
         my_error("Error: Frequency cannot be greater than 150", 84);
     }
-    if (server->team_count > 10) {
+    if (server->team_count > MAX_TEAM_NB) {
         my_error("Error: You can't have more than 10 teams", 84);
     }
     fill_arg(server);

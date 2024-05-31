@@ -48,12 +48,13 @@ void get_teams_name(const char **argv,
     server_t *server, int i, int argc)
 {
     if (strcmp(argv[i], "-n") == 0) {
-        for (i = i + 1; i < argc && argv[i][0] != '-'
-        && server->team_count < MAX_TEAM_NB; i++) {
+        for (i = i + 1; i < argc && argv[i][0] != '-'; i++) {
             get_teams_name_error(argv, server, i);
             strcpy(server->team_list[server->team_count].name, argv[i]);
             server->team_list[server->team_count].
             remaining_spot = server->client_nb;
+            server->team_list[server->team_count].
+            player_max = server->client_nb;
             server->team_count += 1;
         }
         i -= 1;
