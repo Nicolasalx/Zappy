@@ -67,7 +67,7 @@ typedef enum {
     TILE_PLAYER,
     TILE_NB_ELEM
 } tile_t;
-    
+
 typedef enum {
     NONE,
     FORWARD,

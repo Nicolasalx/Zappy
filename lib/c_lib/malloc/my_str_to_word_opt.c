@@ -25,7 +25,7 @@ int count_nb_word_opt(const char *str, const char *delimiter)
 
 int *count_size_word_opt(const char *str, const char *delimiter, int nb_word)
 {
-    int *size_word = malloc(sizeof(int) * nb_word);
+    int *size_word = my_calloc(sizeof(int) * nb_word);
     int count_size_word = 0;
     int index = 0;
     bool is_delimiter = false;
