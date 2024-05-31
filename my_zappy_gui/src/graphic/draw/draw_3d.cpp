@@ -7,16 +7,6 @@
 
 #include "zappy_gui.hpp"
 
-void Gui::Graphic::draw_sky_box()
-{
-    ClearBackground(RAYWHITE);
-    rlDisableBackfaceCulling();
-    rlDisableDepthMask();
-        DrawModel(sky_box, (Vector3){0, 0, 0}, 1.0f, WHITE);
-    rlEnableBackfaceCulling();
-    rlEnableDepthMask();
-}
-
 void Gui::Graphic::draw_map()
 {
     for (int i = 0; i < this->gameState->map_size.x; i++) {
@@ -34,24 +24,4 @@ void Gui::Graphic::draw_map()
     }
 }
 
-void Gui::Graphic::draw_object()
-{
-    for (int i = 0; i < this->gameState->map_size.x; i++) {
-        for (int j = 0; j < this->gameState->map_size.y; j++) {
-            for (int k = 0; k < 7; k++) {
-                if (this->gameState->object_pos[j][i][k] != 0) {
-                    DrawModel(this->model_list[k], (Vector3){i * SCALE + object_padding[k][0], 0.5f, j * SCALE + object_padding[k][1]}, 0.4f, WHITE);
-                }
-            }
-        }
-    }
-}
 
-void Gui::Graphic::draw_particle()
-{
-    for (auto &particle_system : this->particle_systems) {
-        particle_system.update_particle();
-        particle_system.draw();
-        std::cout << "draw particle" << std::endl;
-    }
-}
