@@ -6,12 +6,12 @@
 */
 
 #include "zappy_gui.hpp"
+#include "camera.hpp"
 
-Gui::Graphic::Graphic(GameState *gameState)
+Gui::Graphic::Graphic(GameState *gameState): window(), camera()
 {
     this->gameState = gameState;
-    this->init_window();
-    this->init_camera();
+
     this->set_fps(60);
     this->init_sky_box();
     this->init_object();
@@ -35,13 +35,13 @@ Gui::Graphic::~Graphic()
 
 void Gui::Graphic::init_2D()
 {
-    this->textBoxs.push_back(TextBox(0.77f, 0.04f, 0.21f, 0.1f, window_width, window_height, LEFT_BUTTON));
-    this->textBoxs.push_back(TextBox(0.77f, 0.47f, 0.21f, 0.51f, window_width, window_height));
-    this->textBoxs.push_back(TextBox(0.77f, 0.47f, 0.21f, 0.40f, window_width, window_height));
-    this->textBoxs.push_back(TextBox(0.01f, 0.57f, 0.15f, 0.40f, window_width, window_height, RIGHT_BUTTON));
+    this->textBoxs.push_back(TextBox(0.77f, 0.04f, 0.21f, 0.1f, this->window.window_width, this->window.window_height, LEFT_BUTTON));
+    this->textBoxs.push_back(TextBox(0.77f, 0.47f, 0.21f, 0.51f, this->window.window_width, this->window.window_height));
+    this->textBoxs.push_back(TextBox(0.77f, 0.47f, 0.21f, 0.40f, this->window.window_width, this->window.window_height));
+    this->textBoxs.push_back(TextBox(0.01f, 0.57f, 0.15f, 0.40f, this->window.window_width, this->window.window_height, RIGHT_BUTTON));
 }
 
-void Gui::Graphic::init_window()
+Gui::Window::Window()
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Zappy GUI");
