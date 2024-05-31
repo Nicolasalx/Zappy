@@ -21,6 +21,7 @@ void add_client(server_t *server, client_t *client)
 void remove_client(client_t *client)
 {
     if (client->player.team) {
+        client->player.team->player_max -= 1;
         client->player.team->remaining_spot += 1;
     }
     my_free(client->cmd_buffer);

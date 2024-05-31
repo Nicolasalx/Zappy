@@ -23,5 +23,3 @@ void Gui::Graphic::draw_map()
         }
     }
 }
-
-

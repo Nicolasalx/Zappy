@@ -17,7 +17,6 @@ static void choose_random_egg(server_t *server,
             client->player.pos_x = GET_DATA(chosen_one, egg_t)->pos_x;
             client->player.pos_y = GET_DATA(chosen_one, egg_t)->pos_y;
             client->player.orientation = rand() % 4;
-            client->player.team->remaining_spot -= 1;
             ebo_reply(server, GET_DATA(chosen_one, egg_t));
             edi_reply(server, client, GET_DATA(chosen_one, egg_t));
             delete_node(&client->player.team->egg_list, chosen_one);
@@ -31,14 +30,14 @@ static bool search_spawn_egg(client_t *client, server_t *server)
 {
     node_t *chosen_one = client->player.team->egg_list;
 
-    if (client->player.team->remaining_spot > 0
-    && client->player.team->egg_list) {
+    if (client->player.team->remaining_spot >= 0
+    && client->player.team->egg_list
+    && client->player.team->player_max <= MAX_PLAYER_CONNECTED_PER_TEAM) {
         choose_random_egg(server, client, chosen_one);
         return true;
     } else {
-        memset(&client->player, 0, sizeof(client->player));
         send_msg_client(client->fd, "ko\n");
-        // ! maybe close the client
+        remove_client(client);
         return false;
     }
 }
@@ -47,11 +46,13 @@ void init_player(client_t *client, server_t *server)
 {
     char buffer[100] = {0};
 
+    client->player.team->remaining_spot -= 1;
+    client->player.team->player_max += 1;
+    if (!search_spawn_egg(client, server))
+        return;
     client->player.inventory[FOOD] = 10;
     client->player.level = 1;
     client->player.id = server->player_count;
-    if (!search_spawn_egg(client, server))
-        return;
     server->player_count += 1;
     snprintf(buffer, sizeof(buffer), "%d\n",
         client->player.team->remaining_spot);

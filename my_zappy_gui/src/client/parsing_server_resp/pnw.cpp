@@ -11,10 +11,10 @@ void Gui::GameState::pnw(std::vector<std::string> args)
 {
     if (args.size() != 6)
         return;
-    std::cout << "pnw" << std::endl;
-    for (auto arg : args) {
-        std::cout << arg << std::endl;
-    }
+    // std::cout << "pnw" << std::endl;
+    // for (auto arg : args) {
+    //     std::cout << arg << std::endl;
+    // }
     player_t new_player;
     new_player.n = std::stoi(args[0]);
     new_player.pos.x = std::stoi(args[1]);
