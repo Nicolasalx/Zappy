@@ -18,6 +18,8 @@ namespace Gui
             Object(std::vector<Model> &modelList);
             ~Object() = default;
 
+            float object_padding[7][2];
+
         private:
 
     };

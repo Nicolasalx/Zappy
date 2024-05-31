@@ -46,10 +46,7 @@ Gui::Object::Object(std::vector<Model> &modelList)
     Texture2D texture_t = LoadTexture("assets/texture_thystame.png");
     SetMaterialTexture(&thystame_model.materials[0], MATERIAL_MAP_DIFFUSE, texture_t);
     modelList.push_back(thystame_model);
-}
 
-void Gui::Graphic::init_object_padding()
-{
     for (int i = 0; i < 7; i++) {
         this->object_padding[i][0] = cos((PI / 180.0f) * (i * 50.0f));
         this->object_padding[i][1] = sin((PI / 180.0f) * (i * 50.0f));

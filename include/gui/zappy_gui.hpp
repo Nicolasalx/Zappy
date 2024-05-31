@@ -38,9 +38,6 @@ namespace Gui
         Graphic(GameState *gameState);
         ~Graphic();
 
-        void init_player();
-        void init_object();
-        void init_object_padding();
         void init_lighting();
         void init_2D();
         void set_fps(int fps);
@@ -80,14 +77,10 @@ namespace Gui
         Gui::Island island;
         Gui::Player player;
 
-        std::map<int, int> player_orientation;
-        float object_padding[7][2];
         std::vector<TextBox> textBoxs;
         std::vector<ParticleSystem> particle_systems;
         ray_info_t rayInfo;
         Shader light_shader;
-        // int window_width = WINDOW_WIDTH;
-        // int window_height = WINDOW_HEIGHT;
         bool cursor = false;
         float frame_time = 0.0f;
         std::vector<int> listLevelPlayer;

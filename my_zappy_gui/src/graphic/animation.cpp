@@ -27,7 +27,7 @@ void Gui::Graphic::update_animation(player_t &player)
 {
     if (frame_time > 0.25f) {
         player.anim_frame_counter = 32;
-        player.real_orientation = player_orientation[player.orientation];
+        player.real_orientation = this->player.player_orientation[player.orientation];
         player.real_pos.x = player.pos.x;
         player.real_pos.y = player.pos.y;
         return;
@@ -46,10 +46,10 @@ void Gui::Graphic::update_animation(player_t &player)
     if (player.anim_frame_counter == 182) {
         player.anim_frame_counter = 32;
     }
-    if (player_orientation[player.orientation] > player.real_orientation) {
+    if (this->player.player_orientation[player.orientation] > player.real_orientation) {
         player.real_orientation += frame_time * 200;
     }
-    if (player_orientation[player.orientation] < player.real_orientation) {
+    if (this->player.player_orientation[player.orientation] < player.real_orientation) {
         player.real_orientation -= frame_time * 200;
     }
     this->update_player_pos(player);

@@ -11,6 +11,7 @@
     #include <vector>
     #include <string>
     #include "infoGame.hpp"
+    #include <map>
 
 namespace Gui
 {
@@ -33,6 +34,7 @@ namespace Gui
             ~Player() = default;
 
             ModelAnimation *player_animation;
+            std::map<int, int> player_orientation;
 
         private:
     };

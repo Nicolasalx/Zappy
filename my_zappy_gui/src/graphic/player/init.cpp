@@ -18,4 +18,9 @@ Gui::Player::Player(std::vector<Model> &modelList)
 
     int animsCount = 5;
     this->player_animation = LoadModelAnimations("assets/Astronaut.iqm", &animsCount);
+
+    this->player_orientation[1] = 180;
+    this->player_orientation[2] = 90;
+    this->player_orientation[3] = 0;
+    this->player_orientation[4] = 270;
 }

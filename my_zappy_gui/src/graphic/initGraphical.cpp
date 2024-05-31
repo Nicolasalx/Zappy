@@ -13,14 +13,8 @@ Gui::Graphic::Graphic(GameState *gameState): window(), camera(), skyBox(), objec
     this->gameState = gameState;
 
     this->set_fps(60);
-    //this->init_player();
-    this->init_object_padding();
     this->init_lighting();
     this->init_2D();
-    this->player_orientation[1] = 180;
-    this->player_orientation[2] = 90;
-    this->player_orientation[3] = 0;
-    this->player_orientation[4] = 270;
     this->listLevelPlayer.resize(8);
     this->particle_texture = LoadTexture("assets/plateform1.png");
 }
