@@ -19,6 +19,8 @@
     #include <string.h>
     #include <stdlib.h>
     #include <time.h>
+    #include <pthread.h>
+    #include <semaphore.h>
 
     #define MAX_PORT_NB 65535
     #define BUFFER_SIZE 4096
@@ -119,6 +121,18 @@ typedef struct {
 } client_t;
 
 typedef struct {
+    node_t *thread_list;
+    pthread_mutex_t mutex;
+    sem_t end_game;
+} ai_thread_t;
+
+typedef struct {
+    int port;
+    struct in_addr address;
+    char team_name[MAX_TEAMNAME_SIZE + 1];
+} ai_arg_t;
+
+typedef struct {
     cmd_list_t cmd_type;
     char *arg;
 } cmd_to_make_t;
@@ -132,20 +146,12 @@ extern const reply_handler_t reply_handler[];
 
 extern node_t *child_list;
 
-
-//{
-//    incantation_command,
-//    try_take_food,
-//    forward_command
-//}
 extern void (*strategy_handler[NB_STRATEGY][10])(client_t *);
 extern const char *object_list[NB_ITEM];
 extern const char *tile_list[TILE_NB_ELEM];
 
-void check_arg_validity(int argc, const char **argv, client_t *client);
 void get_args(int argc, const char **argv, client_t *client);
 void create_client(client_t *client);
-client_t *get_client(client_t *client);
 void init_client_set(client_t *client, int *max_fd);
 void monitor_input(client_t *client, int max_fd);
 
@@ -156,10 +162,13 @@ void handle_cmd_reply(client_t *client, char *reply);
 
 void launch_client(client_t *client);
 void delete_client(client_t *client);
-void exit_client(int exit_value, const char *message);
+void exit_client(client_t *client, int exit_value, const char *message);
 
-void create_new_ai(int port, struct in_addr *address, char *team_name);
+void create_new_ai(int port, struct in_addr address, char *team_name);
 void wait_for_child(void);
+void cancel_child(void);
+void remove_thread_from_list(void);
+ai_thread_t *get_thread_list(ai_thread_t *thread_list);
 
 void push_new_command(client_t *client, cmd_list_t cmd_type, char *cmd);
 void pop_cmd_to_make(client_t *client);
