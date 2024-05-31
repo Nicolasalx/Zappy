@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void GameState::pie(std::vector<std::string> args)
+void Gui::GameState::pie(std::vector<std::string> args)
 {
     if (args.size() < 3)
         return;
