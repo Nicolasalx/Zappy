@@ -21,10 +21,10 @@ void Gui::Graphic::change_cursor()
 void Gui::Graphic::window_resize()
 {
     if (IsWindowResized()) {
-        this->window_width = GetScreenWidth();
-        this->window_height = GetScreenHeight();
+        this->window.window_width = GetScreenWidth();
+        this->window.window_height = GetScreenHeight();
         for (auto &textBox : this->textBoxs) {
-            textBox.resize(this->window_width, this->window_height);
+            textBox.resize(this->window.window_width, this->window.window_height);
         }
     }
 }
@@ -32,7 +32,7 @@ void Gui::Graphic::window_resize()
 void Gui::Graphic::click_event()
 {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-        this->rayInfo.ray = GetMouseRay(GetMousePosition(), this->camera);
+        this->rayInfo.ray = GetMouseRay(GetMousePosition(), this->camera._data);
         for (auto &player : this->gameState->players_list) {
             this->rayInfo.box.min = (Vector3){player.real_pos.x * SCALE -1.0f, 0.0f, player.real_pos.y * SCALE - 1.0f};
             this->rayInfo.box.max = (Vector3){player.real_pos.x * SCALE + 1.0f, 3.0f, player.real_pos.y * SCALE + 1.0f};
@@ -111,7 +111,7 @@ void Gui::Graphic::change_player_selected()
 void Gui::Graphic::event()
 {
     frame_time = GetFrameTime();
-    if (IsCursorHidden()) UpdateCamera(&this->camera, CAMERA_FREE);
+    if (IsCursorHidden()) UpdateCamera(&this->camera._data, CAMERA_FREE);
     // float cameraPos[3] = { camera.position.x, camera.position.y, camera.position.z };
     // SetShaderValue(light_shader, light_shader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
     this->change_cursor();

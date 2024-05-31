@@ -23,7 +23,9 @@
     #include "textBox.hpp"
     #include "infoGame.hpp"
     #include "particle.hpp"
+    #include "camera.hpp"
     #include <list>
+    #include "window.hpp"
 
 namespace Gui
 {
@@ -33,8 +35,6 @@ namespace Gui
         ~Graphic();
 
         //init
-        void init_window();
-        void init_camera();
         void init_sky_box();
         void init_island();
         void init_player();
@@ -70,8 +70,10 @@ namespace Gui
         void draw_all_player_level();
         void draw_particle();
 
+        Gui::Window window;
         GameState *gameState;
-        Camera3D camera;
+        Gui::Camera camera;
+
         Model sky_box;
         std::vector<Model> model_list;
         std::map<int, int> player_orientation;
@@ -80,9 +82,9 @@ namespace Gui
         std::vector<TextBox> textBoxs;
         std::vector<ParticleSystem> particle_systems;
         ray_info_t rayInfo;
-        // Shader light_shader;
-        int window_width = WINDOW_WIDTH;
-        int window_height = WINDOW_HEIGHT;
+        Shader light_shader;
+        // int window_width = WINDOW_WIDTH;
+        // int window_height = WINDOW_HEIGHT;
         bool cursor = false;
         float frame_time = 0.0f;
         std::vector<int> listLevelPlayer;
