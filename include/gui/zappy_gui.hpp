@@ -26,6 +26,10 @@
     #include "camera.hpp"
     #include <list>
     #include "window.hpp"
+    #include "skybox.hpp"
+    #include "island.hpp"
+    #include "object.hpp"
+    #include "player.hpp"
 
 namespace Gui
 {
@@ -34,9 +38,6 @@ namespace Gui
         Graphic(GameState *gameState);
         ~Graphic();
 
-        //init
-        void init_sky_box();
-        void init_island();
         void init_player();
         void init_object();
         void init_object_padding();
@@ -73,12 +74,14 @@ namespace Gui
         Gui::Window window;
         GameState *gameState;
         Gui::Camera camera;
+        Gui::SkyBox skyBox;
+        std::vector<Model> _modelList;
+        Gui::Object object;
+        Gui::Island island;
+        Gui::Player player;
 
-        Model sky_box;
-        std::vector<Model> model_list;
         std::map<int, int> player_orientation;
         float object_padding[7][2];
-        ModelAnimation *player_animation;
         std::vector<TextBox> textBoxs;
         std::vector<ParticleSystem> particle_systems;
         ray_info_t rayInfo;
