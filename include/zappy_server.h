@@ -26,7 +26,7 @@
     #define CLIENT_BUFFER_SIZE 4096
     #define CWD_SIZE 4096
     #define MAX_TEAM_NB 10
-    #define MAX_PLAYER_PER_TEAM 100
+    #define MAX_PLAYER_CONNECTED_PER_TEAM 100
 
     #define MAX_TEAMNAME_SIZE 32
     #define MAX_WAITING_CMD 10
