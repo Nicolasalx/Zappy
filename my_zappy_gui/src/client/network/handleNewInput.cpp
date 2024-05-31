@@ -5,7 +5,7 @@
 ** handle_new_input
 */
 
-#include "zappy_gui.hpp"
+#include "client.hpp"
 
 // static void execute_command(std::string command)
 // {

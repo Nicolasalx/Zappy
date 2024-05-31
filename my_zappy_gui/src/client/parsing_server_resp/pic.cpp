@@ -5,7 +5,7 @@
 ** pic
 */
 
-#include "zappy_gui.hpp"
+#include "gameState.hpp"
 
 void Gui::GameState::pic(std::vector<std::string> args)
 {
