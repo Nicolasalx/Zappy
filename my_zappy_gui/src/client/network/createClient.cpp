@@ -5,7 +5,7 @@
 ** create_client
 */
 
-#include "zappy_gui.hpp"
+#include "client.hpp"
 
 void Gui::Client::create_client()
 {

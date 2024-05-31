@@ -5,7 +5,7 @@
 ** send_cmd_to_server
 */
 
-#include "zappy_gui.hpp"
+#include "client.hpp"
 
 void Gui::Client::send_cmd_to_server(char *cmd, int nb_byte)
 {

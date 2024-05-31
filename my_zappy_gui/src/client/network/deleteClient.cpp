@@ -5,7 +5,7 @@
 ** delete_client
 */
 
-#include "zappy_gui.hpp"
+#include "client.hpp"
 
 Gui::Client::~Client()
 {

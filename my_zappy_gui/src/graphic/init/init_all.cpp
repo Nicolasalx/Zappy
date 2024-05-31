@@ -7,6 +7,7 @@
 
 #include "zappy_gui.hpp"
 
+
 void Gui::Graphic::init_window()
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);

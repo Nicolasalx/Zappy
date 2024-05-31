@@ -11,7 +11,8 @@ CPPFLAGS		=	-std=c++20 -Wall -Wextra -lraylib -lGL \
 					-lm -lpthread -ldl -lrt -lX11 \
 					$(ADDITIONAL_FLAGS)
 
-INCLUDE_PATH	=	-I../include/ -I../include/lib/cpp_lib/
+INCLUDE_PATH	=	-I../include/ -I../include/lib/cpp_lib/ \
+					-I../include/gui/
 
 NAME			=	../zappy_gui
 

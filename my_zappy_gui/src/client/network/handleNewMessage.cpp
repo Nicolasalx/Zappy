@@ -5,7 +5,7 @@
 ** handle_new_message
 */
 
-#include "zappy_gui.hpp"
+#include "client.hpp"
 
 void Gui::Client::check_new_message(std::string reply_data)
 {

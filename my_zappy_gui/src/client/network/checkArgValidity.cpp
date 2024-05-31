@@ -5,11 +5,7 @@
 ** check_arg_validity
 */
 
-#include "zappy_gui.hpp"
-#include <thread>
-#include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "client.hpp"
 
 void Gui::Client::get_args(int argc, const char **argv)
 {

@@ -5,13 +5,12 @@
 ** launch_client
 */
 
-#include "zappy_gui.hpp"
-#include <signal.h>
+#include "client.hpp"
 
 void close_client(int)
 {
     std::cout << "Client closed.\n";
-    exit(0);
+    std::exit(0);
 }
 
 void Gui::Client::launch_client()
