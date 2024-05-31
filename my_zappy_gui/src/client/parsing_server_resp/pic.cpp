@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void GameState::pic(std::vector<std::string> args)
+void Gui::GameState::pic(std::vector<std::string> args)
 {
     if (args.size() < 3)
         return;
