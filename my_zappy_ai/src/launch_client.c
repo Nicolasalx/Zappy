@@ -10,7 +10,7 @@
 
 void close_client(int)
 {
-    exit_client(0, NULL);
+    pthread_exit(NULL);
 }
 
 void launch_client(client_t *client)
