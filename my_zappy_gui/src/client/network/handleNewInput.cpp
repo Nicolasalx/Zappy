@@ -37,7 +37,7 @@ static void handle_ctrl_d(ssize_t nb_byte)
     }
 }
 
-void Client::handle_new_input()
+void Gui::Client::handle_new_input()
 {
     char command[BUFFER_SIZE] = {0};
     ssize_t nb_byte = 0;

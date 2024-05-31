@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Graphic::change_cursor()
+void Gui::Graphic::change_cursor()
 {
     if (IsKeyPressed(KEY_P) && !this->cursor) {
         EnableCursor();
@@ -18,7 +18,7 @@ void Graphic::change_cursor()
     }
 }
 
-void Graphic::window_resize()
+void Gui::Graphic::window_resize()
 {
     if (IsWindowResized()) {
         this->window_width = GetScreenWidth();
@@ -29,7 +29,7 @@ void Graphic::window_resize()
     }
 }
 
-void Graphic::click_event()
+void Gui::Graphic::click_event()
 {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         this->rayInfo.ray = GetMouseRay(GetMousePosition(), this->camera);
@@ -68,7 +68,7 @@ void Graphic::click_event()
     }
 }
 
-void Graphic::change_player_selected()
+void Gui::Graphic::change_player_selected()
 {
     if (IsKeyPressed(KEY_O)) {
         for (size_t i = 0; i < this->gameState->players_list.size(); i++) {
@@ -108,7 +108,7 @@ void Graphic::change_player_selected()
     }
 }
 
-void Graphic::event()
+void Gui::Graphic::event()
 {
     frame_time = GetFrameTime();
     if (IsCursorHidden()) UpdateCamera(&this->camera, CAMERA_FREE);

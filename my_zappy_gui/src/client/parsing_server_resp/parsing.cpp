@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-GameState::GameState()
+Gui::GameState::GameState()
 {
     cmd_map.emplace("msz", [this](std::vector<std::string> args) { this->msz(args); });
     cmd_map.emplace("bct", [this](std::vector<std::string> args) { this->bct(args); });
@@ -22,11 +22,11 @@ GameState::GameState()
     cmd_map.emplace("sgt", [this](std::vector<std::string> args) { this->sgt(args); });
 }
 
-GameState::~GameState()
+Gui::GameState::~GameState()
 {
 }
 
-void GameState::parse_server_reply(std::string reply_data)
+void Gui::GameState::parse_server_reply(std::string reply_data)
 {
     std::string cmd;
     std::string type;

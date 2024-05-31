@@ -11,7 +11,6 @@ void set_command(client_t *client, char *ressource)
 {
     char buffer[100] = {0};
 
-    printf("Set\n");
     snprintf(buffer, sizeof(buffer), "Set %s\n", ressource);
     for (int i = 0; i < NB_ITEM; ++i)
         if (strcmp(ressource, object_list[i]) == 0) {

@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Graphic::draw_general_info()
+void Gui::Graphic::draw_general_info()
 {
     textBoxs[0].draw();
     textBoxs[0].add_text(TextFormat("Number of players: %d", this->gameState->players_list.size()), 0.5f/2.5f);
@@ -15,7 +15,7 @@ void Graphic::draw_general_info()
     DrawFPS(10, 10);
 }
 
-void Graphic::draw_player_info()
+void Gui::Graphic::draw_player_info()
 {
     if (this->rayInfo.type == PLAYER) {
         for (auto &player : this->gameState->players_list) {
@@ -38,7 +38,7 @@ void Graphic::draw_player_info()
     }
 }
 
-void Graphic::draw_all_player_level()
+void Gui::Graphic::draw_all_player_level()
 {
     textBoxs[3].draw();
     if (textBoxs[3].is_closed())
@@ -54,7 +54,7 @@ void Graphic::draw_all_player_level()
     }
 }
 
-void Graphic::draw_tile_info()
+void Gui::Graphic::draw_tile_info()
 {
     if (this->rayInfo.type == ISLAND) {
         textBoxs[2].draw();

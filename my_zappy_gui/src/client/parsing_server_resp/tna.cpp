@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void GameState::tna(std::vector<std::string> args)
+void Gui::GameState::tna(std::vector<std::string> args)
 {
     for (auto team : args) {
         this->team_names.push_back(team);

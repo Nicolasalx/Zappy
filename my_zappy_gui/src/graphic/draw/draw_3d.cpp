@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Graphic::draw_sky_box()
+void Gui::Graphic::draw_sky_box()
 {
     ClearBackground(RAYWHITE);
     rlDisableBackfaceCulling();
@@ -17,7 +17,7 @@ void Graphic::draw_sky_box()
     rlEnableDepthMask();
 }
 
-void Graphic::draw_map()
+void Gui::Graphic::draw_map()
 {
     for (int i = 0; i < this->gameState->map_size.x; i++) {
         for (int j = 0; j < this->gameState->map_size.y; j++) {
@@ -34,7 +34,7 @@ void Graphic::draw_map()
     }
 }
 
-void Graphic::draw_object()
+void Gui::Graphic::draw_object()
 {
     for (int i = 0; i < this->gameState->map_size.x; i++) {
         for (int j = 0; j < this->gameState->map_size.y; j++) {
