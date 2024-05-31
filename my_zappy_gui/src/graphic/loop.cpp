@@ -9,7 +9,7 @@
 
 void Gui::Graphic::draw_3D()
 {
-    BeginMode3D(this->camera);
+    BeginMode3D(this->camera._data);
     // BeginShaderMode(light_shader);
     this->draw_sky_box();
     this->draw_player();
