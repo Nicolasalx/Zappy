@@ -29,6 +29,10 @@ namespace Gui
 
     class Player {
         public:
+            Player(std::vector<Model> &modelList);
+            ~Player() = default;
+
+            ModelAnimation *player_animation;
 
         private:
     };
