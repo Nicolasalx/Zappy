@@ -9,14 +9,15 @@
 
 void push_new_command(client_t *client, cmd_list_t cmd_type, char *cmd)
 {
+    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
     cmd_to_make_t *cmd_to_make = my_calloc(sizeof(cmd_to_make_t));
 
     cmd_to_make->cmd_type = cmd_type;
     if (cmd) {
         cmd_to_make->arg = my_strdup(cmd);
-        printf(RED("pushed cmd:")" %s\n", cmd);
     }
     append_node(&client->cmd_to_make, create_node(cmd_to_make));
+    pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
 }
 
 void pop_cmd_to_make(client_t *client)
@@ -35,5 +36,7 @@ void pop_cmd_to_make(client_t *client)
     }
     client->last_cmd = GET_DATA(client->cmd_to_make, cmd_to_make_t)->cmd_type;
     send_cmd_to_server(client, GET_DATA(client->cmd_to_make, cmd_to_make_t)->arg);
+    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
     delete_node(&client->cmd_to_make, client->cmd_to_make);
+    pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
 }
