@@ -132,6 +132,7 @@ class Client {
         void check_new_message(std::string reply_data);
         void send_cmd_to_server(char *cmd, int nb_byte);
         void launch_graphic();
+
     private:
         int fd;
         int max_fd = 0;
@@ -182,6 +183,8 @@ class Graphic {
         void draw_tile_info();
         void draw_all_player_level();
 
+        void menu();
+
         GameState *gameState;
         Camera3D camera;
         Model sky_box;
@@ -197,6 +200,8 @@ class Graphic {
         bool cursor = false;
         float frame_time = 0.0f;
         std::vector<int> listLevelPlayer;
+
+        bool isInMenu = true;
 };
 
 #endif /* !ZAPPY_GUI_H_ */
