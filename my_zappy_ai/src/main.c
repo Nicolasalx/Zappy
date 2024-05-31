@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
     client_t client = {0};
 
     get_thread_list(&ai_thread);
-    get_args(argc, argv, &client);
+    get_args(argc, argv);
 
     pthread_mutex_init(&ai_thread.mutex, NULL);
     sem_init(&ai_thread.end_game, 0, 0);
