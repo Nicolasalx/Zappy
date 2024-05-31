@@ -32,7 +32,7 @@ static bool search_spawn_egg(client_t *client, server_t *server)
 
     if (client->player.team->remaining_spot > 0
     && client->player.team->egg_list &&
-    client->player.team->player_max < MAX_PLAYER_CONNECTED_PER_TEAM + 1) {
+    client->player.team->player_max <= MAX_PLAYER_CONNECTED_PER_TEAM) {
         choose_random_egg(server, client, chosen_one);
         return true;
     } else {

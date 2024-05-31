@@ -54,7 +54,7 @@ void get_teams_name(const char **argv,
             server->team_list[server->team_count].
             remaining_spot = server->client_nb;
             server->team_list[server->team_count].
-            player_max = server->client_nb;
+            player_max = 0;
             server->team_count += 1;
         }
         i -= 1;
