@@ -9,9 +9,11 @@
 
 static bool get_map_size(client_t *client, char *reply)
 {
+    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
     int nb_word = count_nb_word(reply, " \t\n");
     int *size_word = count_size_word(reply, " \t\n", nb_word);
     char **word = my_str_to_word(reply, " \t\n", nb_word, size_word);
+    pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
 
     if (nb_word < 2
     || !my_str_only_cont(word[0], "0123456789")
@@ -44,13 +46,13 @@ static void handle_login(client_t *client, char *reply)
     && get_map_size(client, reply)) {
         client->log_state = LOGGED;
     } else {
-        exit_client(0, "No enought space in the team.\n");
+        printf("reply recv :%s\n", reply);
+        exit_client(client, 0, "Not enought space in the team.\n");
     }
 }
 
 void handle_server_reply(client_t *client, char *reply)
 {
-    printf("server reply: %s", reply);
     if (client->log_state < LOGGED) {
         handle_login(client, reply);
     } else {
