@@ -110,5 +110,5 @@ void Gui::Graphic::init_2D()
     this->textBoxs.push_back(TextBox(0.77f, 0.04f, 0.21f, 0.1f, window_width, window_height, LEFT_BUTTON));
     this->textBoxs.push_back(TextBox(0.77f, 0.47f, 0.21f, 0.51f, window_width, window_height));
     this->textBoxs.push_back(TextBox(0.77f, 0.47f, 0.21f, 0.40f, window_width, window_height));
-    this->textBoxs.push_back(TextBox(0.01f, 0.07f, 0.2f, 0.40f, window_width, window_height, RIGHT_BUTTON));
+    this->textBoxs.push_back(TextBox(0.01f, 0.57f, 0.15f, 0.40f, window_width, window_height, RIGHT_BUTTON));
 }

@@ -8,16 +8,6 @@
 #include "zappy_ai.h"
 #include <signal.h>
 
-ai_thread_t *get_thread_list(ai_thread_t *thread_list)
-{
-    static ai_thread_t *thread_list_save = NULL;
-
-    if (thread_list) {
-        thread_list_save = thread_list;
-    }
-    return thread_list_save;
-}
-
 void close_ai(int)
 {
     cancel_child();
@@ -30,9 +20,10 @@ int main(int argc, char const *argv[])
 {
     ai_thread_t ai_thread = {0};
     client_t client = {0};
+    ai_arg_t ai_arg = {0};
 
     get_thread_list(&ai_thread);
-    get_args(argc, argv, &client);
+    get_args(argc, argv &ai_arg);
 
     pthread_mutex_init(&ai_thread.mutex, NULL);
     sem_init(&ai_thread.end_game, 0, 0);

@@ -14,6 +14,7 @@ void Gui::Graphic::draw_3D()
     this->draw_sky_box();
     this->draw_player();
     this->draw_object();
+    this->draw_particle();
     this->draw_map();
     DrawGrid(10, 1.0f);
     // EndShaderMode();
@@ -28,12 +29,12 @@ void Gui::Graphic::draw_2D()
     this->draw_all_player_level();
 }
 
-void Gui::Graphic::menu()
-{
-    // Button Play
-    // Button Settings
-    // Button Quit
-}
+// void Gui::Graphic::menu()
+// {
+//     // Button Play
+//     // Button Settings
+//     // Button Quit
+// }
 
 void Gui::Graphic::loop()
 {
@@ -52,5 +53,3 @@ void Gui::Graphic::loop()
     }
     exit(0);
 }
-
-

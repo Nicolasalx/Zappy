@@ -16,6 +16,8 @@ Gui::GameState::GameState()
     cmd_map.emplace("ppo", [this](std::vector<std::string> args) { this->ppo(args); });
     cmd_map.emplace("plv", [this](std::vector<std::string> args) { this->plv(args); });
     cmd_map.emplace("pin", [this](std::vector<std::string> args) { this->pin(args); });
+    cmd_map.emplace("pic", [this](std::vector<std::string> args) { this->pdi(args); });
+    cmd_map.emplace("pie", [this](std::vector<std::string> args) { this->pdi(args); });
     cmd_map.emplace("pdi", [this](std::vector<std::string> args) { this->pdi(args); });
     cmd_map.emplace("sgt", [this](std::vector<std::string> args) { this->sgt(args); });
 }
