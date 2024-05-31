@@ -44,7 +44,6 @@ namespace Gui
             std::vector<player_t> players_list;
             std::vector<std::string> team_names;
     };
-
 }
 
 #endif /* !GAMESTATE_H_ */

@@ -43,6 +43,7 @@ namespace Gui
         public:
         Graphic(GameState *gameState);
         ~Graphic();
+
         //init
         void init_window();
         void init_camera();
@@ -54,8 +55,10 @@ namespace Gui
         void init_lighting();
         void init_2D();
         void set_fps(int fps);
+
         //loop
         void loop();
+
         //event
         void event();
         void change_cursor();
@@ -65,6 +68,7 @@ namespace Gui
         void click_event();
         void change_player_selected();
         void update_particle_list();
+
         //draw
         void draw_3D();
         void draw_2D();
