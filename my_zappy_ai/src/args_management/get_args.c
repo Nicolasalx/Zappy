@@ -73,11 +73,11 @@ void get_args(int argc, const char **argv, ai_arg_t *ai_arg)
         printf("USAGE: ./zappy_ai -p port -n name -h machine\n");
         my_exit(0);
     }
-    set_args(&ai_arg);
+    set_args(ai_arg);
     for (int i = 1; i < argc; i++) {
-        get_port(argv, &ai_arg, i, args);
-        get_ip(argv, &ai_arg, i, args);
-        get_team_name(argv, &ai_arg, i, args);
+        get_port(argv, ai_arg, i, args);
+        get_ip(argv, ai_arg, i, args);
+        get_team_name(argv, ai_arg, i, args);
     }
-    fill_args(&ai_arg);
+    fill_args(ai_arg);
 }
