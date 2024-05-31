@@ -7,13 +7,13 @@
 
 #include "zappy_gui.hpp"
 
-ParticleSystem::ParticleSystem()
+Gui::ParticleSystem::ParticleSystem()
 {
     this->velocity = 1.0f;
     this->max_particles = 20;
 }
 
-void Graphic::update_particle_list()
+void Gui::Graphic::update_particle_list()
 {
     while (this->particle_systems.size() != this->gameState->incant_list.size()) {
         if (this->particle_systems.size() < this->gameState->incant_list.size()) {
@@ -28,12 +28,22 @@ void Graphic::update_particle_list()
     }
 }
 
-// void ParticleSystem::update_particle()
-// {
-//     for (size_t i = 0; i < this->particles.size(); i++) {
-//         particles
-//     }
-//     if (particles.size() < this->max_particles) {
-//         particles.push_back
-//     }
-// }
+void Gui::ParticleSystem::update_particle()
+{
+    for (auto &particle : particles) {
+        particle += 0.1f;
+    }
+    if (particles.size() <= this->max_particles) {
+        particles.push_front(0.0f);
+    }
+    if (particles.size() > this->max_particles) {
+        particles.pop_back();
+    }
+}
+
+void Gui::ParticleSystem::draw()
+{
+    for (auto &particle : particles) {
+        DrawCircle3D((Vector3){pos.x * SCALE, particle, pos.y * SCALE}, 0.5f, (Vector3){0, 0, 0}, 0, RED);
+    }
+}
