@@ -22,23 +22,11 @@
     #include "gameState.hpp"
     #include "textBox.hpp"
     #include "infoGame.hpp"
+    #include "particle.hpp"
     #include <list>
 
 namespace Gui
 {
-    class ParticleSystem {
-        public:
-            ParticleSystem();
-            ~ParticleSystem() = default;
-            void update_particle();
-            void draw();
-
-            pos_t pos;
-            std::list<float> particles;
-            size_t max_particles;
-            float velocity;
-    };
-
     class Graphic {
         public:
         Graphic(GameState *gameState);
@@ -98,6 +86,7 @@ namespace Gui
         bool cursor = false;
         float frame_time = 0.0f;
         std::vector<int> listLevelPlayer;
+        Texture2D particle_texture;
     };
 }
 
