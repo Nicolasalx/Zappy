@@ -14,7 +14,8 @@ static void print_inventory(server_t *server, client_t *client, int i)
     if (server->clients[i].fd != 0 && server->clients[i].is_graphic == false
     && server->clients[i].player.team) {
         snprintf(buffer, sizeof(buffer),
-            "pin %d %d %d %d %d %d %d %d %d %d\n", server->clients[i].player.id,
+            "pin %d %d %d %d %d %d %d %d %d %d\n",
+            server->clients[i].player.id,
             server->clients[i].player.pos_x,
             server->clients[i].player.pos_y,
             server->clients[i].player.inventory[FOOD],

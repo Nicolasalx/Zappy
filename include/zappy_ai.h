@@ -32,7 +32,7 @@
 typedef enum {
     WAITING_WELCOME,
     WAITING_ID,
-    WAINTING_MAP_SIZE,
+    WAITING_MAP_SIZE,
     LOGGED
 } log_state_t;
 

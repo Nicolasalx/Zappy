@@ -9,10 +9,5 @@
 
 void dead_reply(client_t *client, char *)
 {
-    if (client->strategy == QUEEN) {
-        for (int i = 0; i < 100; ++i) {
-            printf("QUEEN DEAD\n");
-        }
-    }
     return;
 }

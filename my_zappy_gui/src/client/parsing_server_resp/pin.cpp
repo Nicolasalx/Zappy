@@ -26,8 +26,8 @@ void Gui::GameState::pin(std::vector<std::string> args)
             break;
         }
     }
-    std::cout << "pin" << std::endl;
-    for (auto arg : args) {
-        std::cout << arg << std::endl;
-    }
+    // std::cout << "pin" << std::endl;
+    // for (auto arg : args) {
+    //     std::cout << arg << std::endl;
+    // }
 }

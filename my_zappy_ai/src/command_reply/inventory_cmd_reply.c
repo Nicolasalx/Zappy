@@ -50,8 +50,8 @@ void parse_inventory_command(client_t *client, char *reply)
     int nb_word = count_nb_word(reply, ",");
     int *size_word = count_size_word(reply, ",", nb_word);
     char **word = my_str_to_word(reply, ",", nb_word, size_word);
-    pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
 
+    pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
     for (int i = 0; word[i] != NULL; ++i) {
         analyse_each_element_inventory(client, word[i]);
     }

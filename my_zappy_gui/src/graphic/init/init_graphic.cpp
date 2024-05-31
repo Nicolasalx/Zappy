@@ -25,6 +25,7 @@ Gui::Graphic::Graphic(GameState *gameState)
     this->player_orientation[3] = 0;
     this->player_orientation[4] = 270;
     this->listLevelPlayer.resize(8);
+    this->particle_texture = LoadTexture("assets/xp.png");
 }
 
 Gui::Graphic::~Graphic()
