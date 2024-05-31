@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void GameState::pin(std::vector<std::string> args)
+void Gui::GameState::pin(std::vector<std::string> args)
 {
     if (args.size() != 10)
         return;

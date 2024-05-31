@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Client::check_new_message(std::string reply_data)
+void Gui::Client::check_new_message(std::string reply_data)
 {
     if (reply_data == "WELCOME\n") {
         char graphic_cmd[9] = "GRAPHIC\n";
@@ -17,7 +17,7 @@ void Client::check_new_message(std::string reply_data)
     }
 }
 
-void Client::handle_new_message()
+void Gui::Client::handle_new_message()
 {
     char reply_data[BUFFER_SIZE] = {0};
     ssize_t size = 0;

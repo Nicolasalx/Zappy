@@ -8,16 +8,6 @@
 #include "zappy_ai.h"
 #include <signal.h>
 
-ai_thread_t *get_thread_list(ai_thread_t *thread_list)
-{
-    static ai_thread_t *thread_list_save = NULL;
-
-    if (thread_list) {
-        thread_list_save = thread_list;
-    }
-    return thread_list_save;
-}
-
 void close_ai(int)
 {
     cancel_child();

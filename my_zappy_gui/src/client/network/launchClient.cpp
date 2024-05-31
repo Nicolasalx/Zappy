@@ -14,7 +14,7 @@ void close_client(int)
     exit(0);
 }
 
-void Client::launch_client()
+void Gui::Client::launch_client()
 {
     signal(SIGINT, close_client);
     while (true) {

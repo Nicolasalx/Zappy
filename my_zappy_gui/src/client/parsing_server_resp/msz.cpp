@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void GameState::msz(std::vector<std::string> args)
+void Gui::GameState::msz(std::vector<std::string> args)
 {
     if (args.size() != 2)
         return;
