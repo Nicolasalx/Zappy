@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
     ai_arg_t ai_arg = {0};
 
     get_thread_list(&ai_thread);
-    get_args(argc, argv &ai_arg);
+    get_args(argc, argv, &ai_arg);
 
     pthread_mutex_init(&ai_thread.mutex, NULL);
     sem_init(&ai_thread.end_game, 0, 0);
