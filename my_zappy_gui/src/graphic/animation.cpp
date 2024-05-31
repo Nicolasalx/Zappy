@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Graphic::update_player_pos(player_t &player)
+void Gui::Graphic::update_player_pos(player_t &player)
 {
     if (player.real_pos.x < player.pos.x) {
         player.real_pos.x += this->frame_time * 2;
@@ -23,7 +23,7 @@ void Graphic::update_player_pos(player_t &player)
     }
 }
 
-void Graphic::update_animation(player_t &player)
+void Gui::Graphic::update_animation(player_t &player)
 {
     if (frame_time > 0.25f) {
         player.anim_frame_counter = 32;

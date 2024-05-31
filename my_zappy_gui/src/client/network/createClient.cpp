@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Client::create_client()
+void Gui::Client::create_client()
 {
     this->fd = socket(AF_INET, SOCK_STREAM, 0);
     if (this->fd == -1) {

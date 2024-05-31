@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Graphic::draw_3D()
+void Gui::Graphic::draw_3D()
 {
     BeginMode3D(this->camera);
     // BeginShaderMode(light_shader);
@@ -20,7 +20,7 @@ void Graphic::draw_3D()
     EndMode3D();
 }
 
-void Graphic::draw_2D()
+void Gui::Graphic::draw_2D()
 {
     this->draw_general_info();
     this->draw_player_info();
@@ -28,21 +28,23 @@ void Graphic::draw_2D()
     this->draw_all_player_level();
 }
 
-void Graphic::menu()
+void Gui::Graphic::menu()
 {
-    
+    // Button Play
+    // Button Settings
+    // Button Quit
 }
 
-void Graphic::loop()
+void Gui::Graphic::loop()
 {
     while (!WindowShouldClose()) {
         this->event();
         BeginDrawing();
-        //if (isInMenu) {
-        //    this->menu();
-        //} else {
-        //     this->draw_3D();
-        //     this->draw_2D();
+        // if (isInMenu) {
+        //     this->menu();
+        // } else {
+        //      this->draw_3D();
+        //      this->draw_2D();
         // }
         this->draw_3D();
         this->draw_2D();
