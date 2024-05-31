@@ -118,4 +118,5 @@ void Gui::Graphic::event()
     this->window_resize();
     this->click_event();
     this->change_player_selected();
+    this->update_particle_list();
 }
