@@ -9,7 +9,8 @@ SRC				=	$(shell find ./ -name "*.c")
 
 OBJ			=	$(SRC:.c=.o)
 
-CFLAGS		=	-W -Wall -Wextra -I../../include/lib/c_lib/
+CFLAGS		=	-W -Wall -Wextra $(ADDITIONAL_FLAGS) \
+				-I../../include/lib/c_lib/
 
 LIBFLAG		=
 

@@ -20,6 +20,6 @@ void monitor_input(client_t *client, int max_fd)
 {
     if (select(max_fd + 1, &client->read_set,
         &client->write_set, NULL, NULL) == -1) {
-        exit_client(84, RED("Select fail.\n"));
+        exit_client(client, 84, RED("Select fail.\n"));
     }
 }

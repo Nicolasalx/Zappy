@@ -11,7 +11,7 @@ static void safe_strncat(char *dest, size_t *size_dest, const char *src, size_t 
 {
     size_t size_src = strlen(src);
 
-    if ((*size_dest + size_src) >= CMD_BUFFER_SIZE) {
+    if ((*size_dest + size_src) >= CMD_BUFFER_SIZE - 1) {
         dprintf(2, MAGENTA("[WARNING] internal buffer full.")"\n");
         memset(dest, 0, CMD_BUFFER_SIZE);
         *size_dest = 0;
@@ -48,9 +48,9 @@ void handle_new_message(client_t *client)
     }
     size = read(client->fd, &reply, sizeof(reply) - 1);
     if (size == 0) {
-        exit_client(0, "Server closed the connection.\n");
+        exit_client(client, 0, "Server closed the connection.\n");
     } else if (size < 0) {
-        exit_client(84, RED("Fail to read message.\n"));
+        exit_client(client, 84, RED("Fail to read message.\n"));
     }
 //    if (size >= BUFFER_SIZE) {
 //        dprintf(2, MAGENTA("[WARNING] too long command.")"\n");
