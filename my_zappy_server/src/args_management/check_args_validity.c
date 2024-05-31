@@ -62,7 +62,7 @@ void check_arg_validity(server_t *server)
     && server->world.size_y != -1) {
         my_error("Error: Height must be between 1 and 100", 84);
     }
-    if ((server->client_nb <= 0 || server->client_nb > MAX_PLAYER_PER_TEAM)
+    if ((server->client_nb <= 0 || server->client_nb > MAX_CLIENT_NB)
     && server->client_nb != -1) {
         my_error("Error: Clients must be between 1 and 100", 84);
     }
