@@ -7,6 +7,25 @@
 
 #include "zappy_server.h"
 
+static void send_egg_info(char *buffer,
+    node_t *current, int i, server_t *server)
+{
+    if (server->team_list[i].egg_list == NULL) {
+        return;
+    }
+    do {
+        snprintf(buffer, sizeof(buffer), "%d %d %d %s",
+        GET_DATA(current, egg_t)->nb, GET_DATA(current, egg_t)->pos_x,
+        GET_DATA(current, egg_t)->pos_y, server->team_list[i].name);
+        smg_reply(server, buffer);
+        memset(buffer, 0, sizeof(buffer));
+        if (server->team_list[i].egg_list == NULL) {
+            return;
+        }
+        current = current->next;
+    } while (current != server->team_list[i].egg_list);
+}
+
 static void eggs_info(server_t *server)
 {
     char buffer[100] = {0};
@@ -14,20 +33,7 @@ static void eggs_info(server_t *server)
 
     for (int i = 0; i < server->team_count; ++i) {
         current = server->team_list[i].egg_list;
-        if (server->team_list[i].egg_list == NULL) {
-            return;
-        }
-        do {
-            snprintf(buffer, sizeof(buffer), "%d %d %d %s",
-            GET_DATA(current, egg_t)->nb, GET_DATA(current, egg_t)->pos_x,
-            GET_DATA(current, egg_t)->pos_y, server->team_list[i].name);
-            smg_reply(server, buffer);
-            memset(buffer, 0, sizeof(buffer));
-            if (server->team_list[i].egg_list == NULL) {
-                return;
-            }
-            current = current->next;
-        } while (current != server->team_list[i].egg_list);
+        send_egg_info(buffer, current, i, server);
     }
 }
 
@@ -55,7 +61,8 @@ static void handle_new_graphic_client(server_t *server, client_t *client)
     }
 }
 
-static void handle_new_player_client(server_t *server, client_t *client, char *cmd)
+static void handle_new_player_client(
+    server_t *server, client_t *client, char *cmd)
 {
     char buff[MAX_TEAMNAME_SIZE + 2] = {0};
 
@@ -69,6 +76,16 @@ static void handle_new_player_client(server_t *server, client_t *client, char *c
         }
     }
     send_msg_client(client->fd, "ko (not logged in)\n");
+}
+
+static void dispatch_client_input(
+    server_t *server, client_t *client, char *cmd)
+{
+    if (strcmp(cmd, "GRAPHIC\n") == 0) {
+        handle_new_graphic_client(server, client);
+    } else {
+        handle_new_player_client(server, client, cmd);
+    }
 }
 
 void handle_client_input(server_t *server, client_t *client, char *cmd)
@@ -86,10 +103,6 @@ void handle_client_input(server_t *server, client_t *client, char *cmd)
     } else if (client->player.team) {
         handle_ai_input(server, client, cmd);
     } else {
-        if (strcmp(cmd, "GRAPHIC\n") == 0) {
-            handle_new_graphic_client(server, client);
-        } else {
-            handle_new_player_client(server, client, cmd);
-        }
+        dispatch_client_input(server, client, cmd);
     }
 }
