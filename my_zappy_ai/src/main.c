@@ -19,7 +19,6 @@ void close_ai(int)
 int main(int argc, char const *argv[])
 {
     ai_thread_t ai_thread = {0};
-    client_t client = {0};
     ai_arg_t ai_arg = {0};
 
     get_thread_list(&ai_thread);
@@ -29,8 +28,8 @@ int main(int argc, char const *argv[])
     sem_init(&ai_thread.end_game, 0, 0);
 
     signal(SIGINT, close_ai);
-    create_new_ai(client.port,
-        client.server_address.sin_addr, client.player.team_name);
+    create_new_ai(ai_arg.port,
+        ai_arg.address, ai_arg.team_name);
 
     sem_wait(&ai_thread.end_game);
 
