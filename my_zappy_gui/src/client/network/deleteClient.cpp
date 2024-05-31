@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-Client::~Client()
+Gui::Client::~Client()
 {
     if (this->fd > 0)
         close(this->fd);

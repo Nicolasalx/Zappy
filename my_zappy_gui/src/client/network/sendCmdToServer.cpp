@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Client::send_cmd_to_server(char *cmd, int nb_byte)
+void Gui::Client::send_cmd_to_server(char *cmd, int nb_byte)
 {
     if (FD_ISSET(this->fd, &this->write_set)) {
         if (send(this->fd, cmd, nb_byte, 0) == -1) {

@@ -10,7 +10,7 @@
 int main(int argc, char const *argv[])
 {
     try {
-        Client client(argc, argv);
+        Gui::Client client(argc, argv);
         client.create_client();
         client.launch_client();
     } catch (my::tracked_exception &e) {

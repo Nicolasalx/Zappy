@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Client::launch_graphic()
+void Gui::Client::launch_graphic()
 {
     Graphic graphic(&this->gameState);
     graphic.loop();

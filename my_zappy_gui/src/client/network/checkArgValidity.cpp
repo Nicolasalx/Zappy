@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void Client::get_args(int argc, const char **argv)
+void Gui::Client::get_args(int argc, const char **argv)
 {
     for (int i = 1; i < argc; i++) {
         if (argv[i] == std::string("-p")) {
@@ -34,7 +34,7 @@ void Client::get_args(int argc, const char **argv)
     }
 }
 
-Client::Client(int argc, const char **argv)
+Gui::Client::Client(int argc, const char **argv)
 {
     this->ip = "127.0.0.1";
     this->port = 4242;

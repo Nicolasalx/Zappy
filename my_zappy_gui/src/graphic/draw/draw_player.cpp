@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-static void draw_player_box(Graphic *graphic, player_t &player)
+static void draw_player_box(Gui::Graphic *graphic, player_t &player)
 {
     if (graphic->rayInfo.type == PLAYER && graphic->rayInfo.id == player.n) {
         graphic->rayInfo.box.min = (Vector3){player.real_pos.x * SCALE -1.0f, 0.0f, player.real_pos.y * SCALE - 1.0f};
@@ -17,12 +17,12 @@ static void draw_player_box(Graphic *graphic, player_t &player)
     }
 }
 
-static void draw_player_model(Graphic *graphic, player_t &player)
+static void draw_player_model(Gui::Graphic *graphic, player_t &player)
 {
     DrawModelEx(graphic->model_list[PLAYER], (Vector3){player.real_pos.x * SCALE, 0.0f, player.real_pos.y * SCALE}, (Vector3){0, 1, 0}, player.real_orientation, (Vector3){3, 3, 3}, WHITE);
 }
 
-void Graphic::draw_player()
+void Gui::Graphic::draw_player()
 {
     for (auto &player : this->gameState->players_list) {
         update_animation(player);

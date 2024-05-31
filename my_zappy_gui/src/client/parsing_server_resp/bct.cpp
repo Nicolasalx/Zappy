@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void GameState::bct(std::vector<std::string> args)
+void Gui::GameState::bct(std::vector<std::string> args)
 {
     if (args.size() != 9)
         return;

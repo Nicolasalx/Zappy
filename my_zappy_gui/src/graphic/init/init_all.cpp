@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Graphic::init_window()
+void Gui::Graphic::init_window()
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Zappy GUI");
@@ -15,7 +15,7 @@ void Graphic::init_window()
     this->window_height = GetScreenHeight();
 }
 
-void Graphic::init_camera()
+void Gui::Graphic::init_camera()
 {
     this->camera.position = (Vector3){ 10.0f, 10.0f, 10.0f };
     this->camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };
@@ -25,12 +25,12 @@ void Graphic::init_camera()
     DisableCursor();
 }
 
-void Graphic::set_fps(int fps)
+void Gui::Graphic::set_fps(int fps)
 {
     SetTargetFPS(fps);
 }
 
-void Graphic::init_sky_box()
+void Gui::Graphic::init_sky_box()
 {
     Mesh cube = GenMeshCube(1.0f, 1.0f, 1.0f);
     this->sky_box = LoadModelFromMesh(cube);
@@ -47,7 +47,7 @@ void Graphic::init_sky_box()
     UnloadImage(img);
 }
 
-void Graphic::init_island()
+void Gui::Graphic::init_island()
 {
     Model island = LoadModel("assets/plateform.obj");
     Texture2D texture = LoadTexture("assets/plateform1.png");
@@ -56,7 +56,7 @@ void Graphic::init_island()
     this->model_list.push_back(island);
 }
 
-void Graphic::init_player()
+void Gui::Graphic::init_player()
 {
     Model player = LoadModel("assets/Astronaut.iqm");
     Texture2D texture = LoadTexture("assets/AstronautColor.png");
@@ -68,7 +68,7 @@ void Graphic::init_player()
     this->player_animation = LoadModelAnimations("assets/Astronaut.iqm", &animsCount);
 }
 
-void Graphic::init_object()
+void Gui::Graphic::init_object()
 {
     // food
     Model food = LoadModel("assets/food.glb");
@@ -108,7 +108,7 @@ void Graphic::init_object()
     this->model_list.push_back(thystame_model);
 }
 
-void Graphic::init_object_padding()
+void Gui::Graphic::init_object_padding()
 {
     for (int i = 0; i < 7; i++) {
         this->object_padding[i][0] = cos((PI / 180.0f) * (i * 50.0f));
@@ -116,7 +116,7 @@ void Graphic::init_object_padding()
     }
 }
 
-void Graphic::init_lighting()
+void Gui::Graphic::init_lighting()
 {
     // light_shader = LoadShader(TextFormat("assets/lighting.vs", 330),
     //                            TextFormat("assets/lighting.fs", 330));
