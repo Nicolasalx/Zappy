@@ -7,26 +7,38 @@
 
 #include "zappy_server.h"
 
-int calculate_direction(client_t *src, client_t *dest)
+int compute_direction_helper(int dx, int dy, int direction)
+{
+    if (dx > 0 && dy > 0) {
+        direction = 2;
+    }
+    if (dx > 0 && dy < 0) {
+        direction = 4;
+    }
+    if (dx < 0 && dy < 0) {
+        direction = 6;
+    }
+    if (dx < 0 && dy > 0) {
+        direction = 8;
+    }
+    return direction;
+}
+
+int compute_direction(client_t *src, client_t *dest)
 {
     int dx = dest->player.pos_x - src->player.pos_x;
     int dy = dest->player.pos_y - src->player.pos_y;
     int direction = 0;
 
-    if (dx == dy)
+    if (dx == dy) {
         return 0;
-    if (abs(dx) > abs(dy))
+    }
+    if (abs(dx) > abs(dy)) {
         direction = (dx > 0) ? 3 : 7;
-    else
+    } else {
         direction = (dy > 0) ? 1 : 5;
-    if (dx > 0 && dy > 0)
-        direction = 2;
-    if (dx > 0 && dy < 0)
-        direction = 4;
-    if (dx < 0 && dy < 0)
-        direction = 6;
-    if (dx < 0 && dy > 0)
-        direction = 8;
+    }
+    direction = compute_direction_helper(dx, dy, direction);
     return direction;
 }
 
@@ -43,7 +55,7 @@ void broadcast_cmd(char *argv, client_t *client, server_t *server)
         if (server->clients[i].fd != 0 && server->clients[i].is_graphic != true
         && server->clients[i].player.team
         && client->player.id != server->clients[i].player.id) {
-            direction = calculate_direction(client, &server->clients[i]);
+            direction = compute_direction(client, &server->clients[i]);
             snprintf(buffer, BUFFER_SIZE, "message %d, %s\n",
                 direction, message);
             send_msg_client(server->clients[i].fd, buffer);
