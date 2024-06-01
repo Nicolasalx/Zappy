@@ -11,6 +11,7 @@
     #include <vector>
     #include <string>
     #include "infoGame.hpp"
+    #include "gameState.hpp"
     #include <map>
 
 namespace Gui
@@ -30,13 +31,15 @@ namespace Gui
 
     class Player {
         public:
-            Player(std::vector<Model> &modelList);
+            Player(std::vector<Model> &modelList, std::shared_ptr<GameState> gameState);
             ~Player() = default;
 
             ModelAnimation *player_animation;
             std::map<int, int> player_orientation;
 
         private:
+            std::shared_ptr<GameState> _gameState;
+
     };
 }
 
