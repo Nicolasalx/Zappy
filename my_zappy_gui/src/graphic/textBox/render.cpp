@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Gui::TextBox::open_close()
+void Gui::TextBox::openClose()
 {
     if (CheckCollisionPointRec(GetMousePosition(), _button)) {
         if (state == RIGHT_BUTTON) {
@@ -29,7 +29,7 @@ void Gui::TextBox::open_close()
     }
 }
 
-void Gui::TextBox::add_text(std::string text, float ypos)
+void Gui::TextBox::addText(std::string text, float ypos)
 {
     DrawText(text.c_str(), _box.x + _window_width * 0.025f, _box.y + this->_box.height * ypos, _window_width / 60, WHITE);
 }
@@ -44,7 +44,7 @@ void Gui::TextBox::draw()
     }
 }
 
-bool Gui::TextBox::is_closed()
+bool Gui::TextBox::isClosed()
 {
     if (state == CLOSED_RIGHT || state == CLOSED_LEFT)
         return true;
