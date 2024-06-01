@@ -39,28 +39,28 @@ namespace Gui
         Graphic(std::shared_ptr<GameState> gameState);
         ~Graphic();
 
-        void init_lighting();
-        void init_2D();
-        void set_fps(int fps);
+        void initLighting();
+        void init2D();
+        void setFps(int fps);
 
         //loop
         void loop();
 
         //event
         void event();
-        void change_cursor();
-        void window_resize();
-        void click_event();
-        void change_player_selected();
+        void changeCursor();
+        void windowResize();
+        void clickEvent();
+        void changePlayerSelected();
 
         //draw
-        void draw_3D();
-        void draw_2D();
-        void draw_sky_box();
-        void draw_general_info();
-        void draw_player_info();
-        void draw_tile_info();
-        void draw_all_player_level();
+        void draw3D();
+        void draw2D();
+        void drawSkyBox();
+        void drawGeneralInfo();
+        void drawPlayerInfo();
+        void drawTileInfo();
+        void drawAllPlayerLevel();
 
         std::shared_ptr<GameState> _gameState;
         Gui::Window window;
