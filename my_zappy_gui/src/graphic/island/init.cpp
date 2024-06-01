@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-Gui::Island::Island(std::vector<Model> &modelList)
+Gui::Island::Island(std::vector<Model> &modelList, std::shared_ptr<GameState> gameState): _gameState(gameState)
 {
     Model island = LoadModel("assets/plateform.obj");
     Texture2D texture = LoadTexture("assets/plateform1.png");
