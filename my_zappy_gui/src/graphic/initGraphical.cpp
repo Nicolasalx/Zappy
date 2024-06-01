@@ -8,22 +8,13 @@
 #include "zappy_gui.hpp"
 #include "camera.hpp"
 
-Gui::Graphic::Graphic(GameState *gameState): window(), camera()
+Gui::Graphic::Graphic(GameState *gameState): window(), camera(), skyBox(), object(this->_modelList), island(this->_modelList), player(this->_modelList)
 {
     this->gameState = gameState;
 
     this->set_fps(60);
-    this->init_sky_box();
-    this->init_object();
-    this->init_island();
-    this->init_player();
-    this->init_object_padding();
     this->init_lighting();
     this->init_2D();
-    this->player_orientation[1] = 180;
-    this->player_orientation[2] = 90;
-    this->player_orientation[3] = 0;
-    this->player_orientation[4] = 270;
     this->listLevelPlayer.resize(8);
     this->particle_texture = LoadTexture("assets/plateform1.png");
 }

@@ -8,10 +8,14 @@
 #ifndef ISLAND_H_
     #define ISLAND_H_
 
+    #include <vector>
+
 namespace Gui
 {
     class Island {
         public:
+            Island(std::vector<Model> &modelList);
+            ~Island() = default;
 
         private:
     };

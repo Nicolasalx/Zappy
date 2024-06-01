@@ -15,10 +15,10 @@ void Gui::Graphic::draw_map()
                 this->rayInfo.box.min = (Vector3){i * SCALE - 2.2f, -4.2f, j * SCALE - 2.2f};
                 this->rayInfo.box.max = (Vector3){i * SCALE + 2.2f, 0.2f, j * SCALE + 2.2f};
                 DrawBoundingBox(this->rayInfo.box, GREEN);
-                DrawModel(this->model_list[ISLAND], (Vector3){i * SCALE, -2.0f, j * SCALE}, 2.0f, GREEN);
+                DrawModel(this->_modelList[ISLAND], (Vector3){i * SCALE, -2.0f, j * SCALE}, 2.0f, GREEN);
             }
             else {
-                DrawModel(this->model_list[ISLAND], (Vector3){i * SCALE, -2.0f, j * SCALE}, 2.0f, WHITE);
+                DrawModel(this->_modelList[ISLAND], (Vector3){i * SCALE, -2.0f, j * SCALE}, 2.0f, WHITE);
             }
         }
     }

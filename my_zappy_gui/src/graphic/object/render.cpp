@@ -13,7 +13,7 @@ void Gui::Graphic::draw_object()
         for (int j = 0; j < this->gameState->map_size.y; j++) {
             for (int k = 0; k < 7; k++) {
                 if (this->gameState->object_pos[j][i][k] != 0) {
-                    DrawModel(this->model_list[k], (Vector3){i * SCALE + object_padding[k][0], 0.5f, j * SCALE + object_padding[k][1]}, 0.4f, WHITE);
+                    DrawModel(this->_modelList[k], (Vector3){i * SCALE + this->object.object_padding[k][0], 0.5f, j * SCALE + this->object.object_padding[k][1]}, 0.4f, WHITE);
                 }
             }
         }
