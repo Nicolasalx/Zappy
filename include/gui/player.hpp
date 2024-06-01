@@ -18,7 +18,7 @@ namespace Gui
 {
     class Player {
         public:
-            Player(std::vector<Model> &modelList, std::shared_ptr<GameState> gameState);
+            Player(std::shared_ptr<GameState> gameState);
             ~Player() = default;
 
             ModelAnimation *player_animation;

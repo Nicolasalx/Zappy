@@ -71,7 +71,6 @@ namespace Gui
         std::shared_ptr<GameState> _gameState;
         Gui::Camera camera;
         Gui::SkyBox skyBox;
-        std::vector<Model> _modelList;
         Gui::Object object;
         Gui::Island island;
         Gui::Player player;
