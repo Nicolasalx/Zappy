@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Gui::Island::draw_map(ray_info_t &rayInfo)
+void Gui::Island::drawMap(ray_info_t &rayInfo)
 {
     for (int i = 0; i < this->_gameState->map_size.x; i++) {
         for (int j = 0; j < this->_gameState->map_size.y; j++) {
