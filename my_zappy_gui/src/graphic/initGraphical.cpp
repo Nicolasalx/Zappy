@@ -16,6 +16,7 @@ Gui::Graphic::Graphic(std::shared_ptr<GameState> gameState)
     this->init_2D();
     this->listLevelPlayer.resize(8);
     this->particle_texture = LoadTexture("assets/evolution.png");
+    this->loop();
 }
 
 Gui::Graphic::~Graphic()
