@@ -79,8 +79,9 @@ void eject_cmd(char *, client_t *client, server_t *server)
             ejected = true;
         }
     }
-    if (ejected)
+    if (ejected) {
         send_msg_client(client->fd, "ok\n");
-    else
+    } else {
         send_msg_client(client->fd, "ko\n");
+    }
 }
