@@ -26,7 +26,7 @@
     #include "camera.hpp"
     #include <list>
     #include "window.hpp"
-    #include "skybox.hpp"
+    #include "skyBox.hpp"
     #include "island.hpp"
     #include "object.hpp"
     #include "player.hpp"
@@ -54,13 +54,11 @@ namespace Gui
         void update_player_pos(player_t &player);
         void click_event();
         void change_player_selected();
-        void update_particle_list();
 
         //draw
         void draw_3D();
         void draw_2D();
         void draw_sky_box();
-        void draw_object();
         void draw_map();
         void draw_player();
         void draw_general_info();
@@ -80,7 +78,7 @@ namespace Gui
         Gui::Menu menu;
 
         std::vector<TextBox> textBoxs;
-        std::vector<ParticleSystem> particle_systems;
+        std::vector<Particle> particle_systems;
         ray_info_t rayInfo;
         Shader light_shader;
         bool cursor = false;
