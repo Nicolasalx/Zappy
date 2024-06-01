@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Gui::Graphic::draw_sky_box()
+void Gui::Graphic::drawSkyBox()
 {
     ClearBackground(RAYWHITE);
     rlDisableBackfaceCulling();
