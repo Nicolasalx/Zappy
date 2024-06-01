@@ -48,8 +48,9 @@ void init_player(client_t *client, server_t *server)
 
     client->player.team->remaining_spot -= 1;
     client->player.team->player_max += 1;
-    if (!search_spawn_egg(client, server))
+    if (!search_spawn_egg(client, server)) {
         return;
+    }
     client->player.inventory[FOOD] = 10;
     client->player.level = 1;
     client->player.id = server->player_count;
