@@ -21,6 +21,7 @@ Gui::Particle::Particle()
 
 Gui::ParticleSystem::ParticleSystem(std::shared_ptr<GameState> gameState): _gameState(gameState)
 {
+    this->particle_texture = LoadTexture("assets/particles.png");
 }
 
 void Gui::ParticleSystem::update_particle_list()

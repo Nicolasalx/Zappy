@@ -8,6 +8,8 @@
 #ifndef MENU_H_
     #define MENU_H_
 
+    #include "gameState.hpp"
+    #include <memory>
     #include <vector>
 
 namespace Gui

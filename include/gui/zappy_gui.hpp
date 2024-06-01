@@ -50,8 +50,6 @@ namespace Gui
         void event();
         void change_cursor();
         void window_resize();
-        void update_animation(player_t &player);
-        void update_player_pos(player_t &player);
         void click_event();
         void change_player_selected();
 
@@ -59,13 +57,10 @@ namespace Gui
         void draw_3D();
         void draw_2D();
         void draw_sky_box();
-        void draw_map();
-        void draw_player();
         void draw_general_info();
         void draw_player_info();
         void draw_tile_info();
         void draw_all_player_level();
-        void draw_particle();
 
         std::shared_ptr<GameState> _gameState;
         Gui::Window window;
@@ -75,13 +70,12 @@ namespace Gui
         Gui::Island island;
         Gui::Player player;
         Gui::Menu menu;
+        Gui::ParticleSystem particle;
 
         std::vector<TextBox> textBoxs;
-        std::vector<Particle> particle_systems;
         ray_info_t rayInfo;
         Shader light_shader;
         bool cursor = false;
-        double frame_time = 0.0;
         std::vector<int> listLevelPlayer;
         Texture2D particle_texture;
     };

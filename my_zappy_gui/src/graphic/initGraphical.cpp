@@ -9,7 +9,7 @@
 #include "camera.hpp"
 
 Gui::Graphic::Graphic(std::shared_ptr<GameState> gameState)
-    : _gameState(gameState), window(), camera(), skyBox(gameState), object(gameState), island(gameState), player(gameState)
+    : _gameState(gameState), window(), camera(), skyBox(gameState), object(gameState), island(gameState), player(gameState), menu(gameState), particle(gameState)
 {
     this->set_fps(60);
     this->init_lighting();

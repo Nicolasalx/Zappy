@@ -17,9 +17,12 @@ namespace Gui
             Island(std::shared_ptr<GameState> gameState);
             ~Island() = default;
 
+            void draw_map(ray_info_t &rayInfo);
+
+            Model island_model;
+            Texture2D island_texture;
         private:
             std::shared_ptr<GameState> _gameState;
-
     };
 }
 

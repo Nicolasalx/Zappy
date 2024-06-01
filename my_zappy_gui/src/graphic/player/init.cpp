@@ -10,11 +10,10 @@
 
 Gui::Player::Player(std::shared_ptr<GameState> gameState): _gameState(gameState)
 {
-    Model player = LoadModel("assets/Astronaut.iqm");
-    Texture2D texture = LoadTexture("assets/AstronautColor.png");
-    SetMaterialTexture(&player.materials[0], MATERIAL_MAP_DIFFUSE, texture);
-    player.transform = MatrixRotateXYZ((Vector3){-90.0f * (PI / 180), 0.0f, 0.0f});
-    modelList.push_back(player);
+    player_model = LoadModel("assets/Astronaut.iqm");
+    player_texture = LoadTexture("assets/AstronautColor.png");
+    SetMaterialTexture(&player_model.materials[0], MATERIAL_MAP_DIFFUSE, player_texture);
+    player_model.transform = MatrixRotateXYZ((Vector3){-90.0f * (PI / 180), 0.0f, 0.0f});
 
     int animsCount = 5;
     this->player_animation = LoadModelAnimations("assets/Astronaut.iqm", &animsCount);

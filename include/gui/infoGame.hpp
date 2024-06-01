@@ -8,6 +8,7 @@
 #ifndef INFOGAME_H_
     #define INFOGAME_H_
 
+    #include <iostream>
     #include <raylib.h>
 
 namespace Gui

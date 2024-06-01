@@ -110,7 +110,7 @@ void Gui::Graphic::change_player_selected()
 
 void Gui::Graphic::event()
 {
-    frame_time = GetFrameTime();
+    this->_gameState->frame_time = GetFrameTime();
     if (IsCursorHidden()) UpdateCamera(&this->camera._data, CAMERA_FREE);
     // float cameraPos[3] = { camera.position.x, camera.position.y, camera.position.z };
     // SetShaderValue(light_shader, light_shader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
@@ -118,5 +118,4 @@ void Gui::Graphic::event()
     this->window_resize();
     this->click_event();
     this->change_player_selected();
-    this->update_particle_list();
 }
