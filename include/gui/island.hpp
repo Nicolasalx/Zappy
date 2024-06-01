@@ -14,10 +14,12 @@ namespace Gui
 {
     class Island {
         public:
-            Island(std::vector<Model> &modelList);
+            Island(std::shared_ptr<GameState> gameState);
             ~Island() = default;
 
         private:
+            std::shared_ptr<GameState> _gameState;
+
     };
 }
 

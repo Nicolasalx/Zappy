@@ -35,7 +35,7 @@ void Gui::GameState::parse_server_reply(std::string reply_data)
 
     while ((pos = reply_data.find("\n")) != std::string::npos) {
         cmd = reply_data.substr(0, pos);
-        //std::cout << "cmd: " << cmd << std::endl;
+        std::cout << "cmd: " << cmd << std::endl;
         type = cmd.substr(0, cmd.find(" "));
         cmd.erase(0, cmd.find(" ") + 1);
         while (cmd.find(" ") != std::string::npos) {

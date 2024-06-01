@@ -8,9 +8,9 @@
 #ifndef GAMESTATE_H_
     #define GAMESTATE_H_
 
-    #include "player.hpp"
     #include <functional>
     #include <map>
+    #include "infoGame.hpp"
 
 namespace Gui
 {

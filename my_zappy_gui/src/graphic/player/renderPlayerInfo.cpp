@@ -10,7 +10,7 @@
 void Gui::Graphic::draw_player_info()
 {
     if (this->rayInfo.type == PLAYER) {
-        for (auto &player : this->gameState->players_list) {
+        for (auto &player : this->_gameState->players_list) {
             if (player.n == this->rayInfo.id) {
                 textBoxs[1].draw();
                 textBoxs[1].add_text(TextFormat("Player: %d", player.n), 0.5f/12.5f);
@@ -38,7 +38,7 @@ void Gui::Graphic::draw_all_player_level()
     for (int i = 0; i < 8; ++i) {
         this->listLevelPlayer.at(i) = 0;
     }
-    for (const auto &player: this->gameState->players_list) {
+    for (const auto &player: this->_gameState->players_list) {
         this->listLevelPlayer.at(player.level - 1) += 1;
     }
     for (int i = 0; i < 8; ++i) {

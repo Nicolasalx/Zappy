@@ -6,9 +6,9 @@
 */
 
 #include "zappy_gui.hpp"
-#include "skybox.hpp"
+#include "skyBox.hpp"
 
-Gui::SkyBox::SkyBox()
+Gui::SkyBox::SkyBox(std::shared_ptr<GameState> gameState): _gameState(gameState)
 {
     Mesh cube = GenMeshCube(1.0f, 1.0f, 1.0f);
     this->model = LoadModelFromMesh(cube);
