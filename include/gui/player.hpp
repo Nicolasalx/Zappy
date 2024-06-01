@@ -16,19 +16,6 @@
 
 namespace Gui
 {
-    struct player_t {
-        int n;
-        Gui::pos_t pos;
-        Gui::pos_t real_pos;
-        int level;
-        int orientation;
-        int real_orientation;
-        std::string team_name;
-        std::vector<int> inventory;
-        int animation_nbr;
-        int anim_frame_counter;
-    };
-
     class Player {
         public:
             Player(std::vector<Model> &modelList, std::shared_ptr<GameState> gameState);
