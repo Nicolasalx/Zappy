@@ -93,6 +93,7 @@ typedef struct {
     item_t last_item_taken;
     node_t *cmd_list;
     bool in_incantation;
+    bool try_die;
 } player_t;
 
 typedef struct {
@@ -200,11 +201,6 @@ void queen_incantation(client_t *client);
 void look_for_elem(client_t *client);
 void take_elements_on_floor(client_t *client);
 void move_next_case(client_t *client);
-void queen_get_inventory(client_t *client);
-void queen_eat(client_t *client);
-void queen_incantation(client_t *client);
-void queen_check_nb_food(client_t *client);
-void queen_create_child(client_t *client);
 void start_backtrace(client_t *client);
 void farmer_backtrace(client_t *client);
 void farmer_drop_items(client_t *client);

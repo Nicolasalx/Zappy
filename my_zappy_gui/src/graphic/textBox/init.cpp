@@ -40,7 +40,12 @@ void Gui::TextBox::resize(int window_width, int window_height)
         this->_window_width = window_width;
         this->_window_height = window_height;
         if (state == RIGHT_BUTTON) {
-            this->_button = {_box.x + _box.width  - (window_width + window_height) * 0.01f, _box.y, (window_width + window_height) * 0.01f, (window_width + window_height) * 0.01f};
+            this->_button = {
+                _box.x + _box.width - (window_width + window_height) * 0.01f,
+                _box.y,
+                (window_width + window_height) * 0.01f,
+                (window_width + window_height) * 0.01f
+            };
         }
         if (state == LEFT_BUTTON) {
             this->_button = {_box.x, _box.y, (window_width + window_height) * 0.01f, (window_width + window_height) * 0.01f};

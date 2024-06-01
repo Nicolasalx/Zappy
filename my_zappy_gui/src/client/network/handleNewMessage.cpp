@@ -13,7 +13,7 @@ void Gui::Client::check_new_message(std::string reply_data)
         char graphic_cmd[9] = "GRAPHIC\n";
         this->send_cmd_to_server(graphic_cmd, 8);
     } else {
-        this->gameState.parse_server_reply(reply_data);
+        this->_gameState->parse_server_reply(reply_data);
     }
 }
 

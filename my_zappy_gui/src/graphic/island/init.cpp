@@ -7,12 +7,10 @@
 
 #include "zappy_gui.hpp"
 
-Gui::Island::Island(std::vector<Model> &modelList)
+Gui::Island::Island(std::shared_ptr<GameState> gameState): _gameState(gameState)
 {
-    Model island = LoadModel("assets/plateform.obj");
-    Texture2D texture = LoadTexture("assets/plateform1.png");
-
-    SetTextureFilter(texture, TEXTURE_FILTER_TRILINEAR);
-    SetMaterialTexture(&island.materials[0], MATERIAL_MAP_DIFFUSE, texture);
-    modelList.push_back(island);
+    island_model = LoadModel("assets/plateform.obj");
+    island_texture = LoadTexture("assets/plateform1.png");
+    SetTextureFilter(island_texture, TEXTURE_FILTER_TRILINEAR);
+    SetMaterialTexture(&island_model.materials[0], MATERIAL_MAP_DIFFUSE, island_texture);
 }

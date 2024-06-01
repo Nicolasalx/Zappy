@@ -14,12 +14,14 @@ namespace Gui
 {
     class SkyBox {
         public:
-            SkyBox();
+            SkyBox(std::shared_ptr<GameState> gameState);
             ~SkyBox() = default;
 
             Model model;
 
         private:
+            std::shared_ptr<GameState> _gameState;
+
     };
 }
 

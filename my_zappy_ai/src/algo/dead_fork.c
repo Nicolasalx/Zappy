@@ -9,6 +9,13 @@
 
 void dead_fork(client_t *client)
 {
+    if (!client->player.try_die) {
+        if (client->remaining_spots > 0 && client->player.content_look[0][TILE_PLAYER] < 2
+        && client->player.content_look[0][TILE_FOOD] < 5) {
+            exit_client(client, 0, NULL);
+        }
+        client->player.try_die = true;
+    }
     push_new_command(client, FORK, "Fork\n");
 }
 

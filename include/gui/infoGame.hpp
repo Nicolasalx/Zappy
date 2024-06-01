@@ -8,17 +8,15 @@
 #ifndef INFOGAME_H_
     #define INFOGAME_H_
 
-    #define MAX_PORT_NB 65535
-    #define BUFFER_SIZE 4096
-    #define CMD_BUFFER_SIZE 4096
-    #define WINDOW_WIDTH 1920 / 2
-    #define WINDOW_HEIGHT 1080 / 2
-    #define SCALE 6.0f
-
+    #include <iostream>
     #include <raylib.h>
 
 namespace Gui
 {
+    constexpr float MAP_SCALE = 6.0f;
+    constexpr float WINDOW_WIDTH = 1920 / 2;
+    constexpr float WINDOW_HEIGHT = 1080 / 2;
+
     struct pos_t {
         float x;
         float y;
@@ -42,6 +40,19 @@ namespace Gui
         LEFT_BUTTON,
         CLOSED_LEFT,
         CLOSED_RIGHT
+    };
+
+    struct player_t {
+        int n;
+        Gui::pos_t pos;
+        Gui::pos_t real_pos;
+        int level;
+        int orientation;
+        int real_orientation;
+        std::string team_name;
+        std::vector<int> inventory;
+        int animation_nbr;
+        int anim_frame_counter;
     };
 }
 

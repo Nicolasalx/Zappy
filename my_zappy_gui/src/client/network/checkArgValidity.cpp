@@ -30,7 +30,7 @@ void Gui::Client::get_args(int argc, const char **argv)
     }
 }
 
-Gui::Client::Client(int argc, const char **argv)
+Gui::Client::Client(int argc, const char **argv, std::shared_ptr<GameState> gameState): _gameState(gameState)
 {
     this->ip = "127.0.0.1";
     this->port = 4242;
@@ -38,6 +38,6 @@ Gui::Client::Client(int argc, const char **argv)
     if (inet_aton(this->ip.c_str(), &this->server_address.sin_addr) == 0) {
         throw my::tracked_exception("Invalid Ip.\n");
     }
-    this->graphic_thread = std::thread(&Client::launch_graphic, this);
-    this->graphic_thread.detach();
+    create_client();
+    launch_client();
 }

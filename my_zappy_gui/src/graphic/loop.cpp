@@ -12,10 +12,10 @@ void Gui::Graphic::draw_3D()
     BeginMode3D(this->camera._data);
     // BeginShaderMode(light_shader);
     this->draw_sky_box();
-    this->draw_player();
-    this->draw_object();
-    this->draw_particle();
-    this->draw_map();
+    this->player.draw_player(this->rayInfo);
+    this->object.render();
+    this->particle.draw_particle(this->camera._data);
+    this->island.draw_map(this->rayInfo);
     DrawGrid(10, 1.0f);
     // EndShaderMode();
     EndMode3D();
@@ -41,12 +41,12 @@ void Gui::Graphic::loop()
     while (!WindowShouldClose()) {
         this->event();
         BeginDrawing();
-        // if (isInMenu) {
-        //     this->menu();
-        // } else {
-        //      this->draw_3D();
-        //      this->draw_2D();
-        // }
+        //if (this->menu.isInMenu) {
+        //    this->menu();
+        //} else {
+        //     this->draw_3D();
+        //     this->draw_2D();
+        //}
         this->draw_3D();
         this->draw_2D();
         EndDrawing();

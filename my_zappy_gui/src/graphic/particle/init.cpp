@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-Gui::ParticleSystem::ParticleSystem()
+Gui::Particle::Particle()
 {
     this->max_particles = 20;
     for (size_t i = 0; i < this->max_particles; i++) {
@@ -19,24 +19,29 @@ Gui::ParticleSystem::ParticleSystem()
     }
 }
 
-void Gui::Graphic::update_particle_list()
+Gui::ParticleSystem::ParticleSystem(std::shared_ptr<GameState> gameState): _gameState(gameState)
 {
-    while (this->particle_systems.size() != this->gameState->incant_list.size()) {
+    this->particle_texture = LoadTexture("assets/particles.png");
+}
+
+void Gui::ParticleSystem::update_particle_list()
+{
+    while (this->particle_systems.size() != this->_gameState->incant_list.size()) {
         // std::cout << "update particle" << std::endl;
-        if (this->particle_systems.size() < this->gameState->incant_list.size()) {
-            this->particle_systems.push_back(ParticleSystem());
+        if (this->particle_systems.size() < this->_gameState->incant_list.size()) {
+            this->particle_systems.push_back(Particle());
         } else {
             // std::cout << "destroy particle" << std::endl;
             this->particle_systems.pop_back();
         }
-        for (size_t i = 0; i < this->gameState->incant_list.size() && i < particle_systems.size(); i++) {
-            this->particle_systems[i].pos.x = this->gameState->incant_list[i].pos.x;
-            this->particle_systems[i].pos.y = this->gameState->incant_list[i].pos.y;
+        for (size_t i = 0; i < this->_gameState->incant_list.size() && i < particle_systems.size(); i++) {
+            this->particle_systems[i].pos.x = this->_gameState->incant_list[i].pos.x;
+            this->particle_systems[i].pos.y = this->_gameState->incant_list[i].pos.y;
         }
     }
 }
 
-void Gui::ParticleSystem::update_particle(float time_delta)
+void Gui::Particle::update_particle(float time_delta)
 {
     for (auto &particle : particles) {
         if (particle.y > 7.0f) {
@@ -51,10 +56,10 @@ void Gui::ParticleSystem::update_particle(float time_delta)
     }
 }
 
-void Gui::ParticleSystem::draw(Texture2D texture, Camera3D camera)
+void Gui::Particle::draw(Texture2D texture, Camera3D camera)
 {
     for (auto &particle : particles) {
         // std::cout << "draw particle" << std::endl;
-        DrawBillboard(camera, texture, (Vector3){pos.x * SCALE + particle.x, particle.y, pos.y * SCALE + particle.z}, 3.0f, WHITE);
+        DrawBillboard(camera, texture, (Vector3){pos.x * Gui::MAP_SCALE + particle.x, particle.y, pos.y * Gui::MAP_SCALE + particle.z}, 3.0f, WHITE);
     }
 }

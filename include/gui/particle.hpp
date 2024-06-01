@@ -20,16 +20,30 @@ namespace Gui
         float z;
     };
 
-    class ParticleSystem {
+    class Particle {
         public:
-            ParticleSystem();
-            ~ParticleSystem() = default;
+            Particle();
+            ~Particle() = default;
             void update_particle(float time_delta);
             void draw(Texture2D texture, Camera3D camera);
 
             pos_t pos;
-            std::list<particle_pos_t> particles;
+            std::vector<particle_pos_t> particles;
             size_t max_particles;
+            
+    };
+
+    class ParticleSystem {
+        public:
+            ParticleSystem(std::shared_ptr<GameState> gameState);
+            ~ParticleSystem() = default;
+            void update_particle_list();
+            void draw_particle(Camera3D camera);
+
+            Texture2D particle_texture;
+            std::vector<Particle> particle_systems;
+            std::shared_ptr<GameState> _gameState;
     };
 }
+
 #endif

@@ -8,9 +8,9 @@
 #ifndef GAMESTATE_H_
     #define GAMESTATE_H_
 
-    #include "player.hpp"
     #include <functional>
     #include <map>
+    #include "infoGame.hpp"
 
 namespace Gui
 {
@@ -36,9 +36,12 @@ namespace Gui
             void pdi(std::vector<std::string> args);
             void sgt(std::vector<std::string> args);
 
+            // ! maybe private
             pos_t map_size;
             int time_unit = 0;
+            double frame_time = 0;
             std::map<std::string, std::function<void(std::vector<std::string>)>> cmd_map;
+            // ! maybe public
             std::vector<std::vector<std::vector<int>>> object_pos;
             std::vector<incant_t> incant_list;
             std::vector<player_t> players_list;
