@@ -7,7 +7,7 @@
 
 #include "client.hpp"
 
-void Gui::Client::get_args(int argc, const char **argv)
+void Gui::Client::getArgs(int argc, const char **argv)
 {
     for (int i = 1; i < argc; i++) {
         if (argv[i] == std::string("-p")) {
@@ -34,10 +34,10 @@ Gui::Client::Client(int argc, const char **argv, std::shared_ptr<GameState> game
 {
     this->ip = "127.0.0.1";
     this->port = 4242;
-    this->get_args(argc, argv);
+    this->getArgs(argc, argv);
     if (inet_aton(this->ip.c_str(), &this->server_address.sin_addr) == 0) {
         throw my::tracked_exception("Invalid Ip.\n");
     }
-    create_client();
-    launch_client();
+    createClient();
+    launchClient();
 }
