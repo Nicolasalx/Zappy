@@ -24,7 +24,7 @@ namespace Gui
         public:
             Particle();
             ~Particle() = default;
-            void update_particle(float time_delta);
+            void updateParticle(float time_delta);
             void draw(Texture2D texture, Camera3D camera);
 
             pos_t pos;
@@ -37,8 +37,8 @@ namespace Gui
         public:
             ParticleSystem(std::shared_ptr<GameState> gameState);
             ~ParticleSystem() = default;
-            void update_particle_list();
-            void draw_particle(Camera3D camera);
+            void updateParticleList();
+            void drawParticle(Camera3D camera);
 
             Texture2D particle_texture;
             std::vector<Particle> particle_systems;
