@@ -30,6 +30,7 @@
     #include "island.hpp"
     #include "object.hpp"
     #include "player.hpp"
+    #include "menu.hpp"
 
 namespace Gui
 {
@@ -76,6 +77,7 @@ namespace Gui
         Gui::Object object;
         Gui::Island island;
         Gui::Player player;
+        Gui::Menu menu;
 
         std::vector<TextBox> textBoxs;
         std::vector<ParticleSystem> particle_systems;
