@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** create_client
+** createClient
 */
 
 #include "client.hpp"
 
-void Gui::Client::create_client()
+void Gui::Client::createClient()
 {
     this->fd = socket(AF_INET, SOCK_STREAM, 0);
     if (this->fd == -1) {
