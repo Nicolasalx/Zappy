@@ -13,12 +13,13 @@
     #define CMD_BUFFER_SIZE 4096
     #define WINDOW_WIDTH 1920 / 2
     #define WINDOW_HEIGHT 1080 / 2
-    #define SCALE 6.0f
 
     #include <raylib.h>
 
 namespace Gui
 {
+    constexpr double SCALE = 6.0;
+
     struct pos_t {
         float x;
         float y;

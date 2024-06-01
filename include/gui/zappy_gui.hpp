@@ -36,7 +36,7 @@ namespace Gui
 {
     class Graphic {
         public:
-        Graphic(GameState *gameState);
+        Graphic(std::shared_ptr<GameState> gameState);
         ~Graphic();
 
         void init_lighting();
@@ -70,7 +70,7 @@ namespace Gui
         void draw_particle();
 
         Gui::Window window;
-        GameState *gameState;
+        std::shared_ptr<GameState> _gameState;
         Gui::Camera camera;
         Gui::SkyBox skyBox;
         std::vector<Model> _modelList;
@@ -84,7 +84,7 @@ namespace Gui
         ray_info_t rayInfo;
         Shader light_shader;
         bool cursor = false;
-        float frame_time = 0.0f;
+        double frame_time = 0.0;
         std::vector<int> listLevelPlayer;
         Texture2D particle_texture;
     };

@@ -8,10 +8,9 @@
 #include "zappy_gui.hpp"
 #include "camera.hpp"
 
-Gui::Graphic::Graphic(GameState *gameState): window(), camera(), skyBox(), object(this->_modelList), island(this->_modelList), player(this->_modelList)
+Gui::Graphic::Graphic(std::shared_ptr<GameState> gameState)
+    : _gameState(gameState), window(), camera(), skyBox(), object(this->_modelList), island(this->_modelList), player(this->_modelList)
 {
-    this->gameState = gameState;
-
     this->set_fps(60);
     this->init_lighting();
     this->init_2D();
