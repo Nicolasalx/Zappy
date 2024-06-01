@@ -21,7 +21,7 @@ namespace Gui
             int window_height = WINDOW_HEIGHT;
         
         private:
-    
+
     };
 }
 
