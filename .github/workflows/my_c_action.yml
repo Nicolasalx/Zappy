@@ -115,6 +115,7 @@ jobs:
 
       - name: code analyse
         run: |
+          cd my_zappy_server/
           check.sh $(pwd) $(pwd)
           cat coding-style-reports.log
           CODING_STYLE_ERROR=$(cat coding-style-reports.log | wc -l)
