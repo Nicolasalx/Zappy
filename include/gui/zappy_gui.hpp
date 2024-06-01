@@ -67,8 +67,8 @@ namespace Gui
         void draw_all_player_level();
         void draw_particle();
 
-        Gui::Window window;
         std::shared_ptr<GameState> _gameState;
+        Gui::Window window;
         Gui::Camera camera;
         Gui::SkyBox skyBox;
         std::vector<Model> _modelList;
