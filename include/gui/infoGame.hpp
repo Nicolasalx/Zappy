@@ -8,17 +8,13 @@
 #ifndef INFOGAME_H_
     #define INFOGAME_H_
 
-    #define MAX_PORT_NB 65535
-    #define BUFFER_SIZE 4096
-    #define CMD_BUFFER_SIZE 4096
-    #define WINDOW_WIDTH 1920 / 2
-    #define WINDOW_HEIGHT 1080 / 2
-
     #include <raylib.h>
 
 namespace Gui
 {
-    constexpr double SCALE = 6.0;
+    constexpr double MAP_SCALE = 6.0;
+    constexpr double WINDOW_WIDTH = 1920 / 2;
+    constexpr double WINDOW_HEIGHT = 1080 / 2;
 
     struct pos_t {
         float x;
