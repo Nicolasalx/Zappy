@@ -6,6 +6,7 @@
 */
 
 #include "zappy_gui.hpp"
+#include "object.hpp"
 
 void Gui::Graphic::draw_object()
 {

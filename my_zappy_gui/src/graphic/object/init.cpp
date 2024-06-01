@@ -5,7 +5,6 @@
 ** init
 */
 
-#include "zappy_gui.hpp"
 #include "object.hpp"
 
 Gui::Object::Object(std::vector<Model> &modelList)
