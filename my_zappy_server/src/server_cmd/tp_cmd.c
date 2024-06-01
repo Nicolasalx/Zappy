@@ -33,8 +33,9 @@ void tp_cmd(int, char **argv, server_t *server)
     int y = atoi(argv[2]);
     int o = atoi(argv[3]);
 
-    if (tp_error_management(argv, server))
+    if (tp_error_management(argv, server)) {
         return;
+    }
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0 && server->clients[i].player.id == id
         && server->clients[i].is_graphic == false

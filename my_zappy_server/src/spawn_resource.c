@@ -17,7 +17,7 @@ static void count_ressource(server_t *server, int i, int count_spawn[NB_ITEM])
 }
 
 static void add_new_ressource(server_t *server, int i,
-    int count_spawn[NB_ITEM], int nb_spawn[NB_ITEM])
+    const int *count_spawn, const int *nb_spawn)
 {
     int random_x = 0;
     int random_y = 0;
