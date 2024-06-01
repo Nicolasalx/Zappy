@@ -9,13 +9,13 @@
     #define OBJECT_H_
 
     #include "raylibInfo.hpp"
+    #include "gameState.hpp"
     #include <vector>
     #include <memory>
 
 namespace Gui
 {
-    class Object
-    {
+    class Object {
         public:
             Object(std::shared_ptr<GameState> gameState);
             ~Object() = default;
