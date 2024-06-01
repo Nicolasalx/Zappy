@@ -7,7 +7,6 @@
 
 #include "menu.hpp"
 
-Gui::Menu::Menu()
+Gui::Menu::Menu(std::shared_ptr<GameState> gameState) : _gameState(gameState)
 {
-    
 }
