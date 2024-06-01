@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** handle_new_input
+** handleNewInput
 */
 
 #include "client.hpp"
@@ -30,21 +30,21 @@
 //     strncat(client->cmd_buffer, start_cmd, nb_byte);
 // }
 
-static void handle_ctrl_d(ssize_t nb_byte)
+static void handleCtrlD(ssize_t nb_byte)
 {
     if (nb_byte == 0) {
         exit(0);
     }
 }
 
-void Gui::Client::handle_new_input()
+void Gui::Client::handleNewInput()
 {
     char command[BUFFER_SIZE] = {0};
     ssize_t nb_byte = 0;
 
     if (FD_ISSET(STDIN_FILENO, &this->read_set)) {
         nb_byte = read(STDIN_FILENO, command, BUFFER_SIZE);
-        handle_ctrl_d(nb_byte);
+        handleCtrlD(nb_byte);
         // bufferiser ici
         send_cmd_to_server(command, nb_byte);
     }
