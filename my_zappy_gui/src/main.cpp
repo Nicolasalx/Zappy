@@ -13,19 +13,16 @@ int main(int argc, char const *argv[])
     Gui::GameState gameState;
 
     try {
-        std::thread client_thread([](int argc, const char **argv, std::shared_ptr<Gui::GameState> gameState)
+        std::thread clientThread([](int argc, const char **argv, std::shared_ptr<Gui::GameState> gameState)
             {
                 Gui::Client client(argc, argv, gameState);
             }, argc, argv, std::make_shared<Gui::GameState>(gameState));
-
-        std::thread graphic_thread([](std::shared_ptr<Gui::GameState> gameState)
+        std::thread graphicThread([](std::shared_ptr<Gui::GameState> gameState)
             {
                 Gui::Graphic graphic(gameState);
             }, std::make_shared<Gui::GameState>(gameState));
-
-        graphic_thread.join();
-        client_thread.join();
-
+        graphicThread.join();
+        clientThread.join();
     } catch (my::tracked_exception &e) {
         my::log::error(e.what());
         return 84;
