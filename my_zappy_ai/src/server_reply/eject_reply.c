@@ -9,5 +9,4 @@
 
 void eject_reply(client_t *, char *)
 {
-    return;
 }
