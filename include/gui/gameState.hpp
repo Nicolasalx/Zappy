@@ -39,6 +39,7 @@ namespace Gui
             // ! maybe private
             pos_t map_size;
             int time_unit = 0;
+            double frame_time = 0;
             std::map<std::string, std::function<void(std::vector<std::string>)>> cmd_map;
             // ! maybe public
             std::vector<std::vector<std::vector<int>>> object_pos;
