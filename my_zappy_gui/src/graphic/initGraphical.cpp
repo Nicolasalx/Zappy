@@ -16,7 +16,7 @@ Gui::Graphic::Graphic(GameState *gameState): window(), camera(), skyBox(), objec
     this->init_lighting();
     this->init_2D();
     this->listLevelPlayer.resize(8);
-    this->particle_texture = LoadTexture("assets/plateform1.png");
+    this->particle_texture = LoadTexture("assets/evolution.png");
 }
 
 Gui::Graphic::~Graphic()
