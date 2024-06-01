@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Gui::Player::update_player_pos(player_t &player)
+void Gui::Player::updatePlayerPos(player_t &player)
 {
     if (player.real_pos.x < player.pos.x) {
         player.real_pos.x += this->_gameState->frame_time * 2;
@@ -23,7 +23,7 @@ void Gui::Player::update_player_pos(player_t &player)
     }
 }
 
-void Gui::Player::update_animation(player_t &player)
+void Gui::Player::updateAnimation(player_t &player)
 {
     if (_gameState->frame_time > 0.25f) {
         player.anim_frame_counter = 32;
@@ -52,5 +52,5 @@ void Gui::Player::update_animation(player_t &player)
     if (this->player_orientation[player.orientation] < player.real_orientation) {
         player.real_orientation -= _gameState->frame_time * 200;
     }
-    this->update_player_pos(player);
+    this->updatePlayerPos(player);
 }
