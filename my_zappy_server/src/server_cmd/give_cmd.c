@@ -27,8 +27,9 @@ static bool check_client(server_t *server, char **argv, int i)
     if (server->clients[i].fd != 0 && server->clients[i].player.id == id
     && server->clients[i].is_graphic == false
     && server->clients[i].player.team) {
-        if (add_to_inventory(server, i, nb, argv))
+        if (add_to_inventory(server, i, nb, argv)) {
             return true;
+        }
     }
     return false;
 }
@@ -44,8 +45,9 @@ void give_cmd(int, char **argv, server_t *server)
         return;
     }
     for (int i = 0; i < MAX_CLIENT; i++) {
-        if (check_client(server, argv, i))
+        if (check_client(server, argv, i)) {
             return;
+        }
     }
     printf("Error: invalid argument\n");
 }
