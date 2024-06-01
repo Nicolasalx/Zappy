@@ -20,6 +20,7 @@ namespace Gui
             Camera3D _data;
 
         private:
+            
 
     };
 }
