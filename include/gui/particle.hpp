@@ -24,7 +24,7 @@ namespace Gui
         public:
             ParticleSystem();
             ~ParticleSystem() = default;
-            void update_particle();
+            void update_particle(float time_delta);
             void draw(Texture2D texture, Camera3D camera);
 
             pos_t pos;
