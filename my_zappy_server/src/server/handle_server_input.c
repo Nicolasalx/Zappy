@@ -43,8 +43,9 @@ void handle_server_input(server_t *server)
 
     if (FD_ISSET(STDIN_FILENO, &server->read_set)) {
         nb_byte = read(STDIN_FILENO, &cmd_data, sizeof(cmd_data) - 1);
-        if (nb_byte == -1 || nb_byte == 0)
+        if (nb_byte == -1 || nb_byte == 0) {
             return;
+        }
         if (nb_byte >= BUFFER_SIZE) {
             dprintf(2, RED("Server input is incompatible is too long.")"\n");
             return;
