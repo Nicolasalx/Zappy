@@ -195,11 +195,11 @@ team_t *condition_win(server_t *server);
 
 // args management
 void get_port_and_freq(const char **argv,
-    server_t *server, int argc, const char **args);
+    server_t *server, int i, const char **args);
 void get_map_size(const char **argv,
-    server_t *server, int argc, const char **args);
+    server_t *server, int i, const char **args);
 void get_clients_nb(const char **argv,
-    server_t *server, int argc, const char **args);
+    server_t *server, int i, const char **args);
 void get_teams_name(const char **argv,
     server_t *server, int i, int argc);
 void check_arg_validity(server_t *server);
@@ -208,7 +208,6 @@ void check_arg_validity(server_t *server);
 void msz_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void sgt_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void sst_cmd(int nb_args, char **argv, client_t *client, server_t *server);
-void sgt_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void tna_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void plv_cmd(int nb_args, char **argv, client_t *client, server_t *server);
 void ppo_cmd(int nb_args, char **argv, client_t *client, server_t *server);
