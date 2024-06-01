@@ -44,7 +44,7 @@ void broadcast_cmd(char *argv, client_t *client, server_t *server)
         && server->clients[i].player.team
         && client->player.id != server->clients[i].player.id) {
             direction = calculate_direction(client, &server->clients[i]);
-            snprintf(buffer, sizeof(buffer), "message %d, %s\n",
+            snprintf(buffer, BUFFER_SIZE, "message %d, %s\n",
                 direction, message);
             send_msg_client(server->clients[i].fd, buffer);
         }

@@ -14,11 +14,11 @@ static void send_egg_info(char *buffer,
         return;
     }
     do {
-        snprintf(buffer, sizeof(buffer), "%d %d %d %s",
+        snprintf(buffer, 100, "%d %d %d %s",
         GET_DATA(current, egg_t)->nb, GET_DATA(current, egg_t)->pos_x,
         GET_DATA(current, egg_t)->pos_y, server->team_list[i].name);
         smg_reply(server, buffer);
-        memset(buffer, 0, sizeof(buffer));
+        memset(buffer, 0, 100);
         if (server->team_list[i].egg_list == NULL) {
             return;
         }

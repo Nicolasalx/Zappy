@@ -7,7 +7,8 @@
 
 #include "zappy_server.h"
 
-static void safe_strncat(char *dest, size_t *size_dest, const char *src, size_t n)
+static void safe_strncat(char *dest,
+    size_t *size_dest, const char *src, size_t n)
 {
     size_t size_src = strlen(src);
 
@@ -21,13 +22,15 @@ static void safe_strncat(char *dest, size_t *size_dest, const char *src, size_t 
     *size_dest += size_src;
 }
 
-static void buffering_input(server_t *server, client_t *client, char *command, size_t nb_byte)
+static void buffering_input(server_t *server,
+    client_t *client, char *command, size_t nb_byte)
 {
     char *start_cmd = command;
     char *end_cmd = strchr(command, '\n');
 
     while (end_cmd != NULL) {
-        safe_strncat(client->cmd_buffer, &client->buffer_size, command, (end_cmd + 1) - start_cmd);
+        safe_strncat(client->cmd_buffer, &client->buffer_size,
+            command, (end_cmd + 1) - start_cmd);
         handle_client_input(server, client, client->cmd_buffer);
         if (!client->cmd_buffer) {
             return;

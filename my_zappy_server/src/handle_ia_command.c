@@ -31,7 +31,6 @@ static void get_all_elevation_mate(server_t *server, client_t *client)
     }
 }
 
-
 static bool handle_elevation_cmd(server_t *server,
     client_t *client, const ai_handler_t *command)
 {
@@ -87,13 +86,10 @@ void handle_ai_input(server_t *server, client_t *client, char *cmd)
     }
     for (int i = 0; ai_cmd_handler[i].name != NULL; ++i) {
         if (strcmp(first_part, ai_cmd_handler[i].name) == 0
-        && ai_cmd_handler[i].has_arg == (arg != NULL)) {
-            if (ai_cmd_handler[i].method) {
-                push_new_command(server, client, &ai_cmd_handler[i], arg);
-                return;
-            } else {
-                send_msg_client(client->fd, "ko: method not implemented\n");
-            }
+        && ai_cmd_handler[i].has_arg == (arg != NULL)
+        && ai_cmd_handler[i].method) {
+            push_new_command(server, client, &ai_cmd_handler[i], arg);
+            return;
         }
     }
     send_msg_client(client->fd, "ko\n");

@@ -10,6 +10,6 @@
 
 void my_error(char *error, int exit_value)
 {
-    printf("%s\n", error);
+    dprintf(2, "%s\n", error);
     my_exit(exit_value);
 }

@@ -15,7 +15,7 @@ static void send_ppo_reply(char *buffer, int id,
         && server->clients[i].is_graphic == false
         && server->clients[i].player.id == id
         && server->clients[i].player.team) {
-            snprintf(buffer, sizeof(buffer), "ppo %d %d %d %d\n", id,
+            snprintf(buffer, 100, "ppo %d %d %d %d\n", id,
                 server->clients[i].player.pos_x,
                 server->clients[i].player.pos_y,
                 server->clients[i].player.orientation + 1);

@@ -7,6 +7,15 @@
 
 #include "zappy_server.h"
 
+static void send_player_level_reply(
+    server_t *server, team_t *winning_team)
+{
+    if (winning_team) {
+        seg_reply(server, winning_team);
+        server->end_game = true;
+    }
+}
+
 static bool level_up_player(server_t *server, int id, int level)
 {
     team_t *winning_team = NULL;
@@ -17,10 +26,7 @@ static bool level_up_player(server_t *server, int id, int level)
         && server->clients[i].player.team) {
             server->clients[i].player.level = level;
             winning_team = condition_win(server);
-            if (winning_team) {
-                seg_reply(server, winning_team);
-                server->end_game = true;
-            }
+            send_player_level_reply(server, winning_team);
             return true;
         }
     }

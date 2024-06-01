@@ -7,6 +7,20 @@
 
 #include "zappy_server.h"
 
+static void call_server_function(server_t *server,
+    int nb_word, int i, char **word)
+{
+    if (nb_word - 1 == server_cmd_handler[i].nb_arg) {
+        if (server_cmd_handler[i].method) {
+            server_cmd_handler[i].method(nb_word - 1, &word[1], server);
+        } else {
+            printf("method not implemented\n");
+        }
+    } else {
+        printf("%s\n", server_cmd_handler[i].usage);
+    }
+}
+
 static void handle_new_server_cmd(char *cmd, server_t *server)
 {
     int nb_word = count_nb_word(cmd, " \t\n");
@@ -15,15 +29,7 @@ static void handle_new_server_cmd(char *cmd, server_t *server)
 
     for (size_t i = 0; server_cmd_handler[i].name != NULL; ++i) {
         if (nb_word > 0 && strcmp(word[0], server_cmd_handler[i].name) == 0) {
-            if (nb_word - 1 == server_cmd_handler[i].nb_arg) {
-                if (server_cmd_handler[i].method) {
-                    server_cmd_handler[i].method(nb_word - 1, &word[1], server);
-                } else {
-                    printf("method not implemented\n");
-                }
-            } else {
-                printf("%s\n", server_cmd_handler[i].usage);
-            }
+            call_server_function(server, nb_word, i, word);
             return;
         }
     }
