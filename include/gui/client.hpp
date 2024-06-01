@@ -39,14 +39,14 @@ namespace Gui
             void launch_graphic();
 
         private:
-            int fd;
+            int fd = 0;
             int max_fd = 0;
             fd_set read_set;
             fd_set write_set;
-            unsigned short port;
+            unsigned short port = 0;
             struct sockaddr_in server_address;
-            std::string cmd_buffer;
-            std::string ip;
+            std::string cmd_buffer = "";
+            std::string ip = "";
             GameState gameState;
             std::thread graphic_thread;
     };

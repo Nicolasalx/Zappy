@@ -10,10 +10,12 @@
 
     #include "raylibInfo.hpp"
     #include <vector>
+    //#include "zappy_gui.hpp"
 
 namespace Gui
 {
-    class Object {
+    class Object
+    {
         public:
             Object(std::vector<Model> &modelList);
             ~Object() = default;
