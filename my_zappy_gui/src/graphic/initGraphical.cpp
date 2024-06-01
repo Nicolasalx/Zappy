@@ -11,9 +11,9 @@
 Gui::Graphic::Graphic(std::shared_ptr<GameState> gameState)
     : _gameState(gameState), window(), camera(), skyBox(gameState), object(gameState), island(gameState), player(gameState), menu(gameState), particle(gameState)
 {
-    this->set_fps(60);
-    this->init_lighting();
-    this->init_2D();
+    this->setFps(60);
+    this->initLighting();
+    this->init2D();
     this->listLevelPlayer.resize(8);
     this->particle_texture = LoadTexture("assets/evolution.png");
     this->loop();
@@ -24,7 +24,7 @@ Gui::Graphic::~Graphic()
     CloseWindow();
 }
 
-void Gui::Graphic::init_2D()
+void Gui::Graphic::init2D()
 {
     this->textBoxs.push_back(TextBox(0.77f, 0.04f, 0.21f, 0.1f, this->window.window_width, this->window.window_height, LEFT_BUTTON));
     this->textBoxs.push_back(TextBox(0.77f, 0.47f, 0.21f, 0.51f, this->window.window_width, this->window.window_height));
@@ -40,12 +40,12 @@ Gui::Window::Window()
     this->window_height = GetScreenHeight();
 }
 
-void Gui::Graphic::set_fps(int fps)
+void Gui::Graphic::setFps(int fps)
 {
     SetTargetFPS(fps);
 }
 
-void Gui::Graphic::init_lighting()
+void Gui::Graphic::initLighting()
 {
     // light_shader = LoadShader(TextFormat("assets/lighting.vs", 330),
     //                            TextFormat("assets/lighting.fs", 330));
