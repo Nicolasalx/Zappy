@@ -41,12 +41,12 @@ void Gui::Graphic::loop()
     while (!WindowShouldClose()) {
         this->event();
         BeginDrawing();
-        // if (isInMenu) {
-        //     this->menu();
-        // } else {
-        //      this->draw_3D();
-        //      this->draw_2D();
-        // }
+        //if (this->menu.isInMenu) {
+        //    this->menu();
+        //} else {
+        //     this->draw_3D();
+        //     this->draw_2D();
+        //}
         this->draw_3D();
         this->draw_2D();
         EndDrawing();
