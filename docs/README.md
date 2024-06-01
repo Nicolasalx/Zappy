@@ -33,22 +33,14 @@ There are several resources on the map, which can vary in rarity, but there is a
 - Mendiane
 - Phiras
 - Thystame
-if ((server->port < 0 || server->port > MAX_PORT_NB) &&
-    server->port != -1) {
-        my_error("Error: Port must be between 1 and 65535", 84);
-    }
-    check_world_size(server);
-    if ((server->client_nb <= 0 || server->client_nb > MAX_CLIENT_NB)
-    && server->client_nb != -1) {
-        my_error("Error: Clients must be between 1 and 100", 84);
-    }
+
 ### Team Configuration
 
-You can define up to 100 teams using the -n `name1` `name2` ... option, separating each team name with a space. Note that the name GRAPHIC is reserved for the graphical client and cannot be used as a team name.
+You can define up to 10 teams using the -n `name1` `name2` ... option, separating each team name with a space. Note that the name GRAPHIC is reserved for the graphical client and cannot be used as a team name.
 
 ### Team Capacity
 
-You can set the team member capacity using the -c `clientsNb` option. Although the capacity can be extended with a fork command, it is limited to a maximum of 100 members per team. When a client dies, their spot is returned to the team.
+You can set the team member capacity using the -c `clientsNb` option. Although the capacity can be extended with a fork command, it is limited to a maximum of 100 players connected per team. When a client dies, their spot is returned to the team.
 
 ### Frequency
 
