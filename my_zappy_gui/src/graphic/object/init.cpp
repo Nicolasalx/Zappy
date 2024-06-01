@@ -8,7 +8,7 @@
 #include "object.hpp"
 #include "gameState.hpp"
 
-Gui::Object::Object(std::vector<Model> &modelList, std::shared_ptr<Gui::GameState> gameState): _gameState(gameState)
+Gui::Object::Object(std::shared_ptr<Gui::GameState> gameState): _gameState(gameState)
 {
     // food
     Model food = LoadModel("assets/food.glb");

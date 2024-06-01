@@ -8,7 +8,7 @@
 #include "zappy_gui.hpp"
 #include "player.hpp"
 
-Gui::Player::Player(std::vector<Model> &modelList, std::shared_ptr<GameState> gameState): _gameState(gameState)
+Gui::Player::Player(std::shared_ptr<GameState> gameState): _gameState(gameState)
 {
     Model player = LoadModel("assets/Astronaut.iqm");
     Texture2D texture = LoadTexture("assets/AstronautColor.png");
