@@ -14,11 +14,14 @@ namespace Gui
 {
     class Menu {
         public:
-            Menu();
+            Menu(std::shared_ptr<GameState> gameState);
             ~Menu() = default;
 
             bool isInMenu = false;
+
         private:
+            std::shared_ptr<GameState> _gameState;
+
     };
 }
 
