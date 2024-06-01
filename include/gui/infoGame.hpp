@@ -12,9 +12,9 @@
 
 namespace Gui
 {
-    constexpr double MAP_SCALE = 6.0;
-    constexpr double WINDOW_WIDTH = 1920 / 2;
-    constexpr double WINDOW_HEIGHT = 1080 / 2;
+    constexpr float MAP_SCALE = 6.0f;
+    constexpr float WINDOW_WIDTH = 1920 / 2;
+    constexpr float WINDOW_HEIGHT = 1080 / 2;
 
     struct pos_t {
         float x;
