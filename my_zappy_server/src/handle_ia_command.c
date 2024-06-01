@@ -77,7 +77,7 @@ void handle_ai_input(server_t *server, client_t *client, char *cmd)
     char *arg = first_part;
 
     if (first_part) {
-        for (; *arg != '\0' && (*arg == ' ' || *arg == '\t'); ++arg);
+        for (; *arg != '\0' && (*arg == ' ' || *arg == '\t'); ++arg) {};
         *first_part = '\0';
         first_part = cmd;
     } else {

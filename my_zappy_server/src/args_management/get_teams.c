@@ -57,6 +57,5 @@ void get_teams_name(const char **argv,
             player_max = 0;
             server->team_count += 1;
         }
-        i -= 1;
     }
 }
