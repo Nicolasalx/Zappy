@@ -13,7 +13,7 @@ void Gui::Graphic::draw_3D()
     // BeginShaderMode(light_shader);
     this->draw_sky_box();
     this->draw_player();
-    this->draw_object();
+    this->object.render();
     this->draw_particle();
     this->draw_map();
     DrawGrid(10, 1.0f);
