@@ -93,6 +93,7 @@ typedef struct {
     item_t last_item_taken;
     node_t *cmd_list;
     bool in_incantation;
+    bool try_die;
 } player_t;
 
 typedef struct {

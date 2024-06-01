@@ -49,7 +49,7 @@ void create_new_ai(int port, struct in_addr address, char *team_name)
     ai_arg_t *arg = NULL;
 
     pthread_mutex_lock(&get_thread_list(NULL)->mutex);
-    if (my_listlen(get_thread_list(NULL)->thread_list) > 30) {
+    if (my_listlen(get_thread_list(NULL)->thread_list) >= 30) {
         pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
         return;
     }
