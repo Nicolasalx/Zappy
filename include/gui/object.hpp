@@ -10,19 +10,22 @@
 
     #include "raylibInfo.hpp"
     #include <vector>
-    //#include "zappy_gui.hpp"
+    #include <memory>
 
 namespace Gui
 {
     class Object
     {
         public:
-            Object(std::vector<Model> &modelList);
+            Object(std::vector<Model> &modelList, std::shared_ptr<GameState> gameState);
             ~Object() = default;
 
             float object_padding[7][2];
 
+            void render();
+
         private:
+            std::shared_ptr<GameState> _gameState;
 
     };
 }
