@@ -14,10 +14,20 @@
 
 namespace Gui
 {
+    struct box_info {
+        float x;
+        float y;
+        float width;
+        float height;
+        int window_width;
+        int window_height;
+        float text_size;
+        int state;
+    };
+
     class TextBox {
         public:
-            TextBox(float x, float y, float w, float h, int window_w, int window_h);
-            TextBox(float x, float y, float w, float h, int window_w, int window_h, int state);
+            TextBox(box_info boxInfo);
             ~TextBox() = default;
             void openClose();
             bool isClosed();
@@ -25,16 +35,22 @@ namespace Gui
             void addText(std::string text, float ypos);
             void draw();
         private:
-            float _x;
-            float _y;
-            float _width;
-            float _height;
-            int state;
-            int _window_width = WINDOW_WIDTH;
-            int _window_height = WINDOW_HEIGHT;
+            box_info _boxInfo;
             Rectangle _box;
             Rectangle _button;
             Color _color;
+    };
+
+    class TextBox_list {
+        public:
+            TextBox_list(std::shared_ptr<GameState> gameState, int window_width, int window_height);
+            ~TextBox_list() = default;
+            void drawAllTextBoxs(ray_info_t &rayInfo);
+            void resize(int window_width, int window_height);
+
+            std::vector<int> listLevelPlayer;
+            std::vector<Gui::TextBox> _textBoxs;
+            std::shared_ptr<GameState> _gameState;
     };
 }
 
