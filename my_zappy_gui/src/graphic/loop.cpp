@@ -39,6 +39,7 @@ void Gui::Graphic::draw2D()
 void Gui::Graphic::loop()
 {
     while (!WindowShouldClose()) {
+        // std::cout << _gameState->time_unit << std::endl;
         this->event();
         BeginDrawing();
         //if (this->menu.isInMenu) {
