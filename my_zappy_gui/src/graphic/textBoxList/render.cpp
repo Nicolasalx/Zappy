@@ -65,6 +65,8 @@ void Gui::TextBox_list::drawAllTextBoxs(ray_info_t &rayInfo)
     drawListPlayerLevel(*this);
 
     _textBoxs[4].draw();
+    if (_textBoxs[4].isClosed())
+        return;
     for (size_t i = 0; i < this->_gameState->server_resp.size(); i++) {
         _textBoxs[4].addText(this->_gameState->server_resp[i], (float)i/(float)this->_gameState->server_resp.size());
     }
