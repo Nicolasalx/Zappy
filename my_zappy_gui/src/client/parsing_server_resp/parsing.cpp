@@ -36,6 +36,7 @@ void Gui::GameState::parse_server_reply(std::string reply_data)
     while ((pos = reply_data.find("\n")) != std::string::npos) {
         cmd = reply_data.substr(0, pos);
         std::cout << "cmd: " << cmd << std::endl;
+        server_resp.push_back(cmd);
         type = cmd.substr(0, cmd.find(" "));
         cmd.erase(0, cmd.find(" ") + 1);
         while (cmd.find(" ") != std::string::npos) {
@@ -43,15 +44,13 @@ void Gui::GameState::parse_server_reply(std::string reply_data)
             cmd.erase(0, cmd.find(" ") + 1);
         }
         args.push_back(cmd);
-        // std::cout << "type: " << type << " args:";
-        // for (auto arg : args) {
-        //     std::cout << " " << arg;
-        // }
-        // std::cout << std::endl;
         if (cmd_map.find(type) != cmd_map.end()) {
             cmd_map[type](args);
         }
         reply_data.erase(0, pos + 1);
         args.clear();
+        if (server_resp.size() > 30) {
+            server_resp.erase(server_resp.begin());
+        }
     }
 }
