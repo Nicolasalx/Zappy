@@ -23,10 +23,7 @@ void Gui::Graphic::draw3D()
 
 void Gui::Graphic::draw2D()
 {
-    this->drawGeneralInfo();
-    this->drawPlayerInfo();
-    this->drawTileInfo();
-    this->drawAllPlayerLevel();
+    textBoxs.drawAllTextBoxs(rayInfo);
 }
 
 // void Gui::Graphic::menu()
