@@ -23,9 +23,7 @@ void Gui::Graphic::windowResize()
     if (IsWindowResized()) {
         this->window.window_width = GetScreenWidth();
         this->window.window_height = GetScreenHeight();
-        for (auto &textBox : this->textBoxs) {
-            textBox.resize(this->window.window_width, this->window.window_height);
-        }
+        textBoxs.resize(this->window.window_width, this->window.window_height);
     }
 }
 
@@ -62,7 +60,7 @@ void Gui::Graphic::clickEvent()
         this->rayInfo.id = 0;
         this->rayInfo.x = 0;
         this->rayInfo.y = 0;
-        for (auto &textBox : this->textBoxs) {
+        for (auto &textBox : this->textBoxs._textBoxs) {
             textBox.openClose();
         }
     }
