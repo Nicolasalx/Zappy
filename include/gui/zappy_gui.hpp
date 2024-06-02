@@ -40,7 +40,6 @@ namespace Gui
         ~Graphic();
 
         void initLighting();
-        void init2D();
         void setFps(int fps);
 
         //loop
@@ -57,10 +56,6 @@ namespace Gui
         void draw3D();
         void draw2D();
         void drawSkyBox();
-        void drawGeneralInfo();
-        void drawPlayerInfo();
-        void drawTileInfo();
-        void drawAllPlayerLevel();
 
         std::shared_ptr<GameState> _gameState;
         Gui::Window window;
@@ -71,13 +66,11 @@ namespace Gui
         Gui::Player player;
         Gui::Menu menu;
         Gui::ParticleSystem particle;
+        Gui::TextBox_list textBoxs;
 
-        std::vector<TextBox> textBoxs;
         ray_info_t rayInfo;
         Shader light_shader;
         bool cursor = false;
-        std::vector<int> listLevelPlayer;
-        Texture2D particle_texture;
     };
 }
 
