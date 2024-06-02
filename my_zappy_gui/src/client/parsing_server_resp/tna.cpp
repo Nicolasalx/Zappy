@@ -12,8 +12,8 @@ void Gui::GameState::tna(std::vector<std::string> args)
     for (auto team : args) {
         this->team_names.push_back(team);
     }
-    // std::cout << "tna" << std::endl;
-    // for (auto arg : args) {
-    //     std::cout << arg << std::endl;
-    // }
+    std::cout << "tna" << std::endl;
+    for (auto arg : args) {
+        std::cout << arg << std::endl;
+    }
 }
