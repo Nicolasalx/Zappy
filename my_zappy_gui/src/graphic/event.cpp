@@ -114,6 +114,7 @@ void Gui::Graphic::event()
     if (IsCursorHidden()) UpdateCamera(&this->camera._data, CAMERA_FREE);
     // float cameraPos[3] = { camera.position.x, camera.position.y, camera.position.z };
     // SetShaderValue(light_shader, light_shader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
+    this->particle.updateParticleList();
     this->changeCursor();
     this->windowResize();
     this->clickEvent();
