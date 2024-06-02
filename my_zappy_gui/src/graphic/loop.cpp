@@ -16,7 +16,6 @@ void Gui::Graphic::draw3D()
     this->object.render();
     this->particle.drawParticle(this->camera._data);
     this->island.drawMap(this->rayInfo);
-    DrawGrid(10, 1.0f);
     // EndShaderMode();
     EndMode3D();
 }
