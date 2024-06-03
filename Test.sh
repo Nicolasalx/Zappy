@@ -79,8 +79,8 @@ test_invalid_arg_server()
 test_invalid_arg_server "kqsnfjsdf"   # invalid arg
 test_invalid_arg_server "-c -1"       # negative team count
 test_invalid_arg_server "-n \"\""     # empty team name
-test_invalid_arg_server "-n"          # no team name
 test_invalid_arg_server "-n @@@__###" # non alpha num
+test_invalid_arg_server "-n Team1 Team1"
 test_invalid_arg_server "-x 0"
 test_invalid_arg_server "-x -1"
 test_invalid_arg_server "-x 101"
