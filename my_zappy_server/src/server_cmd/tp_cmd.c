@@ -47,6 +47,6 @@ void tp_cmd(int, char **argv, server_t *server)
             ppo_reply(server, &server->clients[i]);
             return;
         }
-    }Player
+    }
     printf("Error: client not found\n");
 }
