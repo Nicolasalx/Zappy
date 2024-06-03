@@ -43,9 +43,10 @@ void tp_cmd(int, char **argv, server_t *server)
             server->clients[i].player.pos_x = x;
             server->clients[i].player.pos_y = y;
             server->clients[i].player.orientation = o - 1;
+            printf("Player %d has been teleported to %d %d %d\n", id, x, y, o);
             ppo_reply(server, &server->clients[i]);
             return;
         }
-    }
+    }Player
     printf("Error: client not found\n");
 }
