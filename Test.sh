@@ -77,6 +77,7 @@ test_invalid_arg_server()
 ## ! TEST
 
 test_invalid_arg_server "kqsnfjsdf"   # invalid arg
+test_invalid_arg_server "-n aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" # too long name
 test_invalid_arg_server "-r"
 test_invalid_arg_server "-r 4"
 test_invalid_arg_server "-c -1"       # negative team count
@@ -98,6 +99,7 @@ test_invalid_arg_server "-p 65536"
 test_invalid_arg_server "-f 0"
 test_invalid_arg_server "-f -1"
 test_invalid_arg_server "-f 151"
+test_invalid_arg_server "-ff 100"
 
 ## ? END TEST
 
