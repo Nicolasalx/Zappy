@@ -19,6 +19,7 @@ void kill_cmd(int, char **argv, server_t *server)
         if (server->clients[i].fd != 0 && server->clients[i].player.id == id
         && server->clients[i].is_graphic == false
         && server->clients[i].player.team) {
+            printf("You have killed player %d\n", id);
             send_msg_client(server->clients[i].fd, "dead\n");
             pdi_reply(server, &server->clients[i]);
             remove_client(&server->clients[i]);

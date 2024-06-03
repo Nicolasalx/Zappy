@@ -12,6 +12,8 @@ static bool add_to_inventory(server_t *server, int i, int nb, char **argv)
     for (int j = 0; j < NB_ITEM; j++) {
         if (strcmp(argv[1], object_list[j]) == 0) {
             server->clients[i].player.inventory[j] += nb;
+            printf("You have given %s x%d to "
+                "player %d\n", object_list[j], nb, i);
             pin_reply(server, &server->clients[i]);
             return true;
         }
@@ -40,7 +42,7 @@ void give_cmd(int, char **argv, server_t *server)
 
     if (!my_str_only_cont(argv[0], "0123456789")
     || !my_str_only_cont(argv[2], "0123456789")
-    || nb < 0 || nb > 100) {
+    || nb <= 0 || nb > 100) {
         printf("Error: invalid argument\n");
         return;
     }
