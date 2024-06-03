@@ -57,7 +57,8 @@ void get_teams_name(const char **argv,
             player_max = 0;
             server->team_count += 1;
         }
-        if (server->team_count == 0 || !strcmp(server->team_list[0].name, "")) {
+        if (server->team_count == 0 ||
+            !strcmp(server->team_list[0].name, "")) {
             my_error("Error: No team name specified", 84);
         }
     }
