@@ -81,6 +81,18 @@ test_invalid_arg_server "-c -1"       # negative team count
 test_invalid_arg_server "-n \"\""     # empty team name
 test_invalid_arg_server "-n"          # no team name
 test_invalid_arg_server "-n @@@__###" # non alpha num
+test_invalid_arg_server "-x 0"
+test_invalid_arg_server "-x -1"
+test_invalid_arg_server "-x 101"
+test_invalid_arg_server "-y 0"
+test_invalid_arg_server "-y -1"
+test_invalid_arg_server "-y 101"
+test_invalid_arg_server "-p 0"
+test_invalid_arg_server "-p -1"
+test_invalid_arg_server "-p 65536"
+test_invalid_arg_server "-f 0"
+test_invalid_arg_server "-f -1"
+test_invalid_arg_server "-f 151"
 
 ## ? END TEST
 
