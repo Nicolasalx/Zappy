@@ -12,7 +12,8 @@ static bool add_to_inventory(server_t *server, int i, int nb, char **argv)
     for (int j = 0; j < NB_ITEM; j++) {
         if (strcmp(argv[1], object_list[j]) == 0) {
             server->clients[i].player.inventory[j] += nb;
-            printf("You have given %s x%d to player %d\n", object_list[j], nb, i);
+            printf("You have given %s x%d to "
+                "player %d\n", object_list[j], nb, i);
             pin_reply(server, &server->clients[i]);
             return true;
         }
