@@ -32,17 +32,17 @@ namespace Gui
             Client(int argc, const char **argv, std::shared_ptr<GameState> gameState);
             ~Client();
 
-            void init_client_set();
-            void monitor_input();
-            void handle_new_input();
-            void handle_new_message();
-            void get_args(int argc, const char **argv);
-            void check_new_message(std::string reply_data);
+            void initClientSet();
+            void monitorInput();
+            void handleNewInput();
+            void handleNewMessage();
+            void getArgs(int argc, const char **argv);
+            void checkNewMessage(std::string reply_data);
             void send_cmd_to_server(char *cmd, int nb_byte);
 
         private:
-            void create_client();
-            void launch_client();
+            void createClient();
+            void launchClient();
 
             int fd = 0;
             int max_fd = 0;

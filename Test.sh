@@ -63,35 +63,26 @@ display_progress_bar()
     printf "] %d%% (%d/%d)\n" "$percentage" "$passed" "$total"
 }
 
+test_invalid_arg_server()
 {
-    ./zappy_server kqsnfjsdf &
+    test_name "$1"
+    ./zappy_server $1 &
     pid=$!
     sleep 0.5
     kill $pid 2> /dev/null
+    wait $pid
     test_return_84
 }
-{
-    ./zappy_server -c -1 &
-    pid=$!
-    sleep 0.5
-    kill $pid 2> /dev/null
-    test_return_84
-}
-{
-    ./zappy_server -n "" &
-    pid=$!
-    sleep 0.5
-    kill $pid 2> /dev/null
-    test_return_84
-}
-{
-    ./zappy_server -n &
-    pid=$!
-    sleep 0.5
-    kill $pid 2> /dev/null
-    test_return_84
-}
+
+## ! TEST
+
+test_invalid_arg_server "kqsnfjsdf"   # invalid arg
+test_invalid_arg_server "-c -1"       # negative team count
+test_invalid_arg_server "-n \"\""     # empty team name
+test_invalid_arg_server "-n"          # no team name
+test_invalid_arg_server "-n @@@__###" # non alpha num
+
+## ? END TEST
 
 display_progress_bar $NB_PASSED_TEST $NB_TEST
-
 exit $RETURN_VALUE

@@ -9,7 +9,7 @@
 #include "player.hpp"
 #include "infoGame.hpp"
 
-void Gui::Player::draw_player_box(ray_info_t &rayInfo, player_t &player)
+void Gui::Player::drawPlayerBox(ray_info_t &rayInfo, player_t &player)
 {
     if (rayInfo.type == Gui::PLAYER && rayInfo.id == player.n) {
         rayInfo.box.min = (Vector3){player.real_pos.x * Gui::MAP_SCALE -1.0f, 0.0f, player.real_pos.y * Gui::MAP_SCALE - 1.0f};
@@ -19,19 +19,19 @@ void Gui::Player::draw_player_box(ray_info_t &rayInfo, player_t &player)
     }
 }
 
-void Gui::Player::draw_player_model(player_t &player)
+void Gui::Player::drawPlayerModel(player_t &player)
 {
     DrawModelEx(player_model, (Vector3){player.real_pos.x * Gui::MAP_SCALE, 0.0f, player.real_pos.y * Gui::MAP_SCALE}, (Vector3){0, 1, 0}, player.real_orientation, (Vector3){3, 3, 3}, WHITE);
 }
 
-void Gui::Player::draw_player(ray_info_t &rayInfo)
+void Gui::Player::drawPlayer(ray_info_t &rayInfo)
 {
     for (auto &player : this->_gameState->players_list) {
-        update_animation(player);
+        updateAnimation(player);
         if (rayInfo.type == PLAYER && rayInfo.id == player.n) {
-            draw_player_box(rayInfo, player);
+            drawPlayerBox(rayInfo, player);
         } else {
-            draw_player_model(player);
+            drawPlayerModel(player);
         }
     }
 }

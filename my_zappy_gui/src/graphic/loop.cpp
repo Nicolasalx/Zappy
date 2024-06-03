@@ -7,26 +7,22 @@
 
 #include "zappy_gui.hpp"
 
-void Gui::Graphic::draw_3D()
+void Gui::Graphic::draw3D()
 {
     BeginMode3D(this->camera._data);
     // BeginShaderMode(light_shader);
-    this->draw_sky_box();
-    this->player.draw_player(this->rayInfo);
+    this->drawSkyBox();
+    this->player.drawPlayer(this->rayInfo);
     this->object.render();
-    this->particle.draw_particle(this->camera._data);
-    this->island.draw_map(this->rayInfo);
-    DrawGrid(10, 1.0f);
+    this->particle.drawParticle(this->camera._data);
+    this->island.drawMap(this->rayInfo);
     // EndShaderMode();
     EndMode3D();
 }
 
-void Gui::Graphic::draw_2D()
+void Gui::Graphic::draw2D()
 {
-    this->draw_general_info();
-    this->draw_player_info();
-    this->draw_tile_info();
-    this->draw_all_player_level();
+    textBoxs.drawAllTextBoxs(rayInfo);
 }
 
 // void Gui::Graphic::menu()
@@ -39,16 +35,17 @@ void Gui::Graphic::draw_2D()
 void Gui::Graphic::loop()
 {
     while (!WindowShouldClose()) {
+        // std::cout << _gameState->time_unit << std::endl;
         this->event();
         BeginDrawing();
         //if (this->menu.isInMenu) {
         //    this->menu();
         //} else {
-        //     this->draw_3D();
-        //     this->draw_2D();
+        //     this->draw3D();
+        //     this->draw2D();
         //}
-        this->draw_3D();
-        this->draw_2D();
+        this->draw3D();
+        this->draw2D();
         EndDrawing();
     }
     exit(0);

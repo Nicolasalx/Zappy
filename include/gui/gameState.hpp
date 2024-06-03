@@ -43,6 +43,7 @@ namespace Gui
             std::map<std::string, std::function<void(std::vector<std::string>)>> cmd_map;
             // ! maybe public
             std::vector<std::vector<std::vector<int>>> object_pos;
+            std::vector<std::string> server_resp;
             std::vector<incant_t> incant_list;
             std::vector<player_t> players_list;
             std::vector<std::string> team_names;

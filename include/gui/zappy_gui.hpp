@@ -39,28 +39,23 @@ namespace Gui
         Graphic(std::shared_ptr<GameState> gameState);
         ~Graphic();
 
-        void init_lighting();
-        void init_2D();
-        void set_fps(int fps);
+        void initLighting();
+        void setFps(int fps);
 
         //loop
         void loop();
 
         //event
         void event();
-        void change_cursor();
-        void window_resize();
-        void click_event();
-        void change_player_selected();
+        void changeCursor();
+        void windowResize();
+        void clickEvent();
+        void changePlayerSelected();
 
         //draw
-        void draw_3D();
-        void draw_2D();
-        void draw_sky_box();
-        void draw_general_info();
-        void draw_player_info();
-        void draw_tile_info();
-        void draw_all_player_level();
+        void draw3D();
+        void draw2D();
+        void drawSkyBox();
 
         std::shared_ptr<GameState> _gameState;
         Gui::Window window;
@@ -71,13 +66,11 @@ namespace Gui
         Gui::Player player;
         Gui::Menu menu;
         Gui::ParticleSystem particle;
+        Gui::TextBox_list textBoxs;
 
-        std::vector<TextBox> textBoxs;
         ray_info_t rayInfo;
         Shader light_shader;
         bool cursor = false;
-        std::vector<int> listLevelPlayer;
-        Texture2D particle_texture;
     };
 }
 

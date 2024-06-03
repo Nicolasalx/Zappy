@@ -7,7 +7,7 @@
 
 #include "zappy_gui.hpp"
 
-void Gui::Graphic::change_cursor()
+void Gui::Graphic::changeCursor()
 {
     if (IsKeyPressed(KEY_P) && !this->cursor) {
         EnableCursor();
@@ -18,18 +18,16 @@ void Gui::Graphic::change_cursor()
     }
 }
 
-void Gui::Graphic::window_resize()
+void Gui::Graphic::windowResize()
 {
     if (IsWindowResized()) {
         this->window.window_width = GetScreenWidth();
         this->window.window_height = GetScreenHeight();
-        for (auto &textBox : this->textBoxs) {
-            textBox.resize(this->window.window_width, this->window.window_height);
-        }
+        textBoxs.resize(this->window.window_width, this->window.window_height);
     }
 }
 
-void Gui::Graphic::click_event()
+void Gui::Graphic::clickEvent()
 {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         this->rayInfo.ray = GetMouseRay(GetMousePosition(), this->camera._data);
@@ -62,13 +60,13 @@ void Gui::Graphic::click_event()
         this->rayInfo.id = 0;
         this->rayInfo.x = 0;
         this->rayInfo.y = 0;
-        for (auto &textBox : this->textBoxs) {
-            textBox.open_close();
+        for (auto &textBox : this->textBoxs._textBoxs) {
+            textBox.openClose();
         }
     }
 }
 
-void Gui::Graphic::change_player_selected()
+void Gui::Graphic::changePlayerSelected()
 {
     if (IsKeyPressed(KEY_O)) {
         for (size_t i = 0; i < this->_gameState->players_list.size(); i++) {
@@ -114,8 +112,9 @@ void Gui::Graphic::event()
     if (IsCursorHidden()) UpdateCamera(&this->camera._data, CAMERA_FREE);
     // float cameraPos[3] = { camera.position.x, camera.position.y, camera.position.z };
     // SetShaderValue(light_shader, light_shader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
-    this->change_cursor();
-    this->window_resize();
-    this->click_event();
-    this->change_player_selected();
+    this->particle.updateParticleList();
+    this->changeCursor();
+    this->windowResize();
+    this->clickEvent();
+    this->changePlayerSelected();
 }

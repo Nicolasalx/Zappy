@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** launch_client
+** launchClient
 */
 
 #include "client.hpp"
@@ -13,13 +13,13 @@ void close_client(int)
     std::exit(0);
 }
 
-void Gui::Client::launch_client()
+void Gui::Client::launchClient()
 {
     signal(SIGINT, close_client);
     while (true) {
-        init_client_set();
-        monitor_input();
-        handle_new_input();
-        handle_new_message();
+        initClientSet();
+        monitorInput();
+        handleNewInput();
+        handleNewMessage();
     }
 }

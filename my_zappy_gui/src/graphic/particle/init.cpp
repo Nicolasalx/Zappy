@@ -21,10 +21,10 @@ Gui::Particle::Particle()
 
 Gui::ParticleSystem::ParticleSystem(std::shared_ptr<GameState> gameState): _gameState(gameState)
 {
-    this->particle_texture = LoadTexture("assets/particles.png");
+    this->particle_texture = LoadTexture("assets/evolution.png");
 }
 
-void Gui::ParticleSystem::update_particle_list()
+void Gui::ParticleSystem::updateParticleList()
 {
     while (this->particle_systems.size() != this->_gameState->incant_list.size()) {
         // std::cout << "update particle" << std::endl;
@@ -41,7 +41,7 @@ void Gui::ParticleSystem::update_particle_list()
     }
 }
 
-void Gui::Particle::update_particle(float time_delta)
+void Gui::Particle::updateParticle(float time_delta)
 {
     for (auto &particle : particles) {
         if (particle.y > 7.0f) {

@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** init_client_set
+** initClientSet
 */
 
 #include "client.hpp"
 
-void Gui::Client::init_client_set()
+void Gui::Client::initClientSet()
 {
     FD_ZERO(&this->read_set);
     FD_SET(STDIN_FILENO, &this->read_set);
@@ -17,7 +17,7 @@ void Gui::Client::init_client_set()
     this->max_fd = this->fd;
 }
 
-void Gui::Client::monitor_input()
+void Gui::Client::monitorInput()
 {
     if (select(max_fd + 1, &this->read_set,
         &this->write_set, NULL, NULL) == -1) {

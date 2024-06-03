@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** handle_new_message
+** handleNewMessage
 */
 
 #include "client.hpp"
 
-void Gui::Client::check_new_message(std::string reply_data)
+void Gui::Client::checkNewMessage(std::string reply_data)
 {
     if (reply_data == "WELCOME\n") {
         char graphic_cmd[9] = "GRAPHIC\n";
@@ -17,7 +17,7 @@ void Gui::Client::check_new_message(std::string reply_data)
     }
 }
 
-void Gui::Client::handle_new_message()
+void Gui::Client::handleNewMessage()
 {
     char reply_data[BUFFER_SIZE] = {0};
     ssize_t size = 0;
@@ -36,5 +36,5 @@ void Gui::Client::handle_new_message()
         std::cout << "Incompatible reply from the server.\n";
         return;
     }
-    this->check_new_message(reply_data);
+    this->checkNewMessage(reply_data);
 }

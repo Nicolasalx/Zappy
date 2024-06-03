@@ -20,11 +20,11 @@ namespace Gui
         public:
             Player(std::shared_ptr<GameState> gameState);
             ~Player() = default;
-            void update_animation(player_t &player);
-            void update_player_pos(player_t &player);
-            void draw_player(ray_info_t &rayInfo);
-            void draw_player_model(player_t &player);
-            void draw_player_box(ray_info_t &rayinfo, player_t &player);
+            void updateAnimation(player_t &player);
+            void updatePlayerPos(player_t &player);
+            void drawPlayer(ray_info_t &rayInfo);
+            void drawPlayerModel(player_t &player);
+            void drawPlayerBox(ray_info_t &rayinfo, player_t &player);
 
             ModelAnimation *player_animation;
             std::map<int, int> player_orientation;
