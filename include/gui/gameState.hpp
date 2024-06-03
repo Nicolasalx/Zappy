@@ -14,11 +14,6 @@
 
 namespace Gui
 {
-    struct incant_t {
-        int level;
-        pos_t pos;
-    };
-
     class GameState {
         public:
             GameState();
@@ -34,7 +29,11 @@ namespace Gui
             void pic(std::vector<std::string> args);
             void pie(std::vector<std::string> args);
             void pdi(std::vector<std::string> args);
+            void enw(std::vector<std::string> args);
+            void ebo(std::vector<std::string> args);
+            void edi(std::vector<std::string> args);
             void sgt(std::vector<std::string> args);
+            void smg(std::vector<std::string> args);
 
             // ! maybe private
             pos_t map_size;
@@ -46,6 +45,7 @@ namespace Gui
             std::vector<std::string> server_resp;
             std::vector<incant_t> incant_list;
             std::vector<player_t> players_list;
+            std::vector<egg_t> eggs_list;
             std::vector<std::string> team_names;
     };
 }

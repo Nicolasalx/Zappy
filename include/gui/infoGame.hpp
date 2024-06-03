@@ -42,6 +42,17 @@ namespace Gui
         CLOSED_RIGHT
     };
 
+    struct incant_t {
+        int level;
+        pos_t pos;
+    };
+
+    struct egg_t {
+        int player_number;
+        int egg_number;       
+        pos_t pos;
+    };
+
     struct player_t {
         int n;
         Gui::pos_t pos;
