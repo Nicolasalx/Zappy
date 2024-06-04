@@ -7,14 +7,9 @@
 
 #include "zappy_ai.h"
 
-char *encrypt_message(char *message, char key)
+void encrypt_message(char *message, char key)
 {
-    int len = strlen(message);
-    char *encrypted_message = malloc(len + 1);
-
-    for (size_t i = 0; i < len; i++) {
-        encrypted_message[i] = message[i] ^ key;
+    for (size_t i = 0; message[i] != '\0'; ++i) {
+        message[i] ^= key;
     }
-    encrypted_message[len] = '\0';
-    return encrypted_message;
 }

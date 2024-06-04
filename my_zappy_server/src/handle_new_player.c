@@ -10,5 +10,6 @@
 void handle_new_player(server_t *, client_t *new_client)
 {
     new_client->cmd_buffer = my_calloc(sizeof(char) * (BUFFER_SIZE + 1));
-    dprintf(new_client->fd, NEW_CLIENT_MESSAGE);
+    send(new_client->fd, NEW_CLIENT_MESSAGE,
+        sizeof(NEW_CLIENT_MESSAGE), MSG_NOSIGNAL);
 }
