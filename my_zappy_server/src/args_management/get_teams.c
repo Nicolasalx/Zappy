@@ -57,7 +57,6 @@ static void get_teams_name_error(const char **argv, server_t *server, int i)
     }
 }
 
-
 void get_teams_name(const char **argv,
     server_t *server, int i, int argc)
 {
