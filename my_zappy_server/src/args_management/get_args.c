@@ -29,6 +29,17 @@ static void set_args(server_t *server)
     }
 }
 
+static bool is_valid_argument(const char *arg)
+{
+    const char *valid_args[] = {"-p", "-x", "-y", "-c", "-f", "-n", "-help"};
+    for (int i = 0; i < sizeof(valid_args) / sizeof(valid_args[0]); i++) {
+        if (strcmp(arg, valid_args[i]) == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void get_args(int argc, const char **argv, server_t *server)
 {
     const char *args[] = {"-p", "-x", "-y", "-c", "-f"};
@@ -40,10 +51,18 @@ void get_args(int argc, const char **argv, server_t *server)
         my_exit(0);
     }
     for (int i = 1; i < argc; i++) {
-        get_teams_name(argv, server, i, argc);
-        get_port_and_freq(argv, server, i, args);
-        get_map_size(argv, server, i, args);
-        get_clients_nb(argv, server, i, args);
+        if (argv[i][0] == '-' && is_valid_argument(argv[i])) {
+            if (strcmp(argv[i], "-n") == 0) {
+                get_teams_name(argv, server, i, argc);
+                i += server->team_count - 1;
+            }
+            get_port_and_freq(argv, server, i, args);
+            get_map_size(argv, server, i, args);
+            get_clients_nb(argv, server, i, args);
+            i += 1;
+        } else {
+            my_error("Error: Invalid argument", 84);
+        }
     }
     check_arg_validity(server);
 }
