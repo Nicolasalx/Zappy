@@ -10,12 +10,12 @@
 static void get_mate(char *buff, client_t *client)
 {
     char num_player[15] = {0};
-    node_t *current = client->incentation_mate;
+    node_t *current = client->player.incentation_mate;
 
     snprintf(num_player, sizeof(num_player), " %d", client->player.id);
     strcat(buff, num_player);
     memset(num_player, 0, sizeof(num_player));
-    if (client->incentation_mate == NULL) {
+    if (client->player.incentation_mate == NULL) {
         strcat(buff, "\n");
         return;
     }
@@ -25,7 +25,7 @@ static void get_mate(char *buff, client_t *client)
         strcat(buff, num_player);
         memset(num_player, 0, sizeof(num_player));
         current = current->next;
-    } while (current != client->incentation_mate);
+    } while (current != client->player.incentation_mate);
     strcat(buff, "\n");
 }
 
@@ -38,7 +38,7 @@ void pic_reply(server_t *server, client_t *client)
     get_mate(buffer, client);
     for (int i = 0; i < MAX_CLIENT; ++i) {
         if (server->clients[i].fd != 0
-        && server->clients[i].is_graphic == true) {
+        && server->clients[i].player.is_graphic == true) {
             send_msg_client(server->clients[i].fd, buffer);
         }
     }
