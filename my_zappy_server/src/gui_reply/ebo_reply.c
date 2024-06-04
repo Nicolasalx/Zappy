@@ -14,7 +14,7 @@ void ebo_reply(server_t *server, egg_t *new_egg)
     snprintf(buffer, sizeof(buffer), "ebo %d\n", new_egg->nb);
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0
-        && server->clients[i].is_graphic == true) {
+        && server->clients[i].player.is_graphic == true) {
             send_msg_client(server->clients[i].fd, buffer);
         }
     }
