@@ -52,7 +52,7 @@ void broadcast_cmd(char *argv, client_t *client, server_t *server)
         message = "\0";
     }
     for (int i = 0; i < MAX_CLIENT; ++i) {
-        if (server->clients[i].fd != 0 && server->clients[i].is_graphic != true
+        if (server->clients[i].fd != 0 && server->clients[i].player.is_graphic != true
         && server->clients[i].player.team
         && client->player.id != server->clients[i].player.id) {
             direction = compute_direction(client, &server->clients[i]);
