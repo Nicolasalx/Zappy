@@ -20,6 +20,7 @@
     #include <ctype.h>
     #include <stdlib.h>
     #include <math.h>
+    #include <time.h>
 
     #define MAX_CLIENT FD_SETSIZE
     #define MAX_PORT_NB 65535
@@ -90,23 +91,23 @@ typedef struct {
 } team_t;
 
 typedef struct {
+    bool is_graphic;
     int id;
     int pos_x;
     int pos_y;
-    orientation_t orientation;
     int level;
     int inventory[NB_ITEM];
     int food_time_unit;
+    orientation_t orientation;
+    node_t *incentation_mate;
+    bool in_incentation;
     team_t *team;
 } player_t;
 
 typedef struct {
     int fd;
-    bool is_graphic;
     node_t *waiting_cmd;
     player_t player;
-    node_t *incentation_mate;
-    bool in_incentation;
     char *cmd_buffer;
     size_t buffer_size;
 } client_t;
@@ -118,25 +119,33 @@ typedef struct {
 } serv_timeout_t;
 
 typedef struct {
-    int port;
     double freq;
-    int fd;
-    int team_count;
-    int client_nb;
     bool is_immortal;
-    int player_count;
-    int egg_count;
+    int client_nb;
     bool end_game;
     bool pause_game;
+} server_opt;
+
+typedef struct {
+    int team_count;
+    int player_count;
+    int egg_count;
     struct timeval last_update;
     struct timeval last_resource_spawn;
+    team_t team_list[MAX_TEAM_NB];
+    world_t world;
+} game_t;
+
+typedef struct {
+    int port;
+    int fd;
     struct sockaddr_in address;
     fd_set read_set;
     fd_set write_set;
     client_t clients[MAX_CLIENT];
-    world_t world;
-    team_t team_list[MAX_TEAM_NB];
+    server_opt opt;
     serv_timeout_t time;
+    game_t game;
 } server_t;
 
 typedef struct {
@@ -204,7 +213,7 @@ team_t *condition_win(server_t *server);
 
 // args management
 void get_port_and_freq(const char **argv, server_t *server, int i);
-void get_map_size(const char **argv, server_t *server, int i);
+void get_map_size(const char **argv, game_t *game, int i);
 void get_clients_nb(const char **argv, server_t *server, int i);
 void get_teams_name(const char **argv, server_t *server, int i, int argc);
 void check_arg_validity(server_t *server);
@@ -266,7 +275,7 @@ void immortal_cmd(int, char **argv, server_t *server);
 void init_player(client_t *client, server_t *server);
 void update_simulation(server_t *server);
 void create_world(server_t *server);
-void spawn_resource(server_t *server);
+void spawn_resource(server_t *server, game_t *game);
 void update_resource(server_t *server);
 void consume_food(server_t *server);
 
