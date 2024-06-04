@@ -111,6 +111,12 @@ typedef struct {
 } client_t;
 
 typedef struct {
+    struct timeval timeout;
+    struct timeval start;
+    struct timeval end;
+} serv_timeout_t;
+
+typedef struct {
     int port;
     double freq;
     int fd;
@@ -129,6 +135,7 @@ typedef struct {
     client_t clients[MAX_CLIENT];
     world_t world;
     team_t team_list[MAX_TEAM_NB];
+    serv_timeout_t time;
 } server_t;
 
 typedef struct {
