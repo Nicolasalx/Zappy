@@ -31,6 +31,16 @@ static bool is_team_name_taken(const char *name, server_t *server)
     return false;
 }
 
+static bool is_valid_team_name(const char *name)
+{
+    for (int i = 0; name[i] != '\0'; ++i) {
+        if (!isalnum(name[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+
 static void get_teams_name_error(const char **argv, server_t *server, int i)
 {
     if (strlen(argv[i]) > MAX_TEAMNAME_SIZE) {
@@ -42,7 +52,11 @@ static void get_teams_name_error(const char **argv, server_t *server, int i)
     if (strcmp(argv[i], "GRAPHIC") == 0) {
         my_error("Error: Team name cannot be GRAPHIC", 84);
     }
+    if (!is_valid_team_name(argv[i])) {
+        my_error("Error: Team name must be alphanumeric", 84);
+    }
 }
+
 
 void get_teams_name(const char **argv,
     server_t *server, int i, int argc)
