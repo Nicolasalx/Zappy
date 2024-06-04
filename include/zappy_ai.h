@@ -211,4 +211,8 @@ void wait_end_fork(client_t *client);
 // kill it self
 void kill_it_self(client_t *client);
 
+// encodage
+char *encrypt_message(char *message, char key);
+char *decrypt_message(const char *message, char key);
+
 #endif /* !ZAPPY_AI_H_ */
