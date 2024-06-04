@@ -29,16 +29,6 @@ void queen_create_child(client_t *client)
 
 void queen_incantation(client_t *client)
 {
-    char broadcast_msg[BUFFER_SIZE] = {0};
-    char broadcast_cmd[BUFFER_SIZE] = {0};
-
-    strcpy(broadcast_msg, "Incantation:");
-    strcat(broadcast_msg, client->player.team_name);
-    encrypt_message(broadcast_msg, 42);
-    strcpy(broadcast_cmd, "Broadcast ");
-    strcat(broadcast_cmd, broadcast_msg);
-    strcat(broadcast_cmd, "\n");
-    push_new_command(client, BROADCAST, broadcast_cmd);
     push_new_command(client, INCANTATION, "Incantation\n");
     push_new_command(client, TAKE, "Take food\n");
     push_new_command(client, TAKE, "Take food\n");
