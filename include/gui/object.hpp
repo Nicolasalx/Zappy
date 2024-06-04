@@ -15,7 +15,7 @@
 
 namespace Gui
 {
-    class Object {
+    class Object : public virtual IRaylib {
         public:
             Object(std::shared_ptr<GameState> gameState);
             ~Object() = default;

@@ -9,8 +9,14 @@
 #include "camera.hpp"
 
 Gui::Graphic::Graphic(std::shared_ptr<GameState> gameState)
-    : _gameState(gameState), window(), camera(), skyBox(gameState), island(gameState), object(gameState), player(gameState), menu(gameState), particle(gameState), textBoxs(gameState, window.window_width, window.window_height), egg(gameState)
+    : _gameState(gameState), window(), camera(), menu(gameState), particle(gameState), textBoxs(gameState, window.window_width, window.window_height)
 {
+    this->skyBox = std::make_unique<Gui::SkyBox>(gameState);
+    this->object = std::make_unique<Gui::Object>(gameState);
+    this->player = std::make_unique<Gui::Player>(gameState);
+    this->island = std::make_unique<Gui::Island>(gameState);
+    this->egg = std::make_unique<Gui::Egg>(gameState);
+
     this->setFps(60);
     this->initLighting();
     this->loop();
