@@ -111,7 +111,7 @@ test_invalid_arg_server "-f -1"
 test_invalid_arg_server "-f 151"
 test_invalid_arg_server "-ff 100"
 
-test_valid_arg_server "-f 151"
+test_valid_arg_server "-f 150"
 test_valid_arg_server "-f 1"
 
 ## ? END TEST
