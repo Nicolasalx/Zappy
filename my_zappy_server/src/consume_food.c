@@ -26,12 +26,12 @@ static void check_player_death(client_t *client, server_t *server)
 
 void consume_food(server_t *server)
 {
-    if (server->is_immortal) {
+    if (server->opt.is_immortal) {
         return;
     }
     for (int i = 0; i < MAX_CLIENT; ++i) {
         if (server->clients[i].fd == 0
-        || server->clients[i].is_graphic
+        || server->clients[i].player.is_graphic
         || !server->clients[i].player.team) {
             continue;
         }
