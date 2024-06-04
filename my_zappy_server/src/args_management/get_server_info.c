@@ -7,8 +7,7 @@
 
 #include "zappy_server.h"
 
-static void get_port(const char **argv,
-    server_t *server, int i, const char **args)
+static void get_port(const char **argv, server_t *server, int i)
 {
     if (strcmp(argv[i], args[0]) == 0) {
         if (argv[i + 1] == NULL) {
@@ -21,8 +20,7 @@ static void get_port(const char **argv,
     }
 }
 
-static void get_frequency(const char **argv,
-    server_t *server, int i, const char **args)
+static void get_frequency(const char **argv, server_t *server, int i)
 {
     if (strcmp(argv[i], args[4]) == 0) {
         if (argv[i + 1] == NULL) {
@@ -35,9 +33,8 @@ static void get_frequency(const char **argv,
     }
 }
 
-void get_port_and_freq(const char **argv,
-    server_t *server, int i, const char **args)
+void get_port_and_freq(const char **argv, server_t *server, int i)
 {
-    get_port(argv, server, i, args);
-    get_frequency(argv, server, i, args);
+    get_port(argv, server, i);
+    get_frequency(argv, server, i);
 }
