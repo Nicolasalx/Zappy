@@ -7,8 +7,7 @@
 
 #include "zappy_server.h"
 
-static void get_width(const char **argv,
-    server_t *server, int i, const char **args)
+static void get_width(const char **argv, server_t *server, int i)
 {
     if (strcmp(argv[i], args[1]) == 0) {
         if (argv[i + 1] == NULL) {
@@ -21,8 +20,7 @@ static void get_width(const char **argv,
     }
 }
 
-static void get_height(const char **argv,
-    server_t *server, int i, const char **args)
+static void get_height(const char **argv, server_t *server, int i)
 {
     if (strcmp(argv[i], args[2]) == 0) {
         if (argv[i + 1] == NULL) {
@@ -36,8 +34,8 @@ static void get_height(const char **argv,
 }
 
 void get_map_size(const char **argv,
-    server_t *server, int i, const char **args)
+    server_t *server, int i)
 {
-    get_width(argv, server, i, args);
-    get_height(argv, server, i, args);
+    get_width(argv, server, i);
+    get_height(argv, server, i);
 }
