@@ -68,7 +68,7 @@ test_invalid_arg_server()
     test_name "$1"
     ./zappy_server $1 &
     pid=$!
-    sleep 0.5
+    sleep 0.1
     kill $pid 2> /dev/null
     wait $pid
     test_return_84
@@ -79,7 +79,7 @@ test_valid_arg_server()
     test_name "$1"
     ./zappy_server $1 &
     pid=$!
-    sleep 0.5
+    sleep 0.1
     kill $pid 2> /dev/null
     wait $pid
     test_return_0
