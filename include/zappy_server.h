@@ -17,6 +17,7 @@
     #include <netinet/in.h>
     #include <sys/select.h>
     #include <string.h>
+    #include <ctype.h>
     #include <stdlib.h>
     #include <math.h>
 
