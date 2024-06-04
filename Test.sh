@@ -74,6 +74,17 @@ test_invalid_arg_server()
     test_return_84
 }
 
+test_valid_arg_server()
+{
+    test_name "$1"
+    ./zappy_server $1 &
+    pid=$!
+    sleep 0.5
+    kill $pid 2> /dev/null
+    wait $pid
+    test_return_0
+}
+
 ## ! TEST
 
 test_invalid_arg_server "kqsnfjsdf"   # invalid arg
@@ -100,6 +111,9 @@ test_invalid_arg_server "-f 0"
 test_invalid_arg_server "-f -1"
 test_invalid_arg_server "-f 151"
 test_invalid_arg_server "-ff 100"
+
+test_valid_arg_server "-f 150"
+test_valid_arg_server "-f 1"
 
 ## ? END TEST
 
