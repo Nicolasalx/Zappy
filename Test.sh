@@ -113,6 +113,10 @@ test_invalid_arg_server "-ff 100"
 
 test_valid_arg_server "-f 150"
 test_valid_arg_server "-f 1"
+test_valid_arg_server "-x 1"
+test_valid_arg_server "-y 1"
+test_valid_arg_server "-x 100"
+test_valid_arg_server "-y 100"
 
 ## ? END TEST
 
