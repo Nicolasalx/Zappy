@@ -172,6 +172,7 @@ extern const elevation_requirement_t elevation_req[];
 
 extern const double resource_density[NB_ITEM];
 extern const char *object_list[NB_ITEM];
+extern const char *args[];
 
 void get_args(int argc, const char **argv, server_t *server);
 void create_server(server_t *server);
@@ -202,14 +203,10 @@ void append_with_coma_if_needed_y(client_t *client, char *buff, int y, int i);
 team_t *condition_win(server_t *server);
 
 // args management
-void get_port_and_freq(const char **argv,
-    server_t *server, int i, const char **args);
-void get_map_size(const char **argv,
-    server_t *server, int i, const char **args);
-void get_clients_nb(const char **argv,
-    server_t *server, int i, const char **args);
-void get_teams_name(const char **argv,
-    server_t *server, int i, int argc);
+void get_port_and_freq(const char **argv, server_t *server, int i);
+void get_map_size(const char **argv, server_t *server, int i);
+void get_clients_nb(const char **argv, server_t *server, int i);
+void get_teams_name(const char **argv, server_t *server, int i, int argc);
 void check_arg_validity(server_t *server);
 
 // gui command
