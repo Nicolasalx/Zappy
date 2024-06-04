@@ -7,8 +7,7 @@
 
 #include "zappy_server.h"
 
-void get_clients_nb(const char **argv,
-    server_t *server, int i, const char **args)
+void get_clients_nb(const char **argv, server_t *server, int i)
 {
     if (strcmp(argv[i], args[3]) == 0) {
         if (argv[i + 1] == NULL) {
