@@ -15,7 +15,7 @@ static void compute_select_timeout(server_t *server)
     computation_time = (server->time.end.tv_sec - server->time.start.tv_sec)
         * 1000000 + (server->time.end.tv_usec - server->time.start.tv_usec);
     server->time.timeout.tv_sec = 0;
-    server->time.timeout.tv_usec = 1000000 / server->freq - computation_time;
+    server->time.timeout.tv_usec = 1000000 / server->opt.freq - computation_time;
     if (server->time.timeout.tv_usec < 0) {
         server->time.timeout.tv_usec = 0;
         computation_time = 0;
