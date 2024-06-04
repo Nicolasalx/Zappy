@@ -12,7 +12,7 @@ static void send_ppo_reply(char *buffer, int id,
 {
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0
-        && server->clients[i].is_graphic == false
+        && server->clients[i].player.is_graphic == false
         && server->clients[i].player.id == id
         && server->clients[i].player.team) {
             snprintf(buffer, 100, "ppo %d %d %d %d\n", id,
