@@ -13,4 +13,5 @@ Gui::Island::Island(std::shared_ptr<GameState> gameState): _gameState(gameState)
     island_texture = LoadTexture("assets/plateform1.png");
     SetTextureFilter(island_texture, TEXTURE_FILTER_TRILINEAR);
     SetMaterialTexture(&island_model.materials[0], MATERIAL_MAP_DIFFUSE, island_texture);
+    size = 1.0f;
 }

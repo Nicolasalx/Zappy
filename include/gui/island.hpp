@@ -21,6 +21,7 @@ namespace Gui
 
             Model island_model;
             Texture2D island_texture;
+            float size;
         private:
             std::shared_ptr<GameState> _gameState;
     };

@@ -62,8 +62,8 @@ namespace Gui
         Gui::Window window;
         Gui::Camera camera;
         Gui::SkyBox skyBox;
-        Gui::Object object;
         Gui::Island island;
+        Gui::Object object;
         Gui::Player player;
         Gui::Menu menu;
         Gui::ParticleSystem particle;
