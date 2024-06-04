@@ -31,9 +31,8 @@ static void set_args(server_t *server)
 
 static bool is_valid_argument(const char *arg)
 {
-    const char *valid_args[] = {"-p", "-x", "-y", "-c", "-f", "-n", "-help"};
-    for (int i = 0; i < sizeof(valid_args) / sizeof(valid_args[0]); i++) {
-        if (strcmp(arg, valid_args[i]) == 0) {
+    for (int i = 0; i < 5; ++i) {
+        if (strcmp(arg, args[i]) == 0) {
             return true;
         }
     }
@@ -42,8 +41,6 @@ static bool is_valid_argument(const char *arg)
 
 void get_args(int argc, const char **argv, server_t *server)
 {
-    const char *args[] = {"-p", "-x", "-y", "-c", "-f"};
-
     set_args(server);
     if (argc == 2 && strcmp(argv[1], "-help") == 0) {
         printf("USAGE: ./zappy_server -p port -x width -y "
@@ -56,9 +53,9 @@ void get_args(int argc, const char **argv, server_t *server)
                 get_teams_name(argv, server, i, argc);
                 i += server->team_count - 1;
             }
-            get_port_and_freq(argv, server, i, args);
-            get_map_size(argv, server, i, args);
-            get_clients_nb(argv, server, i, args);
+            get_port_and_freq(argv, server, i);
+            get_map_size(argv, server, i);
+            get_clients_nb(argv, server, i);
             i += 1;
         } else {
             my_error("Error: Invalid argument", 84);
