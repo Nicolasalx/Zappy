@@ -14,7 +14,7 @@ void smg_reply(server_t *server, char *message)
     snprintf(buffer, sizeof(buffer), "smg %s\n", message);
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0
-        && server->clients[i].is_graphic == true) {
+        && server->clients[i].player.is_graphic == true) {
             send_msg_client(server->clients[i].fd, buffer);
         }
     }

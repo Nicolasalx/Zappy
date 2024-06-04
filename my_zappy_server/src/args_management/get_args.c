@@ -14,25 +14,33 @@
 static void set_args(server_t *server)
 {
     server->port = -1;
-    server->world.size_x = -1;
-    server->world.size_y = -1;
-    server->client_nb = -1;
-    server->freq = -1;
-    server->team_count = 0;
-    server->player_count = 0;
-    server->egg_count = 0;
-    server->end_game = false;
-    server->pause_game = false;
+    server->game.world.size_x = -1;
+    server->game.world.size_y = -1;
+    server->opt.client_nb = -1;
+    server->opt.freq = -1;
+    server->game.team_count = 0;
+    server->game.player_count = 0;
+    server->game.egg_count = 0;
+    server->opt.end_game = false;
+    server->opt.pause_game = false;
     for (int i = 0; i < MAX_CLIENT; i++) {
-        server->clients[i].is_graphic = false;
+        server->clients[i].player.is_graphic = false;
         server->clients[i].player.id = -1;
     }
 }
 
+static bool is_valid_argument(const char *arg)
+{
+    for (int i = 0; i < 5; ++i) {
+        if (strcmp(arg, args[i]) == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void get_args(int argc, const char **argv, server_t *server)
 {
-    const char *args[] = {"-p", "-x", "-y", "-c", "-f"};
-
     set_args(server);
     if (argc == 2 && strcmp(argv[1], "-help") == 0) {
         printf("USAGE: ./zappy_server -p port -x width -y "
@@ -40,10 +48,18 @@ void get_args(int argc, const char **argv, server_t *server)
         my_exit(0);
     }
     for (int i = 1; i < argc; i++) {
-        get_teams_name(argv, server, i, argc);
-        get_port_and_freq(argv, server, i, args);
-        get_map_size(argv, server, i, args);
-        get_clients_nb(argv, server, i, args);
+        if (argv[i][0] == '-' && is_valid_argument(argv[i])) {
+            if (strcmp(argv[i], "-n") == 0) {
+                get_teams_name(argv, server, i, argc);
+                i += server->game.team_count - 1;
+            }
+            get_port_and_freq(argv, server, i);
+            get_map_size(argv, &server->game, i);
+            get_clients_nb(argv, server, i);
+            i += 1;
+        } else {
+            my_error("Error: Invalid argument", 84);
+        }
     }
     check_arg_validity(server);
 }

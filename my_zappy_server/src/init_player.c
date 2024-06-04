@@ -53,14 +53,14 @@ void init_player(client_t *client, server_t *server)
     }
     client->player.inventory[FOOD] = 10;
     client->player.level = 1;
-    client->player.id = server->player_count;
-    server->player_count += 1;
+    client->player.id = server->game.player_count;
+    server->game.player_count += 1;
     snprintf(buffer, sizeof(buffer), "%d\n",
         client->player.team->remaining_spot);
     send_msg_client(client->fd, buffer);
     memset(buffer, 0, sizeof(buffer));
     snprintf(buffer, sizeof(buffer), "%d %d\n",
-        server->world.size_x, server->world.size_y);
+        server->game.world.size_x, server->game.world.size_y);
     send_msg_client(client->fd, buffer);
     pnw_reply(server, client);
     pin_reply(server, client);

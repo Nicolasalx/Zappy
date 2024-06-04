@@ -27,7 +27,7 @@ static bool check_client(server_t *server, char **argv, int i)
     int nb = atoi(argv[2]);
 
     if (server->clients[i].fd != 0 && server->clients[i].player.id == id
-    && server->clients[i].is_graphic == false
+    && server->clients[i].player.is_graphic == false
     && server->clients[i].player.team) {
         if (add_to_inventory(server, i, nb, argv)) {
             return true;

@@ -11,9 +11,9 @@ void tna_cmd(int, char **, client_t *client, server_t *server)
 {
     char buffer[100] = {0};
 
-    for (int i = 0; i < server->team_count; i++) {
+    for (int i = 0; i < server->game.team_count; i++) {
         snprintf(buffer, sizeof(buffer), "tna %s\n",
-            server->team_list[i].name);
+            server->game.team_list[i].name);
         send_msg_client(client->fd, buffer);
     }
 }

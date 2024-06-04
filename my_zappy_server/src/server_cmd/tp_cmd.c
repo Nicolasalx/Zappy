@@ -17,8 +17,8 @@ static bool tp_error_management(char **argv, server_t *server)
     || !my_str_only_cont(argv[1], "0123456789")
     || !my_str_only_cont(argv[2], "0123456789")
     || !my_str_only_cont(argv[3], "0123456789")
-    || x < 0 || x >= server->world.size_x
-    || y < 0 || y >= server->world.size_y
+    || x < 0 || x >= server->game.world.size_x
+    || y < 0 || y >= server->game.world.size_y
     || o < 1 || o > 4) {
         printf("Error: invalid argument\n");
         return true;
@@ -37,7 +37,7 @@ void tp_cmd(int, char **argv, server_t *server)
         return;
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0 && server->clients[i].player.id == id
-        && server->clients[i].is_graphic == false
+        && server->clients[i].player.is_graphic == false
         && server->clients[i].player.team) {
             server->clients[i].player.pos_x = x;
             server->clients[i].player.pos_y = y;

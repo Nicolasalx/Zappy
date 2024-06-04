@@ -16,7 +16,7 @@ void ppo_reply(server_t *server, client_t *client)
         client->player.pos_y, client->player.orientation + 1);
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0
-        && server->clients[i].is_graphic == true) {
+        && server->clients[i].player.is_graphic == true) {
             send_msg_client(server->clients[i].fd, buffer);
         }
     }

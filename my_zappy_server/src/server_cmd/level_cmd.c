@@ -12,7 +12,7 @@ static void send_player_level_reply(
 {
     if (winning_team) {
         seg_reply(server, winning_team);
-        server->end_game = true;
+        server->opt.end_game = true;
     }
 }
 
@@ -22,7 +22,7 @@ static bool level_up_player(server_t *server, int id, int level)
 
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0 && server->clients[i].player.id == id
-        && server->clients[i].is_graphic == false
+        && server->clients[i].player.is_graphic == false
         && server->clients[i].player.team) {
             server->clients[i].player.level = level;
             printf("Player %d is now level %d\n", id, level);

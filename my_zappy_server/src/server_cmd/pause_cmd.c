@@ -9,11 +9,11 @@
 
 void pause_cmd(int, char **, server_t *server)
 {
-    if (server->pause_game == true) {
+    if (server->opt.pause_game == true) {
         printf("Game already paused\n");
         return;
     }
-    server->pause_game = true;
+    server->opt.pause_game = true;
     smg_reply(server, "Game paused");
     printf("Game paused\n");
 }

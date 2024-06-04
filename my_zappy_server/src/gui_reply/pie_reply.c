@@ -15,7 +15,7 @@ void pie_reply(server_t *server, client_t *client, bool success)
     client->player.pos_x, client->player.pos_y, (int) success);
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0
-        && server->clients[i].is_graphic == true) {
+        && server->clients[i].player.is_graphic == true) {
             send_msg_client(server->clients[i].fd, buffer);
         }
     }

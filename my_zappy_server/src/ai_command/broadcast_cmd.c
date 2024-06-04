@@ -48,11 +48,12 @@ void broadcast_cmd(char *argv, client_t *client, server_t *server)
     char *message = strtok(argv, "\n");
     int direction = 0;
 
-    if (message == NULL || strlen(message) > (BUFFER_SIZE - 100)) {
-        message = "\0";
+    if (message == NULL || strlen(message) > (MAX_BROADCAST_LEN)) {
+        send_msg_client(client->fd, "ko\n");
+        return; 
     }
     for (int i = 0; i < MAX_CLIENT; ++i) {
-        if (server->clients[i].fd != 0 && server->clients[i].is_graphic != true
+        if (server->clients[i].fd != 0 && server->clients[i].player.is_graphic != true
         && server->clients[i].player.team
         && client->player.id != server->clients[i].player.id) {
             direction = compute_direction(client, &server->clients[i]);

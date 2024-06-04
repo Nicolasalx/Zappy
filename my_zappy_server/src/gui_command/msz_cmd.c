@@ -12,6 +12,6 @@ void msz_cmd(int, char **, client_t *client, server_t *server)
     char buffer[100] = {0};
 
     snprintf(buffer, sizeof(buffer),
-        "msz %d %d\n", server->world.size_x, server->world.size_y);
+        "msz %d %d\n", server->game.world.size_x, server->game.world.size_y);
     send_msg_client(client->fd, buffer);
 }
