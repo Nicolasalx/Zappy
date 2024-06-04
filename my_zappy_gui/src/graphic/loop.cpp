@@ -16,6 +16,7 @@ void Gui::Graphic::draw3D()
     this->object.render();
     this->particle.drawParticle(this->camera._data);
     this->island.drawMap(this->rayInfo);
+    this->egg.draw();
     // EndShaderMode();
     EndMode3D();
 }
@@ -35,7 +36,7 @@ void Gui::Graphic::draw2D()
 void Gui::Graphic::loop()
 {
     while (!WindowShouldClose()) {
-        // std::cout << _gameState->time_unit << std::endl;
+        std::cout << _gameState->eggs_list.size() << std::endl;
         this->event();
         BeginDrawing();
         //if (this->menu.isInMenu) {

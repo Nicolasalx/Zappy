@@ -19,7 +19,11 @@ Gui::GameState::GameState()
     cmd_map.emplace("pic", [this](std::vector<std::string> args) { this->pic(args); });
     cmd_map.emplace("pie", [this](std::vector<std::string> args) { this->pie(args); });
     cmd_map.emplace("pdi", [this](std::vector<std::string> args) { this->pdi(args); });
+    cmd_map.emplace("enw", [this](std::vector<std::string> args) { this->enw(args); });
+    cmd_map.emplace("ebo", [this](std::vector<std::string> args) { this->ebo(args); });
+    cmd_map.emplace("edi", [this](std::vector<std::string> args) { this->edi(args); });
     cmd_map.emplace("sgt", [this](std::vector<std::string> args) { this->sgt(args); });
+    cmd_map.emplace("smg", [this](std::vector<std::string> args) { this->smg(args); });
 }
 
 Gui::GameState::~GameState()

@@ -31,6 +31,7 @@
     #include "object.hpp"
     #include "player.hpp"
     #include "menu.hpp"
+    #include "egg.hpp"
 
 namespace Gui
 {
@@ -67,6 +68,7 @@ namespace Gui
         Gui::Menu menu;
         Gui::ParticleSystem particle;
         Gui::TextBox_list textBoxs;
+        Gui::Egg egg;
 
         ray_info_t rayInfo;
         Shader light_shader;
