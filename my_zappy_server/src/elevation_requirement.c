@@ -22,17 +22,17 @@ void remove_elevation_req(client_t *client, server_t *server, int level)
 {
     elevation_requirement_t req = elevation_req[level - 1];
 
-    server->world.map[client->player.pos_y][client->player.pos_x]
+    server->game.world.map[client->player.pos_y][client->player.pos_x]
         .item[DERAUMERE] -= req.deraumere;
-    server->world.map[client->player.pos_y][client->player.pos_x]
+    server->game.world.map[client->player.pos_y][client->player.pos_x]
         .item[LINEMATE] -= req.linemate;
-    server->world.map[client->player.pos_y][client->player.pos_x]
+    server->game.world.map[client->player.pos_y][client->player.pos_x]
         .item[MENDIANE] -= req.mendiane;
-    server->world.map[client->player.pos_y][client->player.pos_x]
+    server->game.world.map[client->player.pos_y][client->player.pos_x]
         .item[PHIRAS] -= req.phiras;
-    server->world.map[client->player.pos_y][client->player.pos_x]
+    server->game.world.map[client->player.pos_y][client->player.pos_x]
         .item[SIBUR] -= req.sibur;
-    server->world.map[client->player.pos_y][client->player.pos_x]
+    server->game.world.map[client->player.pos_y][client->player.pos_x]
         .item[THYSTAME] -= req.thystame;
     bct_reply(server, client->player.pos_x, client->player.pos_y);
 }
@@ -40,22 +40,22 @@ void remove_elevation_req(client_t *client, server_t *server, int level)
 static bool check_elevation_item_req(server_t *server,
     client_t *client, elevation_requirement_t req)
 {
-    if (server->world.map[client->player.pos_y][client->player.pos_x].
+    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
     item[DERAUMERE] < req.deraumere)
         return false;
-    if (server->world.map[client->player.pos_y][client->player.pos_x].
+    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
     item[LINEMATE] < req.linemate)
         return false;
-    if (server->world.map[client->player.pos_y][client->player.pos_x].
+    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
     item[MENDIANE] < req.mendiane)
         return false;
-    if (server->world.map[client->player.pos_y][client->player.pos_x].
+    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
     item[PHIRAS] < req.phiras)
         return false;
-    if (server->world.map[client->player.pos_y][client->player.pos_x].
+    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
     item[SIBUR] < req.sibur)
         return false;
-    if (server->world.map[client->player.pos_y][client->player.pos_x].
+    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
     item[THYSTAME] < req.thystame)
         return false;
     return true;
@@ -76,8 +76,8 @@ bool check_elevation_req(client_t *client,
         server->clients[i].player.pos_y == client->player.pos_y &&
         server->clients[i].player.level == client->player.level &&
         ((last_check && is_part_of_elevation(client, &server->clients[i]))
-        || (!last_check && !server->clients[i].in_incentation
-        && server->clients[i].incentation_mate == NULL))) {
+        || (!last_check && !server->clients[i].player.in_incentation
+        && server->clients[i].player.incentation_mate == NULL))) {
             nb_player += 1;
         }
     }
