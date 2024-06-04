@@ -14,16 +14,16 @@ void bct_reply(server_t *server, int x, int y)
     snprintf(buffer, sizeof(buffer),
         "bct %d %d %d %d %d %d %d %d %d\n",
         x, y,
-        server->world.map[y][x].item[FOOD],
-        server->world.map[y][x].item[LINEMATE],
-        server->world.map[y][x].item[DERAUMERE],
-        server->world.map[y][x].item[SIBUR],
-        server->world.map[y][x].item[MENDIANE],
-        server->world.map[y][x].item[PHIRAS],
-        server->world.map[y][x].item[THYSTAME]);
+        server->game.world.map[y][x].item[FOOD],
+        server->game.world.map[y][x].item[LINEMATE],
+        server->game.world.map[y][x].item[DERAUMERE],
+        server->game.world.map[y][x].item[SIBUR],
+        server->game.world.map[y][x].item[MENDIANE],
+        server->game.world.map[y][x].item[PHIRAS],
+        server->game.world.map[y][x].item[THYSTAME]);
     for (int i = 0; i < MAX_CLIENT; i++) {
         if (server->clients[i].fd != 0
-        && server->clients[i].is_graphic == true) {
+        && server->clients[i].player.is_graphic == true) {
             send_msg_client(server->clients[i].fd, buffer);
         }
     }
