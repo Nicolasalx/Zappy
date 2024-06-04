@@ -29,7 +29,7 @@ static void get_frequency(const char **argv, server_t *server, int i)
         if (!my_str_only_cont(argv[i + 1], "0123456789")) {
             my_error("Error: Frequency must be a number", 84);
         }
-        server->freq = atoi(argv[i + 1]);
+        server->opt.freq = atoi(argv[i + 1]);
     }
 }
 
