@@ -13,8 +13,8 @@ void fork_cmd(char *, client_t *client, server_t *server)
 
     new_egg->pos_x = client->player.pos_x;
     new_egg->pos_y = client->player.pos_y;
-    new_egg->nb = server->egg_count;
-    ++server->egg_count;
+    new_egg->nb = server->game.egg_count;
+    ++server->game.egg_count;
     append_node(&client->player.team->egg_list, create_node(new_egg));
     ++client->player.team->remaining_spot;
     pfk_reply(server, client);
