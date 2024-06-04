@@ -48,8 +48,9 @@ void broadcast_cmd(char *argv, client_t *client, server_t *server)
     char *message = strtok(argv, "\n");
     int direction = 0;
 
-    if (message == NULL || strlen(message) > (BUFFER_SIZE - 100)) {
-        message = "\0";
+    if (message == NULL || strlen(message) > (MAX_BROADCAST_LEN)) {
+        send_msg_client(client->fd, "ko\n");
+        return; 
     }
     for (int i = 0; i < MAX_CLIENT; ++i) {
         if (server->clients[i].fd != 0 && server->clients[i].player.is_graphic != true
