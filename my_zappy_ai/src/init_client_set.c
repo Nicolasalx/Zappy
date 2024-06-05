@@ -6,6 +6,7 @@
 */
 
 #include "zappy_ai.h"
+#include <sys/time.h>
 
 void init_client_set(client_t *client, int *max_fd)
 {
@@ -18,8 +19,10 @@ void init_client_set(client_t *client, int *max_fd)
 
 void monitor_input(client_t *client, int max_fd)
 {
+    struct timeval timeout = {.tv_sec = 1, .tv_usec = 1000000};
+
     if (select(max_fd + 1, &client->read_set,
-        &client->write_set, NULL, NULL) == -1) {
+        &client->write_set, NULL, &timeout) == -1) {
         exit_client(client, 84, RED("Select fail.\n"));
     }
 }

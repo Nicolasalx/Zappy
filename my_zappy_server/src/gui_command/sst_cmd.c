@@ -15,7 +15,7 @@ void sst_cmd(int, char **argv, client_t *client, server_t *server)
         send_msg_client(client->fd, "sbp\n");
         return;
     }
-    server->freq = atoi(argv[0]);
-    snprintf(buffer, sizeof(buffer), "sst %d\n", (int)server->freq);
+    server->opt.freq = atoi(argv[0]);
+    snprintf(buffer, sizeof(buffer), "sst %d\n", (int)server->opt.freq);
     send_msg_client(client->fd, buffer);
 }

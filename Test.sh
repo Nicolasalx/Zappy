@@ -68,15 +68,28 @@ test_invalid_arg_server()
     test_name "$1"
     ./zappy_server $1 &
     pid=$!
-    sleep 0.5
+    sleep 0.1
     kill $pid 2> /dev/null
     wait $pid
     test_return_84
 }
 
+test_valid_arg_server()
+{
+    test_name "$1"
+    ./zappy_server $1 &
+    pid=$!
+    sleep 0.1
+    kill $pid 2> /dev/null
+    test_return_0
+}
+
 ## ! TEST
 
 test_invalid_arg_server "kqsnfjsdf"   # invalid arg
+test_invalid_arg_server "-n aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" # too long name
+test_invalid_arg_server "-r"
+test_invalid_arg_server "-r 4"
 test_invalid_arg_server "-c -1"       # negative team count
 test_invalid_arg_server "-n \"\""     # empty team name
 test_invalid_arg_server "-n @@@__###" # non alpha num
@@ -87,12 +100,21 @@ test_invalid_arg_server "-x 101"
 test_invalid_arg_server "-y 0"
 test_invalid_arg_server "-y -1"
 test_invalid_arg_server "-y 101"
+test_invalid_arg_server "-x -y 101"
+test_invalid_arg_server "-y -y 101"
+test_invalid_arg_server "-y -a 101"
 test_invalid_arg_server "-p 0"
 test_invalid_arg_server "-p -1"
 test_invalid_arg_server "-p 65536"
 test_invalid_arg_server "-f 0"
 test_invalid_arg_server "-f -1"
 test_invalid_arg_server "-f 151"
+test_invalid_arg_server "-ff 100"
+
+test_valid_arg_server "-f 150"
+test_valid_arg_server "-f 1"
+test_valid_arg_server "-x 1 -y 1"
+test_valid_arg_server "-x 100 -y 100"
 
 ## ? END TEST
 

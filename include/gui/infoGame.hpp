@@ -10,10 +10,11 @@
 
     #include <iostream>
     #include <raylib.h>
+    #include "IRaylib.hpp"
 
 namespace Gui
 {
-    constexpr float MAP_SCALE = 6.0f;
+    constexpr float MAP_SCALE = 12.0f;
     constexpr float WINDOW_WIDTH = 1920 / 2;
     constexpr float WINDOW_HEIGHT = 1080 / 2;
 
@@ -40,6 +41,17 @@ namespace Gui
         LEFT_BUTTON,
         CLOSED_LEFT,
         CLOSED_RIGHT
+    };
+
+    struct incant_t {
+        int level;
+        pos_t pos;
+    };
+
+    struct egg_t {
+        int player_number;
+        int egg_number;       
+        pos_t pos;
     };
 
     struct player_t {

@@ -46,7 +46,7 @@ static void buffering_input(server_t *server,
 void get_client_input(server_t *server, client_t *client)
 {
     char cmd_data[BUFFER_SIZE + 1] = {0};
-    ssize_t nb_byte = read(client->fd, &cmd_data, sizeof(cmd_data));
+    ssize_t nb_byte = read(client->fd, &cmd_data, BUFFER_SIZE);
 
     if (nb_byte < 0) {
         return;
@@ -57,7 +57,7 @@ void get_client_input(server_t *server, client_t *client)
         remove_client(client);
         return;
     }
-    if (nb_byte >= BUFFER_SIZE) {
+    if (nb_byte > BUFFER_SIZE) {
         dprintf(2, MAGENTA("[WARNING] too long command.")"\n");
         memset(client->cmd_buffer, 0, BUFFER_SIZE);
         client->buffer_size = 0;

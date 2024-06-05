@@ -19,12 +19,12 @@ static void get_all_elevation_mate(server_t *server, client_t *client)
         != client->player.id && server->clients[i].player.pos_x ==
         client->player.pos_x && server->clients[i].player.pos_y ==
         client->player.pos_y && server->clients[i].player.level ==
-        client->player.level && !server->clients[i].incentation_mate
-        && !server->clients[i].in_incentation) {
+        client->player.level && !server->clients[i].player.incentation_mate
+        && !server->clients[i].player.in_incentation) {
             mate = my_calloc(sizeof(client_t *));
             *mate = &server->clients[i];
-            (*mate)->in_incentation = true;
-            append_node(&client->incentation_mate, create_node(mate));
+            (*mate)->player.in_incentation = true;
+            append_node(&client->player.incentation_mate, create_node(mate));
             send_msg_client(server->clients[i].fd, "Elevation underway\n");
             ++nb_mate;
         }

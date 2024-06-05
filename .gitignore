@@ -32,3 +32,4 @@ server_source/
 compile_commands.json
 compile_commands.events.json
 coding-style-reports.log
+test_client

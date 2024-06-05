@@ -31,6 +31,7 @@
     #include "object.hpp"
     #include "player.hpp"
     #include "menu.hpp"
+    #include "egg.hpp"
 
 namespace Gui
 {
@@ -60,13 +61,14 @@ namespace Gui
         std::shared_ptr<GameState> _gameState;
         Gui::Window window;
         Gui::Camera camera;
-        Gui::SkyBox skyBox;
-        Gui::Object object;
-        Gui::Island island;
-        Gui::Player player;
+        std::unique_ptr<Gui::SkyBox> skyBox;
+        std::unique_ptr<Gui::Island> island;
+        std::unique_ptr<Gui::Object> object;
+        std::unique_ptr<Gui::Player> player;
         Gui::Menu menu;
         Gui::ParticleSystem particle;
         Gui::TextBox_list textBoxs;
+        std::unique_ptr<Gui::Egg> egg;
 
         ray_info_t rayInfo;
         Shader light_shader;

@@ -28,7 +28,7 @@ void execute_ai_command(server_t *server)
     for (size_t i = 0; i < MAX_CLIENT; ++i) {
         if (server->clients[i].fd
         && server->clients[i].waiting_cmd &&
-        !server->clients[i].in_incentation) {
+        !server->clients[i].player.in_incentation) {
             --GET_DATA(server->clients[i].waiting_cmd,
             waiting_cmd_t)->time_to_wait;
             ai_command_wait_list(server, i);
@@ -43,12 +43,12 @@ void update_simulation(server_t *server)
 
     gettimeofday(&current_time, NULL);
     elapsed_time = (current_time.tv_sec -
-    server->last_update.tv_sec) * 1000.0;
+    server->game.last_update.tv_sec) * 1000.0;
     elapsed_time += (current_time.tv_usec -
-    server->last_update.tv_usec) / 1000.0;
-    if (elapsed_time >= (1 / server->freq) * 1000.0) {
+    server->game.last_update.tv_usec) / 1000.0;
+    if (elapsed_time >= (1 / server->opt.freq) * 1000.0) {
         consume_food(server);
         execute_ai_command(server);
-        gettimeofday(&server->last_update, NULL);
+        gettimeofday(&server->game.last_update, NULL);
     }
 }

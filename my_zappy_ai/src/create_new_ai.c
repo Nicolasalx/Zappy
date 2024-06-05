@@ -25,6 +25,9 @@ void remove_thread_from_list(void)
         }
         current = current->next;
     } while (current != head);
+    if (head == NULL) {
+        sem_post(&get_thread_list(NULL)->end_game);
+    }
     pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
 }
 

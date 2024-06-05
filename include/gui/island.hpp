@@ -12,15 +12,15 @@
 
 namespace Gui
 {
-    class Island {
+    class Island : public virtual IRaylib {
         public:
             Island(std::shared_ptr<GameState> gameState);
             ~Island() = default;
 
             void drawMap(ray_info_t &rayInfo);
+            void render() {};
 
-            Model island_model;
-            Texture2D island_texture;
+            float size;
         private:
             std::shared_ptr<GameState> _gameState;
     };
