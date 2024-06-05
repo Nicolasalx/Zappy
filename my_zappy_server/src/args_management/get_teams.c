@@ -9,7 +9,7 @@
 
 void get_clients_nb(const char **argv, server_t *server, int i)
 {
-    if (strcmp(argv[i], args[3]) == 0) {
+    if (strcmp(argv[i], args[4]) == 0) {
         if (argv[i + 1] == NULL) {
             my_error("Error: Clients must be specified", 84);
         }
@@ -58,19 +58,17 @@ static void get_teams_name_error(const char **argv, server_t *server, int i)
 
 void get_teams_name(const char **argv, server_t *server, int i, int argc)
 {
-    if (strcmp(argv[i], "-n") == 0) {
-        for (i = i + 1; i < argc && argv[i][0] != '-'; i++) {
-            get_teams_name_error(argv, server, i);
-            strcpy(server->game.team_list[server->game.team_count].name, argv[i]);
-            server->game.team_list[server->game.team_count].
-            remaining_spot = server->opt.client_nb;
-            server->game.team_list[server->game.team_count].
-            player_max = 0;
-            server->game.team_count += 1;
-        }
-        if (server->game.team_count == 0 ||
-            !strcmp(server->game.team_list[0].name, "")) {
-            my_error("Error: No team name specified", 84);
-        }
+    for (i = i + 1; i < argc && argv[i][0] != '-'; i++) {
+        get_teams_name_error(argv, server, i);
+        strcpy(server->game.team_list[server->game.team_count].name, argv[i]);
+        server->game.team_list[server->game.team_count].
+        remaining_spot = server->opt.client_nb;
+        server->game.team_list[server->game.team_count].
+        player_max = 0;
+        server->game.team_count += 1;
+    }
+    if (server->game.team_count == 0 ||
+        !strcmp(server->game.team_list[0].name, "")) {
+        my_error("Error: No team name specified", 84);
     }
 }
