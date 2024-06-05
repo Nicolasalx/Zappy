@@ -10,7 +10,8 @@
 void dead_fork(client_t *client)
 {
     if (!client->player.try_die) {
-        if (client->remaining_spots > 0 && client->player.content_look[0][TILE_PLAYER] < 2
+        if (client->remaining_spots > 0
+        && client->player.content_look[0][TILE_PLAYER] < 2
         && client->player.content_look[0][TILE_FOOD] < 5) {
             exit_client(client, 0, NULL);
         }
@@ -22,7 +23,7 @@ void dead_fork(client_t *client)
 void wait_end_fork(client_t *client)
 {
     create_new_ai(client->port,
-        client->server_address.sin_addr, client->player.team_name);
+        &client->server_address.sin_addr, client->player.team_name);
     for (size_t i = 0; i < 10; ++i) {
         push_new_command(client, SET, "Set food\n");
     }
