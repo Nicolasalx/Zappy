@@ -26,6 +26,18 @@ namespace Gui
         float y;
         float width;
         float height;
+        int windowWidth;
+        int windowHeight;
+    };
+
+    struct Pos {
+        float x;
+        float y;
+    };
+
+    struct InfoComponent {
+        InfoBox infoBox;
+        Pos posText;
     };
 
     struct Text {
@@ -36,13 +48,15 @@ namespace Gui
     };
 
     struct Box {
-        Rectangle box;
+        Rectangle rect;
         Color color;
     };
 
     struct Component {
-        std::vector<Box> boxes;
-        std::vector<Text> texts;
+        Box box;
+        Text text;
+
+        InfoComponent infoCmp;
         ComponentType cmpType;
     };
 
@@ -53,7 +67,6 @@ namespace Gui
 
             void renderMenu();
             void handleEventMenu();
-            void handleEventEachComponent();
             void resizeMenu(int window_width, int window_height);
 
             void render(Component &component);
@@ -62,7 +75,7 @@ namespace Gui
             void componentSettings();
             void componentQuit();
 
-            void handleEventEachComponent(Gui::Component component);
+            void handleEventEachComponent(Gui::Component &component);
 
             void addBox(const InfoBox &infoBox, Color color);
             void addText(const Text &text);
