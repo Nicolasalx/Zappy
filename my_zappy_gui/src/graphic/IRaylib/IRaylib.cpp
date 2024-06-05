@@ -28,6 +28,9 @@ void Gui::IRaylib::addModel(std::string model_path, std::string texture_path)
     if (model_path.substr(model_path.find_last_of(".") + 1) == "glb") {
         model.transform = MatrixRotateXYZ((Vector3){90.0f * (PI / 180), 0.0f, 0.0f});
     }
+    if (model_path.substr(model_path.find_last_of(".") + 1) == "iqm") {
+        model.transform = MatrixRotateXYZ((Vector3){-90.0f * (PI / 180), 0.0f, 0.0f});
+    }
 
     _models.push_back(model);
     _textures.push_back(texture);

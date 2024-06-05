@@ -33,14 +33,14 @@ void Gui::Player::updateAnimation(player_t &player)
         return;
     }
     if (player.anim_frame_counter > 31 && player.anim_frame_counter < 151) {
-        UpdateModelAnimation(this->player_model, this->player_animation[player.animation_nbr], player.anim_frame_counter);
+        UpdateModelAnimation(_models.at(0), this->player_animation[player.animation_nbr], player.anim_frame_counter);
         player.anim_frame_counter++;
     }
     if (player.anim_frame_counter == 151) {
         player.anim_frame_counter = 32;
     }
     if (player.anim_frame_counter > 151 && player.anim_frame_counter < 182) {
-        UpdateModelAnimation(this->player_model, this->player_animation[player.animation_nbr], player.anim_frame_counter);
+        UpdateModelAnimation(_models.at(0), this->player_animation[player.animation_nbr], player.anim_frame_counter);
         player.anim_frame_counter++;
     }
     if (player.anim_frame_counter == 182) {

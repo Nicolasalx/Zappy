@@ -15,14 +15,15 @@ void Gui::Player::drawPlayerBox(ray_info_t &rayInfo, player_t &player)
         rayInfo.box.min = (Vector3){player.real_pos.x * Gui::MAP_SCALE -1.0f, 0.0f, player.real_pos.y * Gui::MAP_SCALE - 1.0f};
         rayInfo.box.max = (Vector3){player.real_pos.x * Gui::MAP_SCALE + 1.0f, 3.0f, player.real_pos.y * Gui::MAP_SCALE + 1.0f};
         DrawBoundingBox(rayInfo.box, GREEN);
-        DrawModelEx(player_model, (Vector3){player.real_pos.x * Gui::MAP_SCALE, 0.0f, player.real_pos.y * Gui::MAP_SCALE}, (Vector3){0, 1, 0}, player.real_orientation, (Vector3){3, 3, 3}, GREEN);
+        this->drawModel((ModelInfo){0, (Vector3){player.real_pos.x * Gui::MAP_SCALE, 0.0f, player.real_pos.y * Gui::MAP_SCALE},
+        (Vector3){0, 1, 0}, player.real_orientation, (Vector3){3, 3, 3}, GREEN});
     }
 }
 
 void Gui::Player::drawPlayerModel(player_t &player)
 {
-    DrawModelEx(player_model, (Vector3){player.real_pos.x * Gui::MAP_SCALE, 0.0f, player.real_pos.y * Gui::MAP_SCALE}, (Vector3){0, 1, 0},
-    player.real_orientation, (Vector3){3 + player.level / 10.0f, 3 + player.level / 10.0f, 3 + player.level / 10.0f}, player_color[player.level]);
+    this->drawModel((ModelInfo){0, (Vector3){player.real_pos.x * Gui::MAP_SCALE, 0.0f, player.real_pos.y * Gui::MAP_SCALE}, (Vector3){0, 1, 0}, 
+    (float)player.real_orientation, (Vector3){3 + player.level / 10.0f, 3 + player.level / 10.0f, 3 + player.level / 10.0f}, player_color[player.level]});
 }
 
 void Gui::Player::drawPlayer(ray_info_t &rayInfo)
