@@ -7,19 +7,20 @@
 
 #include "zappy_server.h"
 
-static bool eject_egg(client_t *client, server_t *server, int i)
+static bool eject_egg(client_t *client, server_t *server, int i, bool *ejected)
 {
     node_t *current = NULL;
 
     current = server->game.team_list[i].egg_list;
     if (server->game.team_list[i].egg_list == NULL) {
-        return true;
+        return false;
     }
     do {
         if (GET_DATA(current, egg_t)->pos_x == client->player.pos_x
         && GET_DATA(current, egg_t)->pos_y == client->player.pos_y) {
             edi_reply(server, &server->clients[i], GET_DATA(current, egg_t));
             delete_node(&server->game.team_list[i].egg_list, current);
+            *ejected = true;
         }
         if (server->game.team_list[i].egg_list == NULL) {
             return true;
@@ -29,10 +30,10 @@ static bool eject_egg(client_t *client, server_t *server, int i)
     return false;
 }
 
-static void eject_egg_from_tile(client_t *client, server_t *server)
+static void eject_egg_from_tile(client_t *client, server_t *server, bool *ejected)
 {
     for (int i = 0; i < server->game.team_count; ++i) {
-        if (eject_egg(client, server, i)) {
+        if (eject_egg(client, server, i, &*ejected)) {
             return;
         }
     }
@@ -75,10 +76,10 @@ void eject_cmd(char *, client_t *client, server_t *server)
             eject_player_in_orientation(server, client, i);
             pex_reply(server, &server->clients[i]);
             ppo_reply(server, &server->clients[i]);
-            eject_egg_from_tile(client, server);
             ejected = true;
         }
     }
+    eject_egg_from_tile(client, server, &ejected);
     if (ejected) {
         send_msg_client(client->fd, "ok\n");
     } else {

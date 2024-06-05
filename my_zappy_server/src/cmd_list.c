@@ -46,5 +46,7 @@ const server_handler_t server_cmd_handler[] =
     {"pause", 0, pause_cmd, "pause"},
     {"resume", 0, resume_cmd, "resume"},
     {"immortal", 1, immortal_cmd, "immortal [true/false]"},
+    {"tpegg", 3, tpegg_cmd, "tpegg [n egg] [x] [y]"},
+    {"killegg", 1, killegg_cmd, "killegg [n egg]"},
     {NULL, 0, NULL, NULL}
 };
