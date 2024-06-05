@@ -88,6 +88,7 @@ test_valid_arg_server()
 
 test_invalid_arg_server "kqsnfjsdf"   # invalid arg
 test_invalid_arg_server "-n aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" # too long name
+test_invalid_arg_server "-n Team1 Team2 Team1"
 test_invalid_arg_server "-r"
 test_invalid_arg_server "-r 4"
 test_invalid_arg_server "-c 0"
