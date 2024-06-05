@@ -11,8 +11,9 @@ static void print_inventory(server_t *server, client_t *client, int i)
 {
     char buffer[100] = {0};
 
-    if (server->clients[i].fd != 0 && server->clients[i].player.is_graphic == false
-    && server->clients[i].player.team) {
+    if (server->clients[i].fd != 0 &&
+        server->clients[i].player.is_graphic == false
+        && server->clients[i].player.team) {
         snprintf(buffer, sizeof(buffer),
             "pin %d %d %d %d %d %d %d %d %d %d\n",
             server->clients[i].player.id,

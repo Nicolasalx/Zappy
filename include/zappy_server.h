@@ -31,6 +31,8 @@
     #define MAX_PLAYER_CONNECTED_PER_TEAM 100
     #define MAX_CLIENT_NB 100
     #define MAX_BROADCAST_LEN 256
+    #define MAX_FREQUENCE_NB 150
+    #define MAX_WORLD_SIZE 100
 
     #define MAX_TEAMNAME_SIZE 32
     #define MAX_WAITING_CMD 10
@@ -271,6 +273,8 @@ void give_cmd(int argc, char **argv, server_t *server);
 void pause_cmd(int argc, char **argv, server_t *server);
 void resume_cmd(int argc, char **argv, server_t *server);
 void immortal_cmd(int, char **argv, server_t *server);
+void tpegg_cmd(int, char **argv, server_t *server);
+void killegg_cmd(int, char **argv, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);

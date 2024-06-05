@@ -9,7 +9,7 @@
 #include "camera.hpp"
 
 Gui::Graphic::Graphic(std::shared_ptr<GameState> gameState)
-    : _gameState(gameState), window(), camera(), menu(gameState), particle(gameState), textBoxs(gameState, window.window_width, window.window_height)
+    : _gameState(gameState), window(), camera(), menu(gameState, window.window_width, window.window_height), particle(gameState), textBoxs(gameState, window.window_width, window.window_height)
 {
     this->skyBox = std::make_unique<Gui::SkyBox>(gameState);
     this->object = std::make_unique<Gui::Object>(gameState);
@@ -42,8 +42,8 @@ void Gui::Graphic::setFps(int fps)
 
 void Gui::Graphic::initLighting()
 {
-    // light_shader = LoadShader(TextFormat("assets/lighting.vs", 330),
-    //                            TextFormat("assets/lighting.fs", 330));
+    // light_shader = LoadShader(TextFormat("bonus/assets/lighting.vs", 330),
+    //                            TextFormat("bonus/assets/lighting.fs", 330));
     // light_shader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(light_shader, "viewPos");
     // float test[4] = { 0.1f, 0.1f, 0.1f, 1.0f };
     // int ambientLoc = GetShaderLocation(light_shader, "ambient");

@@ -24,15 +24,21 @@ static void create_team_name(server_t *server)
     }
 }
 
-static void fill_arg(server_t *server)
+static void set_default_world_size(server_t *server)
 {
-    if (server->game.world.size_x == -1 && server->game.world.size_y == -1) {
-        printf("No map dimensions set, default is 10x10\n");
+    if (server->game.world.size_x == -1) {
+        printf("No width set, default width is 10\n");
         server->game.world.size_x = 10;
+    }
+    if (server->game.world.size_y == -1) {
+        printf("No height set, default height is 10\n");
         server->game.world.size_y = 10;
     }
-    if (server->game.world.size_x == -1 || server->game.world.size_y == -1)
-        my_error("Error: Map dimensions are not set", 84);
+}
+
+static void fill_arg(server_t *server)
+{
+    set_default_world_size(server);
     if (server->opt.client_nb == -1) {
         printf("No client number set, default client number is 4\n");
         server->opt.client_nb = 4;
@@ -54,7 +60,8 @@ static void check_server_arg(server_t *server)
     && server->opt.client_nb != -1) {
         my_error("Error: Clients must be between 1 and 100", 84);
     }
-    if ((server->opt.freq <= 0 || server->opt.freq > 150) && server->opt.freq != -1) {
+    if ((server->opt.freq <= 0 || server->opt.freq > MAX_FREQUENCE_NB)
+        && server->opt.freq != -1) {
         my_error("Error: Frequency cannot be greater than 150", 84);
     }
     if (server->game.team_count > MAX_TEAM_NB) {
@@ -68,11 +75,13 @@ void check_arg_validity(server_t *server)
     server->port != -1) {
         my_error("Error: Port must be between 1 and 65535", 84);
     }
-    if ((server->game.world.size_x <= 0 || server->game.world.size_y > 100)
+    if ((server->game.world.size_x <= 0 ||
+        server->game.world.size_x > MAX_WORLD_SIZE)
     && server->game.world.size_x != -1) {
         my_error("Error: Width must be between 1 and 100", 84);
     }
-    if ((server->game.world.size_y <= 0 || server->game.world.size_y > 100)
+    if ((server->game.world.size_y <= 0 ||
+        server->game.world.size_y > MAX_WORLD_SIZE)
     && server->game.world.size_y != -1) {
         my_error("Error: Height must be between 1 and 100", 84);
     }

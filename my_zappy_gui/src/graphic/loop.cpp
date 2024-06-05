@@ -11,7 +11,7 @@ void Gui::Graphic::draw3D()
 {
     BeginMode3D(this->camera._data);
     // BeginShaderMode(light_shader);
-    this->drawSkyBox();
+    this->skyBox->render();
     this->player->drawPlayer(this->rayInfo);
     this->object->render();
     this->particle.drawParticle(this->camera._data);
@@ -26,26 +26,19 @@ void Gui::Graphic::draw2D()
     textBoxs.drawAllTextBoxs(rayInfo);
 }
 
-// void Gui::Graphic::menu()
-// {
-//     // Button Play
-//     // Button Settings
-//     // Button Quit
-// }
-
 void Gui::Graphic::loop()
 {
     while (!WindowShouldClose()) {
         this->event();
         BeginDrawing();
-        //if (this->menu.isInMenu) {
-        //    this->menu();
-        //} else {
-        //     this->draw3D();
-        //     this->draw2D();
-        //}
-        this->draw3D();
-        this->draw2D();
+        if (this->menu.isInMenu) {
+            this->menu.renderMenu();
+        } else {
+             this->draw3D();
+             this->draw2D();
+        }
+        //this->draw3D();
+        //this->draw2D();
         EndDrawing();
     }
     exit(0);
