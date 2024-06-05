@@ -37,6 +37,8 @@ void Gui::Graphic::loop()
              this->draw3D();
              this->draw2D();
         }
+        //this->draw3D();
+        //this->draw2D();
         EndDrawing();
     }
     exit(0);
