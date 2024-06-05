@@ -31,7 +31,7 @@ static void set_args(server_t *server)
 
 static bool is_valid_argument(const char *arg)
 {
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 6; ++i) {
         if (strcmp(arg, args[i]) == 0) {
             return true;
         }
@@ -49,16 +49,19 @@ void get_args(int argc, const char **argv, server_t *server)
     }
     for (int i = 1; i < argc; i++) {
         if (argv[i][0] == '-' && is_valid_argument(argv[i])) {
-            if (strcmp(argv[i], "-n") == 0) {
+            if (strcmp(argv[i], args[3]) == 0) {
                 get_teams_name(argv, server, i, argc);
-                i += server->game.team_count - 1;
+                i += server->game.team_count + 1;
+                printf("%d\n", i);
             }
-            get_port_and_freq(argv, server, i);
-            get_map_size(argv, &server->game, i);
-            get_clients_nb(argv, server, i);
-            i += 1;
+            if (argv[i] != NULL) {
+                get_port_and_freq(argv, server, i);
+                get_map_size(argv, &server->game, i);
+                get_clients_nb(argv, server, i);
+                i += 1;
+            }
         } else {
-            my_error("Error: Invalid argument", 84);
+            my_error("Error: Invalid argument :(", 84);
         }
     }
     check_arg_validity(server);

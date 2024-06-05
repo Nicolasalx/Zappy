@@ -83,6 +83,7 @@ Also there are severals events that the server can send to AI:
 
 > n is the direction represented by a number between 1 and 4
 > o is the representation represented by a number between 0 and 8
+> text is the text sent by the client. It has to be between 1 and 256 characters or the client will received "ko"
 
 
 ### Graphical Communication Protocol

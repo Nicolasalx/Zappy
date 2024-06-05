@@ -5,13 +5,10 @@
 ** args
 */
 
-#include "zappy_server.h"
+#include "zappy_ai.h"
 
 const char *args[] = {
     "-p",
-    "-x",
-    "-y",
-    "-n",
-    "-c",
-    "-f"
+    "-h",
+    "-n"
 };

@@ -7,7 +7,7 @@
 
 #include "zappy_ai.h"
 
-static void get_port(const char **argv, ai_arg_t *ai_arg, int i, const char **args)
+static void get_port(const char **argv, ai_arg_t *ai_arg, int i)
 {
     if (strcmp(argv[i], args[0]) == 0) {
         if (argv[i + 1] == NULL) {
@@ -22,7 +22,7 @@ static void get_port(const char **argv, ai_arg_t *ai_arg, int i, const char **ar
     }
 }
 
-static void get_ip(const char **argv, ai_arg_t *ai_arg, int i, const char **args)
+static void get_ip(const char **argv, ai_arg_t *ai_arg, int i)
 {
     if (strcmp(argv[i], args[1]) == 0) {
         if (argv[i + 1] == NULL) {
@@ -36,7 +36,7 @@ static void get_ip(const char **argv, ai_arg_t *ai_arg, int i, const char **args
     }
 }
 
-static void get_team_name(const char **argv, ai_arg_t *ai_arg, int i, const char **args)
+static void get_team_name(const char **argv, ai_arg_t *ai_arg, int i)
 {
     if (strcmp(argv[i], args[2]) == 0) {
         if (argv[i + 1] == NULL) {
@@ -57,7 +57,7 @@ static void set_args(ai_arg_t *ai_arg)
     ai_arg->team_name[0] = '\0';
 }
 
-void fill_args(ai_arg_t *ai_arg)
+static void fill_args(ai_arg_t *ai_arg)
 {
     if (ai_arg->port == -1)
         ai_arg->port = 4242;
@@ -65,19 +65,32 @@ void fill_args(ai_arg_t *ai_arg)
         strcpy(ai_arg->team_name, "Team1");
 }
 
+static bool is_valid_argument(const char *arg)
+{
+    for (int i = 0; i < 5; ++i) {
+        if (strcmp(arg, args[i]) == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void get_args(int argc, const char **argv, ai_arg_t *ai_arg)
 {
-    const char *args[] = {"-p", "-h", "-n"};
-
     if (argc == 2 && strcmp(argv[1], "-help") == 0) {
         printf("USAGE: ./zappy_ai -p port -n name -h machine\n");
         my_exit(0);
     }
     set_args(ai_arg);
     for (int i = 1; i < argc; i++) {
-        get_port(argv, ai_arg, i, args);
-        get_ip(argv, ai_arg, i, args);
-        get_team_name(argv, ai_arg, i, args);
+        if (argv[i][0] == '-' && is_valid_argument(argv[i])) {
+            get_port(argv, ai_arg, i);
+            get_ip(argv, ai_arg, i);
+            get_team_name(argv, ai_arg, i);
+            i += 1;
+        } else {
+            my_error("Error: Invalid argument", 84);
+        }
     }
     fill_args(ai_arg);
 }
