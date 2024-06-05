@@ -32,11 +32,39 @@ void take_elements_on_floor(client_t *client)
 
 static void add_next_move(client_t *client, cmd_list_t action)
 {
+    cmd_list_t *new_action = NULL;
+
     pthread_mutex_lock(&get_thread_list(NULL)->mutex);
-    cmd_list_t *new_action = my_calloc(sizeof(cmd_list_t));
+    new_action = my_calloc(sizeof(cmd_list_t));
     *new_action = action;
     append_node(&client->player.cmd_list, create_node(new_action));
     pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
+}
+
+static void go_backward(client_t *client)
+{
+    push_new_command(client, LEFT, "Left\n");
+    add_next_move(client, LEFT);
+    push_new_command(client, LEFT, "Left\n");
+    add_next_move(client, LEFT);
+    push_new_command(client, FORWARD, "Forward\n");
+    add_next_move(client, FORWARD);
+}
+
+static void go_left(client_t *client)
+{
+    push_new_command(client, LEFT, "Left\n");
+    add_next_move(client, LEFT);
+    push_new_command(client, FORWARD, "Forward\n");
+    add_next_move(client, FORWARD);
+}
+
+static void go_right(client_t *client)
+{
+    push_new_command(client, RIGHT, "Right\n");
+    add_next_move(client, RIGHT);
+    push_new_command(client, FORWARD, "Forward\n");
+    add_next_move(client, FORWARD);
 }
 
 void move_next_case(client_t *client)
@@ -44,30 +72,19 @@ void move_next_case(client_t *client)
     int random_direction = rand() % 4;
 
     switch (random_direction) {
-        case 0:
-            push_new_command(client, FORWARD, "Forward\n");
-            add_next_move(client, FORWARD);
-            break;
-        case 1:
-            push_new_command(client, LEFT, "Left\n");
-            add_next_move(client, LEFT);
-            push_new_command(client, FORWARD, "Forward\n");
-            add_next_move(client, FORWARD);
-            break;
-        case 2:
-            push_new_command(client, LEFT, "Left\n");
-            add_next_move(client, LEFT);
-            push_new_command(client, LEFT, "Left\n");
-            add_next_move(client, LEFT);
-            push_new_command(client, FORWARD, "Forward\n");
-            add_next_move(client, FORWARD);
-            break;
-        case 3:
-            push_new_command(client, RIGHT, "Right\n");
-            add_next_move(client, RIGHT);
-            push_new_command(client, FORWARD, "Forward\n");
-            add_next_move(client, FORWARD);
-            break;
+    case 0:
+        push_new_command(client, FORWARD, "Forward\n");
+        add_next_move(client, FORWARD);
+        break;
+    case 1:
+        go_left(client);
+        break;
+    case 2:
+        go_backward(client);
+        break;
+    case 3:
+        go_right(client);
+        break;
     }
     if (my_listlen(client->player.cmd_list) < 63) {
         client->instruction_index -= 3;
