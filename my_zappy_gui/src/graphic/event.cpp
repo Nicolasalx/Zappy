@@ -24,6 +24,7 @@ void Gui::Graphic::windowResize()
         this->window.window_width = GetScreenWidth();
         this->window.window_height = GetScreenHeight();
         textBoxs.resize(this->window.window_width, this->window.window_height);
+        this->menu.resizeMenu(this->window.window_width, this->window.window_height);
     }
 }
 
@@ -36,7 +37,7 @@ void Gui::Graphic::clickEvent()
             this->rayInfo.box.max = (Vector3){player.real_pos.x * Gui::MAP_SCALE + 1.0f, 3.0f, player.real_pos.y * Gui::MAP_SCALE + 1.0f};
             this->rayInfo.collision.hit = false;
             this->rayInfo.collision = GetRayCollisionBox(this->rayInfo.ray, this->rayInfo.box);
-            if (this->rayInfo.collision.hit && this->rayInfo.collision.distance <  __FLT_MAX__) {
+            if (this->rayInfo.collision.hit && this->rayInfo.collision.distance < __FLT_MAX__) {
                 this->rayInfo.type = PLAYER;
                 this->rayInfo.id = player.n;
                 return;
@@ -116,5 +117,6 @@ void Gui::Graphic::event()
     this->changeCursor();
     this->windowResize();
     this->clickEvent();
+    this->menu.handleEventMenu();
     this->changePlayerSelected();
 }
