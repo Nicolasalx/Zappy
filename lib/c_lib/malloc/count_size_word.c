@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2024
 ** count_size_word
 ** File description:
 ** count_size_word

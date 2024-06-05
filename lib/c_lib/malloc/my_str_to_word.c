@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2024
 ** my_str_to_word
 ** File description:
 ** my_str_to_word
