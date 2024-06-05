@@ -7,12 +7,12 @@
 
 #include "zappy_gui.hpp"
 
-void Gui::Graphic::drawSkyBox()
+void Gui::SkyBox::render()
 {
     ClearBackground(RAYWHITE);
     rlDisableBackfaceCulling();
     rlDisableDepthMask();
-        DrawModel(this->skyBox->model, (Vector3){0, 0, 0}, 1.0f, WHITE);
+        DrawModel(model, (Vector3){0, 0, 0}, 1.0f, WHITE);
     rlEnableBackfaceCulling();
     rlEnableDepthMask();
 }

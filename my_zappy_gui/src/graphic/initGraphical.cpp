@@ -9,7 +9,7 @@
 #include "camera.hpp"
 
 Gui::Graphic::Graphic(std::shared_ptr<GameState> gameState)
-    : _gameState(gameState), window(), camera(), menu(gameState), particle(gameState), textBoxs(gameState, window.window_width, window.window_height)
+    : _gameState(gameState), window(), camera(), menu(gameState, window.window_width, window.window_height), particle(gameState), textBoxs(gameState, window.window_width, window.window_height)
 {
     this->skyBox = std::make_unique<Gui::SkyBox>(gameState);
     this->object = std::make_unique<Gui::Object>(gameState);

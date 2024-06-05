@@ -30,8 +30,6 @@ namespace Gui
             ModelAnimation *player_animation;
             std::map<int, int> player_orientation;
             std::map<int, Color> player_color;
-            Model player_model;
-            Texture2D player_texture;
 
         private:
             std::shared_ptr<GameState> _gameState;
