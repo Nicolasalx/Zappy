@@ -271,6 +271,8 @@ void give_cmd(int argc, char **argv, server_t *server);
 void pause_cmd(int argc, char **argv, server_t *server);
 void resume_cmd(int argc, char **argv, server_t *server);
 void immortal_cmd(int, char **argv, server_t *server);
+void tpegg_cmd(int, char **argv, server_t *server);
+void killegg_cmd(int, char **argv, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);
