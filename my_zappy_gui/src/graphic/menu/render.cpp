@@ -7,21 +7,20 @@
 
 #include "menu.hpp"
 
-void Gui::Menu::handleEventEachComponent(Gui::Component component)
+void Gui::Menu::handleEventEachComponent(Gui::Component &component)
 {
-    for (auto &box: component.boxes) {
-        if (CheckCollisionPointRec(GetMousePosition(), box.box)) {
-            if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
-                box.color = RED;
-                if (component.cmpType == PLAY) {
-                    this->isInMenu = false;
-                }
-            } else {
-                box.color = GREEN;
+    if (CheckCollisionPointRec(GetMousePosition(), component.box.rect)) {
+        if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
+            component.box.color = RED;
+            if (component.cmpType == PLAY) {
+                this->isInMenu = false;
             }
+
         } else {
-            box.color = LIGHTGRAY;
+            component.box.color = GREEN;
         }
+    } else {
+        component.box.color = LIGHTGRAY;
     }
 }
 
@@ -36,17 +35,16 @@ void Gui::Menu::handleEventMenu()
 
 void Gui::Menu::resizeMenu(int window_width, int window_height)
 {
-    // this->box = { window_width / 2.0f - 100, window_height / 2.0f - 50, 200, 100 };
+    for (auto &component: _componentList) {
+        component.box.rect = { window_width * component.infoCmp.infoBox.x, window_height * component.infoCmp.infoBox.y, window_width * component.infoCmp.infoBox.width, window_height * component.infoCmp.infoBox.height };
+        component.text.pos = { window_width * component.infoCmp.posText.x, window_height * component.infoCmp.posText.y };
+    }
 }
 
 void Gui::Menu::render(Component &component)
 {
-    for (const auto &box: component.boxes) {
-        DrawRectangleLinesEx(box.box, 3, box.color);
-    }
-    for (const auto &text: component.texts) {
-        DrawText(text.contentText.c_str(), text.pos.x, text.pos.y, 20, text.color);
-    }
+    DrawRectangleLinesEx(component.box.rect, 3, component.box.color);
+    DrawText(component.text.contentText.c_str(), component.box.rect.x, component.box.rect.y, 20, component.box.color);
 }
 
 void Gui::Menu::renderMenu()
