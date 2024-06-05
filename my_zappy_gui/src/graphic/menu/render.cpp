@@ -11,13 +11,10 @@ void Gui::Menu::handleEventEachComponent(Gui::Component component)
 {
     for (auto &box: component.boxes) {
         if (CheckCollisionPointRec(GetMousePosition(), box.box)) {
-            std::cout << "ENTER: " << component.cmpType << "\n";
             if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
                 box.color = RED;
                 if (component.cmpType == PLAY) {
-                    // Not in menu
                     this->isInMenu = false;
-                    std::cout << "MENU DESACTIVATE\n";
                 }
             } else {
                 box.color = GREEN;
@@ -57,19 +54,4 @@ void Gui::Menu::renderMenu()
     for (auto &item: _componentList) {
         render(item);
     }
-
-    // for (const auto &box: _boxes) {
-    //     DrawRectangleLinesEx(box, 3, boxColor);
-    // }
-// 
-    // std::string text = "PLAY";
-// 
-    // int textWidth = MeasureText(text.c_str(), 20);
-// 
-    // for (const auto &text)
-    // DrawText(text.c_str(), box.x + (box.width - textWidth) / 2, box.y + (box.height - 20) / 2, 20, boxColor);
-
-    // Button Play
-    // Button Settings
-    // Button Quit
 }
