@@ -9,12 +9,15 @@
 
 void analyse_each_element_look(client_t *client, char *element, int tile_nb)
 {
-    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
-    int nb_word = count_nb_word(element, " ");
-    int *size_word = count_size_word(element, " ", nb_word);
-    char **word = my_str_to_word(element, " ", nb_word, size_word);
-    pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
+    int nb_word = 0;
+    int *size_word = NULL;
+    char **word = NULL;
 
+    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
+    nb_word = count_nb_word(element, " ");
+    size_word = count_size_word(element, " ", nb_word);
+    word = my_str_to_word(element, " ", nb_word, size_word);
+    pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
     if (nb_word == 0) {
         return;
     }
@@ -30,14 +33,18 @@ void analyse_each_element_look(client_t *client, char *element, int tile_nb)
 void parse_look_command(client_t *client, char *reply)
 {
     int tile_nb = 0;
-    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
-    int nb_word = count_nb_word_opt(reply, ",");
-    int *size_word = count_size_word_opt(reply, ",", nb_word);
-    char **word = my_str_to_word_opt(reply, ",", nb_word, size_word);
-    pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
+    int nb_word = 0;
+    int *size_word = NULL;
+    char **word = NULL;
 
+    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
+    nb_word = count_nb_word_opt(reply, ",");
+    size_word = count_size_word_opt(reply, ",", nb_word);
+    word = my_str_to_word_opt(reply, ",", nb_word, size_word);
+    pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
     remove_first_and_last_char(&reply);
-    memset(client->player.content_look, 0, sizeof(int) * MAX_LOOK_SIZE * TILE_NB_ELEM);
+    memset(client->player.content_look, 0,
+        sizeof(int) * MAX_LOOK_SIZE * TILE_NB_ELEM);
     for (int i = 0; i < nb_word; ++i) {
         analyse_each_element_look(client, word[i], tile_nb);
         ++tile_nb;
