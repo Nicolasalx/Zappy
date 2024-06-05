@@ -8,16 +8,9 @@
 #include "zappy_ai.h"
 #include <sys/wait.h>
 
-void remove_thread_from_list(void)
+static void remove_node_from_list(node_t *head,
+    node_t *current, pthread_t current_thread)
 {
-    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
-    node_t *head = get_thread_list(NULL)->thread_list;
-    node_t *current = get_thread_list(NULL)->thread_list;
-    pthread_t current_thread = pthread_self();
-
-    if (head == NULL) {
-        return;
-    }
     do {
         if (*GET_DATA(current, pthread_t) == current_thread) {
             delete_node(&get_thread_list(NULL)->thread_list, current);
@@ -25,6 +18,22 @@ void remove_thread_from_list(void)
         }
         current = current->next;
     } while (current != head);
+}
+
+void remove_thread_from_list(void)
+{
+    node_t *head = NULL;
+    node_t *current = NULL;
+    pthread_t current_thread = {0};
+
+    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
+    head = get_thread_list(NULL)->thread_list;
+    current = get_thread_list(NULL)->thread_list;
+    current_thread = pthread_self();
+    if (head == NULL) {
+        return;
+    }
+    remove_node_from_list(head, current, current_thread);
     if (head == NULL) {
         sem_post(&get_thread_list(NULL)->end_game);
     }
@@ -46,7 +55,7 @@ static void *create_new_ai_helper(void *arg)
     return NULL;
 }
 
-void create_new_ai(int port, struct in_addr address, char *team_name)
+void create_new_ai(int port, struct in_addr *address, char *team_name)
 {
     pthread_t *new_thread = NULL;
     ai_arg_t *arg = NULL;
@@ -60,7 +69,7 @@ void create_new_ai(int port, struct in_addr address, char *team_name)
     arg = my_calloc(sizeof(ai_arg_t));
     pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
     arg->port = port;
-    arg->address = address;
+    arg->address = *address;
     strcpy(arg->team_name, team_name);
     pthread_create(new_thread, NULL, create_new_ai_helper, arg);
     pthread_detach(*new_thread);
@@ -69,27 +78,14 @@ void create_new_ai(int port, struct in_addr address, char *team_name)
     pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
 }
 
-void wait_for_child(void)
-{
-    while (true)
-    {
-        pthread_mutex_lock(&get_thread_list(NULL)->mutex);
-        printf("my list len: %d\n", my_listlen(get_thread_list(NULL)->thread_list));
-        if (my_listlen(get_thread_list(NULL)->thread_list) <= 0) {
-            pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
-            return;
-        }
-        pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
-        sleep(1);
-    }
-}
-
 void cancel_child(void)
 {
-    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
-    node_t *head = get_thread_list(NULL)->thread_list;
-    node_t *current = get_thread_list(NULL)->thread_list;
+    node_t *head = NULL;
+    node_t *current = NULL;
 
+    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
+    head = get_thread_list(NULL)->thread_list;
+    current = get_thread_list(NULL)->thread_list;
     if (head == NULL) {
         return;
     }
