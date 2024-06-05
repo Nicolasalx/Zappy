@@ -56,7 +56,6 @@ namespace Gui
         //draw
         void draw3D();
         void draw2D();
-        void drawSkyBox();
 
         std::shared_ptr<GameState> _gameState;
         Gui::Window window;

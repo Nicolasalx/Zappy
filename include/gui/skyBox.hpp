@@ -16,7 +16,7 @@ namespace Gui
         public:
             SkyBox(std::shared_ptr<GameState> gameState);
             ~SkyBox() = default;
-            void render() {};
+            void render();
             Model model;
 
         private:

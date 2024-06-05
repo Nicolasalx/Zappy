@@ -7,7 +7,7 @@
 
 SRC				:=	$(shell find src/ -name "*.cpp")
 
-CPPFLAGS		=	-std=c++20 -Wall -Wextra -lraylib -lGL \
+CPPFLAGS		=	-std=c++20 -Wall -Wextra -lraylib -lGL -g3 \
 					-lm -ldl -lrt -lX11 \
 					$(ADDITIONAL_FLAGS)
 

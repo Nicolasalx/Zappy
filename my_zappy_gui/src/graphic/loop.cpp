@@ -11,7 +11,7 @@ void Gui::Graphic::draw3D()
 {
     BeginMode3D(this->camera._data);
     // BeginShaderMode(light_shader);
-    this->drawSkyBox();
+    this->skyBox->render();
     this->player->drawPlayer(this->rayInfo);
     this->object->render();
     this->particle.drawParticle(this->camera._data);
