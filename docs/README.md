@@ -168,6 +168,21 @@ Usage: give `id` `level`
 > id is the id of the player
 > level is represented by a number. It has to be between 1 and 8.
 
+### Tpegg command
+
+You can use this command to teleport an egg to a position.
+
+Usage: tpegg `id` `x` `y`
+> id is the id of the egg
+> x and y have to be between the map size
+
+### Killegg command
+
+You can use this command to kill an egg.
+
+Usage: killegg `id`
+> id is the id of the egg
+
 ### Immortal command
 
 You can use this command to controls food management.
