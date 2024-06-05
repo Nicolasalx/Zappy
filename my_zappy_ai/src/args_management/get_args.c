@@ -29,7 +29,8 @@ static void get_ip(const char **argv, ai_arg_t *ai_arg, int i)
             printf("Error: Machine must be specified\n");
             my_exit(84);
         }
-        if (strcmp(argv[i + 1], "localhost") && inet_aton(argv[i + 1], &ai_arg->address) == 0) {
+        if (strcmp(argv[i + 1], "localhost")
+        && inet_aton(argv[i + 1], &ai_arg->address) == 0) {
             printf("Error: Invalid IP address\n");
             my_exit(84);
         }
