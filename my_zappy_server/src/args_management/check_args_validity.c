@@ -26,13 +26,14 @@ static void create_team_name(server_t *server)
 
 static void fill_arg(server_t *server)
 {
-    if (server->game.world.size_x == -1 && server->game.world.size_y == -1) {
-        printf("No map dimensions set, default is 10x10\n");
+    if (server->game.world.size_x == -1) {
+        printf("No width set, default width is 10\n");
         server->game.world.size_x = 10;
+    }
+    if (server->game.world.size_y == -1) {
+        printf("No height set, default height is 10\n");
         server->game.world.size_y = 10;
     }
-    if (server->game.world.size_x == -1 || server->game.world.size_y == -1)
-        my_error("Error: Map dimensions are not set", 84);
     if (server->opt.client_nb == -1) {
         printf("No client number set, default client number is 4\n");
         server->opt.client_nb = 4;
