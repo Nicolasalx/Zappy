@@ -16,7 +16,7 @@
 
 namespace Gui
 {
-    class Player {
+    class Player : public virtual IRaylib {
         public:
             Player(std::shared_ptr<GameState> gameState);
             ~Player() = default;
@@ -25,9 +25,11 @@ namespace Gui
             void drawPlayer(ray_info_t &rayInfo);
             void drawPlayerModel(player_t &player);
             void drawPlayerBox(ray_info_t &rayinfo, player_t &player);
+            void render() {};
 
             ModelAnimation *player_animation;
             std::map<int, int> player_orientation;
+            std::map<int, Color> player_color;
             Model player_model;
             Texture2D player_texture;
 

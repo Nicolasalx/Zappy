@@ -12,11 +12,11 @@ void Gui::Graphic::draw3D()
     BeginMode3D(this->camera._data);
     // BeginShaderMode(light_shader);
     this->drawSkyBox();
-    this->player.drawPlayer(this->rayInfo);
-    this->object.render();
+    this->player->drawPlayer(this->rayInfo);
+    this->object->render();
     this->particle.drawParticle(this->camera._data);
-    this->island.drawMap(this->rayInfo);
-    this->egg.draw();
+    this->island->drawMap(this->rayInfo);
+    this->egg->render();
     // EndShaderMode();
     EndMode3D();
 }
@@ -36,7 +36,6 @@ void Gui::Graphic::draw2D()
 void Gui::Graphic::loop()
 {
     while (!WindowShouldClose()) {
-        std::cout << _gameState->eggs_list.size() << std::endl;
         this->event();
         BeginDrawing();
         //if (this->menu.isInMenu) {

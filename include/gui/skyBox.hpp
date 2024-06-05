@@ -12,11 +12,11 @@
 
 namespace Gui
 {
-    class SkyBox {
+    class SkyBox : public virtual IRaylib {
         public:
             SkyBox(std::shared_ptr<GameState> gameState);
             ~SkyBox() = default;
-
+            void render() {};
             Model model;
 
         private:

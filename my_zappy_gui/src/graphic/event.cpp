@@ -44,8 +44,8 @@ void Gui::Graphic::clickEvent()
         }
         for (int y = 0; y < this->_gameState->map_size.y; y++) {
             for (int x = 0; x < this->_gameState->map_size.y; x++) {
-                this->rayInfo.box.min = (Vector3){x * Gui::MAP_SCALE - 2.0f * this->island.size, -4.0f * this->island.size, y * Gui::MAP_SCALE - 2.0f * this->island.size};
-                this->rayInfo.box.max = (Vector3){x * Gui::MAP_SCALE + 2.0f * this->island.size, 0.0f, y * Gui::MAP_SCALE + 2.0f * this->island.size};
+                this->rayInfo.box.min = (Vector3){x * Gui::MAP_SCALE - 2.0f * this->island->size, -4.0f * this->island->size, y * Gui::MAP_SCALE - 2.0f * this->island->size};
+                this->rayInfo.box.max = (Vector3){x * Gui::MAP_SCALE + 2.0f * this->island->size, 0.0f, y * Gui::MAP_SCALE + 2.0f * this->island->size};
                 this->rayInfo.collision.hit = false;
                 this->rayInfo.collision = GetRayCollisionBox(this->rayInfo.ray, this->rayInfo.box);
                 if (this->rayInfo.collision.hit && this->rayInfo.collision.distance <  __FLT_MAX__) {

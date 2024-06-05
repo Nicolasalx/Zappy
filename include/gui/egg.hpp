@@ -12,17 +12,17 @@
     #include "infoGame.hpp"
     #include <vector>
     #include <memory>
+    #include "raylibInfo.hpp"
 
 namespace Gui {
-    class Egg {
+    class Egg : public virtual IRaylib {
         public:
             Egg(std::shared_ptr<GameState> gameState);
             ~Egg() = default;
-            void draw();
+            void render();
+
             std::vector<egg_t> eggs_list;
         private:
-            Model _egg_model;
-            Texture2D _egg_texture;
             std::shared_ptr<GameState> _gameState;
     };
 }
