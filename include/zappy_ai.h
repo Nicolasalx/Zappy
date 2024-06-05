@@ -174,6 +174,10 @@ ai_thread_t *get_thread_list(ai_thread_t *thread_list);
 void push_new_command(client_t *client, cmd_list_t cmd_type, char *cmd);
 void pop_cmd_to_make(client_t *client);
 
+void close_ai(int);
+void init_ai_thread(ai_thread_t *ai_thread, ai_arg_t *ai_arg);
+void destroy_ai_thread(ai_thread_t *ai_thread);
+
 // reply handler
 void look_command_reply(client_t *client, char *reply);
 void inventory_command_reply(client_t *client, char *reply);
