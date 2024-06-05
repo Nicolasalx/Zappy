@@ -7,7 +7,8 @@
 
 #include "zappy_ai.h"
 
-static void safe_strncat(char *dest, size_t *size_dest, const char *src, size_t n)
+static void safe_strncat(char *dest,
+    size_t *size_dest, const char *src, size_t n)
 {
     size_t size_src = strlen(src);
 
@@ -27,14 +28,16 @@ static void buffering_input(client_t *client, char *command, size_t nb_byte)
     char *end_cmd = strchr(command, '\n');
 
     while (end_cmd != NULL) {
-        safe_strncat(client->reply_buffer, &client->buffer_size, command, (end_cmd + 1) - start_cmd);
+        safe_strncat(client->reply_buffer, &client->buffer_size,
+            command, (end_cmd + 1) - start_cmd);
         handle_server_reply(client, client->reply_buffer);
         memset(client->reply_buffer, 0, CMD_BUFFER_SIZE);
         client->buffer_size = 0;
         memmove(start_cmd, end_cmd + 1, strlen(end_cmd + 1) + 1);
         end_cmd = strchr(command, '\n');
     }
-    safe_strncat(client->reply_buffer, &client->buffer_size, start_cmd, nb_byte);
+    safe_strncat(client->reply_buffer,
+        &client->buffer_size, start_cmd, nb_byte);
 }
 
 void handle_new_message(client_t *client)
