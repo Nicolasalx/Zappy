@@ -42,8 +42,8 @@ void Gui::Graphic::setFps(int fps)
 
 void Gui::Graphic::initLighting()
 {
-    // light_shader = LoadShader(TextFormat("assets/lighting.vs", 330),
-    //                            TextFormat("assets/lighting.fs", 330));
+    // light_shader = LoadShader(TextFormat("bonus/assets/lighting.vs", 330),
+    //                            TextFormat("bonus/assets/lighting.fs", 330));
     // light_shader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(light_shader, "viewPos");
     // float test[4] = { 0.1f, 0.1f, 0.1f, 1.0f };
     // int ambientLoc = GetShaderLocation(light_shader, "ambient");

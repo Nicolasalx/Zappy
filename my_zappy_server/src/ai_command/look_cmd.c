@@ -59,7 +59,8 @@ static void look_east(client_t *client, server_t *server)
         <= (client->player.pos_y + i); ++y) {
             get_item_str(buff,
                 (client->player.pos_x + i) % server->game.world.size_x,
-                (y + server->game.world.size_y) % server->game.world.size_y, server);
+                (y + server->game.world.size_y) %
+                    server->game.world.size_y, server);
             append_with_coma_if_needed_y(client, buff, y, i);
             send_msg_client(client->fd, buff);
             memset(buff, 0, BUFFER_SIZE);
@@ -79,7 +80,8 @@ static void look_west(client_t *client, server_t *server)
         <= (client->player.pos_y + i); ++y) {
             get_item_str(buff, (client->player.pos_x - i
             + server->game.world.size_x) % server->game.world.size_x,
-                (y + server->game.world.size_y) % server->game.world.size_y, server);
+                (y + server->game.world.size_y) %
+                    server->game.world.size_y, server);
             append_with_coma_if_needed_y(client, buff, y, i);
             send_msg_client(client->fd, buff);
             memset(buff, 0, BUFFER_SIZE);

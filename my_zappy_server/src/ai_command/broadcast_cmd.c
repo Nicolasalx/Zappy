@@ -50,16 +50,16 @@ void broadcast_cmd(char *argv, client_t *client, server_t *server)
 
     if (message == NULL || strlen(message) > (MAX_BROADCAST_LEN)) {
         send_msg_client(client->fd, "ko\n");
-        return; 
+        return;
     }
     for (int i = 0; i < MAX_CLIENT; ++i) {
-        if (server->clients[i].fd != 0 && server->clients[i].player.is_graphic != true
-        && server->clients[i].player.team
-        && client->player.id != server->clients[i].player.id) {
-            direction = compute_direction(client, &server->clients[i]);
-            snprintf(buffer, BUFFER_SIZE, "message %d, %s\n",
-                direction, message);
-            send_msg_client(server->clients[i].fd, buffer);
+        if (server->clients[i].fd != 0 && !server->clients[i].player.is_graphic
+            && server->clients[i].player.team
+            && client->player.id != server->clients[i].player.id) {
+                direction = compute_direction(client, &server->clients[i]);
+                snprintf(buffer, BUFFER_SIZE, "message %d, %s\n",
+                    direction, message);
+                send_msg_client(server->clients[i].fd, buffer);
         }
     }
     send_msg_client(client->fd, "ok\n");

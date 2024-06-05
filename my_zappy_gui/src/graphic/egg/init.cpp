@@ -10,5 +10,5 @@
 
 Gui::Egg::Egg(std::shared_ptr<GameState> gameState) : _gameState(gameState)
 {
-    this->addModel("assets/egg.obj", "assets/texture_egg.png");
+    this->addModel("bonus/assets/egg.obj", "bonus/assets/texture_egg.png");
 }

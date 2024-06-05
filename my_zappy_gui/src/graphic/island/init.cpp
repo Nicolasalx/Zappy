@@ -9,6 +9,6 @@
 
 Gui::Island::Island(std::shared_ptr<GameState> gameState): _gameState(gameState)
 {
-    this->addModel("assets/plateform.obj", "assets/plateform1.png");
+    this->addModel("bonus/assets/plateform.obj", "bonus/assets/plateform1.png");
     size = 2.0f;
 }
