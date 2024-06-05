@@ -25,27 +25,17 @@ void Gui::Graphic::draw2D()
     textBoxs.drawAllTextBoxs(rayInfo);
 }
 
-// void Gui::Graphic::menu()
-// {
-//     // Button Play
-//     // Button Settings
-//     // Button Quit
-// }
-
 void Gui::Graphic::loop()
 {
     while (!WindowShouldClose()) {
-        // std::cout << _gameState->time_unit << std::endl;
         this->event();
         BeginDrawing();
-        //if (this->menu.isInMenu) {
-        //    this->menu();
-        //} else {
-        //     this->draw3D();
-        //     this->draw2D();
-        //}
-        this->draw3D();
-        this->draw2D();
+        if (this->menu.isInMenu) {
+            this->menu.renderMenu();
+        } else {
+             this->draw3D();
+             this->draw2D();
+        }
         EndDrawing();
     }
     exit(0);
