@@ -13,7 +13,7 @@ Pour le projet Zappy, nous avons adopté la méthodologie Scrum Agile afin de st
 
 ### Planning du Sprint
 
-1. **Sprint Planning** :
+**Sprint Planning** :
     - Au début de chaque sprint, nous tenons une réunion de planification.
     - Nous discutons et sélectionnons les éléments à inclure dans le sprint en fonction de leur capacité.
 
