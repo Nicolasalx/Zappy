@@ -70,7 +70,7 @@ void Gui::Graphic::loop()
         }
         handleCoreEvent(eventList);
         const GameData &data = this->gameModule->update(eventList);
-        this->displayModule->render(data); // ! Implement this function in the raylib class
+        this->displayModule->render(data);
 
         Gui::FrameRate::end();
     }
