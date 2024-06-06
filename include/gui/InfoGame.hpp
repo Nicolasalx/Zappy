@@ -42,6 +42,15 @@ namespace Gui
         CLOSED_RIGHT
     };
 
+    struct TextBox {
+        std::string text;
+        Pos pos;
+        float width;
+        float height;
+        int text_size;
+        int state;
+    };
+
     struct Incant {
         int level;
         Pos pos;

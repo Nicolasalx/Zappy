@@ -127,7 +127,7 @@ typedef struct {
     int client_nb;
     bool end_game;
     bool pause_game;
-} server_opt;
+} server_opt_t;
 
 typedef struct {
     int team_count;
@@ -146,7 +146,7 @@ typedef struct {
     fd_set read_set;
     fd_set write_set;
     client_t clients[MAX_CLIENT];
-    server_opt opt;
+    server_opt_t opt;
     serv_timeout_t time;
     game_t game;
 } server_t;

@@ -10,5 +10,5 @@
 
 int *malloc_array(int size_array)
 {
-    return my_malloc(sizeof(int) * size_array);
+    return my_calloc(sizeof(int) * size_array);
 }

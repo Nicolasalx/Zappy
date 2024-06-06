@@ -22,7 +22,9 @@ char **my_str_to_word(const char *str, const char *delimiter,
             word[i_index][j_index] = str[i];
             ++ j_index;
             end_word = true;
-        } else if (end_word) {
+            continue;
+        }
+        if (end_word) {
             end_word = false;
             ++ i_index;
             j_index = 0;
