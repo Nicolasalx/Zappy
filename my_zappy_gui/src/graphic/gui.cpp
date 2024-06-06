@@ -14,5 +14,5 @@ Gui::Zappy::Zappy()
 
 Gui::Zappy::~Zappy()
 {
-    
+
 }
