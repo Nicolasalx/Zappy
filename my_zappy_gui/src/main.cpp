@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
             }, gameState);
         graphicThread.join();
         clientThread.join();
-        
+
     } catch (my::tracked_exception &e) {
         my::log::error(e.what());
         return 84;

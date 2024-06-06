@@ -7,28 +7,33 @@
 
 #include "zappy_ai.h"
 
+static bool handle_special_reply(client_t *client, char *reply)
+{
+    if (!reply) {
+        return false;
+    }
+    for (size_t i = 0; special_reply[i].name != NULL; ++i) {
+        if ((special_reply[i].size == -1
+        && strcmp(special_reply[i].name, reply) == 0)
+        || (special_reply[i].size != -1 && strncmp(
+        special_reply[i].name, reply, special_reply[i].size) == 0)) {
+            special_reply[i].method(client, reply);
+            return true;
+        }
+    }
+    return false;
+}
+
 void handle_cmd_reply(client_t *client, char *reply)
 {
-    if (reply && strcmp("End of Game\n", reply) == 0) {
-        sem_post(&get_thread_list(NULL)->end_game);
-        exit_client(client, 0, NULL);
-    } else if (reply && strncmp("eject: ", reply, 7) == 0) {
-
-    } else if (reply && strncmp("message ", reply, 8) == 0) {
-        broadcast_reply(client, reply);
-    } else if (reply && strcmp("dead\n", reply) == 0) {
-        exit_client(client, 0, NULL);
-    } else if (reply && strcmp(reply, "Elevation underway\n") == 0) {
-        client->last_cmd = INCANTATION;
+    if (handle_special_reply(client, reply)) {
         return;
-    } else {
-        for (int i = 0; i < NB_ACTION; ++i) {
-            if ((int) client->last_cmd == i) {
-                if (reply_handler[i].method) {
-                    reply_handler[i].method(client, reply);
-                }
-            }
-        }
-        pop_cmd_to_make(client);
     }
+    for (int i = 0; i < NB_ACTION; ++i) {
+        if ((int) client->last_cmd == i
+        && reply_handler[i].method) {
+            reply_handler[i].method(client, reply);
+        }
+    }
+    pop_cmd_to_make(client);
 }

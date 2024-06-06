@@ -2,17 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** initSkyBox
+** updateSkyBox
 */
 
 #include "SkyBox.hpp"
 
-Gui::SkyBox::SkyBox()
-{
-
-}
-
-Gui::SkyBox::~SkyBox()
+const Gui::GameData &Gui::SkyBox::update(const Gui::Event &event)
 {
 
 }

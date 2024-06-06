@@ -2,17 +2,17 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** initObject
+** initTextBox
 */
 
-#include "Object.hpp"
+#include "TextBox.hpp"
 
-Gui::Object::Object()
+Gui::TextBox::TextBox()
 {
 
 }
 
-Gui::Object::~Object()
+Gui::TextBox::~TextBox()
 {
 
 }

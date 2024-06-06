@@ -2,17 +2,17 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** initObject
+** initWindow
 */
 
-#include "Object.hpp"
+#include "Window.hpp"
 
-Gui::Object::Object()
+Gui::Window::Window()
 {
 
 }
 
-Gui::Object::~Object()
+Gui::Window::~Window()
 {
 
 }

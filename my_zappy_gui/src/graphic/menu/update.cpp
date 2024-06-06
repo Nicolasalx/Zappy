@@ -2,17 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** initObject
+** updateMenu
 */
 
-#include "Object.hpp"
+#include "Menu.hpp"
 
-Gui::Object::Object()
-{
-
-}
-
-Gui::Object::~Object()
+const Gui::GameData &Gui::Menu::update(const Gui::Event &event)
 {
 
 }

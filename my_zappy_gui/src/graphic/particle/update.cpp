@@ -2,17 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** initParticle
+** updateParticle
 */
 
 #include "Particle.hpp"
 
-Gui::Particle::Particle()
-{
-
-}
-
-Gui::Particle::~Particle()
+const Gui::GameData &Gui::Particle::update(const Gui::Event &event)
 {
 
 }

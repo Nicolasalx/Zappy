@@ -2,16 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** initPlayer
+** updatePlayer
 */
 
 #include "Player.hpp"
 
-Gui::Player::Player()
+const Gui::GameData &Gui::Player::update(const Gui::Event &event)
 {
 
-}
-
-Gui::Player::~Player()
-{
 }
