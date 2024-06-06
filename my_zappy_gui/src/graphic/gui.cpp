@@ -12,14 +12,6 @@ Gui::Zappy::Zappy()
 
 }
 
-extern "C"
-{
-    Gui::IGameModule *entryPoint(void)
-    {
-        return new Gui::Zappy();
-    }
-}
-
 Gui::Zappy::~Zappy()
 {
     
