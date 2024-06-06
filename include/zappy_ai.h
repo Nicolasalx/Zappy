@@ -125,6 +125,7 @@ typedef struct {
     node_t *thread_list;
     pthread_mutex_t mutex;
     sem_t end_game;
+    int exit_code;
 } ai_thread_t;
 
 typedef struct {
@@ -147,7 +148,7 @@ extern const reply_handler_t reply_handler[];
 
 extern node_t *child_list;
 
-extern void (*strategy_handler[NB_STRATEGY][10])(client_t *);
+extern void (*const strategy_handler[NB_STRATEGY][10])(client_t *);
 extern const char *object_list[NB_ITEM];
 extern const char *tile_list[TILE_NB_ELEM];
 extern const char *args[];
@@ -166,8 +167,7 @@ void launch_client(client_t *client);
 void delete_client(client_t *client);
 void exit_client(client_t *client, int exit_value, const char *message);
 
-void create_new_ai(int port, struct in_addr address, char *team_name);
-void wait_for_child(void);
+void create_new_ai(int port, struct in_addr *address, char *team_name);
 void cancel_child(void);
 void remove_thread_from_list(void);
 ai_thread_t *get_thread_list(ai_thread_t *thread_list);
@@ -178,6 +178,9 @@ void pop_cmd_to_make(client_t *client);
 void close_ai(int);
 void init_ai_thread(ai_thread_t *ai_thread, ai_arg_t *ai_arg);
 void destroy_ai_thread(ai_thread_t *ai_thread);
+
+void get_nb_food(client_t *client);
+void determine_role(client_t *client);
 
 // reply handler
 void look_command_reply(client_t *client, char *reply);

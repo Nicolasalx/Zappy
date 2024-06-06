@@ -11,7 +11,8 @@ void send_command_broad_cast(client_t *client, const char *text)
 {
     char result[250] = {0};
 
-    snprintf(result, sizeof(result), "Broadcast |%s|%d|%s|\n", client->player.team_name, client->fd, text);
+    snprintf(result, sizeof(result), "Broadcast |%s|%d|%s|\n",
+        client->player.team_name, client->fd, text);
     push_new_command(client, BROADCAST, result);
 }
 

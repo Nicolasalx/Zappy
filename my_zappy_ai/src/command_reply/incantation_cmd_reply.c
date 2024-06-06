@@ -9,13 +9,17 @@
 
 void incantation_command_reply(client_t *client, char *reply)
 {
-    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
-    int nb_word = count_nb_word(reply, ":");
-    int *size_word = count_size_word(reply, ":", nb_word);
-    char **word = my_str_to_word(reply, ":", nb_word, size_word);
+    int nb_word = 0;
+    int *size_word = NULL;
+    char **word = NULL;
 
+    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
+    nb_word = count_nb_word(reply, ":");
+    size_word = count_size_word(reply, ":", nb_word);
+    word = my_str_to_word(reply, ":", nb_word, size_word);
     pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
-    if (strcmp(reply, "ko\n") == 0 || strcmp(reply, "Elevation underway\n") == 0) {
+    if (strcmp(reply, "ko\n") == 0
+    || strcmp(reply, "Elevation underway\n") == 0) {
         return;
     }
     if (nb_word != 2) {

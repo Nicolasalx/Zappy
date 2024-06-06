@@ -14,5 +14,4 @@ Gui::Player::Player()
 
 Gui::Player::~Player()
 {
-
 }

@@ -38,7 +38,6 @@ static bool tp_egg(server_t *server, int i, char **argv)
         if (GET_DATA(current, egg_t)->nb == id) {
             GET_DATA(current, egg_t)->pos_x = x;
             GET_DATA(current, egg_t)->pos_y = y;
-            printf("Egg %d has been teleported to %d %d\n", id, x, y);
             edi_reply(server, &server->clients[i], GET_DATA(current, egg_t));
             enw_reply(server, &server->clients[i], GET_DATA(current, egg_t));
             return true;
@@ -50,11 +49,16 @@ static bool tp_egg(server_t *server, int i, char **argv)
 
 void tpegg_cmd(int, char **argv, server_t *server)
 {
+    int id = atoi(argv[0]);
+    int x = atoi(argv[1]);
+    int y = atoi(argv[2]);
+
     if (tp_error_management(argv, server)) {
         return;
     }
     for (int i = 0; i < server->game.team_count; i++) {
         if (tp_egg(server, i, argv)) {
+            printf("Egg %d has been teleported to %d %d\n", id, x, y);
             return;
         }
     }

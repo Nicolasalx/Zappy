@@ -30,7 +30,8 @@ static bool eject_egg(client_t *client, server_t *server, int i, bool *ejected)
     return false;
 }
 
-static void eject_egg_from_tile(client_t *client, server_t *server, bool *ejected)
+static void eject_egg_from_tile(client_t *client, server_t *server,
+    bool *ejected)
 {
     for (int i = 0; i < server->game.team_count; ++i) {
         if (eject_egg(client, server, i, &*ejected)) {
@@ -69,14 +70,15 @@ void eject_cmd(char *, client_t *client, server_t *server)
     bool ejected = false;
 
     for (int i = 0; i < MAX_CLIENT; ++i) {
-        if (server->clients[i].fd != 0 && server->clients[i].player.is_graphic != true
-        && server->clients[i].player.pos_x == client->player.pos_x
-        && server->clients[i].player.pos_y == client->player.pos_y
-        && server->clients[i].player.id != client->player.id) {
-            eject_player_in_orientation(server, client, i);
-            pex_reply(server, &server->clients[i]);
-            ppo_reply(server, &server->clients[i]);
-            ejected = true;
+        if (server->clients[i].fd != 0 &&
+            server->clients[i].player.is_graphic != true
+            && server->clients[i].player.pos_x == client->player.pos_x
+            && server->clients[i].player.pos_y == client->player.pos_y
+            && server->clients[i].player.id != client->player.id) {
+                eject_player_in_orientation(server, client, i);
+                pex_reply(server, &server->clients[i]);
+                ppo_reply(server, &server->clients[i]);
+                ejected = true;
         }
     }
     eject_egg_from_tile(client, server, &ejected);

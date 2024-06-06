@@ -39,29 +39,37 @@ static bool is_valid_argument(const char *arg)
     return false;
 }
 
+static bool check_args(const char **argv, int argc, server_t *server, int i)
+{
+    if (argv[i][0] == '-' && is_valid_argument(argv[i])) {
+        if (strcmp(argv[i], args[3]) == 0) {
+            get_teams_name(argv, server, i, argc);
+            return false;
+        }
+        if (argv[i] != NULL) {
+            get_port_and_freq(argv, server, i);
+            get_map_size(argv, &server->game, i);
+            get_clients_nb(argv, server, i);
+            return true;
+        }
+    }
+    my_error("Error: Invalid argument", 84);
+    return false;
+}
+
 void get_args(int argc, const char **argv, server_t *server)
 {
     set_args(server);
-    if (argc == 2 && strcmp(argv[1], "-help") == 0) {
+    if (argc == 2 && !strcmp(argv[1], "-help")) {
         printf("USAGE: ./zappy_server -p port -x width -y "
         "height -n name1 name2 ... -c clientsNb -f freq\n");
         my_exit(0);
     }
     for (int i = 1; i < argc; i++) {
-        if (argv[i][0] == '-' && is_valid_argument(argv[i])) {
-            if (strcmp(argv[i], args[3]) == 0) {
-                get_teams_name(argv, server, i, argc);
-                i += server->game.team_count + 1;
-                printf("%d\n", i);
-            }
-            if (argv[i] != NULL) {
-                get_port_and_freq(argv, server, i);
-                get_map_size(argv, &server->game, i);
-                get_clients_nb(argv, server, i);
-                i += 1;
-            }
+        if (check_args(argv, argc, server, i)) {
+            i++;
         } else {
-            my_error("Error: Invalid argument :(", 84);
+            i += server->game.team_count + 1;
         }
     }
     check_arg_validity(server);

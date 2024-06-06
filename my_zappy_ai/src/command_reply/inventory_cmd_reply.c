@@ -26,12 +26,15 @@ void remove_first_and_last_char(char **str)
 
 void analyse_each_element_inventory(client_t *client, char *element)
 {
-    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
-    int nb_word = count_nb_word(element, " ");
-    int *size_word = count_size_word(element, " ", nb_word);
-    char **word = my_str_to_word(element, " ", nb_word, size_word);
-    pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
+    int nb_word = 0;
+    int *size_word = NULL;
+    char **word = NULL;
 
+    pthread_mutex_lock(&get_thread_list(NULL)->mutex);
+    nb_word = count_nb_word(element, " ");
+    size_word = count_size_word(element, " ", nb_word);
+    word = my_str_to_word(element, " ", nb_word, size_word);
+    pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
     if (nb_word != 2) {
         return;
     }
@@ -44,13 +47,15 @@ void analyse_each_element_inventory(client_t *client, char *element)
 
 void parse_inventory_command(client_t *client, char *reply)
 {
+    int nb_word = 0;
+    int *size_word = NULL;
+    char **word = NULL;
+
     remove_first_and_last_char(&reply);
-
     pthread_mutex_lock(&get_thread_list(NULL)->mutex);
-    int nb_word = count_nb_word(reply, ",");
-    int *size_word = count_size_word(reply, ",", nb_word);
-    char **word = my_str_to_word(reply, ",", nb_word, size_word);
-
+    nb_word = count_nb_word(reply, ",");
+    size_word = count_size_word(reply, ",", nb_word);
+    word = my_str_to_word(reply, ",", nb_word, size_word);
     pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
     for (int i = 0; word[i] != NULL; ++i) {
         analyse_each_element_inventory(client, word[i]);

@@ -35,9 +35,11 @@ void queen_incantation(client_t *client)
     push_new_command(client, TAKE, "Take food\n");
     if (client->player.content_look[0][TILE_FOOD] < 50
     || client->player.content_look[0][TILE_PLAYER] < 4) {
-        create_new_ai(client->port, client->server_address.sin_addr, client->player.team_name);
+        create_new_ai(client->port,
+            &client->server_address.sin_addr, client->player.team_name);
     }
     if (client->player.content_look[0][TILE_FOOD] < 20) {
-        create_new_ai(client->port, client->server_address.sin_addr, client->player.team_name);
+        create_new_ai(client->port,
+            &client->server_address.sin_addr, client->player.team_name);
     }
 }

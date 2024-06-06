@@ -10,10 +10,10 @@
 
 Gui::Player::Player(std::shared_ptr<GameState> gameState): _gameState(gameState)
 {
-    this->addModel("assets/Astronaut.iqm", "assets/AstronautColor.png");
+    this->addModel("bonus/assets/Astronaut.iqm", "bonus/assets/AstronautColor.png");
 
     int animsCount = 5;
-    this->player_animation = LoadModelAnimations("assets/Astronaut.iqm", &animsCount);
+    this->player_animation = LoadModelAnimations("bonus/assets/Astronaut.iqm", &animsCount);
 
     this->player_orientation[1] = 180;
     this->player_orientation[2] = 90;

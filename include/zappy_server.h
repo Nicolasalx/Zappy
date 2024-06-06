@@ -31,6 +31,8 @@
     #define MAX_PLAYER_CONNECTED_PER_TEAM 100
     #define MAX_CLIENT_NB 100
     #define MAX_BROADCAST_LEN 256
+    #define MAX_FREQUENCE_NB 150
+    #define MAX_WORLD_SIZE 100
 
     #define MAX_TEAMNAME_SIZE 32
     #define MAX_WAITING_CMD 10

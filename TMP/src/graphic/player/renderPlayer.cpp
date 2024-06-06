@@ -16,7 +16,7 @@ void Gui::Player::drawPlayerBox(ray_info_t &rayInfo, player_t &player)
         rayInfo.box.max = (Vector3){player.real_pos.x * Gui::MAP_SCALE + 1.0f, 3.0f, player.real_pos.y * Gui::MAP_SCALE + 1.0f};
         DrawBoundingBox(rayInfo.box, GREEN);
         this->drawModel((ModelInfo){0, (Vector3){player.real_pos.x * Gui::MAP_SCALE, 0.0f, player.real_pos.y * Gui::MAP_SCALE},
-        (Vector3){0, 1, 0}, player.real_orientation, (Vector3){3, 3, 3}, GREEN});
+        (Vector3){0, 1, 0}, (float)player.real_orientation, (Vector3){3, 3, 3}, GREEN});
     }
 }
 

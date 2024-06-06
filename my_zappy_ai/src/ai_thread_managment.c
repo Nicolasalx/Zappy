@@ -23,7 +23,7 @@ void init_ai_thread(ai_thread_t *ai_thread, ai_arg_t *ai_arg)
     sem_init(&ai_thread->end_game, 0, 0);
     signal(SIGINT, close_ai);
     create_new_ai(ai_arg->port,
-        ai_arg->address, ai_arg->team_name);
+        &ai_arg->address, ai_arg->team_name);
 }
 
 void destroy_ai_thread(ai_thread_t *ai_thread)
