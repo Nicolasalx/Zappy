@@ -12,7 +12,7 @@
 
 namespace Gui
 {
-    class SkyBox: public Gui::Zappy
+    class SkyBox : public Gui::Zappy
     {
         public:
             SkyBox();
