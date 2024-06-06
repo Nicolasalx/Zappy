@@ -2,17 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** initIsland
+** updateIsland
 */
 
 #include "Island.hpp"
 
-Gui::Island::Island()
-{
-
-}
-
-Gui::Island::~Island()
+const Gui::GameData &Gui::Island::update(const Gui::Event &event)
 {
 
 }
