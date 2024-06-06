@@ -21,7 +21,7 @@ namespace Gui
             const Gui::GameData &update(const Gui::Event &event) override;
 
         private:
-    
+
     };
 };
 

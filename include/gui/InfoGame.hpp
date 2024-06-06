@@ -22,7 +22,7 @@ namespace Gui
         float y;
     };
 
-    enum {
+    enum Elements {
         FOOD,
         LINEMATE,
         DERAUMERE,
@@ -33,8 +33,8 @@ namespace Gui
         ISLAND,
         PLAYER
     };
-    
-    enum {
+
+    enum StateBox {
         NO_BUTTON,
         RIGHT_BUTTON,
         LEFT_BUTTON,
