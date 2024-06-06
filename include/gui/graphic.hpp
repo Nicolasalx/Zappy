@@ -18,26 +18,13 @@
     #include <vector>
     #include <map>
     #include <functional>
-
-    #include "gameState.hpp"
-    #include "textBox.hpp"
-    #include "infoGame.hpp"
-    #include "particle.hpp"
-    #include "camera.hpp"
-    #include <list>
-    #include "window.hpp"
-    #include "skyBox.hpp"
-    #include "island.hpp"
-    #include "object.hpp"
-    #include "player.hpp"
-    #include "menu.hpp"
-    #include "egg.hpp"
+    #include "Zappy.hpp"
 
 namespace Gui
 {
     class Graphic {
         public:
-        Graphic(std::shared_ptr<GameState> gameState);
+        Graphic();
         ~Graphic();
 
         void initLighting();
@@ -45,33 +32,8 @@ namespace Gui
 
         //loop
         void loop();
-
-        //event
-        void event();
-        void changeCursor();
-        void windowResize();
-        void clickEvent();
-        void changePlayerSelected();
-
-        //draw
-        void draw3D();
-        void draw2D();
-
-        std::shared_ptr<GameState> _gameState;
-        Gui::Window window;
-        Gui::Camera camera;
-        std::unique_ptr<Gui::SkyBox> skyBox;
-        std::unique_ptr<Gui::Island> island;
-        std::unique_ptr<Gui::Object> object;
-        std::unique_ptr<Gui::Player> player;
-        Gui::Menu menu;
-        Gui::ParticleSystem particle;
-        Gui::TextBox_list textBoxs;
-        std::unique_ptr<Gui::Egg> egg;
-
-        ray_info_t rayInfo;
-        Shader light_shader;
-        bool cursor = false;
+        std::shared_ptr<Zappy> actual_game; //changer plus tard par IGameModule
+        std::shared_ptr<Raylib> actual_graphic; // changer plus tard par IRenderModule
     };
 }
 
