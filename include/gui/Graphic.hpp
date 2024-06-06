@@ -10,7 +10,7 @@
 
     #include "my_tracked_exception.hpp"
     #include "my_log.hpp"
-
+    #include <chrono>
     #include <unistd.h>
     #include <iostream>
     #include <string>
@@ -19,6 +19,8 @@
     #include <map>
     #include <functional>
     #include "Zappy.hpp"
+    #include "Raylib.hpp"
+    #include <thread>
 
 namespace Gui
 {
@@ -27,11 +29,8 @@ namespace Gui
         Graphic();
         ~Graphic() = default;
 
-        void initLighting();
-        void setFps(int fps);
-
-        //loop
         void loop();
+
         std::shared_ptr<Zappy> actual_game; //changer plus tard par IGameModule
         std::shared_ptr<Raylib> actual_graphic; // changer plus tard par IRenderModule
     };
