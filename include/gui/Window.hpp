@@ -8,12 +8,12 @@
 #ifndef WINDOW_HPP_
     #define WINDOW_HPP_
 
-    #include "AGameModule.hpp"
+    #include "Zappy.hpp"
     #include "GameData.hpp"
 
 namespace Gui
 {
-    class Window: public Gui::AGameModule
+    class Window: public Gui::Zappy
     {
         public:
             Window();

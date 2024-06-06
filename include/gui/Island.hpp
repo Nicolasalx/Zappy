@@ -8,11 +8,11 @@
 #ifndef ISLAND_HPP_
     #define ISLAND_HPP_
 
-    #include "AGameModule.hpp"
+    #include "Zappy.hpp"
 
 namespace Gui
 {
-    class Island: public Gui::AGameModule
+    class Island: public Gui::Zappy
     {
         public:
             Island();
