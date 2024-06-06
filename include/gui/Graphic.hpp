@@ -25,7 +25,7 @@ namespace Gui
     class Graphic {
         public:
         Graphic();
-        ~Graphic();
+        ~Graphic() = default;
 
         void initLighting();
         void setFps(int fps);
