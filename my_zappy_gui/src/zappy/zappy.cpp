@@ -4,3 +4,15 @@
 ** File description:
 ** zappy
 */
+
+#include "Zappy.hpp"
+
+Gui::Zappy::Zappy()
+{
+
+}
+
+Gui::Zappy::~Zappy()
+{
+
+}

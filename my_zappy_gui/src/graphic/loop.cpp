@@ -28,7 +28,7 @@ void Gui::Graphic::start(int argc, const char **argv)
 void Gui::Graphic::launch()
 {
     this->displayLoader.load("./lib/libDisplay.so"); // ! Replace the path
-    this->gameLoader.load("./lib/libGame.so"); // ! Replace path
+    this->gameLoader.load("./lib/libGame.so"); // ! Replace the path
 
     this->displayModule = std::unique_ptr<Gui::IRenderModule>(this->displayLoader.getInstance("entryPoint"));
     this->gameModule = std::unique_ptr<Gui::IGameModule>(this->gameLoader.getInstance("entryPoint"));
