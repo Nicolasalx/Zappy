@@ -8,11 +8,11 @@
 #ifndef TEXTBOX_HPP_
     #define TEXTBOX_HPP_
 
-    #include "AGameModule.hpp"
+    #include "Zappy.hpp"
 
 namespace Gui
 {
-    class TextBox: public Gui::AGameModule
+    class TextBox: public Gui::Zappy
     {
         public:
             TextBox();

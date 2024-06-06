@@ -8,11 +8,11 @@
 #ifndef PARTICLE_HPP_
     #define PARTICLE_HPP_
 
-    #include "AGameModule.hpp"
+    #include "Zappy.hpp"
 
 namespace Gui
 {
-    class Particle: public Gui::AGameModule
+    class Particle: public Gui::Zappy
     {
         public:
             Particle();
