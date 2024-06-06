@@ -10,19 +10,19 @@
 
     #include <chrono>
 
-namespace Arc
+namespace Gui
 {
     class FrameRate
     {
-    public:
-        static void setFrameRate(std::size_t frameRate);
-        static void start();
-        static void end();
-
-    private:
-        static std::size_t _frameRate;
-        static long _frameTime;
-        static std::chrono::time_point<std::chrono::steady_clock> _lastClock;
+        public:
+            static void setFrameRate(std::size_t frameRate);
+            static void start();
+            static void end();
+    
+        private:
+            static std::size_t _frameRate;
+            static long _frameTime;
+            static std::chrono::time_point<std::chrono::steady_clock> _lastClock;
     };
 }
 
