@@ -7,6 +7,15 @@
 
 #include "zappy_ai.h"
 
+static void get_elem_on_tile(int i, int tile_nb, char **word, client_t *client)
+{
+    for (int j = 0; j < TILE_NB_ELEM; j++) {
+        if (strcmp(word[i], tile_list[j]) == 0) {
+            client->player.content_look[tile_nb][j] += 1;
+        }
+    }
+}
+
 void analyse_each_element_look(client_t *client, char *element, int tile_nb)
 {
     int nb_word = 0;
@@ -22,11 +31,7 @@ void analyse_each_element_look(client_t *client, char *element, int tile_nb)
         return;
     }
     for (int i = 0; i < nb_word; ++i) {
-        for (int j = 0; j < TILE_NB_ELEM; j++) {
-            if (strcmp(word[i], tile_list[j]) == 0) {
-                client->player.content_look[tile_nb][j] += 1;
-            }
-        }
+        get_elem_on_tile(i, tile_nb, word, client);
     }
 }
 

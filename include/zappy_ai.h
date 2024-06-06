@@ -144,7 +144,14 @@ typedef struct {
     void (*method)(client_t *, char *);
 } reply_handler_t;
 
+typedef struct {
+    char *name;
+    int size;
+    void (*method)(client_t *, char *);
+} special_reply_t;
+
 extern const reply_handler_t reply_handler[];
+extern const special_reply_t special_reply[];
 
 extern node_t *child_list;
 
@@ -191,6 +198,12 @@ void fork_command_reply(client_t *client, char *reply);
 void take_command_reply(client_t *client, char *reply);
 void set_command_reply(client_t *client, char *reply);
 void incantation_command_reply(client_t *client, char *reply);
+
+void end_of_game_cmd_reply(client_t *client, char *reply);
+void eject_cmd_reply(client_t *client, char *reply);
+void message_cmd_reply(client_t *client, char *reply);
+void dead_cmd_reply(client_t *client, char *reply);
+void elevation_cmd_reply(client_t *client, char *reply);
 
 // utils
 void remove_first_and_last_char(char **str);
