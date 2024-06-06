@@ -8,18 +8,23 @@
 #ifndef GAMEDATA_HPP_
     #define GAMEDATA_HPP_
 
+    #include "InfoGame.hpp"
+    #include "TextBox.hpp"
+
 namespace Gui
 {
-    struct DataCamera {
-        Camera3D _data;
-    };
-
     struct GameData
     {
-        DataCamera;
-        // handle Player
-        // handle SkyBox
-        // ...
+        Pos mapSize;
+        int timeUnit;
+        double frameTime;
+        std::vector<Player> playerList;
+        std::vector<Incant> incantList;
+        std::vector<Egg> egg_list;
+        std::vector<std::string> teamName;
+        std::vector<std::string> serverResp;
+        std::vector<std::vector<std::vector<int>>> objectPos;
+        std::vector<TextBox> textBox;
     };
 }
 
