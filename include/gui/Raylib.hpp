@@ -13,8 +13,16 @@
     #include <iostream>
 
 namespace Gui {
+
     class Raylib : public ARenderModule
     {
+        public:
+            Raylib();
+            ~Raylib() override;
+ 
+            Gui::Event getEvent() override;
+            void render(const Gui::GameData &gameData) override;
+
         private:
     };
 }
