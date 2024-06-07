@@ -12,7 +12,7 @@
 
 namespace Gui
 {
-    class Island: virtual public Gui::Zappy
+    class Island
     {
         public:
             Island();

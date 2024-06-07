@@ -12,7 +12,7 @@
 
 namespace Gui
 {
-    class Particle: public Gui::Zappy
+    class Particle
     {
         public:
             Particle();

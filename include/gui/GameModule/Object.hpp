@@ -12,7 +12,7 @@
 
 namespace Gui
 {
-    class Object: public Gui::Zappy
+    class Object
     {
         public:
             Object();

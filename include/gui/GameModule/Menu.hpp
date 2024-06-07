@@ -12,7 +12,7 @@
 
 namespace Gui
 {
-    class Menu: public Gui::Zappy
+    class Menu
     {
         public:
             Menu();

@@ -11,8 +11,10 @@
     #include "GameData.hpp"
     #include "Zappy.hpp"
 
-namespace Gui {
-    class Parser {
+namespace Gui
+{
+    class Parser
+    {
         public:
             Parser(std::shared_ptr<GameData> gameData);
             ~Parser();

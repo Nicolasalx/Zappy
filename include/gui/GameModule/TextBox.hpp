@@ -12,7 +12,7 @@
 
 namespace Gui
 {
-    class TextBox: public Gui::Zappy
+    class TextBox
     {
         public:
             TextBox();

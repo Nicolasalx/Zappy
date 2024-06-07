@@ -12,7 +12,7 @@
 
 namespace Gui
 {
-    class Player: public Gui::Zappy
+    class Player
     {
         public:
             Player();
