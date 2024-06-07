@@ -8,7 +8,9 @@
 #ifndef RENDERSKYBOX_H_
     #define RENDERSKYBOX_H_
 
-    #include "RayLibObject.hpp"
+    #include <raylib.h>
+    #include <rlgl.h>
+    #include "ARayLibModel.hpp"
     #include "GameData.hpp"
 
 namespace Gui
@@ -17,12 +19,10 @@ namespace Gui
     {
         public:
             RenderSkyBox();
-            ~RenderSkyBox() = default;
-            void render(const GameData &gameData);
-            Model model;
+            ~RenderSkyBox();
+            void render();
 
-        private:
-            Gui::GameData _gameData;
+            Model model;
     };
 }
 
