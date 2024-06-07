@@ -87,6 +87,25 @@ test_invalid_arg_ai()
 ## ! TEST
 
 test_invalid_arg_ai "zdsqdqsd"
+test_invalid_arg_ai "-n"
+test_invalid_arg_ai "-p"
+test_invalid_arg_ai "-h"
+test_invalid_arg_ai "-n -p"
+test_invalid_arg_ai "-n -h"
+test_invalid_arg_ai "-p -h"
+test_invalid_arg_ai "-n -p -h"
+test_invalid_arg_ai "-no"
+test_invalid_arg_ai "-no Team1"
+test_invalid_arg_ai "-po 4242"
+test_invalid_arg_ai "-n Team1 -p"
+test_invalid_arg_ai "-n Team1 Team2"
+test_invalid_arg_ai "-p Team1 Team1"
+test_invalid_arg_ai "-h test"
+test_invalid_arg_ai "-p 0"
+test_invalid_arg_ai "-p -1"
+test_invalid_arg_ai "-p 65536"
+test_invalid_arg_ai "-n @@@__###"
+
 
 ## ? END TEST
 

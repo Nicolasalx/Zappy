@@ -5,15 +5,15 @@
 ** ppo
 */
 
-#include "zappy_gui.hpp"
+#include "Parser.hpp"
 
-void Gui::GameState::ppo(std::vector<std::string> args)
+void Gui::Parser::ppo(std::vector<std::string> args)
 {
     if (args.size() != 4)
         return;
-    int player_id = std::stoi(args[0]);
-    for (auto it = this->players_list.begin(); it != this->players_list.end(); it++) {
-        if (it->n == player_id) {
+    int playerId = std::stoi(args[0]);
+    for (auto it = _gameData->playerList.begin(); it != _gameData->playerList.end(); it++) {
+        if (it->n == playerId) {
             it->pos.x = std::stoi(args[1]);
             it->pos.y = std::stoi(args[2]);
             it->orientation = std::stoi(args[3]);

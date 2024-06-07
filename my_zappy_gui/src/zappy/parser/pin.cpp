@@ -5,14 +5,14 @@
 ** pdi
 */
 
-#include "zappy_gui.hpp"
+#include "Parser.hpp"
 
-void Gui::GameState::pin(std::vector<std::string> args)
+void Gui::Parser::pin(std::vector<std::string> args)
 {
     if (args.size() != 10)
         return;
     int player_id = std::stoi(args[0]);
-    for (auto it = this->players_list.begin(); it != this->players_list.end(); it++) {
+    for (auto it = _gameData->playerList.begin(); it != _gameData->playerList.end(); it++) {
         if (it->n == player_id) {
             it->pos.x = std::stoi(args[1]);
             it->pos.y = std::stoi(args[2]);

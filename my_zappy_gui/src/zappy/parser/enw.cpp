@@ -5,19 +5,19 @@
 ** bct
 */
 
-#include "zappy_gui.hpp"
+#include "Parser.hpp"
 
-void Gui::GameState::enw(std::vector<std::string> args)
+void Gui::Parser::enw(std::vector<std::string> args)
 {
-    egg_t egg;
+    Egg egg;
     egg.egg_number = std::stoi(args[0]);
     egg.player_number = std::stoi(args[1]);
     egg.pos.x = std::stoi(args[2]);
     egg.pos.y = std::stoi(args[3]);
-    for (auto it = eggs_list.begin(); it != eggs_list.end(); it++) {
+    for (auto it = _gameData->eggList.begin(); it != _gameData->eggList.end(); it++) {
         if (it->pos.x == egg.pos.x && it->pos.y == egg.pos.y) {
             return;
         }
     }
-    eggs_list.push_back(egg);
+    _gameData->eggList.push_back(egg);
 }

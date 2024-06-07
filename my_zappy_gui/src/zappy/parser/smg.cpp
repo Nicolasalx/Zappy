@@ -5,14 +5,14 @@
 ** smg
 */
 
-#include "zappy_gui.hpp"
+#include "Parser.hpp"
 
-void Gui::GameState::smg(std::vector<std::string> args)
+void Gui::Parser::smg(std::vector<std::string> args)
 {
-    egg_t egg;
+    Egg egg;
     egg.egg_number = std::stoi(args[0]);
     egg.pos.x = std::stoi(args[1]);
     egg.pos.y = std::stoi(args[2]);
     egg.player_number = -1;
-    eggs_list.push_back(egg);
+    _gameData->eggList.push_back(egg);
 }

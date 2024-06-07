@@ -5,9 +5,9 @@
 ** sgt
 */
 
-#include "zappy_gui.hpp"
+#include "Parser.hpp"
 
-void Gui::GameState::sgt(std::vector<std::string> args)
+void Gui::Parser::sgt(std::vector<std::string> args)
 {
     if (args.size() != 1)
         return;
@@ -15,5 +15,5 @@ void Gui::GameState::sgt(std::vector<std::string> args)
     // for (auto arg : args) {
     //     std::cout << arg << std::endl;
     // }
-    time_unit = std::stoi(args[0]);
+    _gameData->timeUnit = std::stoi(args[0]);
 }

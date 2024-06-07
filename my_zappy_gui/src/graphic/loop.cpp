@@ -27,11 +27,15 @@ void Gui::Graphic::start(int argc, const char **argv)
 
 void Gui::Graphic::launch()
 {
-    this->displayLoader.load("./lib/libDisplay.so"); // ! Replace the path
-    this->gameLoader.load("./lib/libGame.so"); // ! Replace the path
+    this->renderLoader.load("./lib/libRender.so"); // ! Replace the path
+    this->clientLoader.load("./my_zappy_gui/client/client.so");
 
-    this->displayModule = std::unique_ptr<Gui::IRenderModule>(this->displayLoader.getInstance("entryPoint"));
-    this->gameModule = std::unique_ptr<Gui::IGameModule>(this->gameLoader.getInstance("entryPoint"));
+    this->renderModule = std::unique_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));
+    this->clientModule = std::unique_ptr<Gui::IClient>(this->clientLoader.getInstance("entryPoint"));
+
+    this->gameModule = std::make_shared<Gui::Zappy>(this->clientModule);
+
+    this->clientModule->connect("127.0.0.1", "4242");
 }
 
 bool Gui::Graphic::eventContain(const Gui::Event &eventList, const Gui::EventType &eventType)
@@ -64,13 +68,11 @@ void Gui::Graphic::loop()
     while (true) {
         Gui::FrameRate::start();
 
-        const Gui::Event &eventList = this->displayModule->getEvent();
-        if (eventContain(eventList, Gui::EventType::EXIT)) {
-            break;
-        }
-        handleCoreEvent(eventList);
-        const GameData &data = this->gameModule->update(eventList);
-        this->displayModule->render(data);
+        std::vector<std::string> messRecv = this->clientModule->recv();
+        const Gui::Event &eventList = this->renderModule->getEvent();
+
+        const GameData &data = this->gameModule->update(messRecv, eventList);
+        this->renderModule->render(data);
 
         Gui::FrameRate::end();
     }

@@ -5,12 +5,12 @@
 ** tna
 */
 
-#include "zappy_gui.hpp"
+#include "Parser.hpp"
 
-void Gui::GameState::tna(std::vector<std::string> args)
+void Gui::Parser::tna(std::vector<std::string> args)
 {
     for (auto team : args) {
-        this->team_names.push_back(team);
+        _gameData->teamName.push_back(team);
     }
     std::cout << "tna" << std::endl;
     for (auto arg : args) {

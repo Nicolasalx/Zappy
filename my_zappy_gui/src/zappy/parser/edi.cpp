@@ -5,14 +5,14 @@
 ** bct
 */
 
-#include "zappy_gui.hpp"
+#include "Parser.hpp"
 
-void Gui::GameState::ebo(std::vector<std::string> args)
+void Gui::Parser::edi(std::vector<std::string> args)
 {
     int egg_number = std::stoi(args[0]);
-    for (auto it = eggs_list.begin(); it != eggs_list.end(); it++) {
+    for (auto it = _gameData->eggList.begin(); it != _gameData->eggList.end(); it++) {
         if (it->egg_number == egg_number) {
-            eggs_list.erase(it);
+            _gameData->eggList.erase(it);
             break;
         }
     }
