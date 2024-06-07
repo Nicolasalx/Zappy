@@ -7,9 +7,7 @@
 
 #include "Graphic.hpp"
 
-Gui::Graphic::Graphic()
+Gui::Graphic::Graphic(int argc, const char **argv)
 {
-    this->start(); // Need to pass argc and argv
-    this->launch();
-    this->loop();
+    
 }

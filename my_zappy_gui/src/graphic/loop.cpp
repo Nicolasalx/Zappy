@@ -20,14 +20,15 @@
     }
 }*/
 
-void Gui::Graphic::start(int argc, const char **argv)
+void Gui::Graphic::parseArgs(int argc, const char **argv)
 {
     // Argument parsing
 }
 
 void Gui::Graphic::launch()
 {
-    this->renderLoader.load("./lib/libRender.so"); // ! Replace the path
+    // parsing Arguments
+    this->renderLoader.load("./lib/render.so"); // ! Replace the path
     this->clientLoader.load("./my_zappy_gui/client/client.so");
 
     this->renderModule = std::unique_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));

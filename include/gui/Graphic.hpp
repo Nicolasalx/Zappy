@@ -32,7 +32,7 @@ namespace Gui
             Graphic();
             ~Graphic() = default;
 
-            void start(int argc, const char **argv);
+            void parseArgs(int argc, const char **argv);
             void launch();
             void loop();
 
