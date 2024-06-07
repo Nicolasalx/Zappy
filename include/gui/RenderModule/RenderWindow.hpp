@@ -14,7 +14,7 @@ namespace Gui
     {
         public:
             RenderWindow();
-            ~RenderWindow() = default;
+            ~RenderWindow();
 
             int window_width = WINDOW_WIDTH;
             int window_height = WINDOW_HEIGHT;
