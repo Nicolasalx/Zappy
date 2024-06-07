@@ -18,6 +18,7 @@
     #include "Menu.hpp"
     #include "Particle.hpp"
     #include "TextBox.hpp"
+    #include "Parser.hpp"
     #include <memory>
 
 namespace Gui
@@ -33,6 +34,7 @@ namespace Gui
         private:
             std::shared_ptr<Gui::IClient> _client;
 
+            Gui::Parser parser;
             Gui::Window window;
             Gui::Camera camera;
             std::unique_ptr<Gui::Island> island;

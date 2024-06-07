@@ -7,7 +7,7 @@
 
 #include "Zappy.hpp"
 
-Gui::Zappy::Zappy(std::shared_ptr<Gui::IClient> client) : _client(client)
+Gui::Zappy::Zappy(std::shared_ptr<Gui::IClient> client) : _client(client) 
 {
 
 }

@@ -18,7 +18,7 @@ namespace Gui
         public:
             virtual ~IGameModule() = default;
 
-            virtual const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event) = 0;
+            virtual const Gui::GameData &update(std::vector<std::string> &messRecv, const Gui::Event &event) = 0;
     };
 }
 
