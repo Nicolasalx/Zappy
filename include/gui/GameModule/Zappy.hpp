@@ -24,7 +24,6 @@ namespace Gui
             const Gui::GameData &update(const Gui::Event &event) override;
 
         private:
-            SkyBox _skybox;
             Island _island;
             Player _player;
     };
