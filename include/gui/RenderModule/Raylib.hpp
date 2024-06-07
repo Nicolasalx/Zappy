@@ -9,7 +9,8 @@
     #define RAYLIB_H_
 
     #include "ARenderModule.hpp"
-    #include "Window.hpp"
+    #include "RenderWindow.hpp"
+    #include "RenderSkyBox.hpp"
     #include <raylib.h>
     #include <iostream>
 
@@ -26,6 +27,13 @@ namespace Gui {
 
         private:
             Gui::Window window;
+            Gui::Camera camera;
+            std::unique_ptr<Gui::RenderSkyBox> skyBox;
+            std::unique_ptr<Gui::RenderIsland> island;
+            std::unique_ptr<Gui::RenderObject> object;
+            std::unique_ptr<Gui::RenderPlayer> player;
+            Gui::Menu menu;
+            std::unique_ptr<Gui::RenderEgg> egg;
     };
 }
 

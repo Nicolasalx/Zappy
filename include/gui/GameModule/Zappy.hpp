@@ -12,7 +12,6 @@
     #include "Island.hpp"
     #include "Player.hpp"
     #include "AGameModule.hpp"
-    #include "Window.hpp"
     #include "Camera.hpp"
     #include "Object.hpp"
     #include "Menu.hpp"
