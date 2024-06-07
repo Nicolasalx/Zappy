@@ -15,9 +15,9 @@ extern "C"
     }
 }
 
-Gui::Raylib::Raylib()
+Gui::Raylib::Raylib() : window()
 {
-    // ! Create window
+    // ! Init window, etc ...
 }
 
 Gui::Raylib::~Raylib()

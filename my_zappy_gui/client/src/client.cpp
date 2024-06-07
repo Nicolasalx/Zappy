@@ -61,7 +61,7 @@ std::vector<std::string> Gui::Client::recv()
 {
     std::vector<std::string> message;
     char data[buffer_size_ + 1] = {0};
-    std::size_t length;
+    std::size_t length = 0;
 
     if (socket_.available() <= 0) {
         return std::vector<std::string>();
