@@ -9,6 +9,7 @@
     #define RAYLIB_H_
 
     #include "ARenderModule.hpp"
+    #include "Window.hpp"
     #include <raylib.h>
     #include <iostream>
 
@@ -24,6 +25,7 @@ namespace Gui {
             void render(const Gui::GameData &gameData) override;
 
         private:
+            Gui::Window window;
     };
 }
 
