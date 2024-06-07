@@ -8,7 +8,7 @@
 #ifndef EGG_H_
     #define EGG_H_
 
-    #include "gameState.hpp"
+    #include "GameData.hpp"
     #include "infoGame.hpp"
     #include <vector>
     #include <memory>
@@ -18,13 +18,11 @@ namespace Gui {
     class RenderEgg
     {
         public:
-            RenderEgg(std::shared_ptr<GameState> gameState);
+            RenderEgg();
             ~RenderEgg() = default;
-            void render();
+            void render(const GameData &gameData);
 
-            std::vector<egg_t> eggs_list;
         private:
-            std::shared_ptr<GameState> _gameState;
     };
 }
 

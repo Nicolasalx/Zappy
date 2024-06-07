@@ -25,7 +25,7 @@ namespace Gui
             void drawPlayer(rayInfo &rayInfo);
             void drawPlayerModel(Player &player);
             void drawPlayerBox(rayinfo &rayinfo, Player &player);
-            void render() {};
+            void render(const GameData &gameData);
 
             ModelAnimation *player_animation;
             std::map<int, int> player_orientation;

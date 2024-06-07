@@ -2,26 +2,24 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** TextBox
+** RenderMenu
 */
 
-#ifndef TILE_HPP_
-    #define TILE_HPP_
+#ifndef RENDERMENU_H_
+    #define RENDERMENU_H_
 
-    #include "Raylib.hpp"
+    #include "GameData.hpp"
 
 namespace Gui {
-    class Tile
+    class RenderMenu
     {
         public:
-            Tile();
-            ~Tile() override;
-
+            RenderMenu();
+            ~RenderMenu() = default;
             void render(const GameData &gameData);
 
         private:
-    
     };
 }
 
-#endif /* !TILE_H_ */
+#endif /* !RENDERMENU_H_ */
