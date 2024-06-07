@@ -21,6 +21,8 @@ LIB_PATH		=	../lib/cpp_lib/
 
 LIB_NAME		=	../lib/cpp_lib/my_cpplib.a
 
+LIB_CLIENT		=	./client/
+
 SRC_TESTS		:=	$(shell find tests/ -name "*.cpp")
 
 RUN_TEST		=	--coverage -lcriterion
@@ -36,6 +38,7 @@ OBJ				=	$(SRC:.cpp=.o)
 
 $(NAME): $(OBJ)
 	@cd $(LIB_PATH) && $(MAKE) ADDITIONAL_FLAGS="$(ADDITIONAL_FLAGS)"
+	@cd $(LIB_PATH) && $(MAKE)
 	@if g++ -o $(NAME) $(OBJ) $(LIB_NAME) $(CPPFLAGS) $(INCLUDE_PATH); then \
 		printf "[\e[92mCOMPILATION OK\e[0m] "; \
 		printf "g++ -o $(NAME) $(OBJ) $(LIB_NAME) $(CPPFLAGS)\n"; \
