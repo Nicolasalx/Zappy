@@ -10,21 +10,21 @@
 
     #include <vector>
     #include <string>
-    #include "RayLibObject.hpp"
+    #include "ARayLibModel.hpp"
     #include <map>
 
 namespace Gui
 {
-    class RenderPlayer
+    class RenderPlayer : public virtual ARayLibModel
     {
         public:
             RenderPlayer();
             ~RenderPlayer() = default;
-            void updateAnimation(Player &player);
-            void updatePlayerPos(Player &player);
-            void drawPlayer(rayInfo &rayInfo);
-            void drawPlayerModel(Player &player);
-            void drawPlayerBox(rayinfo &rayinfo, Player &player);
+            // void updateAnimation(Player &player);
+            // void updatePlayerPos(Player &player);
+            // void drawPlayer(rayInfo &rayInfo);
+            void drawPlayerModel(const Player &player);
+            // void drawPlayerBox(rayinfo &rayinfo, Player &player);
             void render(const GameData &gameData);
 
             ModelAnimation *player_animation;
