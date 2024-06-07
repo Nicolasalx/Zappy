@@ -5,10 +5,11 @@
 ** island
 */
 
-#ifndef ISLAND_H_
-    #define ISLAND_H_
+#ifndef RENDERISLAND_H_
+    #define RENDERISLAND_H_
 
     #include <vector>
+    #include <memory>
 
 namespace Gui
 {
@@ -27,4 +28,4 @@ namespace Gui
     };
 }
 
-#endif /* !ISLAND_H_ */
+#endif /* !RENDERISLAND_H_ */
