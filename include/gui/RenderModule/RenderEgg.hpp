@@ -15,10 +15,11 @@
     #include "raylibInfo.hpp"
 
 namespace Gui {
-    class Egg : public virtual IRaylib {
+    class RenderEgg
+    {
         public:
-            Egg(std::shared_ptr<GameState> gameState);
-            ~Egg() = default;
+            RenderEgg(std::shared_ptr<GameState> gameState);
+            ~RenderEgg() = default;
             void render();
 
             std::vector<egg_t> eggs_list;

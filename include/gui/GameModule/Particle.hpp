@@ -21,7 +21,7 @@ namespace Gui
             const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event) override;
 
         private:
-    
+
     };
 }
 

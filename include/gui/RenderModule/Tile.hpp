@@ -11,14 +11,14 @@
     #include "Raylib.hpp"
 
 namespace Gui {
-    class Tile: public Gui::Raylib
+    class Tile
     {
         public:
             Tile();
             ~Tile() override;
 
             const Gui::GameData &update(const Gui::Event &event) override;
-    
+
         private:
     
     };

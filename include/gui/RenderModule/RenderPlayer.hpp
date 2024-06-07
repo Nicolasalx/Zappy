@@ -15,15 +15,16 @@
 
 namespace Gui
 {
-    class RenderPlayer : public virtual RaylibObject {
+    class RenderPlayer
+    {
         public:
-            Player();
-            ~Player() = default;
-            void updateAnimation(player_t &player);
-            void updatePlayerPos(player_t &player);
-            void drawPlayer(ray_info_t &rayInfo);
-            void drawPlayerModel(player_t &player);
-            void drawPlayerBox(ray_info_t &rayinfo, player_t &player);
+            RenderPlayer();
+            ~RenderPlayer() = default;
+            void updateAnimation(Player &player);
+            void updatePlayerPos(Player &player);
+            void drawPlayer(rayInfo &rayInfo);
+            void drawPlayerModel(Player &player);
+            void drawPlayerBox(rayinfo &rayinfo, Player &player);
             void render() {};
 
             ModelAnimation *player_animation;

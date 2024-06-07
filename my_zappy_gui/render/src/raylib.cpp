@@ -15,7 +15,7 @@ extern "C"
     }
 }
 
-Gui::Raylib::Raylib() : window(), 
+Gui::Raylib::Raylib() : window(),
 {
     this->skyBox = std::make_unique<Gui::SkyBox>(gameData);
     this->object = std::make_unique<Gui::Object>(gameData);

@@ -9,17 +9,20 @@
     #define RENDERSKYBOX_H_
 
     #include "RayLibObject.hpp"
+    #include "GameData.hpp"
 
 namespace Gui
 {
-    class RenderSkyBox : public virtual RaylibObject {
+    class RenderSkyBox
+    {
         public:
             RenderSkyBox();
             ~RenderSkyBox() = default;
-            void render();
+            void render(const GameData &gameData);
             Model model;
 
         private:
+            Gui::GameData _gameData;
     };
 }
 

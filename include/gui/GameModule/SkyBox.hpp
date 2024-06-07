@@ -9,20 +9,25 @@
     #define SKYBOX_HPP_
 
     #include "Zappy.hpp"
-    #include "infoGame.hpp"
+    #include <raylib.h>
 
 namespace Gui
 {
+    struct SkyBox {
+        std::string vsFileName;
+        std::string fsFileName;
+        std::string fileNameImage;
+    };
     class SkyBox
     {
         public:
             SkyBox();
             ~SkyBox() override;
 
-            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event) override;
+            const Gui::GameData &update(Gui::SkyBox &skybox) override;
 
         private:
-    
+
     };
 }
 

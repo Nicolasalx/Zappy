@@ -15,10 +15,11 @@
 
 namespace Gui
 {
-    class Object : public virtual IRaylib {
+    class RenderObject
+    {
         public:
-            Object(std::shared_ptr<GameState> gameState);
-            ~Object() = default;
+            RenderObject(std::shared_ptr<GameState> gameState);
+            ~RenderObject() = default;
 
             float object_padding[7][2];
 

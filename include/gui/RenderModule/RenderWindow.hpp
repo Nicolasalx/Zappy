@@ -10,10 +10,11 @@
 
 namespace Gui
 {
-    class Window {
+    class RenderWindow
+    {
         public:
-            Window();
-            ~Window() = default;
+            RenderWindow();
+            ~RenderWindow() = default;
 
             int window_width = WINDOW_WIDTH;
             int window_height = WINDOW_HEIGHT;

@@ -11,7 +11,7 @@ void Gui::Raylib::render(const Gui::GameData &gameData)
 {
     BeginMode3D(this->camera._data);
     // BeginShaderMode(light_shader);
-    this->skyBox->render();
+    this->skyBox->render(gameData);
     this->player->drawPlayer(this->rayInfo);
     this->object->render();
     this->particle.drawParticle(this->camera._data);
