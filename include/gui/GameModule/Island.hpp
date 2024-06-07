@@ -9,6 +9,7 @@
     #define ISLAND_HPP_
 
     #include "Zappy.hpp"
+    #include "GameData.hpp"
 
 namespace Gui
 {
@@ -16,9 +17,9 @@ namespace Gui
     {
         public:
             Island();
-            ~Island() override;
+            ~Island() = default;
 
-            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event) override;
+            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event);
 
         private:
     

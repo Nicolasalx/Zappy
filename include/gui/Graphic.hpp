@@ -18,6 +18,7 @@
     #include <vector>
     #include <map>
     #include <functional>
+    #include "GameData.hpp"
     #include "Zappy.hpp"
     #include "Raylib.hpp"
     #include <thread>
