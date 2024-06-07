@@ -28,6 +28,10 @@ static void get_port(const char **argv, ai_arg_t *ai_arg, int i)
             printf("Error: Port must be a number\n");
             my_exit(84);
         }
+        if (atoi(argv[i + 1]) <= 0 || atoi(argv[i + 1]) > MAX_PORT_NB) {
+            printf("Error: Port must be between 0 and %d\n", MAX_PORT_NB);
+            my_exit(84);
+        }
         ai_arg->port = atoi(argv[i + 1]);
     }
 }
