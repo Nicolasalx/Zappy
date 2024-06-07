@@ -5,9 +5,10 @@
 ** updateIsland
 */
 
+#include "Zappy.hpp"
 #include "Island.hpp"
 
-const Gui::GameData &Gui::Island::update(const Gui::Event &event)
+const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event)
 {
 
 }

@@ -9,16 +9,17 @@
     #define ISLAND_HPP_
 
     #include "Zappy.hpp"
+    #include "GameData.hpp"
 
 namespace Gui
 {
-    class Island: virtual public Gui::Zappy
+    class Island
     {
         public:
             Island();
-            ~Island() override;
+            ~Island() = default;
 
-            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event) override;
+            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event);
 
         private:
     

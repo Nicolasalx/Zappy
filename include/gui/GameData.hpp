@@ -9,7 +9,6 @@
     #define GAMEDATA_HPP_
 
     #include "InfoGame.hpp"
-    #include "TextBox.hpp"
 
 namespace Gui
 {
