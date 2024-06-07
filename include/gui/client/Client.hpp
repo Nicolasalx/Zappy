@@ -27,9 +27,10 @@ namespace Gui
         void bufferisingReply(std::string reply, std::vector<std::string> &message);
 
     public:
-        Client(const std::string &ip, const std::string &port);
+        Client();
         ~Client() override;
 
+        void connect(const std::string &ip, const std::string &port) override;
         void send(const std::string &message) override;
         std::vector<std::string> recv() override;
     };
