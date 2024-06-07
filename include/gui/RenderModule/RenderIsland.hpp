@@ -14,13 +14,12 @@
 
 namespace Gui
 {
-    class RenderIsland
+    class RenderIsland : public virtual Gui::ARayLibModel
     {
         public:
             RenderIsland();
             ~RenderIsland() = default;
 
-            void drawMap(rayInfo &rayInfo);
             void render(const GameData &gameData);
 
             float size;
