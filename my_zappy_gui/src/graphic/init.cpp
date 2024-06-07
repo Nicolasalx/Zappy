@@ -7,7 +7,7 @@
 
 #include "Graphic.hpp"
 
-Gui::Graphic::Graphic(int argc, const char **argv)
+Gui::Graphic::Graphic()
 {
     
 }
