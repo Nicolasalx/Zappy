@@ -39,9 +39,6 @@ namespace Gui
             bool eventContain(const Gui::Event &eventList, const Gui::EventType &eventType);
             void handleCoreEvent(const Gui::Event &eventList);
 
-            std::shared_ptr<Zappy> actual_game; //changer plus tard par IGameModule
-            std::shared_ptr<Raylib> actual_graphic; // changer plus tard par IRenderModule
-
             std::unique_ptr<Gui::IRenderModule> displayModule;
             std::unique_ptr<Gui::IGameModule> gameModule;
             Gui::DLLoader<Gui::IRenderModule> displayLoader;

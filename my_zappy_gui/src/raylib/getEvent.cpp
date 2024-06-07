@@ -11,16 +11,25 @@ Gui::Event Gui::Raylib::getEvent()
 {
     Gui::Event event;
 
-    // ! handle event (see below what we had in arcade)
-    // while (this->_window.pollEvent(this->_event)) {
-    //     if (this->_event.type == sf::Event::Closed) {
-    //         event.eventType.push_back(Gui::EventType::EXIT);
-    //     }
-    //     if (this->_ignoreKey) {
-    //         this->putEventInBuffer(event);
-    //     } else {
-    //         this->putEventInEventList(event);
-    //     }
-    // }
+    event.frame_time = GetFrameTime();
+    if (IsWindowResized()) {
+        event.eventType.push_back(Gui::EventType::WINDOW_RESIZED);
+        event.window_size_x = GetScreenWidth();
+        event.window_size_y = GetScreenHeight();
+    }
+    if (IsKeyPressed(KEY_P)) {
+        event.eventType.push_back(Gui::EventType::KEY_P);
+    }
+    if (IsKeyPressed(KEY_I)) {
+        event.eventType.push_back(Gui::EventType::KEY_I);
+    }
+    if (IsKeyPressed(KEY_O)) {
+        event.eventType.push_back(Gui::EventType::KEY_O);
+    }
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        event.eventType.push_back(Gui::EventType::LEFT_CLICK);
+        event.mouse_x = GetMouseX();
+        event.mouse_y = GetMouseY();
+    }
     return event;
 }

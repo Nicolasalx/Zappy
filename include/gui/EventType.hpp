@@ -13,17 +13,16 @@ namespace Gui
     enum class EventType
     {
         EXIT,
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT,
+        KEY_I,
+        KEY_O,
+        KEY_P,
+        LEFT_CLICK,
         NEXT_DISPLAY,
         NEXT_GAME,
         BACK_MENU,
         RESTART,
-        INTERACT_1,
-        INTERACT_2,
-        ENTER
+        ENTER,
+        WINDOW_RESIZED,
     };
 }
 
