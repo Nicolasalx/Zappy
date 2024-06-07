@@ -8,26 +8,26 @@
 #ifndef RENDEROBJECT_H_
     #define RENDEROBJECT_H_
 
+    #include "ARayLibModel.hpp"
+    #include "GameConfig.hpp"
     #include "GameData.hpp"
+    #include <complex>
     #include <vector>
     #include <memory>
 
 namespace Gui
 {
-    class RenderObject
+    class RenderObject : public virtual ARayLibModel
     {
         public:
             RenderObject();
             ~RenderObject() = default;
 
-            float object_padding[7][2];
-
             void render(const GameData &gameData);
 
-            // std::vector<Model> _modelList;
+            float object_padding[7][2];
 
         private:
-            // std::shared_ptr<GameState> _gameState;
 
     };
 }
