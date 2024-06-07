@@ -5,8 +5,8 @@
 ** player
 */
 
-#ifndef PLAYER_H_
-    #define PLAYER_H_
+#ifndef RENDERPLAYER_H_
+    #define RENDERPLAYER_H_
 
     #include <vector>
     #include <string>
@@ -35,4 +35,4 @@ namespace Gui
     };
 }
 
-#endif /* !PLAYER_H_ */
+#endif /* !RENDERPLAYER_H_ */
