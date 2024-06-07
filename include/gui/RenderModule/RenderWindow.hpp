@@ -5,8 +5,8 @@
 ** window
 */
 
-#ifndef WINDOW_H_
-    #define WINDOW_H_
+#ifndef RENDERWINDOW_H_
+    #define RENDERWINDOW_H_
 
 namespace Gui
 {
@@ -23,4 +23,4 @@ namespace Gui
     };
 }
 
-#endif /* !WINDOW_H_ */
+#endif /* !RENDERWINDOW_H_ */
