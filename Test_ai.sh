@@ -63,26 +63,15 @@ display_progress_bar()
     printf "] %d%% (%d/%d)\n" "$percentage" "$passed" "$total"
 }
 
-test_invalid_arg_server()
-{
-    test_name "$1"
-    ./zappy_server $1 &
-    pid=$!
-    sleep 0.1
-    kill $pid 2> /dev/null
-    wait $pid
-    test_return_84
-}
-
-test_valid_arg_server()
-{
-    test_name "$1"
-    ./zappy_server $1 &
-    pid=$!
-    sleep 0.1
-    kill $pid 2> /dev/null
-    test_return_0
-}
+##test_valid_arg_ai()
+##{
+##    test_name "$1"
+##    ./zappy_ai $1 &
+##    pid=$!
+##    sleep 0.1
+##    kill $pid 2> /dev/null
+##    test_return_0
+##}
 
 test_invalid_arg_ai()
 {
