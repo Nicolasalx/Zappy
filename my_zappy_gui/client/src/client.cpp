@@ -9,17 +9,15 @@
 
 extern "C"
 {
-    Gui::IClient *entryPoint(const char *ip, const char *port)
+    Gui::IClient *entryPoint(void)
     {
-        return new Gui::Client(ip, port);
+        return new Gui::Client();
     }
 }
 
-Gui::Client::Client(const std::string &ip, const std::string &port)
+Gui::Client::Client()
     : io_context_(), resolver_(io_context_), socket_(io_context_)
 {
-    endpoint_ = asio::ip::tcp::resolver::results_type(resolver_.resolve(ip, port));
-    asio::connect(socket_, endpoint_);
 }
 
 Gui::Client::~Client()
@@ -27,6 +25,12 @@ Gui::Client::~Client()
     if (socket_.is_open()) {
         socket_.close();
     }
+}
+
+void Gui::Client::connect(const std::string &ip, const std::string &port)
+{
+    endpoint_ = asio::ip::tcp::resolver::results_type(resolver_.resolve(ip, port));
+    asio::connect(socket_, endpoint_);
 }
 
 void Gui::Client::send(const std::string &message)
