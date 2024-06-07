@@ -14,10 +14,10 @@ namespace Gui {
     class RenderCamera
     {
         public:
-            RenderCamera();
+            RenderCamera() = default;
             ~RenderCamera() = default;
-            void render(const GameData &gameData);
 
+            Camera3D camera;
         private:
     };
 }
