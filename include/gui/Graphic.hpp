@@ -23,6 +23,7 @@
     #include <thread>
     #include "IRenderModule.hpp"
     #include "DLLoader.hpp"
+    #include "IClient.hpp"
 
 namespace Gui
 {
@@ -42,11 +43,13 @@ namespace Gui
             std::shared_ptr<Zappy> actual_game; //changer plus tard par IGameModule
             std::shared_ptr<Raylib> actual_graphic; // changer plus tard par IRenderModule
 
-            std::unique_ptr<Gui::IRenderModule> displayModule;
-            std::unique_ptr<Gui::IGameModule> gameModule;
-            Gui::DLLoader<Gui::IRenderModule> displayLoader;
-            Gui::DLLoader<Gui::IGameModule> gameLoader;
+            std::shared_ptr<Gui::IRenderModule> renderModule;
+            std::shared_ptr<Gui::IClient> clientModule;
 
+            std::shared_ptr<Gui::IGameModule> gameModule;
+
+            Gui::DLLoader<Gui::IClient> clientLoader;
+            Gui::DLLoader<Gui::IRenderModule> renderLoader;
     };
 }
 
