@@ -9,14 +9,14 @@
 
 void Gui::Raylib::render(const Gui::GameData &gameData)
 {
-    BeginMode3D(this->camera._data);
+    BeginMode3D(this->camera.camera);
     // BeginShaderMode(light_shader);
-    this->skyBox->render(gameData);
-    this->player->drawPlayer(this->rayInfo);
-    this->object->render();
-    this->particle.drawParticle(this->camera._data);
-    this->island->drawMap(this->rayInfo);
-    this->egg->render();
+    this->skyBox->render();
+    this->player->render(gameData);
+    this->object->render(gameData);
+    // this->particle.drawParticle(this->camera._data);
+    this->island->render(gameData);
+    this->egg->render(gameData);
     // EndShaderMode();
     EndMode3D();
 }
