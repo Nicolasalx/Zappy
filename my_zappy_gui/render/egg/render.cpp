@@ -7,9 +7,9 @@
 
 #include "RenderEgg.hpp"
 
-void Gui::RenderEgg::render(std::shared_ptr<Gui::GameState> gameState)
+void Gui::RenderEgg::render(std::shared_ptr<Gui::GameData> gameData)
 {
-    for (auto it = gameState->eggs_list.begin(); it != gameState->eggs_list.end(); ++it) {
+    for (auto it = gameData->eggList.begin(); it != gameData->eggList.end(); ++it) {
         this->drawModel(
             ModelInfo(0,
                 {

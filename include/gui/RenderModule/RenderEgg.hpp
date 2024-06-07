@@ -23,7 +23,7 @@ namespace Gui
         RenderEgg(const std::string &eggModel, const std::string &eggTexture);
         ~RenderEgg() = default;
 
-        void render(std::shared_ptr<Gui::GameState> gameState);
+        void render(std::shared_ptr<Gui::GameData> gameData);
     };
 }
 
