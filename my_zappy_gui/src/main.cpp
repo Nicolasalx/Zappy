@@ -5,8 +5,8 @@
 ** main
 */
 
-#include "zappy_gui.hpp"
-#include "client.hpp"
+#include "Client.hpp"
+#include "Graphic.hpp"
 
 int main(int argc, char const *argv[])
 {
