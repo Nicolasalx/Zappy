@@ -10,20 +10,19 @@
 
     #include "ARayLibModel.hpp"
     #include "GameData.hpp"
-    #include "infoGame.hpp"
+    #include "GameConfig.hpp"
     #include <vector>
     #include <memory>
-    #include "raylibInfo.hpp"
 
 namespace Gui
 {
-    class RenderEgg : public virtual Gui::ARayLibModel
+    class RenderEgg : public virtual ARayLibModel
     {
     public:
-        RenderEgg(const std::string &eggModel, const std::string &eggTexture);
+        RenderEgg();
         ~RenderEgg() = default;
 
-        void render(std::shared_ptr<Gui::GameData> gameData);
+        void render(const GameData &gameData);
     };
 }
 
