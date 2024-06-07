@@ -31,7 +31,6 @@ namespace Gui
             const Gui::GameData &update(std::vector<std::string> &messRecv, const Gui::Event &event) override;
 
         private:
-<<<<<<< HEAD:include/gui/Zappy.hpp
             std::shared_ptr<Gui::IClient> _client;
 
             Gui::Window window;
@@ -43,10 +42,6 @@ namespace Gui
             Gui::ParticleSystem particle;
             Gui::TextBox_list textBoxs;
             std::unique_ptr<Gui::Egg> egg;
-=======
-            Island _island;
-            Player _player;
->>>>>>> ec94528a56349b7592640b98229cff818ce1e9c6:include/gui/GameModule/Zappy.hpp
     };
 };
 
