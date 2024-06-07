@@ -17,11 +17,10 @@ namespace Gui
             SkyBox(std::shared_ptr<GameState> gameState);
             ~SkyBox() = default;
             void render();
-            Model model;
 
+            Model model;
         private:
             std::shared_ptr<GameState> _gameState;
-
     };
 }
 
