@@ -5,27 +5,26 @@
 ** egg
 */
 
-#ifndef EGG_H_
-    #define EGG_H_
+#ifndef RENDEREGG_H_
+    #define RENDEREGG_H_
 
+    #include "ARayLibModel.hpp"
     #include "gameState.hpp"
     #include "infoGame.hpp"
     #include <vector>
     #include <memory>
     #include "raylibInfo.hpp"
 
-namespace Gui {
-    class RenderEgg
+namespace Gui
+{
+    class RenderEgg : public virtual Gui::ARayLibModel
     {
-        public:
-            RenderEgg(std::shared_ptr<GameState> gameState);
-            ~RenderEgg() = default;
-            void render();
+    public:
+        RenderEgg(const std::string &eggModel, const std::string &eggTexture);
+        ~RenderEgg() = default;
 
-            std::vector<egg_t> eggs_list;
-        private:
-            std::shared_ptr<GameState> _gameState;
+        void render(std::shared_ptr<Gui::GameState> gameState);
     };
 }
 
-#endif /* !EGG_H_ */
+#endif /* !RENDEREGG_H_ */
