@@ -10,20 +10,14 @@
 
 int main(int argc, char const *argv[])
 {
-    std::shared_ptr<Gui::GameState> gameState = std::make_shared<Gui::GameState>();
+    std::shared_ptr<Gui::GameData> gameState = std::make_shared<Gui::GameData>();
+
+    Gui::Graphic graphic;
 
     try {
-        std::thread clientThread([](int argc, const char **argv, std::shared_ptr<Gui::GameState> gameState)
-            {
-                Gui::Client client(argc, argv, gameState);
-            }, argc, argv, gameState);
-        std::thread graphicThread([](std::shared_ptr<Gui::GameState> gameState)
-            {
-                Gui::Graphic graphic(gameState);
-            }, gameState);
-        graphicThread.join();
-        clientThread.join();
-
+        graphic.parseArgs(argc, argv);
+        graphic.launch();
+        graphic.loop();
     } catch (my::tracked_exception &e) {
         my::log::error(e.what());
         return 84;
