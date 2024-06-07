@@ -10,6 +10,4 @@
 Gui::RenderEgg::RenderEgg(const std::string &eggModel, const std::string &eggTexture)
 {
     this->addModel(eggModel, eggTexture);
-    // "bonus/assets/egg.obj"
-    // "bonus/assets/texture_egg.png"
 }
