@@ -13,7 +13,7 @@ CPPFLAGS		=	-std=c++20 -Wall -Wextra -lraylib -lGL -g3 \
 
 INCLUDE_PATH	=	-I../include/ -I../include/lib/cpp_lib/ \
 					-I../include/gui/ -I../include/gui/client \
-					-I../include/gui/GameModule/ -I../include/gui/RenderModule/ \
+					-I../include/gui/GameModule/ -I../include/gui/RenderModule/
 
 NAME			=	../zappy_gui
 
