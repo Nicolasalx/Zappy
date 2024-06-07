@@ -8,11 +8,11 @@
 #ifndef PLAYER_HPP_
     #define PLAYER_HPP_
 
-    #include "AGameModule.hpp"
+    #include "Zappy.hpp"
 
 namespace Gui
 {
-    class Player: public Gui::AGameModule
+    class Player: public Gui::Zappy
     {
         public:
             Player();

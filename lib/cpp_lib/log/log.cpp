@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** B-OOP-400-PAR-4-1-raytracer-thibaud.cathala
+** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
 ** log
 */

@@ -8,11 +8,11 @@
 #ifndef OBJECT_HPP_
     #define OBJECT_HPP_
 
-    #include "AGameModule.hpp"
+    #include "Zappy.hpp"
 
 namespace Gui
 {
-    class Object: public Gui::AGameModule
+    class Object: public Gui::Zappy
     {
         public:
             Object();

@@ -13,7 +13,8 @@
 
 namespace Gui
 {
-    class IRenderModule {
+    class IRenderModule
+    {
         public:
             virtual ~IRenderModule() = default;
             virtual Event getEvent() = 0;

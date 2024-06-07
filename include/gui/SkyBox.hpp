@@ -8,11 +8,11 @@
 #ifndef SKYBOX_HPP_
     #define SKYBOX_HPP_
 
-    #include "AGameModule.hpp"
+    #include "Zappy.hpp"
 
 namespace Gui
 {
-    class SkyBox: public Gui::AGameModule
+    class SkyBox : public Gui::Zappy
     {
         public:
             SkyBox();

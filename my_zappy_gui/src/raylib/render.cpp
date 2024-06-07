@@ -2,17 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** zappy
+** render
 */
 
-#include "Zappy.hpp"
+#include "Raylib.hpp"
 
-Gui::Zappy::Zappy()
-{
-
-}
-
-Gui::Zappy::~Zappy()
+void Gui::Raylib::render(const Gui::GameData &gameData)
 {
 
 }

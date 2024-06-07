@@ -8,11 +8,11 @@
 #ifndef MENU_HPP_
     #define MENU_HPP_
 
-    #include "AGameModule.hpp"
+    #include "Zappy.hpp"
 
 namespace Gui
 {
-    class Menu: public Gui::AGameModule
+    class Menu: public Gui::Zappy
     {
         public:
             Menu();

@@ -7,12 +7,7 @@
 
 #include "Zappy.hpp"
 
-Gui::Zappy::Zappy()
-{
-
-}
-
-Gui::Zappy::~Zappy()
+const Gui::GameData &Gui::Zappy::update(const Gui::Event &event)
 {
 
 }
