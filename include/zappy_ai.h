@@ -21,6 +21,7 @@
     #include <time.h>
     #include <pthread.h>
     #include <semaphore.h>
+    #include <ctype.h>
 
     #define MAX_PORT_NB 65535
     #define BUFFER_SIZE 4096
