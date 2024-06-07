@@ -5,8 +5,8 @@
 ** object
 */
 
-#ifndef OBJECT_H_
-    #define OBJECT_H_
+#ifndef RENDEROBJECT_H_
+    #define RENDEROBJECT_H_
 
     #include "raylibInfo.hpp"
     #include "gameState.hpp"
@@ -33,4 +33,4 @@ namespace Gui
     };
 }
 
-#endif /* !OBJECT_H_ */
+#endif /* !RENDEROBJECT_H_ */
