@@ -20,14 +20,32 @@
     }
 }*/
 
-void Gui::Graphic::start(int argc, const char **argv)
+void Gui::Graphic::parseArgs(int argc, const char **argv)
 {
-    // Argument parsing
+    for (int i = 1; i < argc; i++) {
+        if (argv[i] == std::string("-p")) {
+            if (i + 1 >= argc)
+                throw my::tracked_exception("Invalid Port.\n");
+            this->port = argv[i + 1];
+        }
+        if (argv[i] == std::string("-h")) {
+            if (i + 1 >= argc)
+                throw my::tracked_exception("Invalid Ip.\n");
+            this->ip = argv[i + 1];
+        }
+        if (argv[i] == std::string("-help")) {
+            std::cout << "USAGE: ./zappy_gui -p port -h ip" << std::endl;
+            exit(0);
+        }
+    }
+    if (this->ip == "localhost") {
+        this->ip = "127.0.0.1";
+    }
 }
 
 void Gui::Graphic::launch()
 {
-    this->renderLoader.load("./lib/libRender.so"); // ! Replace the path
+    this->renderLoader.load("./my_zappy_gui/render/render.so");
     this->clientLoader.load("./my_zappy_gui/client/client.so");
 
     this->renderModule = std::unique_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));
@@ -35,7 +53,7 @@ void Gui::Graphic::launch()
 
     this->gameModule = std::make_shared<Gui::Zappy>(this->clientModule);
 
-    this->clientModule->connect("127.0.0.1", "4242");
+    this->clientModule->connect(this->ip, this->port);
 }
 
 bool Gui::Graphic::eventContain(const Gui::Event &eventList, const Gui::EventType &eventType)

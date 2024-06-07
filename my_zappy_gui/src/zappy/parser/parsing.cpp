@@ -5,32 +5,32 @@
 ** parsing
 */
 
-#include "Zappy.hpp"
+#include "Parser.hpp"
 
 Gui::Parser::Parser(std::shared_ptr<GameData> gameData) : _gameData(gameData)
 {
-    cmd_map.emplace("msz", [this](std::vector<std::string> args) { this->msz(args); });
-    cmd_map.emplace("bct", [this](std::vector<std::string> args) { this->bct(args); });
-    cmd_map.emplace("tna", [this](std::vector<std::string> args) { this->tna(args); });
-    cmd_map.emplace("pnw", [this](std::vector<std::string> args) { this->pnw(args); });
-    cmd_map.emplace("ppo", [this](std::vector<std::string> args) { this->ppo(args); });
-    cmd_map.emplace("plv", [this](std::vector<std::string> args) { this->plv(args); });
-    cmd_map.emplace("pin", [this](std::vector<std::string> args) { this->pin(args); });
-    cmd_map.emplace("pic", [this](std::vector<std::string> args) { this->pic(args); });
-    cmd_map.emplace("pie", [this](std::vector<std::string> args) { this->pie(args); });
-    cmd_map.emplace("pdi", [this](std::vector<std::string> args) { this->pdi(args); });
-    cmd_map.emplace("enw", [this](std::vector<std::string> args) { this->enw(args); });
-    cmd_map.emplace("ebo", [this](std::vector<std::string> args) { this->ebo(args); });
-    cmd_map.emplace("edi", [this](std::vector<std::string> args) { this->edi(args); });
-    cmd_map.emplace("sgt", [this](std::vector<std::string> args) { this->sgt(args); });
-    cmd_map.emplace("smg", [this](std::vector<std::string> args) { this->smg(args); });
+    _cmdMap.emplace("msz", [this](std::vector<std::string> args) { this->msz(args); });
+    _cmdMap.emplace("bct", [this](std::vector<std::string> args) { this->bct(args); });
+    _cmdMap.emplace("tna", [this](std::vector<std::string> args) { this->tna(args); });
+    _cmdMap.emplace("pnw", [this](std::vector<std::string> args) { this->pnw(args); });
+    _cmdMap.emplace("ppo", [this](std::vector<std::string> args) { this->ppo(args); });
+    _cmdMap.emplace("plv", [this](std::vector<std::string> args) { this->plv(args); });
+    _cmdMap.emplace("pin", [this](std::vector<std::string> args) { this->pin(args); });
+    _cmdMap.emplace("pic", [this](std::vector<std::string> args) { this->pic(args); });
+    _cmdMap.emplace("pie", [this](std::vector<std::string> args) { this->pie(args); });
+    _cmdMap.emplace("pdi", [this](std::vector<std::string> args) { this->pdi(args); });
+    _cmdMap.emplace("enw", [this](std::vector<std::string> args) { this->enw(args); });
+    _cmdMap.emplace("ebo", [this](std::vector<std::string> args) { this->ebo(args); });
+    _cmdMap.emplace("edi", [this](std::vector<std::string> args) { this->edi(args); });
+    _cmdMap.emplace("sgt", [this](std::vector<std::string> args) { this->sgt(args); });
+    _cmdMap.emplace("smg", [this](std::vector<std::string> args) { this->smg(args); });
 }
 
-Gui::GameState::~GameState()
+Gui::Parser::~Parser()
 {
 }
 
-void Gui::GameState::parse_server_reply(std::string reply_data)
+void Gui::Parser::parse_server_reply(std::string reply_data)
 {
     std::string cmd;
     std::string type;
@@ -48,8 +48,8 @@ void Gui::GameState::parse_server_reply(std::string reply_data)
             cmd.erase(0, cmd.find(' ') + 1);
         }
         args.push_back(cmd);
-        if (cmd_map.find(type) != cmd_map.end()) {
-            cmd_map[type](args);
+        if (_cmdMap.find(type) != _cmdMap.end()) {
+            _cmdMap[type](args);
         }
         reply_data.erase(0, pos + 1);
         args.clear();

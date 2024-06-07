@@ -9,7 +9,5 @@
 
 Gui::Graphic::Graphic()
 {
-    this->start(); // Need to pass argc and argv
-    this->launch();
-    this->loop();
+    
 }

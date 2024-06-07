@@ -34,7 +34,7 @@ namespace Gui {
 
         private:
             std::shared_ptr<GameData> _gameData;
-            std::map<std::string, std::function<void(std::vector<std::string>)>> cmd_map;
+            std::map<std::string, std::function<void(std::vector<std::string>)>> _cmdMap;
     };
 }
 

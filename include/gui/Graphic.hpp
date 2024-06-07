@@ -33,7 +33,7 @@ namespace Gui
             Graphic();
             ~Graphic() = default;
 
-            void start(int argc, const char **argv);
+            void parseArgs(int argc, const char **argv);
             void launch();
             void loop();
 
@@ -51,6 +51,9 @@ namespace Gui
 
             Gui::DLLoader<Gui::IClient> clientLoader;
             Gui::DLLoader<Gui::IRenderModule> renderLoader;
+
+            std::string port = "4242";
+            std::string ip = "127.0.0.1";
     };
 }
 
