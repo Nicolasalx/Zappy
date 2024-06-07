@@ -18,6 +18,11 @@ namespace Gui
     {
         std::vector<Gui::EventType> eventType;
         std::string buffer;
+        int mouse_x;
+        int mouse_y;
+        int window_size_x;
+        int window_size_y;
+        double frame_time;
     };
 }
 
