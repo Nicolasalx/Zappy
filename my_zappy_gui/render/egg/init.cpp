@@ -7,7 +7,7 @@
 
 #include "RenderEgg.hpp"
 
-Gui::RenderEgg::RenderEgg(const std::string &eggModel, const std::string &eggTexture)
+Gui::RenderEgg::RenderEgg()
 {
-    this->addModel(eggModel, eggTexture);
+    this->addModel(Gui::EGG_MODEL.data(), Gui::EGG_TEXTURE.data());
 }
