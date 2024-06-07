@@ -8,6 +8,7 @@
 #ifndef ARAYLIBMODEL_H_
     #define ARAYLIBMODEL_H_
 
+    #include "GameData.hpp"
     #include <raylib.h>
     #include <iostream>
     #include <vector>
@@ -53,7 +54,7 @@ namespace Gui
             /**
              * @brief Render the models. This function should be overriden in the child class
             */
-            virtual void render() = 0;
+            virtual void render(const GameData &gameData) = 0;
 
         protected:
             std::vector<Model> _models;
