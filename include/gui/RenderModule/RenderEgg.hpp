@@ -9,7 +9,7 @@
     #define RENDEREGG_H_
 
     #include "ARayLibModel.hpp"
-    #include "gameState.hpp"
+    #include "GameData.hpp"
     #include "infoGame.hpp"
     #include <vector>
     #include <memory>

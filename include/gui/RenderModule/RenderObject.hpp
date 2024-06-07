@@ -8,8 +8,7 @@
 #ifndef RENDEROBJECT_H_
     #define RENDEROBJECT_H_
 
-    #include "raylibInfo.hpp"
-    #include "gameState.hpp"
+    #include "GameData.hpp"
     #include <vector>
     #include <memory>
 
@@ -18,17 +17,17 @@ namespace Gui
     class RenderObject
     {
         public:
-            RenderObject(std::shared_ptr<GameState> gameState);
+            RenderObject();
             ~RenderObject() = default;
 
             float object_padding[7][2];
 
-            void render();
+            void render(const GameData &gameData);
 
-            std::vector<Model> _modelList;
+            // std::vector<Model> _modelList;
 
         private:
-            std::shared_ptr<GameState> _gameState;
+            // std::shared_ptr<GameState> _gameState;
 
     };
 }

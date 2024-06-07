@@ -11,6 +11,12 @@
     #include "ARenderModule.hpp"
     #include "RenderWindow.hpp"
     #include "RenderSkyBox.hpp"
+    #include "RenderEgg.hpp"
+    #include "RenderObject.hpp"
+    #include "RenderPlayer.hpp"
+    #include "RenderCamera.hpp"
+    #include "RenderMenu.hpp"
+    #include "RenderIsland.hpp"
     #include <raylib.h>
     #include <iostream>
 
@@ -26,13 +32,13 @@ namespace Gui {
             void render(const Gui::GameData &gameData) override;
 
         private:
-            Gui::Window window;
-            Gui::Camera camera;
+            Gui::RenderWindow window;
+            Gui::RenderCamera camera;
             std::unique_ptr<Gui::RenderSkyBox> skyBox;
             std::unique_ptr<Gui::RenderIsland> island;
             std::unique_ptr<Gui::RenderObject> object;
             std::unique_ptr<Gui::RenderPlayer> player;
-            Gui::Menu menu;
+            Gui::RenderMenu menu;
             std::unique_ptr<Gui::RenderEgg> egg;
     };
 }

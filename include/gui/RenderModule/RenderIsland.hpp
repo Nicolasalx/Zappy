@@ -10,21 +10,22 @@
 
     #include <vector>
     #include <memory>
+    #include "GameData.hpp"
 
 namespace Gui
 {
     class RenderIsland
     {
         public:
-            RenderIsland(std::shared_ptr<GameState> gameState);
+            RenderIsland();
             ~RenderIsland() = default;
 
             void drawMap(rayInfo &rayInfo);
-            void render() {};
+            void render(const GameData &gameData);
 
             float size;
         private:
-            std::shared_ptr<GameState> _gameState;
+            // std::shared_ptr<GameState> _gameState;
     };
 }
 
