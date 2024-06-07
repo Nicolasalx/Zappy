@@ -18,7 +18,7 @@ namespace Gui
         public:
             virtual ~IRenderModule() = default;
             virtual Event getEvent() = 0;
-            virtual void render(const Gui::Gamedata &gameData) = 0;
+            virtual void render(const Gui::GameData &gameData) = 0;
     };
 }
 
