@@ -34,7 +34,6 @@ namespace Gui
             std::shared_ptr<Gui::IClient> _client;
 
             Gui::Parser parser;
-            Gui::Window window;
             std::unique_ptr<Gui::Island> island;
             std::unique_ptr<Gui::Object> object;
             std::unique_ptr<Gui::Player> player;
