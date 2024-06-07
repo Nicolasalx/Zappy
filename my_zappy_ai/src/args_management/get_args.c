@@ -7,6 +7,16 @@
 
 #include "zappy_ai.h"
 
+static bool is_valid_team_name(const char *name)
+{
+    for (int i = 0; name[i] != '\0'; ++i) {
+        if (!isalnum(name[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+
 static void get_port(const char **argv, ai_arg_t *ai_arg, int i)
 {
     if (strcmp(argv[i], args[0]) == 0) {
@@ -48,6 +58,10 @@ static void get_team_name(const char **argv, ai_arg_t *ai_arg, int i)
             printf("Error: Team name is too long\n");
             my_exit(84);
         }
+        if (!is_valid_team_name(argv[i + 1])) {
+            printf("Error: Team name must be alphanumeric\n");
+            my_exit(84);
+        }
         strcpy(ai_arg->team_name, argv[i + 1]);
     }
 }
@@ -68,7 +82,7 @@ static void fill_args(ai_arg_t *ai_arg)
 
 static bool is_valid_argument(const char *arg)
 {
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 3; ++i) {
         if (strcmp(arg, args[i]) == 0) {
             return true;
         }
