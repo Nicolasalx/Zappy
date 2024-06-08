@@ -19,7 +19,7 @@ namespace Gui
         double frameTime;
         std::vector<PlayerData> playerList;
         std::vector<Incant> incantList;
-        std::vector<Egg> eggList;
+        std::vector<EggData> eggList;
         std::vector<std::string> teamName;
         std::vector<std::string> serverResp;
         std::vector<std::vector<std::vector<int>>> objectPos;
