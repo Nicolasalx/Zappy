@@ -15,7 +15,7 @@ void Gui::Parser::pnw(std::vector<std::string> args)
     // for (auto arg : args) {
     //     std::cout << arg << std::endl;
     // }
-    Player newPlayer;
+    PlayerData newPlayer;
     newPlayer.n = std::stoi(args[0]);
     newPlayer.pos.x = std::stoi(args[1]);
     newPlayer.pos.y = std::stoi(args[2]);
