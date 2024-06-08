@@ -52,6 +52,8 @@ namespace Gui
             Gui::DLLoader<Gui::IClient> clientLoader;
             Gui::DLLoader<Gui::IRenderModule> renderLoader;
 
+            std::shared_ptr<Gui::GameData> gameData;
+
             std::string port = "4242";
             std::string ip = "127.0.0.1";
     };

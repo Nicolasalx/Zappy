@@ -8,7 +8,7 @@
 #include "Zappy.hpp"
 
 
-const Gui::GameData &Gui::Zappy::update(std::vector<std::string> &messRecv, const Gui::Event &event)
+void Gui::Zappy::update(std::vector<std::string> &messRecv, const Gui::Event &event)
 {
     // ! Parsing messRecv
 
