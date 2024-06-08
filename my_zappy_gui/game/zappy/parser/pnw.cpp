@@ -30,5 +30,5 @@ void Gui::Parser::pnw(std::vector<std::string> args)
     for (int i = 0; i < 7; i++) {
         newPlayer.inventory.push_back(0);
     }
-    this->players_list.push_back(newPlayer);
+    this->_gameData->playerList.push_back(newPlayer);
 }
