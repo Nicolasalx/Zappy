@@ -11,7 +11,8 @@
     #include "GameData.hpp"
     #include "IRenderModule.hpp"
 
-namespace Gui {
+namespace Gui
+{
     class ARenderModule : virtual public IRenderModule
     {
         public:

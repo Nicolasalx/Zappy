@@ -7,17 +7,18 @@
 
 SRC				:=	$(shell find src/ -name "*.cpp")
 
-CPPFLAGS		=	-std=c++20 -Wall -Wextra -g3 -shared -fpic -lraylib -lGL \
-					-lm -ldl -lrt -lX11 $(GNU_FLAGS) \
+CPPFLAGS		=	-std=c++20 -Wall -Wextra -g3 -shared -fpic \
+					-lraylib -lGL -lm -ldl -lrt -lX11 $(GNU_FLAGS) \
 					$(ADDITIONAL_FLAGS)
 
 GNU_FLAGS		=	-fno-gnu-unique
 
 INCLUDE_PATH	=	-I../../include/gui/RenderModule/ \
+					-I../../include/gui/RenderModule/RayLibRender/ \
 					-I../../include/gui/GameModule/ \
 					-I../../include/gui/
 
-NAME			=	render.so
+NAME			=	raylib_render.so
 
 OBJ				=	$(SRC:.cpp=.o)
 

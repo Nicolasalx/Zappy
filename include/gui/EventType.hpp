@@ -18,7 +18,6 @@ namespace Gui
         KEY_P,
         LEFT_CLICK,
         NEXT_DISPLAY,
-        NEXT_GAME,
         BACK_MENU,
         RESTART,
         ENTER,
