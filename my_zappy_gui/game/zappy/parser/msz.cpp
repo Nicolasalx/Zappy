@@ -9,12 +9,17 @@
 
 void Gui::Parser::msz(std::vector<std::string> args)
 {
+    std::cout << "map size" << std::endl;
+    std::cout << std::stoi(args[0]) << std::endl;
+    std::cout << std::stoi(args[1]) << std::endl;
     if (args.size() != 2)
         return;
     // std::cout << "msz" << std::endl;
     // for (auto arg : args) {
     //     std::cout << arg << std::endl;
     // }
+
+
     _gameData->mapSize.x = std::stoi(args[0]);
     _gameData->mapSize.y = std::stoi(args[1]);
     std::vector<int> tmp;
