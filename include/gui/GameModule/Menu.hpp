@@ -19,12 +19,13 @@ namespace Gui
     class Menu
     {
         public:
-            Menu();
-            ~Menu();
+            Menu(std::shared_ptr<Gui::GameData> gameData);
+            ~Menu() = default;
 
-            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event);
+            void update(const Gui::Event &event);
 
         private:
+            std::shared_ptr<Gui::GameData> _gameData;
 
     };
 }

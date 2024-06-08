@@ -19,13 +19,14 @@ namespace Gui
     class TextBox
     {
         public:
-            TextBox();
-            ~TextBox();
+            TextBox(std::shared_ptr<Gui::GameData> gameData);
+            ~TextBox() = default;
 
-            const Gui::GameData &update(const Gui::Event &event);
+            void update(const Gui::Event &event);
 
         private:
-    
+            std::shared_ptr<Gui::GameData> _gameData;
+
     };
 }
 

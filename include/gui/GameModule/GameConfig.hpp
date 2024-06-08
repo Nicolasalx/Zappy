@@ -39,6 +39,8 @@ namespace Gui
     constexpr std::string_view PHIRAS_TEXTURE = "bonus/assets/texture_phiras.png";
     constexpr std::string_view THYSTAME_MODEL = "bonus/assets/thystame.obj";
     constexpr std::string_view THYSTAME_TEXTURE = "bonus/assets/texture_thystame.png";
+
+    constexpr std::string_view EVOLUTION_TEXTURE = "bonus/assets/evolution.png";
 }
 
 #endif /* !GAMECONFIG_HPP_ */

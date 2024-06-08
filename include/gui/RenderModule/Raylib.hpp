@@ -17,6 +17,7 @@
     #include "RenderCamera.hpp"
     #include "RenderMenu.hpp"
     #include "RenderIsland.hpp"
+    #include "RenderParticle.hpp"
     #include <raylib.h>
     #include <iostream>
 
@@ -38,6 +39,7 @@ namespace Gui {
             std::unique_ptr<Gui::RenderIsland> island;
             std::unique_ptr<Gui::RenderObject> object;
             std::unique_ptr<Gui::RenderPlayer> player;
+            std::unique_ptr<Gui::RenderParticleSystem> particle;
             Gui::RenderMenu menu;
             std::unique_ptr<Gui::RenderEgg> egg;
     };

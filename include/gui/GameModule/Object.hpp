@@ -19,13 +19,14 @@ namespace Gui
     class Object
     {
         public:
-            Object();
-            ~Object();
+            Object(std::shared_ptr<Gui::GameData> gameData);
+            ~Object() = default;
 
-            const Gui::GameData &update(const Gui::Event &event);
+            void update(const Gui::Event &event);
 
         private:
-    
+            std::shared_ptr<Gui::GameData> _gameData;
+
     };
 }
 

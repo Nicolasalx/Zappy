@@ -17,7 +17,7 @@
 
 namespace Gui
 {
-    class RenderObject : public virtual ARayLibModel
+    class RenderObject: public virtual ARayLibModel
     {
         public:
             RenderObject();
