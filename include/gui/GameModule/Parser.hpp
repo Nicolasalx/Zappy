@@ -39,6 +39,7 @@ namespace Gui
             void sgt(std::vector<std::string> args);
             void smg(std::vector<std::string> args);
             void parse_server_reply(std::string reply_data);
+            void update(std::vector<std::string> &messRecv);
 
         private:
             std::shared_ptr<GameData> _gameData;

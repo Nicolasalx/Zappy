@@ -16,3 +16,19 @@ Gui::RenderCamera::RenderCamera()
     this->_camera.projection = CAMERA_PERSPECTIVE;
     DisableCursor();
 }
+
+void Gui::RenderCamera::handle_cursor()
+{
+    if (IsKeyPressed(KEY_P) && !this->cursor) {
+        EnableCursor();
+        this->cursor = true;
+    } else if (IsKeyPressed(KEY_P) && this->cursor) {
+        DisableCursor();
+        this->cursor = false;
+    }
+}
+
+void Gui::RenderCamera::update()
+{
+    if (IsCursorHidden()) UpdateCamera(&this->_camera, CAMERA_FREE);
+}

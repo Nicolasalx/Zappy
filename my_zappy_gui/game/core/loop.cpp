@@ -81,7 +81,7 @@ void Gui::Core::handleCoreEvent(const Gui::Event &eventList)
 
 void Gui::Core::loop()
 {
-    Gui::FrameRate::setFrameRate(30);
+    Gui::FrameRate::setFrameRate(60);
 
     this->clientModule->send("GRAPHIC\n");
     while (true) {

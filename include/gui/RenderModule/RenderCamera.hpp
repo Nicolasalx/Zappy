@@ -18,7 +18,11 @@ namespace Gui {
             RenderCamera();
             ~RenderCamera() = default;
 
+            void update();
+            void handle_cursor();
+
             Camera3D _camera;
+            bool cursor = false;
         private:
     };
 }

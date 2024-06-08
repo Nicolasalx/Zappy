@@ -10,10 +10,9 @@
 
 void Gui::Zappy::update(std::vector<std::string> &messRecv, const Gui::Event &event)
 {
-    for (auto &mess : messRecv) {
-        std::cout << "cmd: " << mess << std::endl;
-        this->_parser.parse_server_reply(mess);
-    }
+    
+
+    this->_parser.update(messRecv);
 
     this->_island.update(event);
     this->_object.update(event);

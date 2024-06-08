@@ -26,6 +26,14 @@ Gui::Parser::Parser(std::shared_ptr<GameData> gameData) : _gameData(gameData)
     _cmdMap.emplace("smg", [this](std::vector<std::string> args) { this->smg(args); });
 }
 
+void Gui::Parser::update(std::vector<std::string> &messRecv)
+{
+    for (auto &mess : messRecv) {
+        std::cout << "cmd: " << mess;
+        this->parse_server_reply(mess);
+    }
+}
+
 void Gui::Parser::parse_server_reply(std::string reply_data)
 {
     std::string cmd;
@@ -34,9 +42,7 @@ void Gui::Parser::parse_server_reply(std::string reply_data)
     std::size_t pos = 0;
 
     while ((pos = reply_data.find('\n')) != std::string::npos) {
-        
         cmd = reply_data.substr(0, pos);
-        std::cout << "reply_data: " << cmd << std::endl;
         this->_gameData->serverResp.push_back(cmd);
         type = cmd.substr(0, cmd.find(' '));
         cmd.erase(0, cmd.find(' ') + 1);
@@ -45,7 +51,6 @@ void Gui::Parser::parse_server_reply(std::string reply_data)
             cmd.erase(0, cmd.find(' ') + 1);
         }
         args.push_back(cmd);
-        std::cout << "type: " << type << std::endl;
         if (_cmdMap.find(type) != _cmdMap.end()) {
             _cmdMap[type](args);
         }

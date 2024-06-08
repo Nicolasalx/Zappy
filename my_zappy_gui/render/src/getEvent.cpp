@@ -17,9 +17,6 @@ Gui::Event Gui::Raylib::getEvent()
         event.window_size_x = GetScreenWidth();
         event.window_size_y = GetScreenHeight();
     }
-    if (IsKeyPressed(KEY_P)) {
-        event.eventType.push_back(Gui::EventType::KEY_P);
-    }
     if (IsKeyPressed(KEY_I)) {
         event.eventType.push_back(Gui::EventType::KEY_I);
     }
@@ -31,5 +28,7 @@ Gui::Event Gui::Raylib::getEvent()
         event.mouse_x = GetMouseX();
         event.mouse_y = GetMouseY();
     }
+    this->camera.handle_cursor();
+    this->camera.update();
     return event;
 }
