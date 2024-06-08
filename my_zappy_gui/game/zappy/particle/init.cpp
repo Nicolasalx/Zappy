@@ -7,12 +7,7 @@
 
 #include "Particle.hpp"
 
-Gui::Particle::Particle()
-{
-
-}
-
-Gui::Particle::~Particle()
+Gui::Particle::Particle(std::shared_ptr<Gui::GameData> gameData) : _gameData(gameData)
 {
 
 }
