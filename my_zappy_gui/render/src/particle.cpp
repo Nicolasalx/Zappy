@@ -30,7 +30,7 @@ void Gui::RenderParticleSystem::updateParticleList(const GameData &gameData)
     while (this->_particleSystems.size() != gameData.incantList.size()) {
         // std::cout << "update particle" << std::endl;
         if (this->_particleSystems.size() < gameData.incantList.size()) {
-            this->_particleSystems.push_back(Particle());
+            this->_particleSystems.push_back(RenderParticle());
         } else {
             // std::cout << "destroy particle" << std::endl;
             this->_particleSystems.pop_back();

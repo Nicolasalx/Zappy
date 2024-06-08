@@ -31,7 +31,7 @@ Gui::RenderPlayer::RenderPlayer()
     this->player_color[8] = ORANGE;
 }
 
-void Gui::RenderPlayer::drawPlayerModel(const Gui::Player &player)
+void Gui::RenderPlayer::drawPlayerModel(const Gui::PlayerData &player)
 {
     this->drawModel((ModelInfo){0, (Vector3){player.real_pos.x * Gui::MAP_SCALE, 0.0f, player.real_pos.y * Gui::MAP_SCALE}, (Vector3){0, 1, 0}, 
     (float)player.real_orientation, (Vector3){3 + player.level / 10.0f, 3 + player.level / 10.0f, 3 + player.level / 10.0f}, player_color[player.level]});
