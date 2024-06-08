@@ -13,10 +13,9 @@ CPPFLAGS		=	-std=c++20 -Wall -Wextra $(GNU_FLAGS) \
 
 GNU_FLAGS		=	-fno-gnu-unique
 
-INCLUDE_PATH	=	-I../../include/gui/RenderModule/ 	\
-					-I../../include/gui/GameModule/ 	\
-					-I../../include/gui/				\
-
+INCLUDE_PATH	=	-I../../include/gui/RenderModule/ \
+					-I../../include/gui/GameModule/ \
+					-I../../include/gui/
 
 NAME			=	render.so
 
