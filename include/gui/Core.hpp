@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** zappy_gui.hpp
+** Core
 */
 
-#ifndef ZAPPY_GUI_H_
-    #define ZAPPY_GUI_H_
+#ifndef CORE_H_
+    #define CORE_H_
 
     #include "my_tracked_exception.hpp"
     #include "my_log.hpp"
@@ -28,10 +28,10 @@
 
 namespace Gui
 {
-    class Graphic {
+    class Core {
         public:
-            Graphic();
-            ~Graphic() = default;
+            Core();
+            ~Core() = default;
 
             void parseArgs(int argc, const char **argv);
             void launch();
@@ -57,4 +57,4 @@ namespace Gui
     };
 }
 
-#endif /* !ZAPPY_GUI_H_ */
+#endif /* !CORE_H_ */
