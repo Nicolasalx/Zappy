@@ -22,7 +22,7 @@ namespace Gui
     {
         public:
             Parser(std::shared_ptr<GameData> gameData);
-            ~Parser();
+            ~Parser() = default;
             void msz(std::vector<std::string> args);
             void bct(std::vector<std::string> args);
             void tna(std::vector<std::string> args);

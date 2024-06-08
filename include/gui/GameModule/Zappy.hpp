@@ -20,6 +20,7 @@
     #include "Parser.hpp"
     #include "Client.hpp"
     #include <memory>
+    #include "Particle.hpp"
     #include "Event.hpp"
 
 namespace Gui
