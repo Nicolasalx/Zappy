@@ -7,7 +7,7 @@
 
 #include "Particle.hpp"
 
-const Gui::GameData &Gui::Particle::update(const Gui::Event &event)
+void Gui::Particle::update(const Gui::Event &event)
 {
 
 }
