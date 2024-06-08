@@ -50,6 +50,7 @@ void handle_new_message(client_t *client)
     }
     size = read(client->fd, &reply, sizeof(reply) - 1);
     if (size == 0) {
+        sem_post(&get_thread_list(NULL)->end_game);
         exit_client(client, 0, "Server closed the connection.\n");
     } else if (size < 0) {
         exit_client(client, 84, RED("Fail to read message.\n"));
