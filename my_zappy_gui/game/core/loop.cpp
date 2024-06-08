@@ -5,7 +5,7 @@
 ** loop
 */
 
-#include "Graphic.hpp"
+#include "Core.hpp"
 #include "FrameRate.hpp"
 
 /*void Gui::Graphic::loop()
@@ -20,7 +20,7 @@
     }
 }*/
 
-void Gui::Graphic::parseArgs(int argc, const char **argv)
+void Gui::Core::parseArgs(int argc, const char **argv)
 {
     for (int i = 1; i < argc; i++) {
         if (argv[i] == std::string("-p")) {
@@ -43,7 +43,7 @@ void Gui::Graphic::parseArgs(int argc, const char **argv)
     }
 }
 
-void Gui::Graphic::launch()
+void Gui::Core::launch()
 {
     this->renderLoader.load("./my_zappy_gui/render/render.so");
     this->clientLoader.load("./my_zappy_gui/client/client.so");
@@ -56,7 +56,7 @@ void Gui::Graphic::launch()
     this->clientModule->connect(this->ip, this->port);
 }
 
-bool Gui::Graphic::eventContain(const Gui::Event &eventList, const Gui::EventType &eventType)
+bool Gui::Core::eventContain(const Gui::Event &eventList, const Gui::EventType &eventType)
 {
     for (const Gui::EventType &eventIt : eventList.eventType) {
         if (eventIt == eventType) {
@@ -66,7 +66,7 @@ bool Gui::Graphic::eventContain(const Gui::Event &eventList, const Gui::EventTyp
     return false;
 }
 
-void Gui::Graphic::handleCoreEvent(const Gui::Event &eventList)
+void Gui::Core::handleCoreEvent(const Gui::Event &eventList)
 {
     // if (eventContain(eventList, Gui::EventType::NEXT_GAME)) {
     //     loadNextGame();
@@ -79,7 +79,7 @@ void Gui::Graphic::handleCoreEvent(const Gui::Event &eventList)
     // }
 }
 
-void Gui::Graphic::loop()
+void Gui::Core::loop()
 {
     Gui::FrameRate::setFrameRate(30);
 

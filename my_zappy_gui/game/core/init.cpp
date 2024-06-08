@@ -5,9 +5,9 @@
 ** zappy
 */
 
-#include "Graphic.hpp"
+#include "Core.hpp"
 
-Gui::Graphic::Graphic()
+Gui::Core::Core()
 {
     
 }

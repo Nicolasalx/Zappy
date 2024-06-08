@@ -6,18 +6,18 @@
 */
 
 #include "Client.hpp"
-#include "Graphic.hpp"
+#include "Core.hpp"
 
 int main(int argc, char const *argv[])
 {
     std::shared_ptr<Gui::GameData> gameState = std::make_shared<Gui::GameData>();
 
-    Gui::Graphic graphic;
+    Gui::Core core;
 
     try {
-        graphic.parseArgs(argc, argv);
-        graphic.launch();
-        graphic.loop();
+        core.parseArgs(argc, argv);
+        core.launch();
+        core.loop();
     } catch (my::tracked_exception &e) {
         my::log::error(e.what());
         return 84;
