@@ -7,8 +7,7 @@
 
 SRC				:=	$(shell find ./game/ -name "*.cpp")
 
-CPPFLAGS		=	-std=c++20 -Wall -Wextra -lraylib -lGL -g3 \
-					-lm -ldl -lrt -lX11 \
+CPPFLAGS		=	-std=c++20 -Wall -Wextra \
 					$(ADDITIONAL_FLAGS)
 
 INCLUDE_PATH	=	-I../include/ -I../include/lib/cpp_lib/ \
@@ -40,8 +39,8 @@ OBJ				=	$(SRC:.cpp=.o)
 
 $(NAME): $(OBJ)
 	@cd $(LIB_PATH) && $(MAKE) ADDITIONAL_FLAGS="$(ADDITIONAL_FLAGS)"
-	@cd $(LIB_CLIENT) && $(MAKE)
-	@cd $(LIB_RENDER) && $(MAKE)
+	@cd $(LIB_CLIENT) && $(MAKE) re
+	@cd $(LIB_RENDER) && $(MAKE) re
 	@if g++ -o $(NAME) $(OBJ) $(LIB_NAME) $(CPPFLAGS) $(INCLUDE_PATH); then \
 		printf "[\e[92mCOMPILATION OK\e[0m] "; \
 		printf "g++ -o $(NAME) $(OBJ) $(LIB_NAME) $(CPPFLAGS)\n"; \
