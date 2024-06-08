@@ -10,6 +10,12 @@
 Gui::RenderObject::RenderObject()
 {
     this->addModel(Gui::FOOD_MODEL.data(), Gui::FOOD_TEXTURE.data());
+    this->addModel(Gui::LINEMATE_MODEL.data(), Gui::LINEMATE_TEXTURE.data());
+    this->addModel(Gui::DERAUMERE_MODEL.data(), Gui::DERAUMERE_TEXTURE.data());
+    this->addModel(Gui::SIBUR_MODEL.data(), Gui::SIBUR_TEXTURE.data());
+    this->addModel(Gui::MENDIANE_MODEL.data(), Gui::MENDIANE_TEXTURE.data());
+    this->addModel(Gui::PHIRAS_MODEL.data(), Gui::PHIRAS_TEXTURE.data());
+    this->addModel(Gui::THYSTAME_MODEL.data(), Gui::THYSTAME_TEXTURE.data());
 
     for (int i = 0; i < 7; i++) {
         this->object_padding[i][0] = cos((PI / 180.0f) * (i * 50.0f));
