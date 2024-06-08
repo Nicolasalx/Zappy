@@ -23,7 +23,7 @@ namespace Gui
             // void updateAnimation(Player &player);
             // void updatePlayerPos(Player &player);
             // void drawPlayer(rayInfo &rayInfo);
-            void drawPlayerModel(const Player &player);
+            void drawPlayerModel(const PlayerData &player);
             // void drawPlayerBox(rayinfo &rayinfo, Player &player);
             void render(const GameData &gameData);
 
