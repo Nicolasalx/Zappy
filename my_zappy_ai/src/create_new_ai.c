@@ -34,7 +34,8 @@ void remove_thread_from_list(void)
         return;
     }
     remove_node_from_list(head, current, current_thread);
-    if (head == NULL) {
+    if (get_thread_list(NULL)->thread_list == NULL) {
+        pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
         sem_post(&get_thread_list(NULL)->end_game);
     }
     pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
