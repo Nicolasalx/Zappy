@@ -8,7 +8,10 @@
 #ifndef PLAYER_HPP_
     #define PLAYER_HPP_
 
-    #include "Zappy.hpp"
+    #include "IClient.hpp"
+    #include <memory>
+    #include <vector>
+    #include "GameData.hpp"
 
 namespace Gui
 {
@@ -16,9 +19,9 @@ namespace Gui
     {
         public:
             Player();
-            ~Player() override;
-    
-            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event) override;
+            ~Player();
+
+            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event);
 
         private:
     

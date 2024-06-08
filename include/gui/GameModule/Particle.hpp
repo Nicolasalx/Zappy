@@ -8,7 +8,10 @@
 #ifndef PARTICLE_HPP_
     #define PARTICLE_HPP_
 
-    #include "Zappy.hpp"
+    #include "IClient.hpp"
+    #include <memory>
+    #include <vector>
+    #include "GameData.hpp"
 
 namespace Gui
 {
@@ -16,9 +19,9 @@ namespace Gui
     {
         public:
             Particle();
-            ~Particle() override;
+            ~Particle();
 
-            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event) override;
+            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event);
 
         private:
 

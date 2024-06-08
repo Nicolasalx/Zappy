@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-SRC				:=	$(shell find src/ -name "*.cpp")
+SRC				:=	$(shell find ./game/ -name "*.cpp")
 
 CPPFLAGS		=	-std=c++20 -Wall -Wextra -lraylib -lGL -g3 \
 					-lm -ldl -lrt -lX11 \
