@@ -7,7 +7,6 @@
 
 #include "Core.hpp"
 
-Gui::Core::Core()
+Gui::Core::Core() : gameData(std::make_shared<Gui::GameData>())
 {
-    
 }

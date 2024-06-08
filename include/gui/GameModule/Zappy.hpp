@@ -29,9 +29,9 @@ namespace Gui
     {
         public:
             Zappy(std::shared_ptr<Gui::IClient> client, std::shared_ptr<Gui::GameData> gameData);
-            ~Zappy() override;
+            ~Zappy() override = default;
 
-            const Gui::GameData &update(std::vector<std::string> &messRecv, const Gui::Event &event) override;
+            void update(std::vector<std::string> &messRecv, const Gui::Event &event) override;
 
         private:
             std::shared_ptr<Gui::IClient> _client;

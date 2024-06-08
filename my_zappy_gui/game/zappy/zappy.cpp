@@ -11,8 +11,3 @@ Gui::Zappy::Zappy(std::shared_ptr<Gui::IClient> client, std::shared_ptr<Gui::Gam
 {
 
 }
-
-Gui::Zappy::~Zappy()
-{
-
-}

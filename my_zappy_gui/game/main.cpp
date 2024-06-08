@@ -10,8 +10,6 @@
 
 int main(int argc, char const *argv[])
 {
-    std::shared_ptr<Gui::GameData> gameState = std::make_shared<Gui::GameData>();
-
     Gui::Core core;
 
     try {

@@ -51,7 +51,7 @@ void Gui::Core::launch()
     this->renderModule = std::unique_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));
     this->clientModule = std::unique_ptr<Gui::IClient>(this->clientLoader.getInstance("entryPoint"));
 
-    this->gameModule = std::make_shared<Gui::Zappy>(this->clientModule);
+    this->gameModule = std::make_shared<Gui::Zappy>(this->clientModule, this->gameData);
 
     this->clientModule->connect(this->ip, this->port);
 }
@@ -89,8 +89,8 @@ void Gui::Core::loop()
         std::vector<std::string> messRecv = this->clientModule->recv();
         const Gui::Event &eventList = this->renderModule->getEvent();
 
-        const GameData &data = this->gameModule->update(messRecv, eventList);
-        this->renderModule->render(data);
+        this->gameModule->update(messRecv, eventList);
+        this->renderModule->render(*this->gameData.get());
 
         Gui::FrameRate::end();
     }

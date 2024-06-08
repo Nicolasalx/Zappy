@@ -7,7 +7,7 @@
 
 #include "Object.hpp"
 
-const Gui::GameData &Gui::Object::update(const Gui::Event &event)
+void Gui::Object::update(const Gui::Event &event)
 {
 
 }
