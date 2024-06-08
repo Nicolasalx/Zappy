@@ -19,6 +19,7 @@
     #include "Parser.hpp"
     #include "Client.hpp"
     #include <memory>
+    #include "Particle.hpp"
     #include "Event.hpp"
 
 namespace Gui
@@ -39,6 +40,7 @@ namespace Gui
             std::unique_ptr<Gui::Object> object;
             std::unique_ptr<Gui::Player> player;
             std::unique_ptr<Gui::Egg> egg;
+            std::unique_ptr<Gui::Particle> particle;
     };
 };
 

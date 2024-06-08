@@ -7,7 +7,9 @@
 
 #include "Zappy.hpp"
 
-Gui::Zappy::Zappy(std::shared_ptr<Gui::IClient> client, std::shared_ptr<Gui::GameData> gameData): _client(client), island(gameData)
+Gui::Zappy::Zappy(std::shared_ptr<Gui::IClient> client, std::shared_ptr<Gui::GameData> gameData): _client(client),
+    island(std::make_unique<Gui::Island>(gameData)), object(std::make_unique<Gui::Object>(gameData)), particle(std::make_unique<Gui::Particle>(gameData)),
+    player(std::make_unique<Gui::Player>(gameData))
 {
 
 }
