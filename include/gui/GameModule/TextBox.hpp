@@ -16,9 +16,9 @@ namespace Gui
     {
         public:
             TextBox();
-            ~TextBox() override;
+            ~TextBox();
 
-            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event) override;
+            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event);
 
         private:
     

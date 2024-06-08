@@ -16,9 +16,9 @@ namespace Gui
     {
         public:
             Menu();
-            ~Menu() override;
+            ~Menu();
 
-            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event) override;
+            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event);
 
         private:
 
