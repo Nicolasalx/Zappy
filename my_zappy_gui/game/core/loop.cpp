@@ -83,6 +83,7 @@ void Gui::Core::loop()
 {
     Gui::FrameRate::setFrameRate(30);
 
+    this->clientModule->send("GRAPHIC\n");
     while (true) {
         Gui::FrameRate::start();
 
