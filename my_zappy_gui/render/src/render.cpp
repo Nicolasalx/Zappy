@@ -14,7 +14,7 @@ void Gui::Raylib::render(const Gui::GameData &gameData)
     this->skyBox->render();
     this->player->render(gameData);
     this->object->render(gameData);
-    // this->particle.drawParticle(this->camera._data);
+    this->particle->render(gameData, this->camera._camera);
     this->island->render(gameData);
     this->egg->render(gameData);
     // EndShaderMode();
