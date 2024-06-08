@@ -43,7 +43,9 @@ void Gui::Client::bufferisingReply(std::string reply, std::vector<std::string> &
     std::size_t start = 0;
     std::size_t pos = 0;
 
-    reply = buffer_ + reply;
+    if (!buffer_.empty()) {
+        reply = buffer_ + reply;
+    }
     pos = reply.find('\n');
     while (pos != std::string::npos) {
         message.push_back(reply.substr(start, pos - start + 1));
@@ -60,7 +62,7 @@ void Gui::Client::bufferisingReply(std::string reply, std::vector<std::string> &
 std::vector<std::string> Gui::Client::recv()
 {
     std::vector<std::string> message;
-    char data[buffer_size_ + 1] = {0};
+    char data[buffer_size_] = {0};
     std::size_t length = 0;
 
     if (socket_.available() <= 0) {
