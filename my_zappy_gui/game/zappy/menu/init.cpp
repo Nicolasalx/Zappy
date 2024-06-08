@@ -7,12 +7,7 @@
 
 #include "Menu.hpp"
 
-Gui::Menu::Menu()
-{
-
-}
-
-Gui::Menu::~Menu()
+Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData) : _gameData(gameData)
 {
 
 }
