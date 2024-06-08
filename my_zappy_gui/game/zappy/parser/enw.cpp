@@ -9,7 +9,7 @@
 
 void Gui::Parser::enw(std::vector<std::string> args)
 {
-    Egg egg;
+    EggData egg;
     egg.egg_number = std::stoi(args[0]);
     egg.player_number = std::stoi(args[1]);
     egg.pos.x = std::stoi(args[2]);

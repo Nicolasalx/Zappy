@@ -9,7 +9,7 @@
 
 void Gui::Parser::smg(std::vector<std::string> args)
 {
-    Egg egg;
+    EggData egg;
     egg.egg_number = std::stoi(args[0]);
     egg.pos.x = std::stoi(args[1]);
     egg.pos.y = std::stoi(args[2]);

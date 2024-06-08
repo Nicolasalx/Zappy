@@ -7,12 +7,6 @@
 
 #include "Object.hpp"
 
-Gui::Object::Object()
+Gui::Object::Object(std::shared_ptr<Gui::GameData> gameData) : _gameData(gameData)
 {
-
-}
-
-Gui::Object::~Object()
-{
-
 }

@@ -7,12 +7,6 @@
 
 #include "TextBox.hpp"
 
-Gui::TextBox::TextBox()
+Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData) : _gameData(gameData)
 {
-
-}
-
-Gui::TextBox::~TextBox()
-{
-
 }

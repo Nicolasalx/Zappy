@@ -26,10 +26,6 @@ Gui::Parser::Parser(std::shared_ptr<GameData> gameData) : _gameData(gameData)
     _cmdMap.emplace("smg", [this](std::vector<std::string> args) { this->smg(args); });
 }
 
-Gui::Parser::~Parser()
-{
-}
-
 void Gui::Parser::parse_server_reply(std::string reply_data)
 {
     std::string cmd;
