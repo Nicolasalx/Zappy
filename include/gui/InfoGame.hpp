@@ -56,7 +56,7 @@ namespace Gui
         Pos pos;
     };
 
-    struct Egg {
+    struct EggData {
         int player_number;
         int egg_number;
         Pos pos;
