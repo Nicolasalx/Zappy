@@ -8,7 +8,10 @@
 #ifndef PLAYER_HPP_
     #define PLAYER_HPP_
 
-    #include "Zappy.hpp"
+    #include "IClient.hpp"
+    #include <memory>
+    #include <vector>
+    #include "GameData.hpp"
 
 namespace Gui
 {

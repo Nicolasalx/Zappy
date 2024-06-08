@@ -8,7 +8,10 @@
 #ifndef PARTICLE_HPP_
     #define PARTICLE_HPP_
 
-    #include "Zappy.hpp"
+    #include "IClient.hpp"
+    #include <memory>
+    #include <vector>
+    #include "GameData.hpp"
 
 namespace Gui
 {

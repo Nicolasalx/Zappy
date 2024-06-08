@@ -8,8 +8,12 @@
 #ifndef PARSER_HPP_
     #define PARSER_HPP_
 
+    #include "IClient.hpp"
+    #include <memory>
+    #include <vector>
+    #include <map>
+    #include <functional>
     #include "GameData.hpp"
-    #include "Zappy.hpp"
 
 namespace Gui
 {
