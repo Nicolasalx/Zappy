@@ -7,7 +7,7 @@
 
 #include "Menu.hpp"
 
-const Gui::GameData &Gui::Menu::update(const Gui::Event &event)
+void Gui::Menu::update(const Gui::Event &event)
 {
 
 }
