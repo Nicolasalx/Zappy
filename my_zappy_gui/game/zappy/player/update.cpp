@@ -7,7 +7,7 @@
 
 #include "Player.hpp"
 
-const Gui::GameData &Gui::Player::update(const Gui::Event &event)
+void Gui::Player::update(const Gui::Event &event)
 {
 
 }
