@@ -7,11 +7,7 @@
 
 #include "Player.hpp"
 
-Gui::Player::Player()
+Gui::Player::Player(std::shared_ptr<GameData> GameData)
 {
 
-}
-
-Gui::Player::~Player()
-{
 }
