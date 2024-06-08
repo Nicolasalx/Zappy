@@ -12,6 +12,7 @@
     #include <memory>
     #include <vector>
     #include "GameData.hpp"
+    #include "Event.hpp"
 
 namespace Gui
 {
@@ -21,7 +22,7 @@ namespace Gui
             Object();
             ~Object();
 
-            const Gui::GameData &update(std::shared_ptr<Gui::IClient> &client, std::vector<std::string> &messRecv, const Gui::Event &event);
+            const Gui::GameData &update(const Gui::Event &event);
 
         private:
     

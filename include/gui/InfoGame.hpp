@@ -42,7 +42,7 @@ namespace Gui
         CLOSED_RIGHT
     };
 
-    struct TextBox {
+    struct TextBoxData {
         std::string text;
         Pos pos;
         float width;
@@ -62,7 +62,7 @@ namespace Gui
         Pos pos;
     };
 
-    struct Player {
+    struct PlayerData {
         int n;
         Pos pos;
         Pos real_pos;

@@ -12,6 +12,7 @@
     #include <memory>
     #include <vector>
     #include "GameData.hpp"
+    #include "Event.hpp"
 
 namespace Gui
 {

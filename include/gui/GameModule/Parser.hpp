@@ -14,6 +14,7 @@
     #include <map>
     #include <functional>
     #include "GameData.hpp"
+    #include "Event.hpp"
 
 namespace Gui
 {
@@ -37,6 +38,7 @@ namespace Gui
             void edi(std::vector<std::string> args);
             void sgt(std::vector<std::string> args);
             void smg(std::vector<std::string> args);
+            void parse_server_reply(std::string reply_data);
 
         private:
             std::shared_ptr<GameData> _gameData;

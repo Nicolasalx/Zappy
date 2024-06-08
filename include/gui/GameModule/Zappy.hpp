@@ -19,6 +19,7 @@
     #include "Parser.hpp"
     #include "Client.hpp"
     #include <memory>
+    #include "Event.hpp"
 
 namespace Gui
 {

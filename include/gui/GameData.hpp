@@ -17,13 +17,13 @@ namespace Gui
         Pos mapSize;
         int timeUnit;
         double frameTime;
-        std::vector<Player> playerList;
+        std::vector<PlayerData> playerList;
         std::vector<Incant> incantList;
         std::vector<Egg> eggList;
         std::vector<std::string> teamName;
         std::vector<std::string> serverResp;
         std::vector<std::vector<std::vector<int>>> objectPos;
-        std::vector<TextBox> textBox;
+        std::vector<TextBoxData> textBox;
     };
 }
 
