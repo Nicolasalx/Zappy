@@ -9,7 +9,7 @@
 
 void Gui::Raylib::render(const Gui::GameData &gameData)
 {
-    BeginMode3D(this->camera.camera);
+    BeginMode3D(this->camera._camera);
     // BeginShaderMode(light_shader);
     this->skyBox->render();
     this->player->render(gameData);

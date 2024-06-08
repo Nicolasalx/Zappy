@@ -9,15 +9,16 @@
     #define RENDERCAMERA_H_
 
     #include "GameData.hpp"
+    #include <raylib.h>
 
 namespace Gui {
     class RenderCamera
     {
         public:
-            RenderCamera() = default;
+            RenderCamera();
             ~RenderCamera() = default;
 
-            Camera3D camera;
+            Camera3D _camera;
         private:
     };
 }
