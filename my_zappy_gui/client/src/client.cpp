@@ -62,7 +62,7 @@ void Gui::Client::bufferisingReply(std::string reply, std::vector<std::string> &
 std::vector<std::string> Gui::Client::recv()
 {
     std::vector<std::string> message;
-    char data[buffer_size_] = {0};
+    char data[buffer_size_ + 1] = {0};
     std::size_t length = 0;
 
     if (socket_.available() <= 0) {
