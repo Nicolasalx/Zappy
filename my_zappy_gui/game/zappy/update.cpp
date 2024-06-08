@@ -14,5 +14,4 @@ void Gui::Zappy::update(std::vector<std::string> &messRecv, const Gui::Event &ev
 
     // skybox update
     // player update
-    return this->gameData;
 }
