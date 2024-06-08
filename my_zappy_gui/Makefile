@@ -39,8 +39,8 @@ OBJ				=	$(SRC:.cpp=.o)
 
 $(NAME): $(OBJ)
 	@cd $(LIB_PATH) && $(MAKE) ADDITIONAL_FLAGS="$(ADDITIONAL_FLAGS)"
-	@cd $(LIB_CLIENT) && $(MAKE) re
-	@cd $(LIB_RENDER) && $(MAKE) re
+	@cd $(LIB_CLIENT) && $(MAKE)
+	@cd $(LIB_RENDER) && $(MAKE)
 	@if g++ -o $(NAME) $(OBJ) $(LIB_NAME) $(CPPFLAGS) $(INCLUDE_PATH); then \
 		printf "[\e[92mCOMPILATION OK\e[0m] "; \
 		printf "g++ -o $(NAME) $(OBJ) $(LIB_NAME) $(CPPFLAGS)\n"; \
