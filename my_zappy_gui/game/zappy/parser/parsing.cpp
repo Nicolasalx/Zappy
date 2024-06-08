@@ -40,7 +40,7 @@ void Gui::Parser::parse_server_reply(std::string reply_data)
     while ((pos = reply_data.find('\n')) != std::string::npos) {
         cmd = reply_data.substr(0, pos);
         std::cout << "cmd: " << cmd << std::endl;
-        server_resp.push_back(cmd);
+        this->_gameData->serverResp.push_back(cmd);
         type = cmd.substr(0, cmd.find(' '));
         cmd.erase(0, cmd.find(' ') + 1);
         while (cmd.find(' ') != std::string::npos) {
@@ -53,8 +53,8 @@ void Gui::Parser::parse_server_reply(std::string reply_data)
         }
         reply_data.erase(0, pos + 1);
         args.clear();
-        if (server_resp.size() > 30) {
-            server_resp.erase(server_resp.begin());
+        if (this->_gameData->serverResp.size() > 30) {
+            this->_gameData->serverResp.erase(this->_gameData->serverResp.begin());
         }
     }
 }
