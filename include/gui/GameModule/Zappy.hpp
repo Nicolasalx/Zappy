@@ -14,6 +14,7 @@
     #include "AGameModule.hpp"
     #include "Object.hpp"
     #include "Menu.hpp"
+    #include "Egg.hpp"
     #include "Particle.hpp"
     #include "TextBox.hpp"
     #include "Parser.hpp"
@@ -34,11 +35,11 @@ namespace Gui
         private:
             std::shared_ptr<Gui::IClient> _client;
 
-            Gui::Parser parser;
-            std::unique_ptr<Gui::Island> island;
-            std::unique_ptr<Gui::Object> object;
-            std::unique_ptr<Gui::Player> player;
-            std::unique_ptr<Gui::Egg> egg;
+            Gui::Parser _parser;
+            Gui::Island _island;
+            Gui::Object _object;
+            Gui::Player _player;
+            Gui::Egg _egg;
     };
 };
 
