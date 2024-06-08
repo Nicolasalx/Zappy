@@ -38,7 +38,7 @@ namespace Gui
         private:
     };
 
-    class RenderParticleSystem: public virtual ARayLibModel
+    class RenderParticleSystem
     {
         public:
             RenderParticleSystem();
