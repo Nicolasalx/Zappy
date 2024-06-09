@@ -45,7 +45,7 @@ void Gui::Core::parseArgs(int argc, const char **argv)
 
 void Gui::Core::launch()
 {
-    this->renderLoader.load("./my_zappy_gui/render/render.so");
+    this->renderLoader.load("./my_zappy_gui/raylib_render/raylib_render.so");
     this->clientLoader.load("./my_zappy_gui/client/client.so");
 
     this->renderModule = std::unique_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));
@@ -68,15 +68,15 @@ bool Gui::Core::eventContain(const Gui::Event &eventList, const Gui::EventType &
 
 void Gui::Core::handleCoreEvent(const Gui::Event &eventList)
 {
-    // if (eventContain(eventList, Gui::EventType::NEXT_GAME)) {
-    //     loadNextGame();
-    // } else if (eventContain(eventList, Gui::EventType::NEXT_DISPLAY)) {
-    //     loadNextDisplay();
-    // } else if (eventContain(eventList, Gui::EventType::BACK_MENU)) {
-    //     loadMenu();
-    // } else if (eventContain(eventList, Gui::EventType::RESTART)) {
-    //     loadSelectedGame();
-    // }
+    for (const Gui::EventType &event : eventList.eventType) {
+        if (event == Gui::EventType::NEXT_DISPLAY) {
+            this->renderModule.reset();
+            this->renderLoader.close();
+            this->renderLoader.load("./my_zappy_gui/sfml_render/sfml_render.so");
+            this->renderModule = std::unique_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));
+            break;
+        }
+    }
 }
 
 void Gui::Core::loop()
@@ -90,6 +90,7 @@ void Gui::Core::loop()
         std::vector<std::string> messRecv = this->clientModule->recv();
         const Gui::Event &eventList = this->renderModule->getEvent();
 
+        handleCoreEvent(eventList);
         this->gameModule->update(messRecv, eventList);
         this->renderModule->render(*this->gameData.get());
 
