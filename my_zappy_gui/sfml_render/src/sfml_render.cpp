@@ -49,6 +49,7 @@ Gui::Event Gui::SFMLRender::getEvent()
             }
         }
     }
+    return guiEvent;
 }
 
 void Gui::SFMLRender::render(const Gui::GameData &gameData)

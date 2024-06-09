@@ -53,6 +53,8 @@ namespace Gui
 
             std::string port = "4242";
             std::string ip = "127.0.0.1";
+
+            bool displayType;
     };
 }
 

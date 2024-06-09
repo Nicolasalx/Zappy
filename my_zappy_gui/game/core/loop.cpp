@@ -70,11 +70,21 @@ void Gui::Core::handleCoreEvent(const Gui::Event &eventList)
 {
     for (const Gui::EventType &event : eventList.eventType) {
         if (event == Gui::EventType::NEXT_DISPLAY) {
-            this->renderModule.reset();
-            this->renderLoader.close();
-            this->renderLoader.load("./my_zappy_gui/sfml_render/sfml_render.so");
-            this->renderModule = std::unique_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));
-            break;
+            if (!this->displayType) {
+                this->renderModule.reset();
+                this->renderLoader.close();
+                this->renderLoader.load("./my_zappy_gui/sfml_render/sfml_render.so");
+                this->renderModule = std::unique_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));
+                this->displayType = !this->displayType;
+                break;
+            } else {
+                this->renderModule.reset();
+                this->renderLoader.close();
+                this->renderLoader.load("./my_zappy_gui/raylib_render/raylib_render.so");
+                this->renderModule = std::unique_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));
+                this->displayType = !this->displayType;
+                break;
+            }
         }
     }
 }
