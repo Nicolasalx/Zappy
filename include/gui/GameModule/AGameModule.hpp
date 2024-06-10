@@ -19,7 +19,7 @@ namespace Gui
             ~AGameModule() override = default;
 
         protected:
-            Gui::GameData gameData;
+            std::shared_ptr<Gui::GameData> _gameData;
     };
 }
 

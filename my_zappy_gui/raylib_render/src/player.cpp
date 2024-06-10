@@ -37,10 +37,19 @@ void Gui::RenderPlayer::drawPlayerModel(const Gui::PlayerData &player)
     (float)player.real_orientation, (Vector3){3 + player.level / 10.0, 3 + player.level / 10.0, 3 + player.level / 10.0}, player_color[player.level]});
 }
 
+void Gui::RenderPlayer::updateAnimation(const Gui::PlayerData &player)
+{
+    if (player.anim_frame_counter > 31 && player.anim_frame_counter < 151) {
+        UpdateModelAnimation(_models.at(0), this->player_animation[player.animation_nbr], player.anim_frame_counter);
+    }
+    if (player.anim_frame_counter > 151 && player.anim_frame_counter < 182) {
+        UpdateModelAnimation(_models.at(0), this->player_animation[player.animation_nbr], player.anim_frame_counter);
+    }
+}
 void Gui::RenderPlayer::render(const Gui::GameData &gameData)
 {
     for (auto &player : gameData.playerList) {
-        //updateAnimation(player);
+        updateAnimation(player);
         // if (rayInfo.type == PLAYER && rayInfo.id == player.n) {
         //     drawPlayerBox(rayInfo, player);
         // } else {

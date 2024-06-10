@@ -20,7 +20,7 @@ namespace Gui
         public:
             RenderPlayer();
             ~RenderPlayer() = default;
-            // void updateAnimation(Player &player);
+            void updateAnimation(const PlayerData &player);
             // void updatePlayerPos(Player &player);
             // void drawPlayer(rayInfo &rayInfo);
             void drawPlayerModel(const PlayerData &player);
