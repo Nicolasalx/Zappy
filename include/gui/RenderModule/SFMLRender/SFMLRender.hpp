@@ -11,6 +11,7 @@
     #include <SFML/Graphics.hpp>
     #include <ARenderModule.hpp>
     #include <SFMLRenderPlayer.hpp>
+    #include <SFMLRenderEgg.hpp>
     #include <memory>
     #include <vector>
 
@@ -28,6 +29,7 @@ namespace Gui
         private:
             sf::RenderWindow window;
             std::unique_ptr<Gui::SFMLRenderPlayer> player;
+            std::unique_ptr<Gui::SFMLRenderEgg> egg;
 
 //          Gui::RenderWindow window;
 //          Gui::RenderCamera camera;
