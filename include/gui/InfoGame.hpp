@@ -43,10 +43,10 @@ namespace Gui
     };
 
     struct TextBoxData {
-        float x;
-        float y;
-        float width;
-        float height;
+        Pos pos;
+        Pos size;
+        Pos real_pos;
+        Pos real_size;
         float text_size;
         int state;
         std::vector<std::string> text;

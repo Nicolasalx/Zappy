@@ -24,6 +24,7 @@ namespace Gui
 
             void addText(TextBoxData &textBox, size_t index, std::string text);
             void update(const Gui::Event &event);
+            void resize(int window_width, int window_height);
             void updateGeneralInfo();
 
         private:

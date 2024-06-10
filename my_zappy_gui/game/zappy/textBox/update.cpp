@@ -16,6 +16,11 @@ void Gui::TextBox::addText(TextBoxData &textBox, size_t index, std::string text)
     }
 }
 
+void Gui::TextBox::resize(int window_width, int window_height)
+{
+    ;
+}
+
 void Gui::TextBox::updateGeneralInfo()
 {
     addText(_gameData->textBox[0], 0, "Number of players: " + std::to_string(_gameData->playerList.size()));

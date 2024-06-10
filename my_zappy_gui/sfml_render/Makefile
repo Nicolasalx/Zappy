@@ -15,6 +15,7 @@ GNU_FLAGS		=	-fno-gnu-unique
 
 INCLUDE_PATH	=	-I../../include/gui/RenderModule/ \
 					-I../../include/gui/RenderModule/SFMLRender/ \
+					-I../../include/gui/RenderModule/RayLibRender/ \
 					-I../../include/gui/
 
 NAME			=	sfml_render.so

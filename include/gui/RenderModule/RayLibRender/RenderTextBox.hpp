@@ -8,34 +8,40 @@
 #ifndef RENDERTEXTBOX_H_
     #define RENDERTEXTBOX_H_
 
+    #include "ARayLibModel.hpp"
+    #include "GameConfig.hpp"
+    #include "GameData.hpp"
+    #include <complex>
+    #include <vector>
+    #include <memory>
+
 namespace Gui
 {
-    class TextBox {
+    class RenderTextBox {
         public:
-            TextBox(box_info boxInfo);
-            ~TextBox() = default;
+            RenderTextBox(TextBoxData boxInfo);
+            ~RenderTextBox() = default;
             void openClose();
             bool isClosed();
             void resize(int window_width, int window_height);
             void addText(std::string text, float ypos);
             void draw();
         private:
-            box_info _boxInfo;
+            TextBoxData _boxInfo;
             Rectangle _box;
             Rectangle _button;
             Color _color;
     };
 
-    class TextBox_list {
+    class RenderTextBoxList {
         public:
-            TextBox_list(std::shared_ptr<GameState> gameState, int window_width, int window_height);
-            ~TextBox_list() = default;
-            void drawAllTextBoxs(ray_info_t &rayInfo);
+            RenderTextBoxList() = default;
+            ~RenderTextBoxList() = default;
+            void updateTextBoxs(GameData &gameData);
+            void drawAllTextBoxs();
             void resize(int window_width, int window_height);
 
-            std::vector<int> listLevelPlayer;
-            std::vector<Gui::TextBox> _textBoxs;
-            std::shared_ptr<GameState> _gameState;
+            std::vector<Gui::RenderTextBox> _textBoxs;
     };
 }
 
