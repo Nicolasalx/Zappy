@@ -31,6 +31,7 @@ namespace Gui
  
             Gui::Event getEvent() override;
             void render(const Gui::GameData &gameData) override;
+            void renderGame(const Gui::GameData &gameData);
 
         private:
             Gui::RenderWindow window;
