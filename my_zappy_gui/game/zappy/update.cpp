@@ -9,11 +9,8 @@
 
 void Gui::Zappy::update(std::vector<std::string> &messRecv, const Gui::Event &event)
 {
-<<<<<<< HEAD
-=======
     this->_gameData->frameTime = event.frame_time;
 
->>>>>>> d5e87cb1d48e7497f8228a3a191d6722366478ac
     this->_parser.update(messRecv);
 
     this->_island.update(event);
