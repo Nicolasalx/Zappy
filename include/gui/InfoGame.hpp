@@ -34,6 +34,16 @@ namespace Gui
         PLAYER
     };
 
+    enum Color {
+        WHITE,
+        BLACK,
+        BLUE,
+        GREEN,
+        RED,
+        GRAY,
+        PURPLE
+    };
+
     enum StateBox {
         NO_BUTTON,
         RIGHT_BUTTON,
