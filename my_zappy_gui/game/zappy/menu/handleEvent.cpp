@@ -47,4 +47,14 @@ void Gui::Menu::handleEvent(const Gui::Event &event)
             component.box.color = WHITE_COLOR;
         }
     }
+
+    for (const auto &evt : event.eventType) {
+        switch (evt) {
+            case Gui::EventType::ESCAPE:
+                this->_gameData->dataMenu.gameIsLaunch = false;
+                break;
+            default:
+                break;
+        }
+    }
 }
