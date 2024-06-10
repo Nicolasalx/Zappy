@@ -56,6 +56,8 @@ namespace Gui
     {
         Pos mapSize;
         int timeUnit;
+        int windowX;
+        int windowY;
         double frameTime;
         std::vector<PlayerData> playerList;
         std::vector<Incant> incantList;
