@@ -17,6 +17,7 @@ extern "C"
 
 Gui::SFMLRender::SFMLRender() : window(sf::VideoMode(1920, 1080), "ZAPPY")
 {
+    this->player = std::make_unique<Gui::SFMLRenderPlayer>();
 }
 
 Gui::SFMLRender::~SFMLRender()
@@ -113,6 +114,7 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
             sprite.setPosition(offset_x + gameData.eggList[i].pos.x * cell_size + egg_offset_x, offset_y + gameData.eggList[i].pos.y * cell_size + egg_offset_y);
             window.draw(sprite);
         }
+        this->egg->render(gameData);
         this->player->render(gameData);
         window.display();
     }
