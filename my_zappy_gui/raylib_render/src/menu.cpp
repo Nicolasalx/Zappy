@@ -6,6 +6,7 @@
 */
 
 #include "RenderMenu.hpp"
+#include "RenderWindow.hpp"
 #include "RenderColor.hpp"
 
 Gui::RenderMenu::RenderMenu()
@@ -24,8 +25,6 @@ void Gui::RenderMenu::resize(int window_width, int window_height)
         component.text.pos = { window_width * component.stockStartData.text.pos.x, window_height * component.stockStartData.text.pos.y };
     }
 }
-
-#include "RenderWindow.hpp"
 
 void Gui::RenderMenu::renderOneComponent(Gui::Component &component)
 {
