@@ -17,7 +17,7 @@ std::map<Gui::GameColor, Color> Gui::RenderColor::_colorMap = {
     { Gui::GameColor::PURPLE_COLOR, PURPLE }
 };
 
-Color Gui::RenderColor::getColorFromGame(GameColor &gameColor)
+Color Gui::RenderColor::getColorFromGame(const GameColor &gameColor)
 {
     return _colorMap.at(gameColor);
 }
