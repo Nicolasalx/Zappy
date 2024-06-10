@@ -66,8 +66,6 @@ void Gui::RenderParticle::draw(Texture2D texture, Camera3D camera)
 
 void Gui::RenderParticleSystem::render(const GameData &gameData, Camera3D camera)
 {
-    this->updateParticleList(gameData); // ! Put in event maybe
-
     for (auto &particle_system : this->_particleSystems) {
         particle_system.updateParticle(gameData.frameTime);
         particle_system.draw(this->_particleTexture, camera);
