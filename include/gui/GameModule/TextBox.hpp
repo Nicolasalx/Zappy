@@ -22,7 +22,9 @@ namespace Gui
             TextBox(std::shared_ptr<Gui::GameData> gameData);
             ~TextBox() = default;
 
+            void addText(TextBoxData &textBox, size_t index, std::string text);
             void update(const Gui::Event &event);
+            void updateGeneralInfo();
 
         private:
             std::shared_ptr<Gui::GameData> _gameData;

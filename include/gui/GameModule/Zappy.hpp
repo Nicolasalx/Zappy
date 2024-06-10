@@ -41,6 +41,7 @@ namespace Gui
             Gui::Object _object;
             Gui::Player _player;
             Gui::Egg _egg;
+            Gui::TextBox _textBox;
             Gui::Menu _menu;
     };
 };
