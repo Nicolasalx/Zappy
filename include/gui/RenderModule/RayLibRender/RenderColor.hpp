@@ -26,7 +26,7 @@ namespace Gui
     class RenderColor
     {
         public:
-            static Color getColorFromGame(GameColor &gameColor);
+            static Color getColorFromGame(const GameColor &gameColor);
         private:
             static std::map<GameColor, Color> _colorMap;
     };
