@@ -10,6 +10,9 @@
 
     #include <SFML/Graphics.hpp>
     #include <ARenderModule.hpp>
+    #include <SFMLRenderPlayer.hpp>
+    #include <memory>
+    #include <vector>
 
 namespace Gui
 {
@@ -24,16 +27,16 @@ namespace Gui
 
         private:
             sf::RenderWindow window;
+            std::unique_ptr<Gui::SFMLRenderPlayer> player;
 
-//            Gui::RenderWindow window;
-//            Gui::RenderCamera camera;
-//            std::unique_ptr<Gui::RenderSkyBox> skyBox;
-//            std::unique_ptr<Gui::RenderIsland> island;
-//            std::unique_ptr<Gui::RenderObject> object;
-//            std::unique_ptr<Gui::RenderPlayer> player;
-//            std::unique_ptr<Gui::RenderParticleSystem> particle;
-//            //Gui::RenderMenu menu;
-//            std::unique_ptr<Gui::RenderEgg> egg;
+//          Gui::RenderWindow window;
+//          Gui::RenderCamera camera;
+//          std::unique_ptr<Gui::RenderSkyBox> skyBox;
+//          std::unique_ptr<Gui::RenderIsland> island;
+//          std::unique_ptr<Gui::RenderObject> object;
+//          std::unique_ptr<Gui::RenderParticleSystem> particle;
+//          //Gui::RenderMenu menu;
+//          std::unique_ptr<Gui::RenderEgg> egg;
 
             std::vector<std::pair<sf::Keyboard::Key, Gui::EventType>> keyBind = {
                 {sf::Keyboard::I, Gui::EventType::KEY_I},
