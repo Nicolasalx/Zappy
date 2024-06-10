@@ -22,11 +22,29 @@ bool Gui::Menu::isMouseOnBox(const Box &box, const Pos &mousePos)
     }
 }
 
+void Gui::Menu::checkMouseState(const Gui::Event &event, Component component)
+{
+    for (const auto &evt : event.eventType) {
+        switch (evt) {
+            case Gui::EventType::LEFT_CLICK:
+                if (component.componentType == PLAY) {
+                    this->_gameData->dataMenu.gameIsLaunch = true;
+                }
+            break;
+            default:
+                break;
+        }
+    }
+}
+
 void Gui::Menu::handleEvent(const Gui::Event &event)
 {
-    for (const auto &component: this->_gameData->dataMenu.componentList) {
+    for (auto &component: this->_gameData->dataMenu.componentList) {
         if (isMouseOnBox(component.box, event.mouse)) {
-            std::cout << "MOUSE ON BOX\n";
+            component.box.color = RED_COLOR;
+            checkMouseState(event, component);
+        } else {
+            component.box.color = WHITE_COLOR;
         }
     }
 }
