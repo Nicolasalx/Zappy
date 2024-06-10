@@ -15,12 +15,12 @@ void Gui::Island::drawMap(ray_info_t &rayInfo)
                 rayInfo.box.min = (Vector3){i * Gui::MAP_SCALE - 2.2f * size, -4.2f * size, j * Gui::MAP_SCALE - 2.2f * size};
                 rayInfo.box.max = (Vector3){i * Gui::MAP_SCALE + 2.2f * size, 0.2f * size, j * Gui::MAP_SCALE + 2.2f * size};
                 DrawBoundingBox(rayInfo.box, GREEN);
-                this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, -2.0f * size, j * Gui::MAP_SCALE},
-                (Vector3){0, 0, 0}, 0, (Vector3){2.0f * size, 2.0f * size, 2.0f * size}, GREEN});
+                this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, -2.0 * size, j * Gui::MAP_SCALE},
+                (Vector3){0, 0, 0}, 0, (Vector3){2.0 * size, 2.0 * size, 2.0 * size}, GREEN});
             }
             else {
-                this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, -2.0f * size, j * Gui::MAP_SCALE},
-                (Vector3){0, 0, 0}, 0, (Vector3){2.0f * size, 2.0f * size, 2.0f * size}, WHITE});
+                this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, -2.0 * size, j * Gui::MAP_SCALE},
+                (Vector3){0, 0, 0}, 0, (Vector3){2.0 * size, 2.0 * size, 2.0 * size}, WHITE});
             }
         }
     }

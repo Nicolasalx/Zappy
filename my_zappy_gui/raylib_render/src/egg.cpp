@@ -19,7 +19,7 @@ void Gui::RenderEgg::render(const Gui::GameData &gameData)
             (Gui::ModelInfo){0,
                 {
                     it->pos.x * Gui::MAP_SCALE - 2.3f,
-                    1.0f,
+                    1.0,
                     it->pos.y * Gui::MAP_SCALE - 2.3f
                 },
                 {0, 0, 0}, 0, {1, 1, 1}, WHITE});

@@ -10,7 +10,7 @@
 
 Gui::RenderSkyBox::RenderSkyBox()
 {
-    Mesh cube = GenMeshCube(1.0f, 1.0f, 1.0f);
+    Mesh cube = GenMeshCube(1.0, 1.0, 1.0);
     this->model = LoadModelFromMesh(cube);
     this->model.materials[0].shader = LoadShader(TextFormat(SKYBOX_VERTEX_SHADER.data(), 330),
                                             TextFormat(SKYBOX_FRAGMENT_SHADER.data(), 330));
@@ -35,7 +35,7 @@ void Gui::RenderSkyBox::render()
     ClearBackground(RAYWHITE);
     rlDisableBackfaceCulling();
     rlDisableDepthMask();
-        DrawModel(model, (Vector3){0, 0, 0}, 1.0f, WHITE);
+        DrawModel(model, (Vector3){0, 0, 0}, 1.0, WHITE);
     rlEnableBackfaceCulling();
     rlEnableDepthMask();
 }

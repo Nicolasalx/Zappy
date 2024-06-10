@@ -18,7 +18,7 @@ Gui::Object::Object(std::shared_ptr<Gui::GameState> gameState): _gameState(gameS
     this->addModel("bonus/assets/thystame.obj", "bonus/assets/texture_thystame.png");
 
     for (int i = 0; i < 7; i++) {
-        this->object_padding[i][0] = cos((PI / 180.0f) * (i * 50.0f));
-        this->object_padding[i][1] = sin((PI / 180.0f) * (i * 50.0f));
+        this->object_padding[i][0] = std::cos((std::numbers::pi / 180.0) * (i * 50.0));
+        this->object_padding[i][1] = std::sin((std::numbers::pi / 180.0) * (i * 50.0));
     }
 }

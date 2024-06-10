@@ -26,10 +26,10 @@ void Gui::ARayLibModel::addModel(std::string model_path, std::string texture_pat
     SetMaterialTexture(&model.materials[0], MATERIAL_MAP_DIFFUSE, texture);
 
     if (model_path.substr(model_path.find_last_of(".") + 1) == "glb") {
-        model.transform = MatrixRotateXYZ((Vector3){90.0f * (PI / 180), 0.0f, 0.0f});
+        model.transform = MatrixRotateXYZ((Vector3){90.0 * (std::numbers::pi / 180), 0.0, 0.0});
     }
     if (model_path.substr(model_path.find_last_of(".") + 1) == "iqm") {
-        model.transform = MatrixRotateXYZ((Vector3){-90.0f * (PI / 180), 0.0f, 0.0f});
+        model.transform = MatrixRotateXYZ((Vector3){-90.0 * (std::numbers::pi / 180), 0.0, 0.0});
     }
 
     _models.push_back(model);

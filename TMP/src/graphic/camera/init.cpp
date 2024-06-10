@@ -10,10 +10,10 @@
 
 Gui::Camera::Camera()
 {
-    this->_data.position = (Vector3){ 0.0f, 10.0f, 0.0f };
-    this->_data.target = (Vector3){ 50.0f, 0.0f, 50.0f };
-    this->_data.up = (Vector3){ 0.0f, 1.0f, 0.0f };
-    this->_data.fovy = 90.0f;
+    this->_data.position = (Vector3){ 0.0, 10.0, 0.0 };
+    this->_data.target = (Vector3){ 50.0, 0.0, 50.0 };
+    this->_data.up = (Vector3){ 0.0, 1.0, 0.0 };
+    this->_data.fovy = 90.0;
     this->_data.projection = CAMERA_PERSPECTIVE;
     DisableCursor();
 }
