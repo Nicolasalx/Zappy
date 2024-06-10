@@ -32,6 +32,7 @@ namespace Gui
             void addComponent(ComponentType cmpType);
             void handleEvent(const Gui::Event &event);
             bool isMouseOnBox(const Box &box, const Pos &mousePos);
+            void checkMouseState(const Gui::Event &event, Component component);
 
             std::shared_ptr<Gui::GameData> _gameData;
             int _windowWidth = 0;
