@@ -50,7 +50,7 @@ namespace Gui
 
     struct egg_t {
         int player_number;
-        int egg_number;       
+        int egg_number;
         pos_t pos;
     };
 

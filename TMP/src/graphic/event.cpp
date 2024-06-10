@@ -23,8 +23,8 @@ void Gui::Graphic::windowResize()
     if (IsWindowResized()) {
         this->window.window_width = GetScreenWidth();
         this->window.window_height = GetScreenHeight();
-        textBoxs.resize(this->window.window_width, this->window.window_height);
-        this->menu.resizeMenu(this->window.window_width, this->window.window_height);
+        this->textBoxs.resize(this->window.window_width, this->window.window_height);
+        this->menu.resize(this->window.window_width, this->window_height);
     }
 }
 
