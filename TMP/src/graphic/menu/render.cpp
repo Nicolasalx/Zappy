@@ -49,7 +49,9 @@ void Gui::Menu::render(Component &component)
 
 void Gui::Menu::renderMenu()
 {
+    std::cout << "OK\n";
     for (auto &item: _componentList) {
+        std::cout << "OK\n";
         render(item);
     }
 }
