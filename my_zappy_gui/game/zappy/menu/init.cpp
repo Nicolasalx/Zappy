@@ -15,7 +15,16 @@ void Gui::Menu::componentPlay()
     addComponent(PLAY);
 }
 
+void Gui::Menu::componentSettings()
+{
+    addBox({Box(0.4, 0.5, 0.3, 0.2, BLUE_COLOR)});
+    addText(Text("SETTINGS", { 0.4, 0.7 }, 20, BLUE_COLOR));
+
+    addComponent(SETTINGS);
+}
+
 Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData): _gameData(gameData)
 {
     componentPlay();
+    componentSettings();
 }
