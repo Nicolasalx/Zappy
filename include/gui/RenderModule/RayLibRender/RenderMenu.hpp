@@ -20,6 +20,7 @@ namespace Gui {
             void render(const GameData &gameData);
             void renderOneComponent(Component &component);
             void resize(int window_width, int window_height);
+            void initMenu(const GameData &gameData);
 
         private:
             int _windowWidth = 0;
