@@ -19,7 +19,6 @@ static void compute_select_timeout(server_t *server)
         server->opt.freq - computation_time;
     if (server->time.timeout.tv_usec < 0) {
         server->time.timeout.tv_usec = 0;
-        computation_time = 0;
     }
 }
 
