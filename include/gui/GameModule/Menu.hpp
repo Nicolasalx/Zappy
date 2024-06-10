@@ -30,6 +30,8 @@ namespace Gui
             void addBox(const Box &box);
             void addText(const Text &text);
             void addComponent(ComponentType cmpType);
+            void handleEvent(const Gui::Event &event);
+            bool isMouseOnBox(const Box &box, const Pos &mousePos);
 
             std::shared_ptr<Gui::GameData> _gameData;
             int _windowWidth = 0;

@@ -18,14 +18,11 @@ namespace Gui {
             RenderMenu();
             ~RenderMenu() = default;
             void render(const GameData &gameData);
-            void renderOneComponent(Component &component);
-            void resize(int window_width, int window_height);
-            void initMenu(const GameData &gameData);
+            void renderOneComponent(const Gui::Component &component);
 
         private:
             int _windowWidth = 0;
             int _windowHeight = 0;
-            std::vector<Gui::Component> _componentList;
     };
 }
 
