@@ -29,6 +29,8 @@ void Gui::Menu::checkMouseState(const Gui::Event &event, Component component)
             case Gui::EventType::LEFT_CLICK:
                 if (component.componentType == PLAY) {
                     this->_gameData->dataMenu.gameIsLaunch = true;
+                } else if (component.componentType == SETTINGS) {
+                    
                 }
             break;
             default:
