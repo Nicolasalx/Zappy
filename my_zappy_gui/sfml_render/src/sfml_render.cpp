@@ -55,13 +55,6 @@ Gui::Event Gui::SFMLRender::getEvent()
 
 void Gui::SFMLRender::render(const Gui::GameData &gameData)
 {
-    std::vector<sf::Texture> egg_textures(gameData.eggList.size());
-    for (size_t i = 0; i < gameData.eggList.size(); ++i) {
-        if (!egg_textures[i].loadFromFile("bonus/assets/egg.png")) {
-            std::cerr << "Error loading egg texture" << std::endl;
-            return;
-        }
-    }
     std::vector<sf::Texture> object_textures(7);
     for (int i = 0; i < 7; ++i) {
         std::string filename = "bonus/assets/res_" + std::to_string(i + 1) + ".png";
@@ -104,15 +97,6 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
                     }
                 }
             }
-        }
-        for (int i = 0; i < gameData.eggList.size(); ++i) {
-            sf::Sprite sprite(egg_textures[i]);
-            float egg_scale = cell_size / sprite.getLocalBounds().height * scale;
-            sprite.setScale(egg_scale, egg_scale);
-            double egg_offset_x = 0.75 * cell_size - (egg_scale * sprite.getLocalBounds().width) / 2;
-            double egg_offset_y = 0.5 * cell_size - (egg_scale * sprite.getLocalBounds().height) / 2;
-            sprite.setPosition(offset_x + gameData.eggList[i].pos.x * cell_size + egg_offset_x, offset_y + gameData.eggList[i].pos.y * cell_size + egg_offset_y);
-            window.draw(sprite);
         }
         this->egg->render(gameData);
         this->player->render(gameData);
