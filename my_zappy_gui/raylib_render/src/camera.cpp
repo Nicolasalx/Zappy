@@ -30,5 +30,7 @@ void Gui::RenderCamera::handle_cursor()
 
 void Gui::RenderCamera::update()
 {
-    if (IsCursorHidden()) UpdateCamera(&this->_camera, CAMERA_FREE);
+    if (IsCursorHidden()) {
+        UpdateCamera(&this->_camera, CAMERA_FREE);
+    }
 }

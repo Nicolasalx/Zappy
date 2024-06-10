@@ -45,8 +45,8 @@ void Gui::Core::parseArgs(int argc, const char **argv)
 
 void Gui::Core::launch()
 {
-    this->renderLoader.load("./raylib_render/raylib_render.so");
-    this->clientLoader.load("./client/client.so");
+    this->renderLoader.load("./my_zappy_gui/raylib_render/raylib_render.so");
+    this->clientLoader.load("./my_zappy_gui/client/client.so");
 
     this->renderModule = std::shared_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));
     this->clientModule = std::shared_ptr<Gui::IClient>(this->clientLoader.getInstance("entryPoint"));
@@ -76,14 +76,14 @@ bool Gui::Core::handleCoreEvent(const Gui::Event &eventList)
             if (!this->displayType) {
                 this->renderModule.reset();
                 this->renderLoader.close();
-                this->renderLoader.load("./sfml_render/sfml_render.so");
+                this->renderLoader.load("./my_zappy_gui/sfml_render/sfml_render.so");
                 this->renderModule = std::unique_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));
                 this->displayType = !this->displayType;
                 break;
             } else {
                 this->renderModule.reset();
                 this->renderLoader.close();
-                this->renderLoader.load("./raylib_render/raylib_render.so");
+                this->renderLoader.load("./my_zappy_gui/raylib_render/raylib_render.so");
                 this->renderModule = std::unique_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));
                 this->displayType = !this->displayType;
                 break;
