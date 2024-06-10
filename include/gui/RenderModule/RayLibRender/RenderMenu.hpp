@@ -9,6 +9,7 @@
     #define RENDERMENU_H_
 
     #include "GameData.hpp"
+    #include <raylib.h>
 
 namespace Gui {
     class RenderMenu
@@ -17,8 +18,13 @@ namespace Gui {
             RenderMenu();
             ~RenderMenu() = default;
             void render(const GameData &gameData);
+            void renderOneComponent(Component &component);
+            void resize(int window_width, int window_height);
 
         private:
+            int _windowWidth = 0;
+            int _windowHeight = 0;
+            std::vector<Gui::Component> _componentList;
     };
 }
 

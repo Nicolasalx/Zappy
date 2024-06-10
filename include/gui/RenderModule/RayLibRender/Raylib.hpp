@@ -21,8 +21,8 @@
     #include <raylib.h>
     #include <iostream>
 
-namespace Gui {
-
+namespace Gui
+{
     class Raylib : public ARenderModule
     {
         public:
@@ -40,8 +40,8 @@ namespace Gui {
             std::unique_ptr<Gui::RenderObject> object;
             std::unique_ptr<Gui::RenderPlayer> player;
             std::unique_ptr<Gui::RenderParticleSystem> particle;
-            //Gui::RenderMenu menu;
             std::unique_ptr<Gui::RenderEgg> egg;
+            Gui::RenderMenu menu;
     };
 }
 

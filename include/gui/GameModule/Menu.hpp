@@ -25,8 +25,17 @@ namespace Gui
             void update(const Gui::Event &event);
 
         private:
-            std::shared_ptr<Gui::GameData> _gameData;
+            void componentPlay();
 
+            void addBox(const Box &box);
+            void addText(const Text &text);
+            void addComponent(ComponentType cmpType);
+
+            std::shared_ptr<Gui::GameData> _gameData;
+            int _windowWidth = 0;
+            int _windowHeight = 0;
+
+            Component _component;
     };
 }
 

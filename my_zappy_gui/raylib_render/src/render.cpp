@@ -18,6 +18,7 @@ void Gui::Raylib::render(const Gui::GameData &gameData)
     this->particle->render(gameData, this->camera._camera);
     this->island->render(gameData);
     this->egg->render(gameData);
+    this->menu.render(gameData);
     // EndShaderMode();
     EndMode3D();
     EndDrawing();

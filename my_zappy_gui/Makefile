@@ -62,6 +62,7 @@ clean:
 	rm -f $(OBJ) $(shell find src/ -name "*.o")
 	@rm -f $(shell find src/ -name "*.gcno")
 	@rm -f $(shell find src/ -name "*.gcda")
+	cd $(RAYLIB_RENDER) && $(MAKE) fclean
 	rm -f *.gcno *.gcda gmon.out compile_commands.json
 
 fclean: clean

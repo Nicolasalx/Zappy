@@ -7,15 +7,13 @@
 
 #include "Zappy.hpp"
 
-
 void Gui::Zappy::update(std::vector<std::string> &messRecv, const Gui::Event &event)
 {
-    
-
     this->_parser.update(messRecv);
 
     this->_island.update(event);
     this->_object.update(event);
     this->_player.update(event);
     this->_egg.update(event);
+    this->_menu.update(event);
 }
