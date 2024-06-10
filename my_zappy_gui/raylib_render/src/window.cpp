@@ -8,7 +8,7 @@
 #include "Raylib.hpp"
 #include "RenderWindow.hpp"
 
-Gui::SizeWindow Gui::RenderWindow::sizeWindow = { WINDOW_WIDTH, WINDOW_HEIGHT };
+Gui::WindowSize Gui::RenderWindow::sizeWindow = { WINDOW_WIDTH, WINDOW_HEIGHT };
 
 Gui::RenderWindow::RenderWindow()
 {

@@ -31,11 +31,11 @@ Gui::Event Gui::Raylib::getEvent()
     }
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         event.eventType.push_back(Gui::EventType::LEFT_CLICK);
-        event.mouse_x = GetMouseX();
-        event.mouse_y = GetMouseY();
+        event.mouse.x = GetMouseX();
+        event.mouse.y = GetMouseY();
     }
-    event.window_size_x = window.sizeWindow.height;
-    event.window_size_y = window.sizeWindow.width;
+    event.windowSize.width = window.sizeWindow.height;
+    event.windowSize.height = window.sizeWindow.width;
     this->camera.handle_cursor();
     this->camera.update();
     return event;

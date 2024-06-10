@@ -52,7 +52,7 @@ void Gui::RenderMenu::render(const GameData &gameData)
 
     ClearBackground(LIGHTGRAY);
     initMenu(gameData);
-    SizeWindow sizeWindow = Gui::RenderWindow::getWindowSize();
+    WindowSize sizeWindow = Gui::RenderWindow::getWindowSize();
     this->_windowWidth = sizeWindow.width;
     this->_windowHeight = sizeWindow.height;
 

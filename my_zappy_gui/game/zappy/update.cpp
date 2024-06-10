@@ -10,8 +10,8 @@
 void Gui::Zappy::update(std::vector<std::string> &messRecv, const Gui::Event &event)
 {
     this->_gameData->frameTime = event.frame_time;
-    this->_gameData->windowX = event.window_size_x;
-    this->_gameData->windowY = event.window_size_y;
+    this->_gameData->windowX = event.windowSize.width;
+    this->_gameData->windowY = event.windowSize.height;
 
     this->_parser.update(messRecv);
 
