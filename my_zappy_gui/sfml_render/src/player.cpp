@@ -16,9 +16,6 @@ Gui::SFMLRenderPlayer::SFMLRenderPlayer(const GameData& gameData)
             return;
         }
     }
-    if (!textures.empty()) {
-        sprite.setTexture(textures[0]);
-    }
 }
 
 void Gui::SFMLRenderPlayer::render(const GameData& gameData)
