@@ -93,7 +93,7 @@ compilation_database: clean
 	bear -- make
 
 code_analyse: compilation_database
-	clang-tidy -header-filter=.* --use-color $(SRC)
+	clang-tidy --config-file=../.clang-tidy -header-filter=.* --use-color $(SRC)
 
 .PHONY: all clean fclean re unit_tests tests_run gcovr \
 	debug profiling compilation_database code_analyse
