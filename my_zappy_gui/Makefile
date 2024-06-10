@@ -62,6 +62,7 @@ clean:
 	rm -f $(OBJ) $(shell find src/ -name "*.o")
 	@rm -f $(shell find src/ -name "*.gcno")
 	@rm -f $(shell find src/ -name "*.gcda")
+	cd $(RAYLIB_RENDER) && $(MAKE) fclean
 	rm -f *.gcno *.gcda gmon.out compile_commands.json
 
 fclean: clean
@@ -108,7 +109,8 @@ compilation_database: clean
 	bear -- make
 
 code_analyse: compilation_database
-	clang-tidy -header-filter=.* --use-color $(SRC)
+	clang-tidy --config-file=../.clang-tidy \
+		-header-filter=.* --use-color $(SRC)
 
 .PHONY: all clean fclean re unit_tests tests_run gcovr \
 	debug profiling compilation_database code_analyse

@@ -13,7 +13,7 @@
 
 namespace Gui
 {
-    constexpr float MAP_SCALE = 12.0f;
+    constexpr float MAP_SCALE = 12.0;
     constexpr float WINDOW_WIDTH = 1920 / 2;
     constexpr float WINDOW_HEIGHT = 1080 / 2;
 
@@ -34,16 +34,6 @@ namespace Gui
         PLAYER
     };
 
-    enum Color {
-        WHITE,
-        BLACK,
-        BLUE,
-        GREEN,
-        RED,
-        GRAY,
-        PURPLE
-    };
-
     enum StateBox {
         NO_BUTTON,
         RIGHT_BUTTON,
@@ -53,12 +43,13 @@ namespace Gui
     };
 
     struct TextBoxData {
-        std::string text;
         Pos pos;
-        float width;
-        float height;
-        int text_size;
+        Pos size;
+        Pos real_pos;
+        Pos real_size;
+        float text_size;
         int state;
+        std::vector<std::string> text;
     };
 
     struct Incant {
@@ -83,6 +74,60 @@ namespace Gui
         std::vector<int> inventory;
         int animation_nbr;
         int anim_frame_counter;
+    };
+
+    enum GameColor {
+        WHITE_COLOR,
+        BLACK_COLOR,
+        BLUE_COLOR,
+        GREEN_COLOR,
+        RED_COLOR,
+        GRAY_COLOR,
+        PURPLE_COLOR
+    };
+
+    struct Text {
+        std::string contentText;
+        Pos pos;
+        int fontSize;
+        GameColor color;
+    };
+
+    struct Box {
+        float x;
+        float y;
+        float width;
+        float height;
+        GameColor color;
+    };
+
+    struct StockStartData {
+        Box box;
+        Text text;
+    };
+
+    enum ComponentType {
+        NONE,
+        PLAY,
+        SETTINGS,
+        QUIT
+    };
+
+    struct Component {
+        Box box;
+        Text text;
+        StockStartData stockStartData;
+        ComponentType componentType;
+    };
+
+    struct DataMenu {
+        bool gameIsLaunch;
+        std::vector<Gui::Component> componentList;
+    };
+
+    struct WindowSize {
+        float width;
+        float height;
     };
 }
 

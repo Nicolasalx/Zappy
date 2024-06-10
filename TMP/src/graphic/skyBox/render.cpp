@@ -12,7 +12,7 @@ void Gui::SkyBox::render()
     ClearBackground(RAYWHITE);
     rlDisableBackfaceCulling();
     rlDisableDepthMask();
-        DrawModel(model, (Vector3){0, 0, 0}, 1.0f, WHITE);
+        DrawModel(model, (Vector3){0, 0, 0}, 1.0, WHITE);
     rlEnableBackfaceCulling();
     rlEnableDepthMask();
 }

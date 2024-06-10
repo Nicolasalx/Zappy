@@ -10,7 +10,7 @@
 
 Gui::SkyBox::SkyBox(std::shared_ptr<GameState> gameState): _gameState(gameState)
 {
-    Mesh cube = GenMeshCube(1.0f, 1.0f, 1.0f);
+    Mesh cube = GenMeshCube(1.0, 1.0, 1.0);
     this->model = LoadModelFromMesh(cube);
     this->model.materials[0].shader = LoadShader(TextFormat("bonus/assets/skybox.vs", 330),
                                             TextFormat("bonus/assets/skybox.fs", 330));

@@ -33,8 +33,8 @@ Gui::Event Gui::SFMLRender::getEvent()
         return Gui::Event();
     }
     mousePos = sf::Mouse::getPosition(window);
-    guiEvent.mouse_x = mousePos.x;
-    guiEvent.mouse_y = mousePos.y;
+    guiEvent.mouse.x = mousePos.x;
+    guiEvent.mouse.y = mousePos.y;
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
             guiEvent.eventType.push_back(Gui::EventType::EXIT);

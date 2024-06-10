@@ -8,6 +8,8 @@
 #ifndef RENDERWINDOW_H_
     #define RENDERWINDOW_H_
 
+    #include "InfoGame.hpp"
+
 namespace Gui
 {
     class RenderWindow
@@ -16,8 +18,7 @@ namespace Gui
             RenderWindow();
             ~RenderWindow();
 
-            int window_width = WINDOW_WIDTH;
-            int window_height = WINDOW_HEIGHT;
+            WindowSize windowSize;
 
         private:
     };

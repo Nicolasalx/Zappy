@@ -9,5 +9,6 @@
 
 void Gui::Menu::update(const Gui::Event &event)
 {
-
+    handleEvent(event);
+    resize(event);
 }

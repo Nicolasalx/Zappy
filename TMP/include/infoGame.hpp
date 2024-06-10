@@ -14,7 +14,7 @@
 
 namespace Gui
 {
-    constexpr float MAP_SCALE = 12.0f;
+    constexpr float MAP_SCALE = 12.0;
     constexpr float WINDOW_WIDTH = 1920 / 2;
     constexpr float WINDOW_HEIGHT = 1080 / 2;
 
@@ -50,7 +50,7 @@ namespace Gui
 
     struct egg_t {
         int player_number;
-        int egg_number;       
+        int egg_number;
         pos_t pos;
     };
 

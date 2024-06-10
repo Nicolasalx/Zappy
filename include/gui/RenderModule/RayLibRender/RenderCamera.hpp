@@ -22,7 +22,7 @@ namespace Gui {
             void handle_cursor();
 
             Camera3D _camera;
-            bool cursor = false;
+            bool cursor = true;
         private:
     };
 }

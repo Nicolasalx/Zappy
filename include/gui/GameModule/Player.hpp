@@ -13,6 +13,7 @@
     #include <vector>
     #include "GameData.hpp"
     #include "Event.hpp"
+    #include <map>
 
 namespace Gui
 {
@@ -23,9 +24,11 @@ namespace Gui
             ~Player() = default;
 
             void update(const Gui::Event &event);
-
+            void updateAnimation(PlayerData &player);
+            void updatePlayerPos(PlayerData &player);
         private:
             std::shared_ptr<Gui::GameData> _gameData;
+            std::map<int, int> playerOrientation;
     };
 }
 

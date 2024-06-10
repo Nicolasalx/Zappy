@@ -49,7 +49,7 @@ namespace Gui
             void resize(int window_width, int window_height);
 
             std::vector<int> listLevelPlayer;
-            std::vector<Gui::TextBox> _textBoxs;
+            std::vector<Gui::TextBoxData> _textBoxs;
             std::shared_ptr<GameState> _gameState;
     };
 }

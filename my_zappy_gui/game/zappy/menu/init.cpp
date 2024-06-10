@@ -7,7 +7,15 @@
 
 #include "Menu.hpp"
 
-Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData) : _gameData(gameData)
+void Gui::Menu::componentPlay()
 {
+    addBox({Box(0.4, 0.2, 0.3, 0.2, BLUE_COLOR)});
+    addText(Text("PLAY", { 0.4, 0.4 }, 20, BLUE_COLOR));
 
+    addComponent(PLAY);
+}
+
+Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData): _gameData(gameData)
+{
+    componentPlay();
 }

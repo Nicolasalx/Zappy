@@ -7,7 +7,10 @@
 
 #include "Player.hpp"
 
-Gui::Player::Player(std::shared_ptr<GameData> GameData)
+Gui::Player::Player(std::shared_ptr<GameData> GameData) : _gameData(GameData)
 {
-
+    this->playerOrientation[1] = 180;
+    this->playerOrientation[2] = 90;
+    this->playerOrientation[3] = 0;
+    this->playerOrientation[4] = 270;
 }

@@ -49,7 +49,7 @@ namespace Gui
              * @param Color color: color of the model
             */
             void drawModel(const ModelInfo &modelInfo);
-            
+
             /**
              * @brief Render the models. This function should be overriden in the child class
             */

@@ -25,8 +25,21 @@ namespace Gui
             void update(const Gui::Event &event);
 
         private:
-            std::shared_ptr<Gui::GameData> _gameData;
+            void componentPlay();
 
+            void addBox(const Box &box);
+            void addText(const Text &text);
+            void addComponent(ComponentType cmpType);
+            void handleEvent(const Gui::Event &event);
+            bool isMouseOnBox(const Box &box, const Pos &mousePos);
+            void checkMouseState(const Gui::Event &event, Component component);
+            void resize(const Gui::Event &event);
+
+            std::shared_ptr<Gui::GameData> _gameData;
+            int _windowWidth = 0;
+            int _windowHeight = 0;
+
+            Component _component;
     };
 }
 

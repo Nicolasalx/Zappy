@@ -7,10 +7,11 @@
 
 #include "Zappy.hpp"
 
-
 void Gui::Zappy::update(std::vector<std::string> &messRecv, const Gui::Event &event)
 {
-    
+    this->_gameData->frameTime = event.frame_time;
+    this->_gameData->windowX = event.windowSize.width;
+    this->_gameData->windowY = event.windowSize.height;
 
     this->_parser.update(messRecv);
 
@@ -18,4 +19,6 @@ void Gui::Zappy::update(std::vector<std::string> &messRecv, const Gui::Event &ev
     this->_object.update(event);
     this->_player.update(event);
     this->_egg.update(event);
+    //this->_textBox.update(event);
+    this->_menu.update(event);
 }
