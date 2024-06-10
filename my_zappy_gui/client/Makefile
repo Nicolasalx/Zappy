@@ -51,6 +51,7 @@ compilation_database: clean
 	bear -- make GNU_FLAGS=""
 
 code_analyse: compilation_database
-	clang-tidy --config-file=../../.clang-tidy -header-filter=.* --use-color $(SRC)
+	clang-tidy --config-file=../../.clang-tidy \
+		-header-filter=.* --use-color $(SRC)
 
 .PHONY: all clean fclean re compilation_database code_analyse
