@@ -31,7 +31,7 @@ namespace Gui
     class Core {
         public:
             Core();
-            ~Core() = default;
+            ~Core();
 
             void parseArgs(int argc, const char **argv);
             void launch();
@@ -39,7 +39,7 @@ namespace Gui
 
         private:
             bool eventContain(const Gui::Event &eventList, const Gui::EventType &eventType);
-            void handleCoreEvent(const Gui::Event &eventList);
+            bool handleCoreEvent(const Gui::Event &eventList);
 
             std::shared_ptr<Gui::IRenderModule> renderModule;
             std::shared_ptr<Gui::IClient> clientModule;
