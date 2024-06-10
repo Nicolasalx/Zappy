@@ -13,11 +13,6 @@ Gui::RenderMenu::RenderMenu()
 
 }
 
-void Gui::RenderMenu::handleEvent()
-{
-    
-}
-
 void Gui::RenderMenu::resize(int window_width, int window_height)
 {
     for (auto &component: this->_componentList) {
@@ -29,6 +24,8 @@ void Gui::RenderMenu::resize(int window_width, int window_height)
         component.text.pos = { window_width * component.stockStartData.text.pos.x, window_height * component.stockStartData.text.pos.y };
     }
 }
+
+#include "RenderWindow.hpp"
 
 void Gui::RenderMenu::renderOneComponent(Gui::Component &component)
 {
@@ -56,6 +53,10 @@ void Gui::RenderMenu::render(const GameData &gameData)
 
     ClearBackground(LIGHTGRAY);
     initMenu(gameData);
+    SizeWindow sizeWindow = Gui::RenderWindow::getWindowSize();
+    this->_windowWidth = sizeWindow.width;
+    this->_windowHeight = sizeWindow.height;
+
     resize(this->_windowWidth, this->_windowHeight);
     for (auto &item: this->_componentList) {
         renderOneComponent(item);

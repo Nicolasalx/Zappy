@@ -8,12 +8,14 @@
 #include "Raylib.hpp"
 #include "RenderWindow.hpp"
 
+Gui::SizeWindow Gui::RenderWindow::sizeWindow = { WINDOW_WIDTH, WINDOW_HEIGHT };
+
 Gui::RenderWindow::RenderWindow()
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Zappy GUI");
-    this->window_width = GetScreenWidth();
-    this->window_height = GetScreenHeight();
+    sizeWindow.width = GetScreenWidth();
+    sizeWindow.height = GetScreenHeight();
 }
 
 Gui::RenderWindow::~RenderWindow()
