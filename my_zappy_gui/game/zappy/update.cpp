@@ -10,7 +10,7 @@
 
 void Gui::Zappy::update(std::vector<std::string> &messRecv, const Gui::Event &event)
 {
-    
+    this->_gameData->frameTime = event.frame_time;
 
     this->_parser.update(messRecv);
 
