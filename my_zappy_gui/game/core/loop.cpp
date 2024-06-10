@@ -35,7 +35,7 @@ void Gui::Core::parseArgs(int argc, const char **argv)
         }
         if (argv[i] == std::string("-help")) {
             std::cout << "USAGE: ./zappy_gui -p port -h ip" << std::endl;
-            exit(0);
+            std::exit(0);
         }
     }
     if (this->ip == "localhost") {
@@ -48,8 +48,8 @@ void Gui::Core::launch()
     this->renderLoader.load("./my_zappy_gui/raylib_render/raylib_render.so");
     this->clientLoader.load("./my_zappy_gui/client/client.so");
 
-    this->renderModule = std::unique_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));
-    this->clientModule = std::unique_ptr<Gui::IClient>(this->clientLoader.getInstance("entryPoint"));
+    this->renderModule = std::shared_ptr<Gui::IRenderModule>(this->renderLoader.getInstance("entryPoint"));
+    this->clientModule = std::shared_ptr<Gui::IClient>(this->clientLoader.getInstance("entryPoint"));
 
     this->gameModule = std::make_shared<Gui::Zappy>(this->clientModule, this->gameData);
 
@@ -66,9 +66,12 @@ bool Gui::Core::eventContain(const Gui::Event &eventList, const Gui::EventType &
     return false;
 }
 
-void Gui::Core::handleCoreEvent(const Gui::Event &eventList)
+bool Gui::Core::handleCoreEvent(const Gui::Event &eventList)
 {
     for (const Gui::EventType &event : eventList.eventType) {
+        if (event == Gui::EventType::EXIT) {
+            return true;
+        }
         if (event == Gui::EventType::NEXT_DISPLAY) {
             if (!this->displayType) {
                 this->renderModule.reset();
@@ -87,6 +90,7 @@ void Gui::Core::handleCoreEvent(const Gui::Event &eventList)
             }
         }
     }
+    return false;
 }
 
 void Gui::Core::loop()
@@ -100,7 +104,9 @@ void Gui::Core::loop()
         std::vector<std::string> messRecv = this->clientModule->recv();
         const Gui::Event &eventList = this->renderModule->getEvent();
 
-        handleCoreEvent(eventList);
+        if (handleCoreEvent(eventList)) {
+            break;
+        }
         this->gameModule->update(messRecv, eventList);
         this->renderModule->render(*this->gameData.get());
 

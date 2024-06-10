@@ -12,6 +12,9 @@ Gui::Event Gui::Raylib::getEvent()
     Gui::Event event;
 
     event.frame_time = GetFrameTime();
+    if (WindowShouldClose()) {
+        event.eventType.push_back(Gui::EventType::EXIT);
+    }
     if (IsWindowResized()) {
         event.eventType.push_back(Gui::EventType::WINDOW_RESIZED);
         event.window_size_x = GetScreenWidth();

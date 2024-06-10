@@ -10,3 +10,12 @@
 Gui::Core::Core() : gameData(std::make_shared<Gui::GameData>())
 {
 }
+
+Gui::Core::~Core()
+{
+    this->renderModule.reset();
+    this->clientModule.reset();
+    this->gameModule.reset();
+    this->renderLoader.close();
+    this->clientLoader.close();
+}
