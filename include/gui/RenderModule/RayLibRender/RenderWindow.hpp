@@ -8,22 +8,19 @@
 #ifndef RENDERWINDOW_H_
     #define RENDERWINDOW_H_
 
+    #include "InfoGame.hpp"
+
 namespace Gui
 {
-    struct SizeWindow {
-        float width;
-        float height;
-    };
-
     class RenderWindow
     {
         public:
             RenderWindow();
             ~RenderWindow();
 
-            static SizeWindow sizeWindow;
+            static WindowSize sizeWindow;
 
-            static SizeWindow getWindowSize()
+            static WindowSize getWindowSize()
             {
                 return sizeWindow;
             }

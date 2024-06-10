@@ -124,6 +124,11 @@ namespace Gui
         bool gameIsLaunch;
         std::vector<Gui::Component> componentList;
     };
+
+    struct WindowSize {
+        float width;
+        float height;
+    };
 }
 
 #endif /* !INFOGAME_H_ */

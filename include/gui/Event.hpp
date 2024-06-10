@@ -11,6 +11,7 @@
     #include "EventType.hpp"
     #include <string>
     #include <vector>
+    #include "InfoGame.hpp"
 
 namespace Gui
 {
@@ -18,10 +19,8 @@ namespace Gui
     {
         std::vector<Gui::EventType> eventType;
         std::string buffer;
-        int mouse_x = 0;
-        int mouse_y = 0;
-        int window_size_x = 0;
-        int window_size_y = 0;
+        Pos mouse = {0, 0};
+        WindowSize windowSize = {0, 0};
         double frame_time = 0;
     };
 }
