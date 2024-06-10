@@ -18,12 +18,7 @@ namespace Gui
             RenderWindow();
             ~RenderWindow();
 
-            static WindowSize sizeWindow;
-
-            static WindowSize getWindowSize()
-            {
-                return sizeWindow;
-            }
+            WindowSize windowSize;
 
         private:
     };

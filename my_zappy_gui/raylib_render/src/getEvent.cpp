@@ -17,8 +17,8 @@ Gui::Event Gui::Raylib::getEvent()
     }
     if (IsWindowResized()) {
         event.eventType.push_back(Gui::EventType::WINDOW_RESIZED);
-        window.sizeWindow.height = GetScreenHeight();
-        window.sizeWindow.width = GetScreenWidth();
+        window.windowSize.height = GetScreenHeight();
+        window.windowSize.width = GetScreenWidth();
     }
     if (IsKeyPressed(KEY_N)) {
         event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
@@ -34,8 +34,8 @@ Gui::Event Gui::Raylib::getEvent()
     }
     event.mouse.x = GetMouseX();
     event.mouse.y = GetMouseY();
-    event.windowSize.width = window.sizeWindow.width;
-    event.windowSize.height = window.sizeWindow.height;
+    event.windowSize.width = window.windowSize.width;
+    event.windowSize.height = window.windowSize.height;
     this->camera.handle_cursor();
     this->camera.update();
     return event;

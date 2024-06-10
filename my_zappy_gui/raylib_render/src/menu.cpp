@@ -25,9 +25,9 @@ void Gui::RenderMenu::render(const GameData &gameData)
     ClearBackground(LIGHTGRAY);
 
     // ! Maybe delete the getter
-    // WindowSize sizeWindow = Gui::RenderWindow::getWindowSize();
-    // this->_windowWidth = sizeWindow.width;
-    // this->_windowHeight = sizeWindow.height;
+    // WindowSize windowSize = Gui::RenderWindow::getWindowSize();
+    // this->_windowWidth = windowSize.width;
+    // this->_windowHeight = windowSize.height;
 
     for (auto &item: gameData.dataMenu.componentList) {
         renderOneComponent(item);
