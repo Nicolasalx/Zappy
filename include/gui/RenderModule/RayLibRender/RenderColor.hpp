@@ -10,19 +10,10 @@
 
     #include <raylib.h>
     #include <map>
+    #include "InfoGame.hpp"
 
 namespace Gui
 {
-    enum GameColor {
-        WHITE_COLOR,
-        BLACK_COLOR,
-        BLUE_COLOR,
-        GREEN_COLOR,
-        RED_COLOR,
-        GRAY_COLOR,
-        PURPLE_COLOR
-    };
-
     class RenderColor
     {
         public:

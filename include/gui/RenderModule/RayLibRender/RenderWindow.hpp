@@ -10,14 +10,23 @@
 
 namespace Gui
 {
+    struct SizeWindow {
+        float width;
+        float height;
+    };
+
     class RenderWindow
     {
         public:
             RenderWindow();
             ~RenderWindow();
 
-            int window_width = WINDOW_WIDTH;
-            int window_height = WINDOW_HEIGHT;
+            static SizeWindow sizeWindow;
+
+            static SizeWindow getWindowSize()
+            {
+                return sizeWindow;
+            }
 
         private:
     };
