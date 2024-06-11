@@ -12,7 +12,7 @@
 
 Gui::RenderMenu::RenderMenu()
 {
-    this->addModel(Gui::MENU_MARS_MODEL.data());
+    // this->addModel(Gui::MENU_MARS_MODEL.data());
 }
 
 void Gui::RenderMenu::renderOneComponent(const Gui::Component &component)
@@ -29,11 +29,11 @@ void Gui::RenderMenu::render(const GameData &gameData)
         renderOneComponent(item);
     }
 
-    this->drawModel((Gui::ModelInfo){0,
-        {0, 0, 0},
-        {0, 0, 0},
-        0,
-        {1, 1, 1},
-        WHITE}
-    );
+    // this->drawModel((Gui::ModelInfo){0,
+    //     {0, 0, 0},
+    //     {0, 0, 0},
+    //     0,
+    //     {1, 1, 1},
+    //     WHITE}
+    // );
 }
