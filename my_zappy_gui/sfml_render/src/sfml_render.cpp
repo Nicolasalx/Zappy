@@ -31,20 +31,21 @@ Gui::Event Gui::SFMLRender::getEvent()
 {
     Gui::Event guiEvent;
     sf::Event event;
-    sf::Vector2i mousePos;
 
     if (!window.isOpen()) {
         return Gui::Event();
     }
-    mousePos = sf::Mouse::getPosition(window);
+    
+    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
     guiEvent.mouse.x = mousePos.x;
     guiEvent.mouse.y = mousePos.y;
+    
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
             guiEvent.eventType.push_back(Gui::EventType::EXIT);
             window.close();
         }
-        if (event.type == sf::Event::MouseButtonPressed) {
+        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
             guiEvent.eventType.push_back(Gui::EventType::LEFT_CLICK);
         }
         for (const auto &currentKey : this->keyBind) {
@@ -58,12 +59,42 @@ Gui::Event Gui::SFMLRender::getEvent()
 
 void Gui::SFMLRender::render(const Gui::GameData &gameData)
 {
-    if (window.isOpen()) {
-        window.clear();
-        this->map->render(gameData, window);
-        this->object->render(gameData, window);
-        this->egg->render(gameData, window);
-        this->player->render(gameData, window);
-        window.display();
+    sf::Texture newTexture;
+    sf::Sprite sprite;
+
+    newTexture.loadFromFile("bonus/assets/background.png");
+    sprite.setTexture(newTexture);
+
+    if (!window.isOpen()) {
+        return;
     }
+    const Gui::Event &eventList = this->getEvent();
+    window.clear();
+    window.draw(sprite);
+    this->map->render(gameData, window);
+    this->object->render(gameData, window);
+    this->egg->render(gameData, window);
+    this->player->render(gameData, window);
+    if (std::find(eventList.eventType.begin(), eventList.eventType.end(), Gui::EventType::LEFT_CLICK) != eventList.eventType.end()) {
+        sf::Vector2i cell = getClickedCase(gameData, eventList.mouse.x, eventList.mouse.y);
+        if (cell.x != -1 && cell.y != -1) {
+            std::cout << "Case clicked: (" << cell.x << ", " << cell.y << ")\n";
+        }
+    }
+    window.display();
+}
+
+sf::Vector2i Gui::SFMLRender::getClickedCase(const GameData &gameData, int mouse_x, int mouse_y)
+{
+    double cell_size = std::min(window.getSize().x / gameData.mapSize.x, window.getSize().y / gameData.mapSize.y);
+    double offset_x = (window.getSize().x - (cell_size * gameData.mapSize.x)) / 2;
+    double offset_y = (window.getSize().y - (cell_size * gameData.mapSize.y)) / 2;
+
+    int cell_x = (mouse_x - offset_x) / cell_size;
+    int cell_y = (mouse_y - offset_y) / cell_size;
+
+    if (cell_x >= 0 && cell_x < gameData.mapSize.x && cell_y >= 0 && cell_y < gameData.mapSize.y) {
+        return sf::Vector2i(cell_x, cell_y);
+    }
+    return sf::Vector2i(-1, -1);
 }
