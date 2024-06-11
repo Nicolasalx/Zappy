@@ -22,8 +22,8 @@ void set_object_cmd(char *argv, client_t *client, server_t *server)
             pin_reply(server, client);
             bct_reply(server, client->player.pos_x, client->player.pos_y);
             if (server->opt.is_debug == true) {
-                printf("[Debug] Object %s set on tile (%d, %d)\n",
-                object_list[i], client->player.pos_x, client->player.pos_y);
+                printf("[Debug] Object %s set by %d on tile X:%d Y:%d\n",
+                object_list[i], client->player.id, client->player.pos_x, client->player.pos_y);
             }
             return;
         }
