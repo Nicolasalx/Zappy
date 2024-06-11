@@ -29,7 +29,7 @@ Gui::Parser::Parser(std::shared_ptr<GameData> gameData) : _gameData(gameData)
 void Gui::Parser::update(std::vector<std::string> &messRecv)
 {
     for (auto &mess : messRecv) {
-        std::cout << "cmd: " << mess;
+        //std::cout << "cmd: " << mess;
         this->parse_server_reply(mess);
     }
 }
