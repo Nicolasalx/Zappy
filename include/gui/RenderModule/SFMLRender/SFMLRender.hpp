@@ -24,10 +24,9 @@ namespace Gui
         public:
             SFMLRender();
             ~SFMLRender() override;
-
+            sf::Vector2i getClickedCase(const GameData &gameData, int mouseX, int mouseY);
             Gui::Event getEvent() override;
             void render(const Gui::GameData &gameData) override;
-
         private:
             sf::RenderWindow window;
             std::unique_ptr<Gui::SFMLRenderPlayer> player;
