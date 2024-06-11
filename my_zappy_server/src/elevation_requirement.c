@@ -46,7 +46,7 @@ static bool check_elevation_item_req(server_t *server,
     char buffer[100] = {0};
     bool check = true;
 
-    snprintf(buffer, sizeof(buffer), "Incantation requirements failed:\n");
+    snprintf(buffer, sizeof(buffer), "[Debug] Incantation requirements failed:\n");
     if (server->game.world.map[client->player.pos_y][client->player.pos_x].
     item[DERAUMERE] < req.deraumere) {
         snprintf(buffer, sizeof(buffer), "- %d deraumere missing\n", req.deraumere - server->game.world.map[client->player.pos_y][client->player.pos_x].
@@ -84,7 +84,7 @@ static bool check_elevation_item_req(server_t *server,
     }
     if (!check) {
         if (server->opt.is_debug == true) {
-            printf("[Debug] %s\n", buffer);
+            printf("%s", buffer);
         }
         return false;
     }
@@ -113,7 +113,7 @@ bool check_elevation_req(client_t *client,
     }
     if (nb_player < req.nb_players) {
         if (server->opt.is_debug == true) {
-            printf("\n");
+            printf("[Debug] Incantation players requirements failed:\n- %d missing players", req.nb_players - nb_player);
         }
         return false;
     }
