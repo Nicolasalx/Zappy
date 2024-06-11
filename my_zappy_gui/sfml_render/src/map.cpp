@@ -12,20 +12,7 @@ Gui::SFMLRenderMap::SFMLRenderMap()
     ;
 }
 
-void Gui::SFMLRenderMap::LoadMapTexture(const GameData &gameData)
-{
-//    textures.resize(gameData.mapSize.x * gameData.mapSize.y);
-//    for (int i = 0; i < gameData.mapSize.x; ++i) {
-//        for (int j = 0; j < gameData.mapSize.y; ++j) {
-//            if (!textures[i * gameData.mapSize.y + j].loadFromFile("bonus/assets/floor.png")) {
-//                std::cerr << "Error loading map texture" << std::endl;
-//                return;
-//            }
-//        }
-//    }
-}
-
-void Gui::SFMLRenderMap::render(const GameData &gameData)
+void Gui::SFMLRenderMap::render(const GameData &gameData, sf::RenderWindow &window)
 {
     double cell_size = std::min(window.getSize().x / gameData.mapSize.x, window.getSize().y / gameData.mapSize.y);
     double offset_x = (window.getSize().x - (cell_size * gameData.mapSize.x)) / 2;

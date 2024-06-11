@@ -12,19 +12,7 @@ Gui::SFMLRenderObject::SFMLRenderObject()
     ;
 }
 
-void Gui::SFMLRenderObject::LoadObjectTexture(void)
-{
-//    textures.resize(7);
-//    for (int i = 0; i < 7; ++i) {
-//        std::string filename = "bonus/assets/res_" + std::to_string(i + 1) + ".png";
-//        if (!textures[i].loadFromFile(filename)) {
-//            std::cerr << "Error loading object texture: " << filename << std::endl;
-//            return;
-//        }
-//    }
-}
-
-void Gui::SFMLRenderObject::render(const GameData &gameData)
+void Gui::SFMLRenderObject::render(const GameData &gameData, sf::RenderWindow &window)
 {
     double cell_size = std::min(window.getSize().x / gameData.mapSize.x, window.getSize().y / gameData.mapSize.y);
     double offset_x = (window.getSize().x - (cell_size * gameData.mapSize.x)) / 2;
