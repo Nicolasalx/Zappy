@@ -60,10 +60,10 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
 {
     if (window.isOpen()) {
         window.clear();
-        this->map->render(gameData);
-        this->object->render(gameData);
-        this->egg->render(gameData);
-        this->player->render(gameData);
+        this->map->render(gameData, window);
+        this->object->render(gameData, window);
+        this->egg->render(gameData, window);
+        this->player->render(gameData, window);
         window.display();
     }
 }
