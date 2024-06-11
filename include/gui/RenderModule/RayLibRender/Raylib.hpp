@@ -18,6 +18,7 @@
     #include "RenderMenu.hpp"
     #include "RenderIsland.hpp"
     #include "RenderParticle.hpp"
+    #include "RenderTextBox.hpp"
     #include <raylib.h>
     #include <iostream>
 
@@ -42,6 +43,7 @@ namespace Gui
             std::unique_ptr<Gui::RenderPlayer> player;
             std::unique_ptr<Gui::RenderParticleSystem> particle;
             std::unique_ptr<Gui::RenderEgg> egg;
+            std::unique_ptr<Gui::RenderTextBoxList> textBoxList;
             Gui::RenderMenu menu;
     };
 }
