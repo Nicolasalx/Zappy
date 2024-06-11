@@ -9,16 +9,11 @@
 
 void Gui::TextBox::addText(TextBoxData &textBox, size_t index, std::string text)
 {
-    if (textBox.text.size() < index + 1) {
-        textBox.text.push_back(text);
+    if (textBox._text.size() < index + 1) {
+        textBox._text.push_back(text);
     } else {
-        textBox.text[index] = text;
+        textBox._text[index] = text;
     }
-}
-
-void Gui::TextBox::resize(int window_width, int window_height)
-{
-    ;
 }
 
 void Gui::TextBox::updateGeneralInfo()
@@ -30,4 +25,9 @@ void Gui::TextBox::updateGeneralInfo()
 void Gui::TextBox::update(const Gui::Event &event)
 {
     updateGeneralInfo();
+    for (auto &event : event.eventType) {
+        if (event == Gui::EventType::WINDOW_RESIZED) {
+            resize(_gameData->windowX, _gameData->windowY);
+        }
+    }
 }
