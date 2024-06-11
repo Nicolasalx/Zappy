@@ -27,10 +27,12 @@ namespace Gui
             void resize(int window_width, int window_height);
             void openClose(const Gui::Event &event);
             void updateGeneralInfo();
+            void updateListPlayerLevel();
 
         private:
             std::shared_ptr<Gui::GameData> _gameData;
-
+            std::vector<int> listLevelPlayer;
+            
     };
 }
 

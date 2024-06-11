@@ -22,6 +22,9 @@ void Gui::RenderTextBoxList::updateTextBoxs(const GameData &gameData)
         _textBoxs[i]._button.y = gameData.textBox[i]._buttonPos.y;
         _textBoxs[i]._button.width = gameData.textBox[i]._buttonSize.x;
         _textBoxs[i]._button.height = gameData.textBox[i]._buttonSize.y;
+        for (size_t j = 0; j < gameData.textBox[i]._text.size(); j++) {
+            _textBoxs[i]._boxInfo._text[j] = gameData.textBox[i]._text[j];
+        }
     }
 }
 

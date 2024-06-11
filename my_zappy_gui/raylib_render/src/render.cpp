@@ -27,7 +27,6 @@ void Gui::Raylib::render(const Gui::GameData &gameData)
         EndDrawing();
         return;
     }
-    BeginMode3D(this->camera._camera);
     renderGame(gameData);
     EndMode3D();
     this->textBoxList->drawAllTextBoxs(gameData);
