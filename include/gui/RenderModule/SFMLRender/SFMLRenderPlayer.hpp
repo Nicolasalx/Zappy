@@ -10,11 +10,11 @@
 #include <iostream>
 #include <vector>
 #include "GameData.hpp"
-#include "TexturePool.hpp"
+#include "SFMLPool.hpp"
 
 namespace Gui
 {
-    class SFMLRenderPlayer : Gui::TexturePool
+    class SFMLRenderPlayer : Gui::SFMLPool
     {
         public:
             SFMLRenderPlayer();

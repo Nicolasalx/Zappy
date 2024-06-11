@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** TexturePool
+** SFMLPool
 */
 
-#include "TexturePool.hpp"
+#include "SFMLPool.hpp"
 
-const sf::Texture &Gui::TexturePool::getTexture(const std::string &path)
+const sf::Texture &Gui::SFMLPool::getTexture(const std::string &path)
 {
     sf::Texture newTexture;
 

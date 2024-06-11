@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
-** TexturePool
+** SFMLPool
 */
 
-#ifndef TEXTUREPOOL_HPP_
-    #define TEXTUREPOOL_HPP_
+#ifndef SFMLPOOL_HPP_
+    #define SFMLPOOL_HPP_
 
     #include <string>
     #include <map>
@@ -14,17 +14,17 @@
 
 namespace Gui
 {
-    class TexturePool
+    class SFMLPool
     {
     private:
         std::map<std::string, sf::Texture> texture;
 
     public:
-        TexturePool() = default;
-        ~TexturePool() = default;
+        SFMLPool() = default;
+        ~SFMLPool() = default;
 
         const sf::Texture &getTexture(const std::string &path);
     };
 }
 
-#endif /* !TEXTUREPOOL_HPP_ */
+#endif /* !SFMLPOOL_HPP_ */
