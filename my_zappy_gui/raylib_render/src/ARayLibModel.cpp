@@ -42,6 +42,8 @@ void Gui::ARayLibModel::addModel(std::string model_path)
 {
     Model model = LoadModel(model_path.c_str());
 
+    std::exit(0);
+
     std::string path = "./bonus/assets/textures/";
     int index = 0;
     std::cout << "ADD MODEL\n";
