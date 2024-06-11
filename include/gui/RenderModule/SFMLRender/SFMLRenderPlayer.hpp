@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2023
+** EPITECH PROJECT, 2024
 ** B-YEP-400-PAR-4-1-zappy-thibaud.cathala
 ** File description:
 ** RenderPlayer
@@ -16,7 +16,8 @@ namespace Gui
     class SFMLRenderPlayer
     {
         public:
-            SFMLRenderPlayer(const GameData& gameData);
+            SFMLRenderPlayer();
+            void LoadPlayerTexture(const GameData &gameData);
             void render(const Gui::GameData &gameData);
         private:
             sf::Sprite sprite;
