@@ -9,7 +9,7 @@
 
 extern "C"
 {
-    Gui::IRenderModule *entryPoint(void)
+    Gui::IRenderModule *entryPoint()
     {
         return new Gui::SFMLRender();
     }
@@ -18,6 +18,8 @@ extern "C"
 Gui::SFMLRender::SFMLRender() : window(sf::VideoMode(1920, 1080), "ZAPPY")
 {
     this->player = std::make_unique<Gui::SFMLRenderPlayer>();
+    this->egg = std::make_unique<Gui::SFMLRenderEgg>();
+    this->map = std::make_unique<Gui::SFMLRenderMap>();
 }
 
 Gui::SFMLRender::~SFMLRender()
@@ -63,15 +65,6 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
             return;
         }
     }
-    std::vector<sf::Texture> map_texture(gameData.mapSize.x * gameData.mapSize.y);
-    for (int i = 0; i < gameData.mapSize.x; ++i) {
-        for (int j = 0; j < gameData.mapSize.y; ++j) {
-            if (!map_texture[i * gameData.mapSize.y + j].loadFromFile("bonus/assets/floor.png")) {
-                std::cerr << "Error loading map texture" << std::endl;
-                return;
-            }
-        }
-    }
     if (window.isOpen()) {
         window.clear();
         double cell_size = std::min(window.getSize().x / gameData.mapSize.x, window.getSize().y / gameData.mapSize.y);
@@ -81,10 +74,10 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
         std::pair<double, double> object_positions[7] = {{0.25, 0.25}, {0.50, 0.25}, {0.75, 0.25}, {0.25, 0.75}, {0.50, 0.75}, {0.75, 0.75}, {0.25, 0.50}};
         for (int i = 0; i < gameData.mapSize.x; ++i) {
             for (int j = 0; j < gameData.mapSize.y; ++j) {
-                sf::Sprite sprite(map_texture[i * gameData.mapSize.y + j]);
-                sprite.setScale(cell_size / sprite.getLocalBounds().height, cell_size / sprite.getLocalBounds().height);
-                sprite.setPosition(offset_x + i * cell_size, offset_y + j * cell_size);
-                window.draw(sprite);
+                // sf::Sprite sprite(map_texture[i * gameData.mapSize.y + j]);
+                // sprite.setScale(cell_size / sprite.getLocalBounds().height, cell_size / sprite.getLocalBounds().height);
+                // sprite.setPosition(offset_x + i * cell_size, offset_y + j * cell_size);
+                // window.draw(sprite);
                 for (int k = 0; k < 7; ++k) {
                     if (gameData.objectPos[j][i][k] > 0) {
                         sf::Sprite object_sprite(object_textures[k]);
@@ -98,6 +91,7 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
                 }
             }
         }
+        this->map->render(gameData);
         this->egg->render(gameData);
         this->player->render(gameData);
         window.display();
