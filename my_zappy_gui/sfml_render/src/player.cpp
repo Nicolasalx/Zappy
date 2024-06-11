@@ -7,18 +7,23 @@
 
 #include "SFMLRenderPlayer.hpp"
 
-Gui::SFMLRenderPlayer::SFMLRenderPlayer(const GameData& gameData)
+Gui::SFMLRenderPlayer::SFMLRenderPlayer()
+{
+    ;
+}
+
+void Gui::SFMLRenderPlayer::LoadPlayerTexture(const GameData &gameData)
 {
     textures.resize(gameData.playerList.size());
     for (size_t i = 0; i < gameData.playerList.size(); ++i) {
-        if (!textures[i].loadFromFile("bonus/assets/astronaute.png")) {
+        if (!textures[i].loadFromFile("bonus/assets/player.png")) {
             std::cerr << "Error loading player texture" << std::endl;
             return;
         }
     }
 }
 
-void Gui::SFMLRenderPlayer::render(const GameData& gameData)
+void Gui::SFMLRenderPlayer::render(const GameData &gameData)
 {
     double cell_size = std::min(window.getSize().x / gameData.mapSize.x, window.getSize().y / gameData.mapSize.y);
     double offset_x = (window.getSize().x - (cell_size * gameData.mapSize.x)) / 2;
