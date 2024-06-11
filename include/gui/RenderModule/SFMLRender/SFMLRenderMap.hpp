@@ -18,10 +18,8 @@ namespace Gui
     {
         public:
             SFMLRenderMap();
-            void LoadMapTexture(const GameData &gameData);
-            void render(const Gui::GameData &gameData);
+            void render(const Gui::GameData &gameData, sf::RenderWindow &window);
         private:
             sf::Sprite sprite;
-            sf::RenderWindow window;
     };
 }
