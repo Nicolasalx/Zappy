@@ -7,32 +7,10 @@
 
 #include "RenderTextBox.hpp"
 
-// void Gui::RenderTextBox::openClose()
-// {
-//     if (CheckCollisionPointRec(GetMousePosition(), _button)) {
-//         if (_boxInfo.state == RIGHT_BUTTON) {
-//             _boxInfo.state = CLOSED_RIGHT;
-//             resize(_boxInfo.window_width, _boxInfo.window_height);
-//         }
-//         else if (_boxInfo.state == LEFT_BUTTON) {
-//             _boxInfo.state = CLOSED_LEFT;
-//             resize(_boxInfo.window_width, _boxInfo.window_height);
-//         }
-//         else if (_boxInfo.state == CLOSED_RIGHT) {
-//             _boxInfo.state = RIGHT_BUTTON;
-//             resize(_boxInfo.window_width, _boxInfo.window_height);
-//         }
-//         else if (_boxInfo.state == CLOSED_LEFT) {
-//             _boxInfo.state = LEFT_BUTTON;
-//             resize(_boxInfo.window_width, _boxInfo.window_height);
-//         }
-//     }
-// }
-
-// void Gui::TextBox::addText(std::string text, float ypos)
-// {
-//     DrawText(text.c_str(), _box.x + _boxInfo.window_width * 0.025f, _box.y + this->_box.height * ypos, _boxInfo.window_width * _boxInfo.text_size, WHITE);
-// }
+void Gui::RenderTextBox::addText(std::string text, float ypos)
+{
+    DrawText(text.c_str(), _box.x + _box.width * 0.1f, _box.y + _box.height * ypos, (_box.width * 2) * _boxInfo._text_size, WHITE);
+}
 
 void Gui::RenderTextBox::draw()
 {
@@ -41,6 +19,9 @@ void Gui::RenderTextBox::draw()
     if (_boxInfo._state != NO_BUTTON) {
         DrawRectangleRec(this->_button, _color);
         DrawRectangleLinesEx(this->_button, 1, WHITE);
+    }
+    for (size_t i = 0; i < _boxInfo._text.size(); i++) {
+        addText(_boxInfo._text[i], ((float)i + 0.5f) / (float)(_boxInfo._text.size() + 0.5f));
     }
 }
 
