@@ -52,7 +52,7 @@ void Gui::Menu::handleEvent(const Gui::Event &event)
 
     for (const auto &evt : event.eventType) {
         switch (evt) {
-            case Gui::EventType::ESCAPE:
+            case Gui::EventType::KEY_M:
                 this->_gameData->dataMenu.gameIsLaunch = false;
                 break;
             default:
