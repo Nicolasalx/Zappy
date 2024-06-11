@@ -23,7 +23,7 @@ void Gui::RenderMenu::renderOneComponent(const Gui::Component &component)
 
 void Gui::RenderMenu::render(const GameData &gameData)
 {
-    ClearBackground(LIGHTGRAY);
+    ClearBackground(BLUE);
 
     for (auto &item: gameData.dataMenu.componentList) {
         renderOneComponent(item);
