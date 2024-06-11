@@ -15,10 +15,11 @@ Gui::Event Gui::Raylib::getEvent()
     if (WindowShouldClose()) {
         event.eventType.push_back(Gui::EventType::EXIT);
     }
-    if (IsWindowResized()) {
+    if (IsWindowResized() || window.launched == false) {
         event.eventType.push_back(Gui::EventType::WINDOW_RESIZED);
         window.windowSize.width = GetScreenWidth();
         window.windowSize.height = GetScreenHeight();
+        window.launched = true;
     }
     if (IsKeyPressed(KEY_N)) {
         event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);

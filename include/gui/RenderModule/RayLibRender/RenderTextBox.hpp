@@ -26,7 +26,7 @@ namespace Gui
             void resize(int window_width, int window_height);
             void addText(std::string text, float ypos);
             void draw();
-        private:
+
             TextBoxData _boxInfo;
             Rectangle _box;
             Rectangle _button;
@@ -37,9 +37,8 @@ namespace Gui
         public:
             RenderTextBoxList() = default;
             ~RenderTextBoxList() = default;
-            void updateTextBoxs(GameData &gameData);
-            void drawAllTextBoxs();
-            void resize(int window_width, int window_height);
+            void updateTextBoxs(const GameData &gameData);
+            void drawAllTextBoxs(const GameData &gameData);
 
             std::vector<Gui::RenderTextBox> _textBoxs;
     };

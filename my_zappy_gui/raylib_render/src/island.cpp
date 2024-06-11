@@ -28,8 +28,8 @@ void Gui::RenderIsland::render(const Gui::GameData &gameData)
             //     (Vector3){0, 0, 0}, 0, (Vector3){2.0 * size, 2.0 * size, 2.0 * size}, GREEN});
             // }
             // else {
-                this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, -2.0 * size, j * Gui::MAP_SCALE},
-                (Vector3){0, 0, 0}, 0, (Vector3){2.0 * size, 2.0 * size, 2.0 * size}, WHITE});
+                this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, -2.0f * size, j * Gui::MAP_SCALE},
+                (Vector3){0, 0, 0}, 0, (Vector3){2.0f * size, 2.0f * size, 2.0f * size}, WHITE});
             // }
         }
     }

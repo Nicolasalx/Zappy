@@ -5,9 +5,9 @@
 ** render
 */
 
-// #include "zappy_gui.hpp"
+#include "RenderTextBox.hpp"
 
-// void Gui::TextBox::openClose()
+// void Gui::RenderTextBox::openClose()
 // {
 //     if (CheckCollisionPointRec(GetMousePosition(), _button)) {
 //         if (_boxInfo.state == RIGHT_BUTTON) {
@@ -34,15 +34,15 @@
 //     DrawText(text.c_str(), _box.x + _boxInfo.window_width * 0.025f, _box.y + this->_box.height * ypos, _boxInfo.window_width * _boxInfo.text_size, WHITE);
 // }
 
-// void Gui::TextBox::draw()
-// {
-//     DrawRectangleRec(this->_box, _color);
-//     DrawRectangleLinesEx(this->_box, 1, WHITE);
-//     if (_boxInfo.state != NO_BUTTON) {
-//         DrawRectangleRec(this->_button, _color);
-//         DrawRectangleLinesEx(this->_button, 1, WHITE);
-//     }
-// }
+void Gui::RenderTextBox::draw()
+{
+    DrawRectangleRec(this->_box, _color);
+    DrawRectangleLinesEx(this->_box, 1, WHITE);
+    if (_boxInfo._state != NO_BUTTON) {
+        DrawRectangleRec(this->_button, _color);
+        DrawRectangleLinesEx(this->_button, 1, WHITE);
+    }
+}
 
 // bool Gui::TextBox::isClosed()
 // {
