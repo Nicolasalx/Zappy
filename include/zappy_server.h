@@ -127,6 +127,7 @@ typedef struct {
     int client_nb;
     bool end_game;
     bool pause_game;
+    bool is_debug;
 } server_opt_t;
 
 typedef struct {
@@ -275,6 +276,7 @@ void resume_cmd(int argc, char **argv, server_t *server);
 void immortal_cmd(int, char **argv, server_t *server);
 void tpegg_cmd(int, char **argv, server_t *server);
 void killegg_cmd(int, char **argv, server_t *server);
+void debug_cmd(int, char **argv, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);
