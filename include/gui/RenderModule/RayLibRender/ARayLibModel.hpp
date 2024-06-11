@@ -38,6 +38,7 @@ namespace Gui
              * @param std::string texture: path to the texture
             */
             void addModel(std::string model, std::string texture);
+            void addModel(std::string model);
 
             /**
              * @brief Draw a model with the given ModelInfo struct

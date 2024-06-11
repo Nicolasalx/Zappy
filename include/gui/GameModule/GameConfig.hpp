@@ -41,6 +41,8 @@ namespace Gui
     constexpr std::string_view THYSTAME_TEXTURE = "bonus/assets/texture_thystame.png";
 
     constexpr std::string_view EVOLUTION_TEXTURE = "bonus/assets/evolution.png";
+
+    constexpr std::string_view MENU_MARS_MODEL = "bonus/assets/mars_one_base.obj";
 }
 
 #endif /* !GAMECONFIG_HPP_ */

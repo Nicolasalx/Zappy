@@ -8,10 +8,11 @@
 #include "RenderMenu.hpp"
 #include "RenderWindow.hpp"
 #include "RenderColor.hpp"
+#include "GameConfig.hpp"
 
 Gui::RenderMenu::RenderMenu()
 {
-
+    this->addModel(Gui::MENU_MARS_MODEL.data());
 }
 
 void Gui::RenderMenu::renderOneComponent(const Gui::Component &component)
@@ -27,4 +28,12 @@ void Gui::RenderMenu::render(const GameData &gameData)
     for (auto &item: gameData.dataMenu.componentList) {
         renderOneComponent(item);
     }
+
+    this->drawModel((Gui::ModelInfo){0,
+        {0, 0, 0},
+        {0, 0, 0},
+        0,
+        {1, 1, 1},
+        WHITE}
+    );
 }
