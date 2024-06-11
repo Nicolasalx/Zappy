@@ -79,6 +79,9 @@ void eject_cmd(char *, client_t *client, server_t *server)
                 pex_reply(server, &server->clients[i]);
                 ppo_reply(server, &server->clients[i]);
                 ejected = true;
+                if (server->opt.is_debug == true) {
+                    printf("Player %d ejected by player %d\n", server->clients[i].player.id, client->player.id);
+                }
         }
     }
     eject_egg_from_tile(client, server, &ejected);
