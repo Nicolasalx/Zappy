@@ -68,6 +68,9 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	rm -f $(NAME_TESTS)
+	@cd $(LIB_CLIENT) && $(MAKE) fclean
+	@cd $(RAYLIB_RENDER) && $(MAKE) fclean
+	@cd $(SFML_RENDER) && $(MAKE) fclean
 	@cd $(LIB_PATH) && $(MAKE) fclean
 
 re: fclean all
