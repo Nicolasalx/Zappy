@@ -10,9 +10,10 @@
 
     #include "GameData.hpp"
     #include <raylib.h>
+    #include "ARayLibModel.hpp"
 
 namespace Gui {
-    class RenderMenu
+    class RenderMenu: public virtual ARayLibModel
     {
         public:
             RenderMenu();

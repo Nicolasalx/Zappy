@@ -20,8 +20,10 @@ void Gui::Raylib::renderGame(const Gui::GameData &gameData)
 void Gui::Raylib::render(const Gui::GameData &gameData)
 {
     BeginDrawing();
+    BeginMode3D(this->camera._camera);
     if (!gameData.dataMenu.gameIsLaunch) {
         this->menu.render(gameData);
+        EndMode3D();
         EndDrawing();
         return;
     }
