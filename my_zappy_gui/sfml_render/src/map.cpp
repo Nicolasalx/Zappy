@@ -14,15 +14,15 @@ Gui::SFMLRenderMap::SFMLRenderMap()
 
 void Gui::SFMLRenderMap::LoadMapTexture(const GameData &gameData)
 {
-    textures.resize(gameData.mapSize.x * gameData.mapSize.y);
-    for (int i = 0; i < gameData.mapSize.x; ++i) {
-        for (int j = 0; j < gameData.mapSize.y; ++j) {
-            if (!textures[i * gameData.mapSize.y + j].loadFromFile("bonus/assets/floor.png")) {
-                std::cerr << "Error loading map texture" << std::endl;
-                return;
-            }
-        }
-    }
+//    textures.resize(gameData.mapSize.x * gameData.mapSize.y);
+//    for (int i = 0; i < gameData.mapSize.x; ++i) {
+//        for (int j = 0; j < gameData.mapSize.y; ++j) {
+//            if (!textures[i * gameData.mapSize.y + j].loadFromFile("bonus/assets/floor.png")) {
+//                std::cerr << "Error loading map texture" << std::endl;
+//                return;
+//            }
+//        }
+//    }
 }
 
 void Gui::SFMLRenderMap::render(const GameData &gameData)
@@ -33,7 +33,7 @@ void Gui::SFMLRenderMap::render(const GameData &gameData)
 
     for (int i = 0; i < gameData.mapSize.x; ++i) {
         for (int j = 0; j < gameData.mapSize.y; ++j) {
-            sprite.setTexture(textures[i * gameData.mapSize.y + j]);
+            sprite.setTexture(this->getTexture("bonus/assets/floor.png"));
             sprite.setScale(cell_size / sprite.getLocalBounds().height, cell_size / sprite.getLocalBounds().height);
             sprite.setPosition(offset_x + i * cell_size, offset_y + j * cell_size);
             window.draw(sprite);

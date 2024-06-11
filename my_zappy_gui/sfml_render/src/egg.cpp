@@ -14,13 +14,13 @@ Gui::SFMLRenderEgg::SFMLRenderEgg()
 
 void Gui::SFMLRenderEgg::LoadEggTexture(const GameData &gameData)
 {
-    textures.resize(gameData.eggList.size());
-    for (size_t i = 0; i < gameData.eggList.size(); ++i) {
-        if (!textures[i].loadFromFile("bonus/assets/egg.png")) {
-            std::cerr << "Error loading egg texture" << std::endl;
-            return;
-        }
-    }
+//    textures.resize(gameData.eggList.size());
+//    for (size_t i = 0; i < gameData.eggList.size(); ++i) {
+//        if (!textures[i].loadFromFile("bonus/assets/egg.png")) {
+//            std::cerr << "Error loading egg texture" << std::endl;
+//            return;
+//        }
+//    }
 }
 
 void Gui::SFMLRenderEgg::render(const GameData &gameData)
@@ -30,7 +30,7 @@ void Gui::SFMLRenderEgg::render(const GameData &gameData)
     double offset_y = (window.getSize().y - (cell_size * gameData.mapSize.y)) / 2;
 
     for (size_t i = 0; i < gameData.eggList.size(); ++i) {
-        sf::Sprite sprite(textures[i]);
+        sf::Sprite sprite(this->getTexture("bonus/assets/egg.png"));
         float egg_scale = cell_size / sprite.getLocalBounds().height * 0.15f;
         sprite.setScale(egg_scale, egg_scale);
         double egg_offset_x = 0.75 * cell_size - (egg_scale * sprite.getLocalBounds().width) / 2;

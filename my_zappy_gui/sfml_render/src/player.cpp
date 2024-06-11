@@ -14,13 +14,13 @@ Gui::SFMLRenderPlayer::SFMLRenderPlayer()
 
 void Gui::SFMLRenderPlayer::LoadPlayerTexture(const GameData &gameData)
 {
-    textures.resize(gameData.playerList.size());
-    for (size_t i = 0; i < gameData.playerList.size(); ++i) {
-        if (!textures[i].loadFromFile("bonus/assets/player.png")) {
-            std::cerr << "Error loading player texture" << std::endl;
-            return;
-        }
-    }
+//    textures.resize(gameData.playerList.size());
+//    for (size_t i = 0; i < gameData.playerList.size(); ++i) {
+//        if (!textures[i].loadFromFile("bonus/assets/player.png")) {
+//            std::cerr << "Error loading player texture" << std::endl;
+//            return;
+//        }
+//    }
 }
 
 void Gui::SFMLRenderPlayer::render(const GameData &gameData)
@@ -31,7 +31,7 @@ void Gui::SFMLRenderPlayer::render(const GameData &gameData)
     double player_scale = cell_size / sprite.getLocalBounds().height * 0.75f;
 
     for (size_t i = 0; i < gameData.playerList.size(); ++i) {
-        sprite.setTexture(textures[i]);
+        sprite.setTexture(this->getTexture("bonus/assets/player.png"));
         sprite.setScale(player_scale, player_scale);
         double sprite_offset_x = 0.5 * cell_size - (sprite.getLocalBounds().width * sprite.getScale().x) / 2;
         double sprite_offset_y = 0.5 * cell_size - (sprite.getLocalBounds().height * sprite.getScale().y) / 2;

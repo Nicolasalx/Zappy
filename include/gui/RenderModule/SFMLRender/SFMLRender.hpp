@@ -24,7 +24,7 @@ namespace Gui
         public:
             SFMLRender();
             ~SFMLRender() override;
- 
+
             Gui::Event getEvent() override;
             void render(const Gui::GameData &gameData) override;
 

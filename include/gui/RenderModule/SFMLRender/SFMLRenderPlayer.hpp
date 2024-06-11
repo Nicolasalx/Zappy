@@ -10,10 +10,11 @@
 #include <iostream>
 #include <vector>
 #include "GameData.hpp"
+#include "TexturePool.hpp"
 
 namespace Gui
 {
-    class SFMLRenderPlayer
+    class SFMLRenderPlayer : Gui::TexturePool
     {
         public:
             SFMLRenderPlayer();
@@ -21,7 +22,6 @@ namespace Gui
             void render(const Gui::GameData &gameData);
         private:
             sf::Sprite sprite;
-            std::vector<sf::Texture> textures;
             sf::RenderWindow window;
     };
 }
