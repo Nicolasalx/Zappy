@@ -10,18 +10,19 @@
 #include <iostream>
 #include <vector>
 #include "GameData.hpp"
+#include "TexturePool.hpp"
 
 namespace Gui
 {
-    class SFMLRenderEgg
+    class SFMLRenderEgg : Gui::TexturePool
     {
-        public:
-            SFMLRenderEgg();
-            void LoadEggTexture(const GameData &gameData);
-            void render(const Gui::GameData &gameData);
-        private:
-            sf::Sprite sprite;
-            std::vector<sf::Texture> textures;
-            sf::RenderWindow window;
+    public:
+        SFMLRenderEgg();
+        void LoadEggTexture(const GameData &gameData);
+        void render(const Gui::GameData &gameData);
+
+    private:
+        sf::Sprite sprite;
+        sf::RenderWindow window;
     };
 }

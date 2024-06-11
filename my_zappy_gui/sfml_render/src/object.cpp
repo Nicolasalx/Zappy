@@ -14,14 +14,14 @@ Gui::SFMLRenderObject::SFMLRenderObject()
 
 void Gui::SFMLRenderObject::LoadObjectTexture(void)
 {
-    textures.resize(7);
-    for (int i = 0; i < 7; ++i) {
-        std::string filename = "bonus/assets/res_" + std::to_string(i + 1) + ".png";
-        if (!textures[i].loadFromFile(filename)) {
-            std::cerr << "Error loading object texture: " << filename << std::endl;
-            return;
-        }
-    }
+//    textures.resize(7);
+//    for (int i = 0; i < 7; ++i) {
+//        std::string filename = "bonus/assets/res_" + std::to_string(i + 1) + ".png";
+//        if (!textures[i].loadFromFile(filename)) {
+//            std::cerr << "Error loading object texture: " << filename << std::endl;
+//            return;
+//        }
+//    }
 }
 
 void Gui::SFMLRenderObject::render(const GameData &gameData)
@@ -35,7 +35,7 @@ void Gui::SFMLRenderObject::render(const GameData &gameData)
             for (int j = 0; j < gameData.mapSize.y; ++j) {
                 for (int k = 0; k < 7; ++k) {
                     if (gameData.objectPos[j][i][k] > 0) {
-                        sprite.setTexture(textures[k]);
+                        sprite.setTexture(this->getTexture("bonus/assets/res_" + std::to_string(k + 1) + ".png"));
                         float object_scale = cell_size / sprite.getLocalBounds().height * 0.15f;
                         sprite.setScale(object_scale, object_scale);
                         double object_offset_x = object_positions[k].first * cell_size - (object_scale * sprite.getLocalBounds().width) / 2;
