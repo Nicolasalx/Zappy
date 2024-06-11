@@ -22,7 +22,8 @@ namespace Gui
         RESTART,
         ENTER,
         WINDOW_RESIZED,
-        ESCAPE
+        ESCAPE,
+        KEY_M
     };
 }
 
