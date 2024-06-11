@@ -42,23 +42,21 @@ void Gui::ARayLibModel::addModel(std::string model_path)
 {
     Model model = LoadModel(model_path.c_str());
 
-    std::exit(0);
-
-    std::string path = "./bonus/assets/textures/";
-    int index = 0;
-    std::cout << "ADD MODEL\n";
-
-    try {
-        for (const auto &entry : std::filesystem::directory_iterator(path)) {
-            std::cout << entry.path().string() << std::endl;
-            // Texture2D texture = LoadTexture(entry.path().string().c_str());
-            // SetMaterialTexture(&model.materials[index], MATERIAL_MAP_DIFFUSE, texture);
-            // _textures.push_back(texture);
-            // ++index;
-        }
-    } catch (const std::filesystem::filesystem_error& err) {
-        std::cerr << "Erreur : " << err.what() << std::endl;
-    }
+//    std::string path = "./bonus/assets/textures/";
+//    int index = 0;
+//    std::cout << "ADD MODEL\n";
+//
+//    try {
+//        for (const auto &entry : std::filesystem::directory_iterator(path)) {
+//            std::cout << entry.path().string() << std::endl;
+//            // Texture2D texture = LoadTexture(entry.path().string().c_str());
+//            // SetMaterialTexture(&model.materials[index], MATERIAL_MAP_DIFFUSE, texture);
+//            // _textures.push_back(texture);
+//            // ++index;
+//        }
+//    } catch (const std::filesystem::filesystem_error& err) {
+//        std::cerr << "Erreur : " << err.what() << std::endl;
+//    }
     _models.push_back(model);
 }
 
