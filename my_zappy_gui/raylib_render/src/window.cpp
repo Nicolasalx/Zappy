@@ -15,6 +15,7 @@ Gui::RenderWindow::RenderWindow()
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Zappy GUI");
     windowSize.width = GetScreenWidth();
     windowSize.height = GetScreenHeight();
+    launched = false;
 }
 
 Gui::RenderWindow::~RenderWindow()

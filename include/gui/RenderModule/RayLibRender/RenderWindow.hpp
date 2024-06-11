@@ -19,7 +19,7 @@ namespace Gui
             ~RenderWindow();
 
             WindowSize windowSize;
-
+            bool launched;
         private:
     };
 }

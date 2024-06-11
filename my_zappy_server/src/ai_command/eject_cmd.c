@@ -21,6 +21,9 @@ static bool eject_egg(client_t *client, server_t *server, int i, bool *ejected)
             edi_reply(server, &server->clients[i], GET_DATA(current, egg_t));
             delete_node(&server->game.team_list[i].egg_list, current);
             *ejected = true;
+            if (server->opt.is_debug == true) {
+                printf("Egg %d ejected by player %d\n", GET_DATA(current, egg_t)->nb, client->player.id);
+            }
         }
         if (server->game.team_list[i].egg_list == NULL) {
             return true;
@@ -79,6 +82,9 @@ void eject_cmd(char *, client_t *client, server_t *server)
                 pex_reply(server, &server->clients[i]);
                 ppo_reply(server, &server->clients[i]);
                 ejected = true;
+                if (server->opt.is_debug == true) {
+                    printf("Player %d ejected by player %d\n", server->clients[i].player.id, client->player.id);
+                }
         }
     }
     eject_egg_from_tile(client, server, &ejected);

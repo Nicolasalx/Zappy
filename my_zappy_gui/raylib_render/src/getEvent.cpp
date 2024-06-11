@@ -12,13 +12,14 @@ Gui::Event Gui::Raylib::getEvent()
     Gui::Event event;
 
     event.frame_time = GetFrameTime();
-    if (IsKeyDown(KEY_TAB)) {
+    if (WindowShouldClose()) {
         event.eventType.push_back(Gui::EventType::EXIT);
     }
-    if (IsWindowResized()) {
+    if (IsWindowResized() || window.launched == false) {
         event.eventType.push_back(Gui::EventType::WINDOW_RESIZED);
         window.windowSize.width = GetScreenWidth();
         window.windowSize.height = GetScreenHeight();
+        window.launched = true;
     }
     if (IsKeyPressed(KEY_N)) {
         event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
@@ -32,8 +33,8 @@ Gui::Event Gui::Raylib::getEvent()
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         event.eventType.push_back(Gui::EventType::LEFT_CLICK);
     }
-    if (IsKeyDown(KEY_ESCAPE)) {
-        event.eventType.push_back(Gui::EventType::ESCAPE);
+    if (IsKeyPressed(KEY_M)) {
+        event.eventType.push_back(Gui::EventType::KEY_M);
     }
     event.mouse.x = GetMouseX();
     event.mouse.y = GetMouseY();

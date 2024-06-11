@@ -7,40 +7,7 @@
 
 #include "RenderTextBox.hpp"
 
-// Gui::RenderTextBox::RenderTextBox(TextBoxData boxInfo, int window_width, int window_height)
-// {
-//     _boxInfo = boxInfo;
-//     _color = {200, 200, 255, 100};
-//     resize(window_width, window_height);
-// }
-
-// void Gui::RenderTextBox::resize(int window_width, int window_height)
-// {
-//     if (_boxInfo.state == NO_BUTTON || _boxInfo.state == RIGHT_BUTTON || _boxInfo.state == LEFT_BUTTON) {
-//         _box = {window_width * _boxInfo.x, window_height * _boxInfo.y, window_width * _boxInfo.width, window_height * _boxInfo.height};
-//         if (_boxInfo.state == RIGHT_BUTTON) {
-//             this->_button = {
-//                 _box.x + _box.width - (window_width + window_height) * 0.01f,
-//                 _box.y,
-//                 (window_width + window_height) * 0.01f,
-//                 (window_width + window_height) * 0.01f
-//             };
-//         }
-//         if (_boxInfo.state == LEFT_BUTTON) {
-//             this->_button = {_box.x, _box.y, (window_width + window_height) * 0.01f, (window_width + window_height) * 0.01f};
-//         }
-//     } else {
-//         if (_boxInfo.state == CLOSED_RIGHT) {
-//             _box = {-window_width * _boxInfo.width + (window_width + window_height) * 0.01f, window_height * _boxInfo.y, window_width * _boxInfo.width, window_height * _boxInfo.height};
-//             this->_boxInfo.window_width = window_width;
-//             this->_boxInfo.window_height = window_height;
-//             this->_button = {_box.x + _box.width  - (window_width + window_height) * 0.01f, _box.y, (window_width + window_height) * 0.01f, (window_width + window_height) * 0.01f};
-//         }
-//         if (_boxInfo.state == CLOSED_LEFT) {
-//             _box = {window_width - (window_width + window_height) * 0.01f, window_height * _boxInfo.y, window_width * _boxInfo.width, window_height * _boxInfo.height};
-//             this->_boxInfo.window_width = window_width;
-//             this->_boxInfo.window_height = window_height;
-//             this->_button = {_box.x, _box.y, (window_width + window_height) * 0.01f, (window_width + window_height) * 0.01f};
-//         }
-//     }
-// }
+Gui::RenderTextBox::RenderTextBox(TextBoxData boxInfo) : _boxInfo(boxInfo)
+{
+    _color = {200, 200, 255, 100};
+}

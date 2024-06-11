@@ -39,6 +39,10 @@ static bool handle_elevation_cmd(server_t *server,
     if (command->method != incatation_cmd) {
         return true;
     }
+    if (server->opt.is_debug == true) {
+        printf("[Debug] Incantation initiated by player %d\n",  client->player.id);
+        printf("[Debug] Starting pre incantation verification\n");
+    }
     elev_req = check_elevation_req(client, server,
         client->player.level, false);
     if (elev_req) {

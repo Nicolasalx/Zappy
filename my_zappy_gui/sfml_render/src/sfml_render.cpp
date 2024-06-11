@@ -9,7 +9,7 @@
 
 extern "C"
 {
-    Gui::IRenderModule *entryPoint(void)
+    Gui::IRenderModule *entryPoint()
     {
         return new Gui::SFMLRender();
     }
@@ -17,6 +17,10 @@ extern "C"
 
 Gui::SFMLRender::SFMLRender() : window(sf::VideoMode(1920, 1080), "ZAPPY")
 {
+    this->player = std::make_unique<Gui::SFMLRenderPlayer>();
+    this->egg = std::make_unique<Gui::SFMLRenderEgg>();
+    this->map = std::make_unique<Gui::SFMLRenderMap>();
+    this->object = std::make_unique<Gui::SFMLRenderObject>();
 }
 
 Gui::SFMLRender::~SFMLRender()
@@ -56,6 +60,10 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
 {
     if (window.isOpen()) {
         window.clear();
+        this->map->render(gameData);
+        this->object->render(gameData);
+        this->egg->render(gameData);
+        this->player->render(gameData);
         window.display();
     }
 }

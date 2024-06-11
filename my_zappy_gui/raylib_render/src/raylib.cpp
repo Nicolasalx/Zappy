@@ -23,6 +23,7 @@ Gui::Raylib::Raylib() : window(), camera()
     this->island = std::make_unique<Gui::RenderIsland>();
     this->egg = std::make_unique<Gui::RenderEgg>();
     this->particle = std::make_unique<Gui::RenderParticleSystem>();
+    this->textBoxList = std::make_unique<Gui::RenderTextBoxList>();
 }
 
 Gui::Raylib::~Raylib()
