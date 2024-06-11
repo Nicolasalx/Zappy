@@ -28,11 +28,9 @@ Gui::RenderParticleSystem::RenderParticleSystem()
 void Gui::RenderParticleSystem::updateParticleList(const GameData &gameData)
 {
     while (this->_particleSystems.size() != gameData.incantList.size()) {
-        // std::cout << "update particle" << std::endl;
         if (this->_particleSystems.size() < gameData.incantList.size()) {
             this->_particleSystems.push_back(RenderParticle());
         } else {
-            // std::cout << "destroy particle" << std::endl;
             this->_particleSystems.pop_back();
         }
         for (size_t i = 0; i < gameData.incantList.size() && i < _particleSystems.size(); i++) {
@@ -66,6 +64,7 @@ void Gui::RenderParticle::draw(Texture2D texture, Camera3D camera)
 
 void Gui::RenderParticleSystem::render(const GameData &gameData, Camera3D camera)
 {
+    updateParticleList(gameData);
     for (auto &particle_system : this->_particleSystems) {
         particle_system.updateParticle(gameData.frameTime);
         particle_system.draw(this->_particleTexture, camera);
