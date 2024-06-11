@@ -43,13 +43,16 @@ namespace Gui
     };
 
     struct TextBoxData {
-        Pos pos;
-        Pos size;
-        Pos real_pos;
-        Pos real_size;
-        float text_size;
-        int state;
-        std::vector<std::string> text;
+        TextBoxData(float x, float y, float width, float height, float textSize, int state);
+        Pos _pos;
+        Pos _size;
+        Pos _real_pos;
+        Pos _real_size;
+        Pos _buttonPos;
+        Pos _buttonSize;
+        float _text_size;
+        int _state;
+        std::vector<std::string> _text;
     };
 
     struct Incant {
