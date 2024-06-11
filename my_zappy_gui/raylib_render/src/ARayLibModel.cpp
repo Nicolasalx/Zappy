@@ -41,7 +41,7 @@ void Gui::ARayLibModel::addModel(std::string model_path, std::string texture_pat
 void Gui::ARayLibModel::addModel(std::string model_path)
 {
     Model model = LoadModel(model_path.c_str());
-
+    std::cout << "EXIT \n";
     std::exit(0);
 
     std::string path = "./bonus/assets/textures/";
@@ -59,7 +59,14 @@ void Gui::ARayLibModel::addModel(std::string model_path)
     } catch (const std::filesystem::filesystem_error& err) {
         std::cerr << "Erreur : " << err.what() << std::endl;
     }
-    _models.push_back(model);
+    DrawModelEx(_models[0],
+            {0, 0, 0},
+        {0, 0, 0},
+        0,
+        {1, 1, 1},
+        WHITE);
+
+    // _models.push_back(model);
 }
 
 void Gui::ARayLibModel::drawModel(const ModelInfo &modelInfo)
