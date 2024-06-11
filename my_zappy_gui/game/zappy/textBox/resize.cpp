@@ -30,6 +30,8 @@ static void resizeEachBox(Gui::TextBoxData &textBox, int window_width, int windo
         if (textBox._state == Gui::CLOSED_RIGHT) {
             textBox._real_pos = {-window_width * textBox._size.x + (window_width + window_height) * 0.01f, window_height * textBox._pos.y};
             textBox._real_size = {window_width * textBox._size.x, window_height * textBox._size.y};
+            textBox._buttonPos = {textBox._real_pos.x + textBox._real_size.x - (window_width + window_height) * 0.01f, textBox._real_pos.y};
+            textBox._buttonSize = {(window_width + window_height) * 0.01f, (window_width + window_height) * 0.01f};
         }
         if (textBox._state == Gui::CLOSED_LEFT) {
             textBox._real_pos = {window_width - (window_width + window_height) * 0.01f, window_height * textBox._pos.y};
