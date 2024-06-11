@@ -39,6 +39,8 @@ Gui::Event Gui::SFMLRender::getEvent()
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
     guiEvent.mouse.x = mousePos.x;
     guiEvent.mouse.y = mousePos.y;
+    guiEvent.windowSize.width = window.getSize().x;
+    guiEvent.windowSize.height = window.getSize().y;
     
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
