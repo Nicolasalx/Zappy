@@ -20,4 +20,6 @@ void fork_cmd(char *, client_t *client, server_t *server)
     pfk_reply(server, client);
     enw_reply(server, client, new_egg);
     send_msg_client(client->fd, "ok\n");
+    if (server->opt.is_debug == true)
+        printf("[Debug] Player %d forked, new egg at position: X:%d Y:%d\n", client->player.id, new_egg->pos_x, new_egg->pos_y);
 }
