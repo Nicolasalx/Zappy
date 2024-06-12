@@ -18,12 +18,12 @@ Gui::RenderMenu::RenderMenu()
 void Gui::RenderMenu::renderOneComponent(const Gui::Component &component)
 {
     DrawRectangleLinesEx((Rectangle) {component.box.x, component.box.y, component.box.width, component.box.height}, 3, Gui::RenderColor::getColorFromGame(component.box.color));
-    DrawText(component.text.contentText.c_str(), component.box.x, component.box.y, 20, Gui::RenderColor::getColorFromGame(component.box.color));
+    DrawText(component.text.contentText.c_str(), component.text.pos.x, component.text.pos.y, component.text.fontSize, Gui::RenderColor::getColorFromGame(component.box.color));
 }
 
 void Gui::RenderMenu::render(const GameData &gameData)
 {
-    ClearBackground(BLUE);
+    ClearBackground(LIGHTGRAY);
 
     for (auto &item: gameData.dataMenu.componentList) {
         renderOneComponent(item);
