@@ -10,5 +10,5 @@
 
 void Gui::Island::update(const Gui::Event &event)
 {
-
+    (void)event;
 }

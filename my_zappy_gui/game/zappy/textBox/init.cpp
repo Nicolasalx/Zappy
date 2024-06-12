@@ -30,7 +30,7 @@ Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData) : _gameData(gameD
     _gameData->textBox.push_back(boxInfo2);
     TextBoxData boxInfo3(0.01f, 0.57f, 0.15f, 0.40f, 0.053, RIGHT_BUTTON);
     _gameData->textBox.push_back(boxInfo3);
-    TextBoxData boxInfo4(0.01f, 0.04f, 0.15f, 0.51f, 0.01, RIGHT_BUTTON);
+    TextBoxData boxInfo4(0.01f, 0.04f, 0.15f, 0.51f, 0.030, RIGHT_BUTTON);
     _gameData->textBox.push_back(boxInfo4);
     listLevelPlayer.resize(8);
 }

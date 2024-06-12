@@ -21,7 +21,7 @@ void Gui::RenderTextBox::draw()
         DrawRectangleLinesEx(this->_button, 1, WHITE);
     }
     for (size_t i = 0; i < _boxInfo._text.size(); i++) {
-        addText(_boxInfo._text[i], ((float)i + 0.5f) / (float)(_boxInfo._text.size() + 0.5f));
+        addText(_boxInfo._text[i], ((float)i + 0.5f) / (float)(_boxInfo._text.size() + 0.7f));
     }
 }
 

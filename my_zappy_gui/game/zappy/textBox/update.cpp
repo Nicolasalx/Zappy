@@ -16,6 +16,13 @@ void Gui::TextBox::addText(TextBoxData &textBox, size_t index, std::string text)
     }
 }
 
+bool Gui::TextBox::isClosed(TextBoxData &_text)
+{
+    if (_text._state == CLOSED_RIGHT || _text._state == CLOSED_LEFT)
+        return true;
+    return false;
+}
+
 void Gui::TextBox::openClose(const Gui::Event &event)
 {
     for (auto &_button : _gameData->textBox) {
@@ -43,6 +50,8 @@ void Gui::TextBox::openClose(const Gui::Event &event)
 
 void Gui::TextBox::updateListPlayerLevel()
 {
+    if (isClosed(_gameData->textBox[0]))
+        return;
     for (int i = 0; i < 8; ++i) {
         listLevelPlayer.at(i) = 0;
     }
@@ -56,14 +65,26 @@ void Gui::TextBox::updateListPlayerLevel()
 
 void Gui::TextBox::updateGeneralInfo()
 {
+    if (isClosed(_gameData->textBox[0]))
+        return;
     addText(_gameData->textBox[0], 0, "Number of players: " + std::to_string(_gameData->playerList.size()));
     addText(_gameData->textBox[0], 1, "Server frequency: " + std::to_string(_gameData->timeUnit));
+}
+
+void Gui::TextBox::updateServerResp()
+{
+    if (isClosed(_gameData->textBox[0]))
+        return;
+    for (size_t i = 0; i < this->_gameData->serverResp.size(); i++) {
+        addText(_gameData->textBox[4], i, _gameData->serverResp[i]);
+    }
 }
 
 void Gui::TextBox::update(const Gui::Event &events)
 {
     updateGeneralInfo();
     updateListPlayerLevel();
+    updateServerResp();
     for (auto &event : events.eventType) {
         if (event == Gui::EventType::WINDOW_RESIZED) {
             resize(_gameData->windowX, _gameData->windowY);
