@@ -10,41 +10,31 @@
 
 void Gui::Menu::componentPlay()
 {
-    addBox({Box(0.4, 0.1, 0.2, 0.1, BLUE_COLOR)});
-    addText(Text("PLAY", { 0.4, 0.4 }, sizeFontTextMenu, BLUE_COLOR));
-
+    addBox({Box(0.1, 0.5, 0.4, 0.1, BLUE_COLOR)}, "PLAY");
     addComponent(PLAY);
 }
 
 void Gui::Menu::componentSettings()
 {
-    addBox({Box(0.4, 0.3, 0.2, 0.1, BLUE_COLOR)});
-    addText(Text("SETTINGS", { 0.4, 0.7 }, sizeFontTextMenu, BLUE_COLOR));
-
+    addBox({Box(0.1, 0.7, 0.4, 0.1, BLUE_COLOR)}, "SETTINGS");
     addComponent(SETTINGS);
 }
 
 void Gui::Menu::componentQuit()
 {
-    addBox({Box(0.4, 0.5, 0.2, 0.1, BLUE_COLOR)});
-    addText(Text("QUIT", { 0.4, 0.7 }, sizeFontTextMenu, BLUE_COLOR));
-
+    addBox({Box(0.1, 0.9, 0.4, 0.1, BLUE_COLOR)}, "QUIT");
     addComponent(QUIT);
 }
 
 void Gui::Menu::componentPlayerMode()
 {
-    addBox({Box(0.4, 0.7, 0.2, 0.1, BLUE_COLOR)});
-    addText(Text("PLAYER MODE", { 0.4, 0.7 }, sizeFontTextMenu, BLUE_COLOR));
-
+    addBox({Box(0.1, 0.1, 0.4, 0.1, BLUE_COLOR)}, "PLAYER MODE");
     addComponent(PLAYER_MODE);
 }
 
 void Gui::Menu::componentSpectatorMode()
 {
-    addBox({Box(0.4, 0.9, 0.2, 0.1, BLUE_COLOR)});
-    addText(Text("SPECTATOR MODE", { 0.4, 0.7 }, sizeFontTextMenu, BLUE_COLOR));
-
+    addBox({Box(0.1, 0.3, 0.4, 0.1, BLUE_COLOR)}, "SPECTATOR MODE");
     addComponent(SPECTATOR_MODE);
 }
 
