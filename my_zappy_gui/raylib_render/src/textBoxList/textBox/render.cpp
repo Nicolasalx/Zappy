@@ -14,8 +14,8 @@ void Gui::RenderTextBox::addText(std::string text, float ypos)
 
 void Gui::RenderTextBox::draw()
 {
-    // if (_boxInfo._state == NOT_SHOWN)
-    //     return;
+    if (_boxInfo._state == NOT_SHOWN)
+        return;
     DrawRectangleRec(this->_box, _color);
     DrawRectangleLinesEx(this->_box, 1, WHITE);
     if (_boxInfo._state != NO_BUTTON) {
@@ -26,10 +26,3 @@ void Gui::RenderTextBox::draw()
         addText(_boxInfo._text[i], ((float)i + 0.5f) / (float)(_boxInfo._text.size() + 0.7f));
     }
 }
-
-// bool Gui::TextBox::isClosed()
-// {
-//     if (_boxInfo.state == CLOSED_RIGHT || _boxInfo.state == CLOSED_LEFT)
-//         return true;
-//     return false;
-// }
