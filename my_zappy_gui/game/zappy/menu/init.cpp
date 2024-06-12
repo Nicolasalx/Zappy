@@ -6,25 +6,36 @@
 */
 
 #include "Menu.hpp"
-
-void Gui::Menu::componentPlay()
-{
-    addBox({Box(0.4, 0.2, 0.3, 0.2, BLUE_COLOR)});
-    addText(Text("PLAY", { 0.4, 0.4 }, 20, BLUE_COLOR));
-
-    addComponent(PLAY);
-}
+#include "GameConfig.hpp"
 
 void Gui::Menu::componentSettings()
 {
-    addBox({Box(0.4, 0.5, 0.3, 0.2, BLUE_COLOR)});
-    addText(Text("SETTINGS", { 0.4, 0.7 }, 20, BLUE_COLOR));
-
+    addBox({Box(0.1, 0.6, 0.4, 0.1, BLUE_COLOR)}, "SETTINGS");
     addComponent(SETTINGS);
+}
+
+void Gui::Menu::componentQuit()
+{
+    addBox({Box(0.1, 0.8, 0.4, 0.1, BLUE_COLOR)}, "QUIT");
+    addComponent(QUIT);
+}
+
+void Gui::Menu::componentPlayerMode()
+{
+    addBox({Box(0.1, 0.2, 0.4, 0.1, BLUE_COLOR)}, "PLAYER MODE");
+    addComponent(PLAYER_MODE);
+}
+
+void Gui::Menu::componentSpectatorMode()
+{
+    addBox({Box(0.1, 0.4, 0.4, 0.1, BLUE_COLOR)}, "SPECTATOR MODE");
+    addComponent(SPECTATOR_MODE);
 }
 
 Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData): _gameData(gameData)
 {
-    componentPlay();
+    componentPlayerMode();
+    componentSpectatorMode();
     componentSettings();
+    componentQuit();
 }

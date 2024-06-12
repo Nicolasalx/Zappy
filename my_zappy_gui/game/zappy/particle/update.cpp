@@ -9,5 +9,5 @@
 
 void Gui::Particle::update(const Gui::Event &event)
 {
-
+    (void)event;
 }

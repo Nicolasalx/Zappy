@@ -10,5 +10,5 @@
 
 void Gui::Egg::update(const Gui::Event &event)
 {
-
+    (void)event;
 }

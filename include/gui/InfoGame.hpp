@@ -92,7 +92,7 @@ namespace Gui
     struct Text {
         std::string contentText;
         Pos pos;
-        int fontSize;
+        double fontSize;
         GameColor color;
     };
 
@@ -111,9 +111,10 @@ namespace Gui
 
     enum ComponentType {
         NONE,
-        PLAY,
         SETTINGS,
-        QUIT
+        QUIT,
+        PLAYER_MODE,
+        SPECTATOR_MODE
     };
 
     struct Component {

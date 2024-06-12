@@ -16,5 +16,6 @@ void Gui::Menu::resize(const Gui::Event &event)
         component.box.height = event.windowSize.height * component.stockStartData.box.height;
 
         component.text.pos = { event.windowSize.width * component.stockStartData.text.pos.x, event.windowSize.height * component.stockStartData.text.pos.y };
+        component.text.fontSize = event.windowSize.height * component.stockStartData.text.fontSize;
     }
 }
