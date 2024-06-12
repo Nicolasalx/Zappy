@@ -34,7 +34,22 @@ namespace Gui
             void render(const Gui::GameData &gameData) override;
             void renderGame(const Gui::GameData &gameData);
 
+            void getKeyEvent(Gui::Event &event);
+
+            void putEventInBuffer(Gui::Event &event);
+            void putEventInEventList(Gui::Event &event);
+
         private:
+            std::vector<std::pair<KeyboardKey, Gui::EventType>> _keyBind = {
+                {KEY_N, Gui::EventType::NEXT_DISPLAY},
+                {KEY_M, Gui::EventType::BACK_MENU},
+                {KEY_R, Gui::EventType::RESTART},
+                {KEY_ENTER, Gui::EventType::ENTER}
+            };
+
+            KeyboardKey _eventKeyBoard;
+            Gui::Event _event;
+
             Gui::RenderWindow window;
             Gui::RenderCamera camera;
             std::unique_ptr<Gui::RenderSkyBox> skyBox;
