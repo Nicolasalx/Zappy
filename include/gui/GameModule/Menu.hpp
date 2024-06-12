@@ -31,7 +31,7 @@ namespace Gui
             void componentSpectatorMode();
             void componentQuit();
 
-            void addBox(const Box &box);
+            void addBox(const Box &box, const std::string &contentText);
             void addText(const Text &text);
             void addComponent(ComponentType cmpType);
             void handleEvent(const Gui::Event &event);
