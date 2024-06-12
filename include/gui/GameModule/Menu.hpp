@@ -31,17 +31,26 @@ namespace Gui
             void componentSpectatorMode();
             void componentQuit();
 
+            void inputBoxIP();
+            void inputBoxPort();
+
             void addBox(const Box &box, const std::string &contentText);
             void addText(const Text &text);
             void addComponent(ComponentType cmpType);
             void handleEvent(const Gui::Event &event);
             bool isMouseOnBox(const Box &box, const Pos &mousePos);
-            void checkMouseState(const Gui::Event &event, Component component);
+            void checkMouseState(const Gui::Event &event, Component &component);
             void resize(const Gui::Event &event);
 
             std::shared_ptr<Gui::GameData> _gameData;
+
+            ComponentType _cmpSelectionned = NONE;
+
             int _windowWidth = 0;
             int _windowHeight = 0;
+
+            char name[9 + 1] = "\0";
+            int letterCount = 0;
 
             Component _component;
     };
