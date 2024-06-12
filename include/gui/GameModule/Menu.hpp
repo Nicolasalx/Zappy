@@ -27,6 +27,9 @@ namespace Gui
         private:
             void componentPlay();
             void componentSettings();
+            void componentPlayerMode();
+            void componentSpectatorMode();
+            void componentQuit();
 
             void addBox(const Box &box);
             void addText(const Text &text);

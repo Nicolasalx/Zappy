@@ -113,7 +113,9 @@ namespace Gui
         NONE,
         PLAY,
         SETTINGS,
-        QUIT
+        QUIT,
+        PLAYER_MODE,
+        SPECTATOR_MODE
     };
 
     struct Component {
