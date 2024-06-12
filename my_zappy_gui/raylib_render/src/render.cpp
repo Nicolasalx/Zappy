@@ -15,6 +15,7 @@ void Gui::Raylib::renderGame(const Gui::GameData &gameData)
     this->particle->render(gameData, this->camera._camera);
     this->island->render(gameData);
     this->egg->render(gameData);
+    this->rayInfo->render(gameData, this->camera._camera);
 }
 
 void Gui::Raylib::render(const Gui::GameData &gameData)

@@ -11,6 +11,7 @@
     #include <vector>
     #include <memory>
     #include "GameData.hpp"
+    #include "RenderRayInfo.hpp"
 
 namespace Gui
 {
@@ -20,11 +21,10 @@ namespace Gui
             RenderIsland();
             ~RenderIsland() = default;
 
-            void render(const GameData &gameData);
+            void render(const Gui::GameData &gameData);
 
-            float size;
         private:
-            // std::shared_ptr<GameState> _gameState;
+            BoundingBox _box;
     };
 }
 

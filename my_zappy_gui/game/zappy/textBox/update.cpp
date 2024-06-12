@@ -80,11 +80,36 @@ void Gui::TextBox::updateServerResp()
     }
 }
 
+void Gui::TextBox::updateOnePlayerInfo()
+{
+    if (_gameData->rayInfo.type == PLAYER) {
+        _gameData->textBox[1]._state = NO_BUTTON;
+        for (auto &player : _gameData->playerList) {
+            if (player.n == _gameData->rayInfo.id) {
+                addText(_gameData->textBox[1], 0, "Player: " + std::to_string(player.n));
+                addText(_gameData->textBox[1], 1, "Level: " + std::to_string(player.level));
+                addText(_gameData->textBox[1], 2, "Orientation: " + std::to_string(player.orientation));
+                addText(_gameData->textBox[1], 3, "Position: (" + std::to_string((int)player.real_pos.x) + ", " + std::to_string((int)player.real_pos.y) + ")");
+                addText(_gameData->textBox[1], 4, "Inventory:");
+                addText(_gameData->textBox[1], 5, "Food: " + std::to_string(player.inventory[FOOD]));
+                addText(_gameData->textBox[1], 6, "Linemate: " + std::to_string(player.inventory[LINEMATE]));
+                addText(_gameData->textBox[1], 7, "Deraumere: " + std::to_string(player.inventory[DERAUMERE]));
+                addText(_gameData->textBox[1], 8, "Sibur: " + std::to_string(player.inventory[SIBUR]));
+                addText(_gameData->textBox[1], 9, "Mendiane: " + std::to_string(player.inventory[MENDIANE]));
+                addText(_gameData->textBox[1], 10, "Phiras: " + std::to_string(player.inventory[PHIRAS]));
+                addText(_gameData->textBox[1], 11, "Thystame: " + std::to_string(player.inventory[THYSTAME]));
+            }
+        }
+    } else
+        _gameData->textBox[1]._state = NOT_SHOWN;
+}
+
 void Gui::TextBox::update(const Gui::Event &events)
 {
     updateGeneralInfo();
     updateListPlayerLevel();
     updateServerResp();
+    updateOnePlayerInfo();
     for (auto &event : events.eventType) {
         if (event == Gui::EventType::WINDOW_RESIZED) {
             resize(_gameData->windowX, _gameData->windowY);

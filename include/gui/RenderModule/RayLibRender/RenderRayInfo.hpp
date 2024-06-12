@@ -7,30 +7,26 @@
 
 #ifndef RENDERRAYINFO_H_
     #define RENDERRAYINFO_H_
+
     #include <raylib.h>
+    #include "Event.hpp"
+    #include "GameData.hpp"
+    #include "InfoGame.hpp"
 
-namespace Gui {
-
-    struct RayInfoData {
-        int type = 0;
-        int id = 0;
-        int x = 0;
-        int y = 0;
-    };
-
-    class RayInfo {
+namespace Gui 
+{
+    class RenderRayInfo {
         public:
-            RayInfo() = default;
-            ~RayInfo() = default;
-            
-        private:
+            RenderRayInfo();
+            ~RenderRayInfo() = default;
+            void selectEvent(const GameData &gameData, Camera3D camera);
+            void changePlayerSelected(const GameData &gameData);
+            void addRayToEvent(Gui::Event &event);
+            void render(const GameData &gameData, Camera3D camera);
             Ray ray;
             BoundingBox box;
             RayCollision collision;
-            int type = 0;
-            int id = 0;
-            int x = 0;
-            int y = 0;
+            RayInfoData rayInfo;
     };
 }
 

@@ -26,6 +26,7 @@ namespace Gui
         std::vector<std::string> serverResp;
         std::vector<std::vector<std::vector<int>>> objectPos;
         std::vector<TextBoxData> textBox;
+        RayInfoData rayInfo;
         DataMenu dataMenu;
     };
 }

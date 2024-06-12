@@ -30,6 +30,7 @@ namespace Gui
             void updateServerResp();
             void updateGeneralInfo();
             void updateListPlayerLevel();
+            void updateOnePlayerInfo();
 
         private:
             std::shared_ptr<Gui::GameData> _gameData;

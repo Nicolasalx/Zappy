@@ -13,7 +13,6 @@ Gui::Event Gui::Raylib::getEvent()
 
     event.frame_time = GetFrameTime();
     if (IsKeyPressed(KEY_M)) {
-        std::cout << "KEY M EVENT\n";
         event.eventType.push_back(Gui::EventType::KEY_M);
     }
     if (WindowShouldClose()) {
@@ -43,5 +42,6 @@ Gui::Event Gui::Raylib::getEvent()
     event.windowSize.height = window.windowSize.height;
     this->camera.handle_cursor();
     this->camera.update();
+    this->rayInfo->addRayToEvent(event);
     return event;
 }

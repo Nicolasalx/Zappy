@@ -16,6 +16,7 @@ namespace Gui
     constexpr float MAP_SCALE = 12.0;
     constexpr float WINDOW_WIDTH = 1920 / 2;
     constexpr float WINDOW_HEIGHT = 1080 / 2;
+    constexpr float ISLAND_SIZE = 2.0;
 
     struct Pos {
         float x;
@@ -39,7 +40,8 @@ namespace Gui
         RIGHT_BUTTON,
         LEFT_BUTTON,
         CLOSED_LEFT,
-        CLOSED_RIGHT
+        CLOSED_RIGHT,
+        NOT_SHOWN
     };
 
     struct TextBoxData {
@@ -53,6 +55,13 @@ namespace Gui
         float _text_size;
         int _state;
         std::vector<std::string> _text;
+    };
+
+    struct RayInfoData {
+        int type = 0;
+        int id = 0;
+        int x = 0;
+        int y = 0;
     };
 
     struct Incant {
