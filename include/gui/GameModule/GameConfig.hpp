@@ -42,7 +42,7 @@ namespace Gui
 
     constexpr std::string_view EVOLUTION_TEXTURE = "bonus/assets/evolution.png";
 
-    constexpr int sizeFontTextMenu = 40;
+    constexpr double sizeFontTextMenu = 0.05;
     constexpr std::string_view MENU_MARS_MODEL = "menu_scene.glb";
 }
 
