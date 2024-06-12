@@ -32,10 +32,23 @@ void Gui::Menu::componentSpectatorMode()
     addComponent(SPECTATOR_MODE);
 }
 
+void Gui::Menu::inputBoxIP()
+{
+    addBox({Box(0.55, 0.4, 0.4, 0.1, BLUE_COLOR)}, "");
+    addComponent(INPUT_BOX_IP);
+}
+
+void Gui::Menu::inputBoxPort()
+{
+
+}
+
 Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData): _gameData(gameData)
 {
     componentPlayerMode();
     componentSpectatorMode();
     componentSettings();
     componentQuit();
+    inputBoxIP();
+    inputBoxPort();
 }
