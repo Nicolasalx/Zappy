@@ -33,7 +33,8 @@ Gui::Event Gui::Raylib::getEvent()
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         event.eventType.push_back(Gui::EventType::LEFT_CLICK);
     }
-    if (IsKeyPressed(KEY_M)) {
+    if (IsKeyPressed(KEY_A)) {
+        std::cout << "KEY M EVENT\n";
         event.eventType.push_back(Gui::EventType::KEY_M);
     }
     event.mouse.x = GetMouseX();
