@@ -25,6 +25,14 @@ void Gui::RenderMenu::render(const GameData &gameData)
 {
     ClearBackground(LIGHTGRAY);
 
+    this->stateGame = gameData.dataMenu.stateGame;
+
+    if (gameData.dataMenu.cursorState == SELECTIONNED) {
+        SetMouseCursor(MOUSE_CURSOR_IBEAM);
+    } else {
+        SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+    }
+
     for (auto &item: gameData.dataMenu.componentList) {
         renderOneComponent(item);
     }
