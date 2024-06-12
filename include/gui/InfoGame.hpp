@@ -129,6 +129,7 @@ namespace Gui
 
     enum StateGame {
         IN_PLAYER_MODE,
+        TRY_PLAYER_MODE,
         IN_SPECTATOR_MODE,
         TRY_SPECTATOR_MODE,
         IN_SETTINGS,

@@ -105,6 +105,18 @@ void Gui::Core::handleGameState()
         }
         this->gameData->dataMenu.stateGame = IN_SPECTATOR_MODE;
     }
+    if (this->gameData->dataMenu.stateGame == TRY_PLAYER_MODE) {
+        try {
+            this->clientModule->connect(this->ip, this->port);
+            this->clientModule->send("Team1\n"); // ! to change
+        } catch(...) {
+            // dispay red message
+            this->gameData->dataMenu.stateGame = Gui::IN_MENU;
+            std::cerr << "Connection to server failed\n";
+            return;
+        }
+        this->gameData->dataMenu.stateGame = IN_PLAYER_MODE;
+    }
 }
 
 void Gui::Core::loop()
