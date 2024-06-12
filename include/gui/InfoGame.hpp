@@ -111,7 +111,6 @@ namespace Gui
 
     enum ComponentType {
         NONE,
-        PLAY,
         SETTINGS,
         QUIT,
         PLAYER_MODE,
