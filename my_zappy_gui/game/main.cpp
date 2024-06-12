@@ -16,8 +16,8 @@ int main(int argc, char const *argv[])
         core.parseArgs(argc, argv);
         core.launch();
         core.loop();
-    } catch (my::tracked_exception &e) {
-        my::log::error(e.what());
+    } catch (std::exception &exception) {
+        my::log::error(exception.what());
         return 84;
     }
     return 0;

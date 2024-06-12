@@ -24,6 +24,10 @@ bool Gui::Menu::isMouseOnBox(const Box &box, const Pos &mousePos)
 
 void Gui::Menu::checkMouseState(const Gui::Event &event, Component &component)
 {
+    if (this->_gameData->dataMenu.stateGame == IN_SPECTATOR_MODE
+    || this->_gameData->dataMenu.stateGame == IN_PLAYER_MODE) {
+        return;
+    }
     for (const auto &evt : event.eventType) {
         switch (evt) {
             case Gui::EventType::LEFT_CLICK:

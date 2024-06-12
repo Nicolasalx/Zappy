@@ -29,6 +29,7 @@ Gui::Client::~Client()
 
 void Gui::Client::connect(const std::string &ip, const std::string &port)
 {
+    connected = true;
     endpoint_ = asio::ip::tcp::resolver::results_type(resolver_.resolve(ip, port));
     asio::connect(socket_, endpoint_);
 }
@@ -65,7 +66,7 @@ std::vector<std::string> Gui::Client::recv()
     char data[buffer_size_ + 1] = {0};
     std::size_t length = 0;
 
-    if (socket_.available() <= 0) {
+    if (!connected || socket_.available() <= 0) {
         return std::vector<std::string>();
     }
     length = socket_.read_some(asio::buffer(data, buffer_size_));

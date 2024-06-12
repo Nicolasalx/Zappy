@@ -52,8 +52,6 @@ void Gui::Core::launch()
     this->clientModule = std::shared_ptr<Gui::IClient>(this->clientLoader.getInstance("entryPoint"));
 
     this->gameModule = std::make_shared<Gui::Zappy>(this->clientModule, this->gameData);
-
-    this->clientModule->connect(this->ip, this->port);
 }
 
 bool Gui::Core::eventContain(const Gui::Event &eventList, const Gui::EventType &eventType)
@@ -93,11 +91,26 @@ bool Gui::Core::handleCoreEvent(const Gui::Event &eventList)
     return false;
 }
 
+void Gui::Core::handleGameState()
+{
+    if (this->gameData->dataMenu.stateGame == TRY_SPECTATOR_MODE) {
+        try {
+            this->clientModule->connect(this->ip, this->port);
+            this->clientModule->send("GRAPHIC\n");
+        } catch(...) {
+            // dispay red message
+            this->gameData->dataMenu.stateGame = Gui::IN_MENU;
+            std::cerr << "Connection to server failed\n";
+            return;
+        }
+        this->gameData->dataMenu.stateGame = IN_SPECTATOR_MODE;
+    }
+}
+
 void Gui::Core::loop()
 {
     Gui::FrameRate::setFrameRate(60);
 
-    this->clientModule->send("GRAPHIC\n");
     while (true) {
         Gui::FrameRate::start();
 
@@ -107,9 +120,7 @@ void Gui::Core::loop()
         if (handleCoreEvent(eventList)) {
             break;
         }
-
-        // @Thibaud use : this->gameData->dataMenu.stateGame
-
+        handleGameState();
         this->gameModule->update(messRecv, eventList);
         this->renderModule->render(*this->gameData.get());
 

@@ -23,6 +23,7 @@ namespace Gui
 
         std::string buffer_;
         static constexpr std::size_t buffer_size_ = 4096;
+        bool connected = false;
 
         void bufferisingReply(std::string reply, std::vector<std::string> &message);
 

@@ -40,6 +40,7 @@ namespace Gui
         private:
             bool eventContain(const Gui::Event &eventList, const Gui::EventType &eventType);
             bool handleCoreEvent(const Gui::Event &eventList);
+            void handleGameState();
 
             std::shared_ptr<Gui::IRenderModule> renderModule;
             std::shared_ptr<Gui::IClient> clientModule;
