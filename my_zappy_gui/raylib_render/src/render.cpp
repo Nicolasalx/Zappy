@@ -20,7 +20,9 @@ void Gui::Raylib::renderGame(const Gui::GameData &gameData)
 void Gui::Raylib::render(const Gui::GameData &gameData)
 {
     BeginDrawing();
-    if (!gameData.dataMenu.gameIsLaunch) {
+    this->_ignoreKey = gameData.ignoreKey;
+    if (gameData.dataMenu.stateGame != IN_PLAYER_MODE &&
+        gameData.dataMenu.stateGame != IN_SPECTATOR_MODE) {
         this->menu.render(gameData);
         EndDrawing();
         return;
