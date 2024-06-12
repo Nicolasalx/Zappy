@@ -12,6 +12,10 @@ Gui::Event Gui::Raylib::getEvent()
     Gui::Event event;
 
     event.frame_time = GetFrameTime();
+    if (IsKeyPressed(KEY_M)) {
+        std::cout << "KEY M EVENT\n";
+        event.eventType.push_back(Gui::EventType::KEY_M);
+    }
     if (WindowShouldClose()) {
         event.eventType.push_back(Gui::EventType::EXIT);
     }
@@ -32,10 +36,6 @@ Gui::Event Gui::Raylib::getEvent()
     }
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         event.eventType.push_back(Gui::EventType::LEFT_CLICK);
-    }
-    if (IsKeyPressed(KEY_A)) {
-        std::cout << "KEY M EVENT\n";
-        event.eventType.push_back(Gui::EventType::KEY_M);
     }
     event.mouse.x = GetMouseX();
     event.mouse.y = GetMouseY();
