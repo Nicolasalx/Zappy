@@ -92,7 +92,7 @@ namespace Gui
     struct Text {
         std::string contentText;
         Pos pos;
-        int fontSize;
+        double fontSize;
         GameColor color;
     };
 
