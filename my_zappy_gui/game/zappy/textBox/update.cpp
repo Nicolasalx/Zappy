@@ -100,8 +100,26 @@ void Gui::TextBox::updateOnePlayerInfo()
                 addText(_gameData->textBox[1], 11, "Thystame: " + std::to_string(player.inventory[THYSTAME]));
             }
         }
-    } else
+    } else {
         _gameData->textBox[1]._state = NOT_SHOWN;
+    }
+}
+
+void Gui::TextBox::updateOneTileInfo()
+{
+    if (_gameData->rayInfo.type == ISLAND) {
+        _gameData->textBox[2]._state = NO_BUTTON;
+        addText(_gameData->textBox[2], 0, "Tile: (" + std::to_string(_gameData->rayInfo.x) + ", " + std::to_string(_gameData->rayInfo.y) + ")");
+        addText(_gameData->textBox[2], 1, "Food: " + std::to_string(_gameData->objectPos[_gameData->rayInfo.y][_gameData->rayInfo.x][FOOD]));
+        addText(_gameData->textBox[2], 2, "Linemate: " + std::to_string(_gameData->objectPos[_gameData->rayInfo.y][_gameData->rayInfo.x][LINEMATE]));
+        addText(_gameData->textBox[2], 3, "Deraumere: " + std::to_string(_gameData->objectPos[_gameData->rayInfo.y][_gameData->rayInfo.x][DERAUMERE]));
+        addText(_gameData->textBox[2], 4, "Sibur: " + std::to_string(_gameData->objectPos[_gameData->rayInfo.y][_gameData->rayInfo.x][SIBUR]));
+        addText(_gameData->textBox[2], 5, "Mendiane: " + std::to_string(_gameData->objectPos[_gameData->rayInfo.y][_gameData->rayInfo.x][MENDIANE]));
+        addText(_gameData->textBox[2], 6, "Phiras: " + std::to_string(_gameData->objectPos[_gameData->rayInfo.y][_gameData->rayInfo.x][PHIRAS]));
+        addText(_gameData->textBox[2], 7, "Thystame: " + std::to_string(_gameData->objectPos[_gameData->rayInfo.y][_gameData->rayInfo.x][THYSTAME]));
+    } else {
+        _gameData->textBox[2]._state = NOT_SHOWN;
+    }
 }
 
 void Gui::TextBox::update(const Gui::Event &events)
@@ -110,6 +128,7 @@ void Gui::TextBox::update(const Gui::Event &events)
     updateListPlayerLevel();
     updateServerResp();
     updateOnePlayerInfo();
+    updateOneTileInfo();
     for (auto &event : events.eventType) {
         if (event == Gui::EventType::WINDOW_RESIZED) {
             resize(_gameData->windowX, _gameData->windowY);
