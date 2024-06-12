@@ -114,7 +114,22 @@ namespace Gui
         SETTINGS,
         QUIT,
         PLAYER_MODE,
-        SPECTATOR_MODE
+        SPECTATOR_MODE,
+        INPUT_BOX_IP
+    };
+
+    enum StateGame {
+        IN_PLAYER_MODE,
+        IN_SPECTATOR_MODE,
+        TRY_SPECTATOR_MODE,
+        IN_SETTINGS,
+        IN_MENU,
+        IN_LEAVE
+    };
+
+    enum CursorState {
+        DEFAULT,
+        SELECTIONNED
     };
 
     struct Component {
@@ -125,8 +140,9 @@ namespace Gui
     };
 
     struct DataMenu {
-        bool gameIsLaunch;
+        StateGame stateGame = IN_MENU;
         std::vector<Gui::Component> componentList;
+        CursorState cursorState;
     };
 
     struct WindowSize {

@@ -27,6 +27,7 @@ namespace Gui
         std::vector<std::vector<std::vector<int>>> objectPos;
         std::vector<TextBoxData> textBox;
         DataMenu dataMenu;
+        bool ignoreKey;
     };
 }
 
