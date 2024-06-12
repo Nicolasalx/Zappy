@@ -21,6 +21,7 @@ namespace Gui {
             void render(const GameData &gameData);
             void renderOneComponent(const Gui::Component &component);
 
+            StateGame stateGame;
         private:
             int _windowWidth = 0;
             int _windowHeight = 0;
