@@ -14,6 +14,8 @@ void Gui::RenderTextBox::addText(std::string text, float ypos)
 
 void Gui::RenderTextBox::draw()
 {
+    // if (_boxInfo._state == NOT_SHOWN)
+    //     return;
     DrawRectangleRec(this->_box, _color);
     DrawRectangleLinesEx(this->_box, 1, WHITE);
     if (_boxInfo._state != NO_BUTTON) {
@@ -21,7 +23,7 @@ void Gui::RenderTextBox::draw()
         DrawRectangleLinesEx(this->_button, 1, WHITE);
     }
     for (size_t i = 0; i < _boxInfo._text.size(); i++) {
-        addText(_boxInfo._text[i], ((float)i + 0.5f) / (float)(_boxInfo._text.size() + 0.5f));
+        addText(_boxInfo._text[i], ((float)i + 0.5f) / (float)(_boxInfo._text.size() + 0.7f));
     }
 }
 

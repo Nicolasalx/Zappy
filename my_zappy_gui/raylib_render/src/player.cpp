@@ -46,6 +46,7 @@ void Gui::RenderPlayer::updateAnimation(const Gui::PlayerData &player)
         UpdateModelAnimation(_models.at(0), this->player_animation[player.animation_nbr], player.anim_frame_counter);
     }
 }
+
 void Gui::RenderPlayer::render(const Gui::GameData &gameData)
 {
     for (auto &player : gameData.playerList) {

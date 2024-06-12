@@ -26,8 +26,11 @@ namespace Gui
             void update(const Gui::Event &event);
             void resize(int window_width, int window_height);
             void openClose(const Gui::Event &event);
+            bool isClosed(TextBoxData &_text);
+            void updateServerResp();
             void updateGeneralInfo();
             void updateListPlayerLevel();
+            void updateOnePlayerInfo();
 
         private:
             std::shared_ptr<Gui::GameData> _gameData;

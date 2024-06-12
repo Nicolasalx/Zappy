@@ -10,7 +10,7 @@
 
 static void resizeEachBox(Gui::TextBoxData &textBox, int window_width, int window_height)
 {
-    if (textBox._state == Gui::NO_BUTTON || textBox._state == Gui::RIGHT_BUTTON || textBox._state == Gui::LEFT_BUTTON) {
+    if (textBox._state == Gui::NO_BUTTON || textBox._state == Gui::RIGHT_BUTTON || textBox._state == Gui::LEFT_BUTTON || textBox._state == Gui::NOT_SHOWN) {
         textBox._real_pos.x = textBox._pos.x * window_width;
         textBox._real_pos.y = textBox._pos.y * window_height;
         textBox._real_size.x = textBox._size.x * window_width;

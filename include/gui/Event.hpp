@@ -22,6 +22,7 @@ namespace Gui
         Pos mouse = {0, 0};
         WindowSize windowSize = {0, 0};
         double frame_time = 0;
+        RayInfoData rayInfo;
     };
 }
 

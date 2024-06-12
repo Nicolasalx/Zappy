@@ -7,8 +7,6 @@
 
 #include "Raylib.hpp"
 
-// ! https://www.raylib.com/examples/text/loader.html?name=text_input_box
-
 void Gui::Raylib::putEventInBuffer(Gui::Event &event)
 {
     int charPressed = GetCharPressed();
@@ -89,5 +87,6 @@ Gui::Event Gui::Raylib::getEvent()
     event.windowSize.height = window.windowSize.height;
     this->camera.handle_cursor();
     this->camera.update();
+    this->rayInfo->addRayToEvent(event);
     return event;
 }

@@ -56,6 +56,7 @@ void Gui::Player::updateAnimation(PlayerData &player)
 
 void Gui::Player::update(const Gui::Event &event)
 {
+    (void)event;
     for (auto &player : this->_gameData->playerList) {
         updateAnimation(player);
     }

@@ -13,24 +13,22 @@
 Gui::RenderIsland::RenderIsland()
 {
     this->addModel(Gui::ISLAND_MODEL.data(), Gui::ISLAND_TEXTURE.data());
-    size = 2.0;
 }
 
 void Gui::RenderIsland::render(const Gui::GameData &gameData)
 {
     for (int i = 0; i < gameData.mapSize.x; i++) {
         for (int j = 0; j < gameData.mapSize.y; j++) {
-            // if (rayInfo.type == ISLAND && rayInfo.x == i && rayInfo.y == j) {
-            //     rayInfo.box.min = (Vector3){i * Gui::MAP_SCALE - 2.2f * size, -4.2f * size, j * Gui::MAP_SCALE - 2.2f * size};
-            //     rayInfo.box.max = (Vector3){i * Gui::MAP_SCALE + 2.2f * size, 0.2f * size, j * Gui::MAP_SCALE + 2.2f * size};
-            //     DrawBoundingBox(rayInfo.box, GREEN);
-            //     this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, -2.0 * size, j * Gui::MAP_SCALE},
-            //     (Vector3){0, 0, 0}, 0, (Vector3){2.0 * size, 2.0 * size, 2.0 * size}, GREEN});
-            // }
-            // else {
-                this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, -2.0f * size, j * Gui::MAP_SCALE},
-                (Vector3){0, 0, 0}, 0, (Vector3){2.0f * size, 2.0f * size, 2.0f * size}, WHITE});
-            // }
+            if (gameData.rayInfo.type == ISLAND && gameData.rayInfo.x == i && gameData.rayInfo.y == j) {
+                _box.min = (Vector3){i * Gui::MAP_SCALE - 2.2f * Gui::ISLAND_SIZE, -4.2f * Gui::ISLAND_SIZE, j * Gui::MAP_SCALE - 2.2f * Gui::ISLAND_SIZE};
+                _box.max = (Vector3){i * Gui::MAP_SCALE + 2.2f * Gui::ISLAND_SIZE, 0.2f * Gui::ISLAND_SIZE, j * Gui::MAP_SCALE + 2.2f * Gui::ISLAND_SIZE};
+                DrawBoundingBox(_box, GREEN);
+                this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, -2.0 * Gui::ISLAND_SIZE, j * Gui::MAP_SCALE},
+                (Vector3){0, 0, 0}, 0, (Vector3){2.0 * Gui::ISLAND_SIZE, 2.0 * Gui::ISLAND_SIZE, 2.0 * Gui::ISLAND_SIZE}, GREEN});
+            } else {
+                this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, -2.0f * Gui::ISLAND_SIZE, j * Gui::MAP_SCALE},
+                (Vector3){0, 0, 0}, 0, (Vector3){2.0f * Gui::ISLAND_SIZE, 2.0f * Gui::ISLAND_SIZE, 2.0f * Gui::ISLAND_SIZE}, WHITE});
+            }
         }
     }
 }
