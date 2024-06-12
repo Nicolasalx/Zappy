@@ -108,7 +108,6 @@ void Gui::Core::loop()
             break;
         }
         this->gameModule->update(messRecv, eventList);
-        std::cout << this->gameData.get()->textBox[3]._text[0] << std::endl;
         this->renderModule->render(*this->gameData.get());
 
         Gui::FrameRate::end();
