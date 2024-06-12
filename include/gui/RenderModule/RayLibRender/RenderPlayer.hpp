@@ -21,13 +21,12 @@ namespace Gui
             RenderPlayer();
             ~RenderPlayer() = default;
             void updateAnimation(const PlayerData &player);
-            // void updatePlayerPos(Player &player);
-            // void drawPlayer(rayInfo &rayInfo);
             void drawPlayerModel(const PlayerData &player);
-            // void drawPlayerBox(rayinfo &rayinfo, Player &player);
+            void drawPlayerBox(const Gui::PlayerData &player);
             void render(const GameData &gameData);
 
             ModelAnimation *player_animation;
+            BoundingBox player_box;
             std::map<int, int> player_orientation;
             std::map<int, Color> player_color;
         private:
