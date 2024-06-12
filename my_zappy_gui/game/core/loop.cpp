@@ -107,6 +107,9 @@ void Gui::Core::loop()
         if (handleCoreEvent(eventList)) {
             break;
         }
+
+        // @Thibaud use : this->gameData->dataMenu.stateGame
+
         this->gameModule->update(messRecv, eventList);
         this->renderModule->render(*this->gameData.get());
 
