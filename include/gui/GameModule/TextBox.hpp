@@ -31,6 +31,7 @@ namespace Gui
             void updateGeneralInfo();
             void updateListPlayerLevel();
             void updateOnePlayerInfo();
+            void updateOneTileInfo();
 
         private:
             std::shared_ptr<Gui::GameData> _gameData;
