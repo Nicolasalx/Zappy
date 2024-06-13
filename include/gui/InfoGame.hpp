@@ -124,7 +124,9 @@ namespace Gui
         QUIT,
         PLAYER_MODE,
         SPECTATOR_MODE,
-        INPUT_BOX_IP
+        INPUT_BOX_IP,
+        ANNOUNCE_RETRY,
+        GO_BACK_TO_MENU
     };
 
     enum StateGame {
@@ -132,6 +134,7 @@ namespace Gui
         TRY_PLAYER_MODE,
         IN_SPECTATOR_MODE,
         TRY_SPECTATOR_MODE,
+        FAIL_SPECTATOR_MODE,
         IN_SETTINGS,
         IN_MENU,
         IN_LEAVE
