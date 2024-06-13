@@ -9,14 +9,26 @@
 
 void Gui::Menu::changeScreenMenu()
 {
-    if (this->_gameData->dataMenu.stateGame == TRY_SPECTATOR_MODE) {
+    if (this->_gameData->dataMenu.stateGame == IN_MENU) {
+        if (_oldState != this->_gameData->dataMenu.stateGame) {
+            this->_gameData->dataMenu.componentList.clear();
+            componentPlayerMode();
+            componentSpectatorMode();
+            componentSettings();
+            componentQuit();
+            inputBoxIP();
+            inputBoxPort();
+            _oldState = this->_gameData->dataMenu.stateGame;
+        }
+    } else if (this->_gameData->dataMenu.stateGame == TRY_SPECTATOR_MODE) {
         // Loading bar
     } else if (this->_gameData->dataMenu.stateGame == CONNECTION_FAILED_MENU) {
-        this->_gameData->dataMenu.componentList.clear();
-        announceRetry();
-        goBackToTheMenu();
-        // Text : Connection with the server has failed
-        // Box / Text : Go Back to the Menu
+        if (_oldState != this->_gameData->dataMenu.stateGame) {
+            this->_gameData->dataMenu.componentList.clear();
+            announceRetry();
+            goBackToTheMenu();
+            _oldState = this->_gameData->dataMenu.stateGame;
+        }
     }
 }
 

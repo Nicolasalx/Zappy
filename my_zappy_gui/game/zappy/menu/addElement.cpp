@@ -29,4 +29,6 @@ void Gui::Menu::addComponent(ComponentType cmpType)
     this->_component.componentType = cmpType;
     this->_gameData->dataMenu.componentList.push_back(_component);
     this->_component.componentType = NONE;
+
+    this->_component = Component();
 }
