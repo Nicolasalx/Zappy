@@ -134,7 +134,7 @@ namespace Gui
         TRY_PLAYER_MODE,
         IN_SPECTATOR_MODE,
         TRY_SPECTATOR_MODE,
-        FAIL_SPECTATOR_MODE,
+        CONNECTION_FAILED_MENU,
         IN_SETTINGS,
         IN_MENU,
         IN_LEAVE

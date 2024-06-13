@@ -11,7 +11,7 @@ void Gui::Menu::changeScreenMenu()
 {
     if (this->_gameData->dataMenu.stateGame == TRY_SPECTATOR_MODE) {
         // Loading bar
-    } else if (this->_gameData->dataMenu.stateGame == FAIL_SPECTATOR_MODE) {
+    } else if (this->_gameData->dataMenu.stateGame == CONNECTION_FAILED_MENU) {
         this->_gameData->dataMenu.componentList.clear();
         announceRetry();
         goBackToTheMenu();
