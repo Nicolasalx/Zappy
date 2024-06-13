@@ -99,7 +99,7 @@ void Gui::Core::handleGameState()
             this->clientModule->send("GRAPHIC\n");
         } catch(...) {
             // dispay red message
-            this->gameData->dataMenu.stateGame = Gui::IN_MENU;
+            this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
             std::cerr << "Connection to server failed\n";
             return;
         }
@@ -111,7 +111,7 @@ void Gui::Core::handleGameState()
             this->clientModule->send("Team1\n"); // ! to change
         } catch(...) {
             // dispay red message
-            this->gameData->dataMenu.stateGame = Gui::IN_MENU;
+            this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
             std::cerr << "Connection to server failed\n";
             return;
         }
