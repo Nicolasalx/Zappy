@@ -31,6 +31,8 @@ namespace Gui
             void componentSpectatorMode();
             void componentQuit();
 
+            void textSettings();
+
             void inputBoxIP();
             void inputBoxPort();
 
