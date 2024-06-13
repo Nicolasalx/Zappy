@@ -15,7 +15,7 @@ void Gui::Menu::addBox(const Box &box, const std::string &contentText)
     this->_component.stockStartData.box = this->_component.box;
 
     double startTextPosX = (box.width - (contentText.size() * 0.02)) / 2;
-    addText(Text(contentText, { box.x + startTextPosX , box.y + 0.03 }, sizeFontTextMenu, BLUE_COLOR));
+    addText(Text(contentText, { box.x + startTextPosX , box.y + 0.03 }, sizeFontTextMenu, WHITE_COLOR));
 }
 
 void Gui::Menu::addText(const Text &text)

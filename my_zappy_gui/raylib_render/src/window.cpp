@@ -8,7 +8,6 @@
 #include "Raylib.hpp"
 #include "RenderWindow.hpp"
 
-
 Gui::RenderWindow::RenderWindow()
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);

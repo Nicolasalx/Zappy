@@ -58,7 +58,6 @@ Gui::Event Gui::Raylib::getEvent()
         window.windowSize.height = GetScreenHeight();
         window.launched = true;
     }
-
     if (this->menu.stateGame == IN_LEAVE) {
         event.eventType.push_back(Gui::EventType::EXIT);
     }
