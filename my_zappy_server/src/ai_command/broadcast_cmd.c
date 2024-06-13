@@ -24,13 +24,18 @@ int compute_direction_helper(int dx, int dy, int direction)
     return direction;
 }
 
-int compute_direction(client_t *src, client_t *dest)
+int adjust_direction_for_orientation(int direction, int orientation)
 {
+    direction = (direction - orientation + 8) % 8;
+    return direction;
+}
+
+int compute_direction(client_t *src, client_t *dest) {
     int dx = dest->player.pos_x - src->player.pos_x;
     int dy = dest->player.pos_y - src->player.pos_y;
     int direction = 0;
 
-    if (dx == dy) {
+    if (dx == 0 && dy == 0) {
         return 0;
     }
     if (abs(dx) > abs(dy)) {
@@ -39,6 +44,7 @@ int compute_direction(client_t *src, client_t *dest)
         direction = (dy > 0) ? 1 : 5;
     }
     direction = compute_direction_helper(dx, dy, direction);
+    direction = adjust_direction_for_orientation(direction, src->player.orientation);
     return direction;
 }
 
@@ -57,6 +63,7 @@ void broadcast_cmd(char *argv, client_t *client, server_t *server)
             && server->clients[i].player.team
             && client->player.id != server->clients[i].player.id) {
                 direction = compute_direction(client, &server->clients[i]);
+                direction = adjust_direction_for_orientation(direction, server->clients[i].player.orientation);
                 snprintf(buffer, BUFFER_SIZE, "message %d, %s\n",
                     direction, message);
                 send_msg_client(server->clients[i].fd, buffer);
