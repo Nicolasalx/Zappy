@@ -58,6 +58,8 @@ namespace Gui
             int letterCount = 0;
 
             Component _component;
+
+            StateGame _oldState = IN_MENU;
     };
 }
 
