@@ -33,7 +33,7 @@ Gui::Event Gui::SFMLRender::getEvent()
     sf::Event event;
 
     guiEvent.frame_time = clock.restart().asSeconds();
-    std::cout << "frame time: " << guiEvent.frame_time << std::endl;
+    // std::cout << "frame time: " << guiEvent.frame_time << std::endl;
     if (!window.isOpen()) {
         return Gui::Event();
     }
@@ -78,6 +78,7 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
     this->object->render(gameData, window);
     this->egg->render(gameData, window);
     this->player->render(gameData, window);
+    this->textBox->render(gameData, window);
     // if (std::find(eventList.eventType.begin(), eventList.eventType.end(), Gui::EventType::LEFT_CLICK) != eventList.eventType.end()) {
     //     sf::Vector2i cell = getClickedCase(gameData, eventList.mouse.x, eventList.mouse.y);
     //     if (cell.x != -1 && cell.y != -1) {
