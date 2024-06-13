@@ -32,10 +32,11 @@ Gui::Event Gui::SFMLRender::getEvent()
     Gui::Event guiEvent;
     sf::Event event;
 
+    guiEvent.frame_time = clock.restart().asSeconds();
+    std::cout << "frame time: " << guiEvent.frame_time << std::endl;
     if (!window.isOpen()) {
         return Gui::Event();
     }
-    
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
     guiEvent.mouse.x = mousePos.x;
     guiEvent.mouse.y = mousePos.y;
@@ -70,19 +71,19 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
     if (!window.isOpen()) {
         return;
     }
-    const Gui::Event &eventList = this->getEvent();
+    // const Gui::Event &eventList = this->getEvent();
     window.clear();
     window.draw(sprite);
     this->map->render(gameData, window);
     this->object->render(gameData, window);
     this->egg->render(gameData, window);
     this->player->render(gameData, window);
-    if (std::find(eventList.eventType.begin(), eventList.eventType.end(), Gui::EventType::LEFT_CLICK) != eventList.eventType.end()) {
-        sf::Vector2i cell = getClickedCase(gameData, eventList.mouse.x, eventList.mouse.y);
-        if (cell.x != -1 && cell.y != -1) {
-            std::cout << "Case clicked: (" << cell.x << ", " << cell.y << ")\n";
-        }
-    }
+    // if (std::find(eventList.eventType.begin(), eventList.eventType.end(), Gui::EventType::LEFT_CLICK) != eventList.eventType.end()) {
+    //     sf::Vector2i cell = getClickedCase(gameData, eventList.mouse.x, eventList.mouse.y);
+    //     if (cell.x != -1 && cell.y != -1) {
+    //         std::cout << "Case clicked: (" << cell.x << ", " << cell.y << ")\n";
+    //     }
+    // }
     window.display();
 }
 
