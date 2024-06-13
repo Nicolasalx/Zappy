@@ -34,6 +34,9 @@ void Gui::Menu::changeScreenMenu()
 
 void Gui::Menu::update(const Gui::Event &event)
 {
+    if (this->_gameData->dataMenu.stateGame == IN_PLAYER_MODE || this->_gameData->dataMenu.stateGame == IN_SPECTATOR_MODE) {
+        return;
+    }
     handleEvent(event);
     changeScreenMenu();
     resize(event);
