@@ -34,6 +34,11 @@ namespace Gui
             void inputBoxIP();
             void inputBoxPort();
 
+            void announceRetry();
+            void goBackToTheMenu();
+
+            void changeScreenMenu();
+
             void addBox(const Box &box, const std::string &contentText);
             void addText(const Text &text);
             void addComponent(ComponentType cmpType);
@@ -53,6 +58,8 @@ namespace Gui
             int letterCount = 0;
 
             Component _component;
+
+            StateGame _oldState = IN_MENU;
     };
 }
 

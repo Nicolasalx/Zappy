@@ -16,7 +16,7 @@ void Gui::Raylib::putEventInBuffer(Gui::Event &event)
     }
     if (IsKeyPressed(KEY_ENTER)) {
         event.eventType.push_back(Gui::EventType::ENTER);
-    } else if (charPressed == 61) { // ! Actually press '=' to delete one character
+    } else if (charPressed == 61 && !event.buffer.empty()) { // ! Actually press '=' to delete one character
         event.buffer.pop_back();
         std::cout << "BUFF: " << event.buffer << "\n";
         _event.buffer = event.buffer;
@@ -58,7 +58,6 @@ Gui::Event Gui::Raylib::getEvent()
         window.windowSize.height = GetScreenHeight();
         window.launched = true;
     }
-
     if (this->menu.stateGame == IN_LEAVE) {
         event.eventType.push_back(Gui::EventType::EXIT);
     }

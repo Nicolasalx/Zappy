@@ -14,8 +14,8 @@
 namespace Gui
 {
     constexpr float MAP_SCALE = 12.0;
-    constexpr float WINDOW_WIDTH = 1920 / 2;
-    constexpr float WINDOW_HEIGHT = 1080 / 2;
+    constexpr float WINDOW_WIDTH = 1920;
+    constexpr float WINDOW_HEIGHT = 1080;
     constexpr float ISLAND_SIZE = 2.0;
 
     struct Pos {
@@ -124,7 +124,9 @@ namespace Gui
         QUIT,
         PLAYER_MODE,
         SPECTATOR_MODE,
-        INPUT_BOX_IP
+        INPUT_BOX_IP,
+        ANNOUNCE_RETRY,
+        GO_BACK_TO_MENU
     };
 
     enum StateGame {
@@ -132,6 +134,7 @@ namespace Gui
         TRY_PLAYER_MODE,
         IN_SPECTATOR_MODE,
         TRY_SPECTATOR_MODE,
+        CONNECTION_FAILED_MENU,
         IN_SETTINGS,
         IN_MENU,
         IN_LEAVE
