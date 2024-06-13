@@ -94,6 +94,7 @@ bool Gui::Core::handleCoreEvent(const Gui::Event &eventList)
 void Gui::Core::handleGameState()
 {
     if (this->gameData->dataMenu.stateGame == TRY_SPECTATOR_MODE) {
+        std::cout << "try specator mode\n";
         try {
             this->clientModule->connect(this->ip, this->port);
             this->clientModule->send("GRAPHIC\n");
@@ -102,7 +103,9 @@ void Gui::Core::handleGameState()
             this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
             std::cerr << "Connection to server failed\n";
             return;
+        
         }
+        std::cout << "connection succed\n";
         this->gameData->dataMenu.stateGame = IN_SPECTATOR_MODE;
     }
     if (this->gameData->dataMenu.stateGame == TRY_PLAYER_MODE) {
