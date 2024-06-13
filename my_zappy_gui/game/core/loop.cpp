@@ -103,7 +103,6 @@ void Gui::Core::handleGameState()
             this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
             std::cerr << "Connection to server failed\n";
             return;
-        
         }
         std::cout << "connection succed\n";
         this->gameData->dataMenu.stateGame = IN_SPECTATOR_MODE;

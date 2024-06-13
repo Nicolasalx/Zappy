@@ -32,7 +32,7 @@ void Gui::Menu::checkMouseState(const Gui::Event &event, Component &component)
         switch (evt) {
             case Gui::EventType::LEFT_CLICK:
                 if (component.componentType == SPECTATOR_MODE) {
-                    this->_gameData->dataMenu.stateGame = CONNECTION_FAILED_MENU; // Change in TRY_SPECTATOR_MODE
+                    this->_gameData->dataMenu.stateGame = TRY_SPECTATOR_MODE;
                 } else if (component.componentType == INPUT_BOX_IP) {
                     this->_gameData->dataMenu.cursorState = SELECTIONNED;
                     this->_gameData->ignoreKey = true;

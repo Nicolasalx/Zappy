@@ -16,7 +16,7 @@ void Gui::Raylib::putEventInBuffer(Gui::Event &event)
     }
     if (IsKeyPressed(KEY_ENTER)) {
         event.eventType.push_back(Gui::EventType::ENTER);
-    } else if (charPressed == 61) { // ! Actually press '=' to delete one character
+    } else if (charPressed == 61 && !event.buffer.empty()) { // ! Actually press '=' to delete one character
         event.buffer.pop_back();
         std::cout << "BUFF: " << event.buffer << "\n";
         _event.buffer = event.buffer;
