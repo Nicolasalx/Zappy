@@ -12,7 +12,7 @@
 
 Gui::RenderIsland::RenderIsland()
 {
-    this->addModel(Gui::ISLAND_MODEL.data(), Gui::ISLAND_TEXTURE.data());
+    this->addModel(Gui::ISLAND_MODEL.data());
 }
 
 void Gui::RenderIsland::render(const Gui::GameData &gameData)
@@ -23,11 +23,11 @@ void Gui::RenderIsland::render(const Gui::GameData &gameData)
                 _box.min = (Vector3){i * Gui::MAP_SCALE - 2.2f * Gui::ISLAND_SIZE, -4.2f * Gui::ISLAND_SIZE, j * Gui::MAP_SCALE - 2.2f * Gui::ISLAND_SIZE};
                 _box.max = (Vector3){i * Gui::MAP_SCALE + 2.2f * Gui::ISLAND_SIZE, 0.2f * Gui::ISLAND_SIZE, j * Gui::MAP_SCALE + 2.2f * Gui::ISLAND_SIZE};
                 DrawBoundingBox(_box, GREEN);
-                this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, -2.0 * Gui::ISLAND_SIZE, j * Gui::MAP_SCALE},
-                (Vector3){0, 0, 0}, 0, (Vector3){2.0 * Gui::ISLAND_SIZE, 2.0 * Gui::ISLAND_SIZE, 2.0 * Gui::ISLAND_SIZE}, GREEN});
+                this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, 0.0f, j * Gui::MAP_SCALE},
+                (Vector3){0, 0, 0}, 0, (Vector3){Gui::ISLAND_SIZE, Gui::ISLAND_SIZE, Gui::ISLAND_SIZE}, GREEN});
             } else {
-                this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, -2.0f * Gui::ISLAND_SIZE, j * Gui::MAP_SCALE},
-                (Vector3){0, 0, 0}, 0, (Vector3){2.0f * Gui::ISLAND_SIZE, 2.0f * Gui::ISLAND_SIZE, 2.0f * Gui::ISLAND_SIZE}, WHITE});
+                this->drawModel((ModelInfo){0, (Vector3){i * Gui::MAP_SCALE, 0.0f, j * Gui::MAP_SCALE},
+                (Vector3){0, 0, 0}, 0, (Vector3){Gui::ISLAND_SIZE, Gui::ISLAND_SIZE, Gui::ISLAND_SIZE}, WHITE});
             }
         }
     }
