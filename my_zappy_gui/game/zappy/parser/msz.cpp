@@ -14,11 +14,6 @@ void Gui::Parser::msz(std::vector<std::string> args)
     std::cout << std::stoi(args[1]) << std::endl;
     if (args.size() != 2)
         return;
-    // std::cout << "msz" << std::endl;
-    // for (auto arg : args) {
-    //     std::cout << arg << std::endl;
-    // }
-
 
     _gameData->mapSize.x = std::stoi(args[0]);
     _gameData->mapSize.y = std::stoi(args[1]);
@@ -32,5 +27,11 @@ void Gui::Parser::msz(std::vector<std::string> args)
     }
     for (int i = 0; i < _gameData->mapSize.y; i++) {
         _gameData->objectPos.push_back(tmp2);
+    }
+
+    for (float i = 0; i < _gameData->mapSize.x; i++) {
+        for (float j = 0; j < _gameData->mapSize.y; j++) {
+            _gameData->islandInfo.push_back(Pos{i, j});
+        }
     }
 }
