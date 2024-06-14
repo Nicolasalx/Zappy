@@ -7,7 +7,7 @@
 
 SRC				:=	$(shell find ./game/ -name "*.cpp")
 
-CPPFLAGS		=	-std=c++20 -Wall -Wextra -g3 \
+CPPFLAGS		=	-std=c++20 -Wall -Wextra \
 					$(ADDITIONAL_FLAGS)
 
 INCLUDE_PATH	=	-I../include/ -I../include/lib/cpp_lib/ \

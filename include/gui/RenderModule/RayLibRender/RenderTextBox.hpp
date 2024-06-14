@@ -38,7 +38,7 @@ namespace Gui
             RenderTextBoxList() = default;
             ~RenderTextBoxList() = default;
             void updateTextBoxs(const GameData &gameData);
-            void drawAllTextBoxs(const GameData &gameData);
+            void render(const GameData &gameData);
 
             std::vector<Gui::RenderTextBox> _textBoxs;
     };

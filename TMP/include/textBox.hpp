@@ -45,7 +45,7 @@ namespace Gui
         public:
             TextBox_list(std::shared_ptr<GameState> gameState, int window_width, int window_height);
             ~TextBox_list() = default;
-            void drawAllTextBoxs(ray_info_t &rayInfo);
+            void render(ray_info_t &rayInfo);
             void resize(int window_width, int window_height);
 
             std::vector<int> listLevelPlayer;

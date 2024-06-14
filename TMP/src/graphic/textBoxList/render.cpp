@@ -23,7 +23,7 @@ static void drawListPlayerLevel(Gui::TextBox_list &textBoxsList)
     }
 }
 
-void Gui::TextBox_list::drawAllTextBoxs(ray_info_t &rayInfo)
+void Gui::TextBox_list::render(ray_info_t &rayInfo)
 {
     _textBoxs[0].draw();
     _textBoxs[0].addText(TextFormat("Number of players: %d", this->_gameState->players_list.size()), 0.5f/2.5f);

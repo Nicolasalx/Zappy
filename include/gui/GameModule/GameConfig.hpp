@@ -22,7 +22,7 @@ namespace Gui
     constexpr std::string_view PLAYER_MODEL = "bonus/assets/Astronaut.iqm";
     constexpr std::string_view PLAYER_TEXTURE = "bonus/assets/AstronautColor.png";
 
-    constexpr std::string_view ISLAND_MODEL = "bonus/assets/plateform.obj";
+    constexpr std::string_view ISLAND_MODEL = "bonus/assets/new_island3.gltf";
     constexpr std::string_view ISLAND_TEXTURE = "bonus/assets/plateform1.png";
 
     constexpr std::string_view FOOD_MODEL = "bonus/assets/food.glb";
