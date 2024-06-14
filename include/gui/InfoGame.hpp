@@ -113,9 +113,23 @@ namespace Gui
         GameColor color;
     };
 
+    struct Triangle {
+        Pos topVertex;
+        Pos bottomLeftVertex;
+        Pos bottomRightVertex;
+        GameColor color;
+    };
+
+    struct SettingsComponent {
+        Triangle triangleLeft;
+        Triangle triangleRight;
+        Text text;
+    };
+
     struct StockStartData {
         Box box;
         Text text;
+        SettingsComponent settingsComponent;
     };
 
     enum ComponentType {
@@ -126,7 +140,8 @@ namespace Gui
         SPECTATOR_MODE,
         INPUT_BOX_IP,
         ANNOUNCE_RETRY,
-        GO_BACK_TO_MENU
+        GO_BACK_TO_MENU,
+        MODIFY_SETTINGS
     };
 
     enum StateGame {
@@ -148,6 +163,7 @@ namespace Gui
     struct Component {
         Box box;
         Text text;
+        SettingsComponent settingsComponent;
         StockStartData stockStartData;
         ComponentType componentType;
     };
