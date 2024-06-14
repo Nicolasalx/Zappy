@@ -23,7 +23,7 @@ void Gui::Graphic::draw3D()
 
 void Gui::Graphic::draw2D()
 {
-    textBoxs.drawAllTextBoxs(rayInfo);
+    textBoxs.render(rayInfo);
 }
 
 void Gui::Graphic::loop()
