@@ -30,6 +30,7 @@ namespace Gui
             void componentPlayerMode();
             void componentSpectatorMode();
             void componentQuit();
+            void addTriangle(Pos startPosTriangleLeft);
 
             void textSettings();
 
@@ -48,6 +49,8 @@ namespace Gui
             bool isMouseOnBox(const Box &box, const Pos &mousePos);
             void checkMouseState(const Gui::Event &event, Component &component);
             void resize(const Gui::Event &event);
+
+            Pos resizePosition(const Pos position, const Gui::Event &event);
 
             std::shared_ptr<Gui::GameData> _gameData;
 
