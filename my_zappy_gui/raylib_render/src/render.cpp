@@ -9,6 +9,8 @@
 
 void Gui::Raylib::renderGame(const Gui::GameData &gameData)
 {
+    BeginMode3D(this->camera._camera);
+
     this->skyBox->render();
     this->player->render(gameData);
     this->object->render(gameData);
@@ -16,6 +18,9 @@ void Gui::Raylib::renderGame(const Gui::GameData &gameData)
     this->island->render(gameData);
     this->egg->render(gameData);
     this->rayInfo->render(gameData, this->camera._camera);
+
+    EndMode3D();
+    this->textBoxList->render(gameData);
 }
 
 void Gui::Raylib::render(const Gui::GameData &gameData)
@@ -28,9 +33,6 @@ void Gui::Raylib::render(const Gui::GameData &gameData)
         EndDrawing();
         return;
     }
-    BeginMode3D(this->camera._camera);
     renderGame(gameData);
-    EndMode3D();
-    this->textBoxList->drawAllTextBoxs(gameData);
     EndDrawing();
 }
