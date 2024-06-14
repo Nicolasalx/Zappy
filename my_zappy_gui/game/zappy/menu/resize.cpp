@@ -7,6 +7,15 @@
 
 #include "Menu.hpp"
 
+Gui::Pos Gui::Menu::resizePosition(const Pos position, const Gui::Event &event)
+{
+    Pos newPosition;
+
+    newPosition.x = event.windowSize.width * position.x;
+    newPosition.y = event.windowSize.height * position.y;
+    return newPosition;
+}
+
 void Gui::Menu::resize(const Gui::Event &event)
 {
     for (auto &component: this->_gameData->dataMenu.componentList) {
@@ -15,7 +24,15 @@ void Gui::Menu::resize(const Gui::Event &event)
         component.box.width = event.windowSize.width * component.stockStartData.box.width;
         component.box.height = event.windowSize.height * component.stockStartData.box.height;
 
-        component.text.pos = { event.windowSize.width * component.stockStartData.text.pos.x, event.windowSize.height * component.stockStartData.text.pos.y };
+        component.text.pos = resizePosition(component.stockStartData.text.pos, event);
         component.text.fontSize = event.windowSize.height * component.stockStartData.text.fontSize;
+
+        component.settingsComponent.triangleLeft.topVertex = resizePosition(component.stockStartData.settingsComponent.triangleLeft.topVertex, event);
+        component.settingsComponent.triangleLeft.bottomLeftVertex = resizePosition(component.stockStartData.settingsComponent.triangleLeft.bottomLeftVertex, event);
+        component.settingsComponent.triangleLeft.bottomRightVertex = resizePosition(component.stockStartData.settingsComponent.triangleLeft.bottomRightVertex, event);
+
+        component.settingsComponent.triangleRight.topVertex = resizePosition(component.stockStartData.settingsComponent.triangleRight.topVertex, event);
+        component.settingsComponent.triangleRight.bottomLeftVertex = resizePosition(component.stockStartData.settingsComponent.triangleRight.bottomLeftVertex, event);
+        component.settingsComponent.triangleRight.bottomRightVertex = resizePosition(component.stockStartData.settingsComponent.triangleRight.bottomRightVertex, event);
     }
 }

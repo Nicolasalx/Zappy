@@ -24,6 +24,41 @@ void Gui::Menu::addText(const Text &text)
     this->_component.stockStartData.text = text;
 }
 
+void Gui::Menu::addTriangle(Pos startPosTriangleLeft)
+{
+    Triangle triangleLeft;
+
+    triangleLeft.topVertex = startPosTriangleLeft;
+
+    triangleLeft.bottomLeftVertex.x = triangleLeft.topVertex.x + 0.05;
+    triangleLeft.bottomLeftVertex.y = triangleLeft.topVertex.y + 0.05;
+
+    triangleLeft.bottomRightVertex.x = triangleLeft.topVertex.x + 0.05;
+    triangleLeft.bottomRightVertex.y = triangleLeft.topVertex.y - 0.05;
+
+    Triangle triangleRight;
+
+    startPosTriangleLeft.x += 0.5;
+
+    triangleRight.topVertex = startPosTriangleLeft;
+
+    triangleRight.bottomLeftVertex.x = triangleRight.topVertex.x - 0.05;
+    triangleRight.bottomLeftVertex.y = triangleRight.topVertex.y - 0.05;
+
+    triangleRight.bottomRightVertex.x = triangleRight.topVertex.x - 0.05;
+    triangleRight.bottomRightVertex.y = triangleRight.topVertex.y + 0.05;
+
+    this->_component.settingsComponent.triangleLeft = triangleLeft;
+    this->_component.settingsComponent.triangleRight = triangleRight;
+
+    this->_component.stockStartData.settingsComponent.triangleLeft = triangleLeft;
+    this->_component.stockStartData.settingsComponent.triangleRight = triangleRight;
+
+    this->_component.settingsComponent.triangleLeft.color = BLUE_COLOR;
+    this->_component.settingsComponent.triangleRight.color = BLUE_COLOR;
+    // addText(Text())
+}
+
 void Gui::Menu::addComponent(ComponentType cmpType)
 {
     this->_component.componentType = cmpType;
