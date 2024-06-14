@@ -20,13 +20,18 @@ void Gui::Menu::changeScreenMenu()
             inputBoxPort();
             _oldState = this->_gameData->dataMenu.stateGame;
         }
-    } else if (this->_gameData->dataMenu.stateGame == TRY_SPECTATOR_MODE) {
-        // Loading bar
     } else if (this->_gameData->dataMenu.stateGame == CONNECTION_FAILED_MENU) {
         if (_oldState != this->_gameData->dataMenu.stateGame) {
             this->_gameData->dataMenu.componentList.clear();
             announceRetry();
             goBackToTheMenu();
+            _oldState = this->_gameData->dataMenu.stateGame;
+        }
+    } else if (this->_gameData->dataMenu.stateGame == IN_SETTINGS) {
+        if (_oldState != this->_gameData->dataMenu.stateGame) {
+            this->_gameData->dataMenu.componentList.clear();
+            textSettings();
+
             _oldState = this->_gameData->dataMenu.stateGame;
         }
     }

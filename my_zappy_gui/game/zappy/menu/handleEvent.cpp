@@ -37,7 +37,7 @@ void Gui::Menu::checkMouseState(const Gui::Event &event, Component &component)
                     this->_gameData->dataMenu.cursorState = SELECTIONNED;
                     this->_gameData->ignoreKey = true;
                 } else if (component.componentType == PLAYER_MODE) {
-                    this->_gameData->dataMenu.stateGame = IN_PLAYER_MODE;
+                    this->_gameData->dataMenu.stateGame = TRY_PLAYER_MODE;
                 } else if (component.componentType == SETTINGS) {
                     this->_gameData->dataMenu.stateGame = IN_SETTINGS;
                 } else if (component.componentType == QUIT) {
