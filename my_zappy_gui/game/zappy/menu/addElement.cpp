@@ -59,18 +59,10 @@ void Gui::Menu::addTriangle(Pos startPosTriangleLeft, ComponentType cmpType)
     this->_component.settingsComponent.triangleLeft.color = BLUE_COLOR;
     this->_component.settingsComponent.triangleRight.color = BLUE_COLOR;
 
-    // std::map<std::string, Pos> optionScreen = {
-    //     {"1920x1080", {1920, 1080}},
-    //     {"1280x720", {1280, 720}},
-    //     {"720x480", {720, 480}}
-    // };
-
-    // int volume = 0; // 0 - 100
-    
     if (cmpType == MODIFY_VOLUME) {
         addText(Text(std::to_string(this->_gameData->infoWindow.volume) + " %", {0.6, 0.57}, 0.1, WHITE_COLOR));
     } else {
-        addText(Text("Resolution", {0.6, 0.2}, 0.1, WHITE_COLOR));
+        addText(Text(_optionResolution.at(0).resText, {0.53, 0.36}, 0.1, WHITE_COLOR));
     }
 }
 

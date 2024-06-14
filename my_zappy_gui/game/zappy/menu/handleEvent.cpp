@@ -85,7 +85,13 @@ void Gui::Menu::handleEventSettings(Component &component, const Gui::Event &even
 {
     if (isMouseOnTriangle(component.settingsComponent.triangleRight, event.mouse) && isMousePressed(event)) {
         if (component.componentType == MODIFY_RESOLUTION) {
-
+            if ((std::size_t)_idxOptionResolution + 1 >= _optionResolution.size()) {
+                _idxOptionResolution = 0;
+            } else {
+                _idxOptionResolution += 1;
+            }
+            component.text.contentText = _optionResolution.at(_idxOptionResolution).resText;
+            this->_gameData->infoWindow.resolution = _optionResolution.at(_idxOptionResolution).windowSize;
         } else if (component.componentType == MODIFY_VOLUME && this->_gameData->infoWindow.volume + 10 <= 100) {
             this->_gameData->infoWindow.volume += 10;
             component.text.contentText = std::to_string(this->_gameData->infoWindow.volume) + " %";
@@ -93,7 +99,13 @@ void Gui::Menu::handleEventSettings(Component &component, const Gui::Event &even
         component.settingsComponent.triangleRight.color = RED_COLOR;
     } else if (isMouseOnTriangle(component.settingsComponent.triangleLeft, event.mouse) && isMousePressed(event)) {
         if (component.componentType == MODIFY_RESOLUTION) {
-
+            if (_idxOptionResolution - 1 < 0) {
+                _idxOptionResolution = 2;
+            } else {
+                _idxOptionResolution -= 1;
+            }
+            component.text.contentText = _optionResolution.at(_idxOptionResolution).resText;
+            this->_gameData->infoWindow.resolution = _optionResolution.at(_idxOptionResolution).windowSize;
         } else if (component.componentType == MODIFY_VOLUME && this->_gameData->infoWindow.volume - 10 >= 0) {
             this->_gameData->infoWindow.volume -= 10;
             component.text.contentText = std::to_string(this->_gameData->infoWindow.volume) + " %";
