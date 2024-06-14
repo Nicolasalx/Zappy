@@ -19,6 +19,7 @@ namespace Gui
         int windowX;
         int windowY;
         double frameTime;
+        std::vector<Pos> islandInfo;
         std::vector<PlayerData> playerList;
         std::vector<Incant> incantList;
         std::vector<EggData> eggList;

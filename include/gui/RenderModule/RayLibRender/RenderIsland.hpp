@@ -25,6 +25,7 @@ namespace Gui
 
         private:
             BoundingBox _box;
+            std::vector<Matrix> _islandTransform;
     };
 }
 
