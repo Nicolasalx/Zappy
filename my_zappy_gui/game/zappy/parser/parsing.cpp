@@ -60,8 +60,8 @@ void Gui::Parser::parse_server_reply(std::string reply_data)
             cmd.erase(0, cmd.find(' ') + 1);
         }
         args.push_back(cmd);
-        if (_cmdMap.find(type) != _cmdMap.end()) {
-            _cmdMap[type](args);
+        if (_cmdMap.contains(type)) {
+            _cmdMap.at(type)(args);
         }
         reply_data.erase(0, pos + 1);
         args.clear();
