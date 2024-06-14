@@ -10,30 +10,11 @@
 void Gui::Menu::changeScreenMenu()
 {
     if (this->_gameData->dataMenu.stateGame == IN_MENU) {
-        if (_oldState != this->_gameData->dataMenu.stateGame) {
-            this->_gameData->dataMenu.componentList.clear();
-            componentPlayerMode();
-            componentSpectatorMode();
-            componentSettings();
-            componentQuit();
-            inputBoxIP();
-            inputBoxPort();
-            _oldState = this->_gameData->dataMenu.stateGame;
-        }
+        screenMenu();
     } else if (this->_gameData->dataMenu.stateGame == CONNECTION_FAILED_MENU) {
-        if (_oldState != this->_gameData->dataMenu.stateGame) {
-            this->_gameData->dataMenu.componentList.clear();
-            announceRetry();
-            goBackToTheMenu();
-            _oldState = this->_gameData->dataMenu.stateGame;
-        }
+        screenConnectionFailed();
     } else if (this->_gameData->dataMenu.stateGame == IN_SETTINGS) {
-        if (_oldState != this->_gameData->dataMenu.stateGame) {
-            this->_gameData->dataMenu.componentList.clear();
-            textSettings();
-
-            _oldState = this->_gameData->dataMenu.stateGame;
-        }
+        screenSettings();
     }
 }
 

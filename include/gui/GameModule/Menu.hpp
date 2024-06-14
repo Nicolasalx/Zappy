@@ -42,6 +42,10 @@ namespace Gui
 
             void changeScreenMenu();
 
+            void screenMenu();
+            void screenSettings();
+            void screenConnectionFailed();
+
             void addBox(const Box &box, const std::string &contentText);
             void addText(const Text &text);
             void addComponent(ComponentType cmpType);
