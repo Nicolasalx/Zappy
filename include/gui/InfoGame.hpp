@@ -166,6 +166,11 @@ namespace Gui
         SELECTIONNED
     };
 
+    struct OptionResolution {
+        std::string resText;
+        Size windowSize;
+    };
+
     struct Component {
         Box box;
         Text text;

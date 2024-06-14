@@ -9,10 +9,11 @@
     #define MENU_HPP_
 
     #include "IClient.hpp"
-    #include <memory>
-    #include <vector>
     #include "GameData.hpp"
     #include "Event.hpp"
+    #include <memory>
+    #include <map>
+    #include <vector>
 
 namespace Gui
 {
@@ -73,6 +74,13 @@ namespace Gui
             Component _component;
 
             StateGame _oldState = IN_MENU;
+
+            std::vector<OptionResolution> _optionResolution = {
+                {"1920x1080", {1920, 1080}},
+                {"1280x720", {1280, 720}},
+                {"720x480", {720, 480}}
+            };
+            int _idxOptionResolution = 0;
     };
 }
 
