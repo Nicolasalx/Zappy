@@ -26,7 +26,7 @@ void Gui::Menu::addText(const Text &text)
 
 #include <map>
 
-void Gui::Menu::addTriangle(Pos startPosTriangleLeft)
+void Gui::Menu::addTriangle(Pos startPosTriangleLeft, ComponentType cmpType)
 {
     Triangle triangleLeft;
 
@@ -66,8 +66,12 @@ void Gui::Menu::addTriangle(Pos startPosTriangleLeft)
     // };
 
     // int volume = 0; // 0 - 100
-
-    // addText(Text())
+    
+    if (cmpType == MODIFY_VOLUME) {
+        addText(Text(std::to_string(this->_gameData->infoWindow.volume) + " %", {0.6, 0.57}, 0.1, WHITE_COLOR));
+    } else {
+        addText(Text("Resolution", {0.6, 0.2}, 0.1, WHITE_COLOR));
+    }
 }
 
 void Gui::Menu::addComponent(ComponentType cmpType)

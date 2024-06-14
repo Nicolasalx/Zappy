@@ -41,53 +41,64 @@ bool isMouseOnTriangle(const Gui::Triangle &triangle, const Gui::Pos &mousePos)
     return std::abs(areaOrig - (area1 + area2 + area3)) <= 0.01;
 }
 
-void Gui::Menu::checkMouseState(const Gui::Event &event, Component &component)
+bool Gui::Menu::isMousePressed(const Gui::Event &event)
 {
-    for (const auto &evt : event.eventType) {
+    for (const auto &evt: event.eventType) {
         switch (evt) {
             case Gui::EventType::LEFT_CLICK:
-                if (component.componentType == SPECTATOR_MODE) {
-                    this->_gameData->dataMenu.stateGame = TRY_SPECTATOR_MODE;
-                } else if (component.componentType == INPUT_BOX_IP) {
-                    this->_gameData->dataMenu.cursorState = SELECTIONNED;
-                    this->_gameData->ignoreKey = true;
-                } else if (component.componentType == PLAYER_MODE) {
-                    this->_gameData->dataMenu.stateGame = TRY_PLAYER_MODE;
-                } else if (component.componentType == SETTINGS) {
-                    this->_gameData->dataMenu.stateGame = IN_SETTINGS;
-                } else if (component.componentType == QUIT) {
-                    this->_gameData->dataMenu.stateGame = IN_LEAVE;
-                } else if (component.componentType == GO_BACK_TO_MENU) {
-                    this->_gameData->dataMenu.stateGame = IN_MENU;
-                } else {
-                    this->_gameData->dataMenu.cursorState = DEFAULT;
-                    this->_gameData->ignoreKey = false;
-                }
+                return true;
             default:
                 break;
         }
     }
+    return false;
+}
+
+void Gui::Menu::checkMouseState(const Gui::Event &event, Component &component)
+{
     if (this->_gameData->ignoreKey && component.componentType == INPUT_BOX_IP) {
         component.text.contentText = event.buffer;
+    }
+    if (!isMousePressed(event)) {
+        return;
+    }
+    if (component.componentType == SPECTATOR_MODE) {
+        this->_gameData->dataMenu.stateGame = TRY_SPECTATOR_MODE;
+    } else if (component.componentType == INPUT_BOX_IP) {
+        this->_gameData->dataMenu.cursorState = SELECTIONNED;
+        this->_gameData->ignoreKey = true;
+    } else if (component.componentType == PLAYER_MODE) {
+        this->_gameData->dataMenu.stateGame = TRY_PLAYER_MODE;
+    } else if (component.componentType == SETTINGS) {
+        this->_gameData->dataMenu.stateGame = IN_SETTINGS;
+    } else if (component.componentType == QUIT) {
+        this->_gameData->dataMenu.stateGame = IN_LEAVE;
+    } else if (component.componentType == GO_BACK_TO_MENU) {
+        this->_gameData->dataMenu.stateGame = IN_MENU;
+    } else {
+        this->_gameData->dataMenu.cursorState = DEFAULT;
+        this->_gameData->ignoreKey = false;
     }
 }
 
 void Gui::Menu::handleEventSettings(Component &component, const Gui::Event &event)
 {
-    if (isMouseOnTriangle(component.settingsComponent.triangleLeft, event.mouse)) {
-        switch (component.componentType) {
-            case MODIFY_RESOLUTION:
+    if (isMouseOnTriangle(component.settingsComponent.triangleRight, event.mouse) && isMousePressed(event)) {
+        if (component.componentType == MODIFY_RESOLUTION) {
 
-                break;
-            case MODIFY_VOLUME:
+        } else if (component.componentType == MODIFY_VOLUME && this->_gameData->infoWindow.volume + 10 <= 100) {
+            this->_gameData->infoWindow.volume += 10;
+            component.text.contentText = std::to_string(this->_gameData->infoWindow.volume) + " %";
+        }
+        component.settingsComponent.triangleRight.color = RED_COLOR;
+    } else if (isMouseOnTriangle(component.settingsComponent.triangleLeft, event.mouse) && isMousePressed(event)) {
+        if (component.componentType == MODIFY_RESOLUTION) {
 
-                break;
-            default:
-                break;
+        } else if (component.componentType == MODIFY_VOLUME && this->_gameData->infoWindow.volume - 10 >= 0) {
+            this->_gameData->infoWindow.volume -= 10;
+            component.text.contentText = std::to_string(this->_gameData->infoWindow.volume) + " %";
         }
         component.settingsComponent.triangleLeft.color = RED_COLOR;
-    } else if (isMouseOnTriangle(component.settingsComponent.triangleRight, event.mouse)) {
-        component.settingsComponent.triangleRight.color = RED_COLOR;
     } else {
         component.settingsComponent.triangleLeft.color = WHITE_COLOR;
         component.settingsComponent.triangleRight.color = WHITE_COLOR;

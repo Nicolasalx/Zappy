@@ -17,4 +17,5 @@ Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData): _gameData(gameData)
     inputBoxIP();
     inputBoxPort();
     this->_gameData->infoWindow.resolution = {WINDOW_WIDTH, WINDOW_HEIGHT};
+    this->_gameData->infoWindow.volume = 50;
 }

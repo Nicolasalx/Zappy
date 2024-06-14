@@ -19,10 +19,10 @@ void Gui::Menu::textSettings()
     addText(Text("Volume", {0.2, 0.57}, sizeFontTextMenu, WHITE_COLOR));
     addComponent(MODIFY_SETTINGS);
 
-    addTriangle(Pos(0.4, 0.4));
+    addTriangle(Pos(0.4, 0.4), MODIFY_RESOLUTION);
     addComponent(MODIFY_RESOLUTION);
 
-    addTriangle(Pos(0.4, 0.6));
+    addTriangle(Pos(0.4, 0.6), MODIFY_VOLUME);
     addComponent(MODIFY_VOLUME);
 
     addBox({Box(0.05, 0.85, 0.4, 0.1, BLUE_COLOR)}, "Go back to the menu");
