@@ -24,6 +24,8 @@ void Gui::Menu::addText(const Text &text)
     this->_component.stockStartData.text = text;
 }
 
+#include <map>
+
 void Gui::Menu::addTriangle(Pos startPosTriangleLeft)
 {
     Triangle triangleLeft;
@@ -56,6 +58,15 @@ void Gui::Menu::addTriangle(Pos startPosTriangleLeft)
 
     this->_component.settingsComponent.triangleLeft.color = BLUE_COLOR;
     this->_component.settingsComponent.triangleRight.color = BLUE_COLOR;
+
+    // std::map<std::string, Pos> optionScreen = {
+    //     {"1920x1080", {1920, 1080}},
+    //     {"1280x720", {1280, 720}},
+    //     {"720x480", {720, 480}}
+    // };
+
+    // int volume = 0; // 0 - 100
+
     // addText(Text())
 }
 

@@ -38,7 +38,6 @@ bool isMouseOnTriangle(const Gui::Triangle &triangle, const Gui::Pos &mousePos)
     float area2 = areaOfTriangle(mousePos, triangle.topVertex, triangle.bottomRightVertex);
     float area3 = areaOfTriangle(mousePos, triangle.bottomLeftVertex, triangle.bottomRightVertex);
 
-    // Check if the sum of the areas of the smaller triangles is equal to the area of the original triangle
     return std::abs(areaOrig - (area1 + area2 + area3)) <= 0.01;
 }
 
@@ -73,22 +72,36 @@ void Gui::Menu::checkMouseState(const Gui::Event &event, Component &component)
     }
 }
 
+void Gui::Menu::handleEventSettings(Component &component, const Gui::Event &event)
+{
+    if (isMouseOnTriangle(component.settingsComponent.triangleLeft, event.mouse)) {
+        switch (component.componentType) {
+            case MODIFY_RESOLUTION:
+
+                break;
+            case MODIFY_VOLUME:
+
+                break;
+            default:
+                break;
+        }
+        component.settingsComponent.triangleLeft.color = RED_COLOR;
+    } else if (isMouseOnTriangle(component.settingsComponent.triangleRight, event.mouse)) {
+        component.settingsComponent.triangleRight.color = RED_COLOR;
+    } else {
+        component.settingsComponent.triangleLeft.color = WHITE_COLOR;
+        component.settingsComponent.triangleRight.color = WHITE_COLOR;
+    }
+}
+
 void Gui::Menu::handleEvent(const Gui::Event &event)
 {
     for (auto &component: this->_gameData->dataMenu.componentList) {
         if (isMouseOnBox(component.box, event.mouse)) {
             component.box.color = RED_COLOR;
             checkMouseState(event, component);
-        } else if (component.componentType == MODIFY_SETTINGS) {
-            if (isMouseOnTriangle(component.settingsComponent.triangleLeft, event.mouse)) {
-                component.settingsComponent.triangleLeft.color = RED_COLOR;
-            } else if (isMouseOnTriangle(component.settingsComponent.triangleRight, event.mouse)) {
-                component.settingsComponent.triangleRight.color = RED_COLOR;
-            } else {
-                component.settingsComponent.triangleLeft.color = WHITE_COLOR;
-                component.settingsComponent.triangleRight.color = WHITE_COLOR;
-
-            }
+        } else if (component.componentType == MODIFY_RESOLUTION || component.componentType == MODIFY_VOLUME) {
+            handleEventSettings(component, event);
         } else {
             component.box.color = WHITE_COLOR;
         }
