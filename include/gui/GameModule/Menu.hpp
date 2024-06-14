@@ -30,7 +30,7 @@ namespace Gui
             void componentPlayerMode();
             void componentSpectatorMode();
             void componentQuit();
-            void addTriangle(Pos startPosTriangleLeft);
+            void addTriangle(Pos startPosTriangleLeft, ComponentType cmpType);
 
             void textSettings();
 
@@ -45,6 +45,8 @@ namespace Gui
             void screenMenu();
             void screenSettings();
             void screenConnectionFailed();
+
+            bool isMousePressed(const Gui::Event &event);
 
             void handleEventSettings(Component &component, const Gui::Event &event);
 
