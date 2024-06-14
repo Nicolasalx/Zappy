@@ -128,7 +128,6 @@ namespace Gui
     struct SettingsComponent {
         Triangle triangleLeft;
         Triangle triangleRight;
-        Text text;
     };
 
     struct StockStartData {
