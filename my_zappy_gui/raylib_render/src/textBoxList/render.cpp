@@ -34,7 +34,7 @@ void Gui::RenderTextBoxList::updateTextBoxs(const GameData &gameData)
     }
 }
 
-void Gui::RenderTextBoxList::drawAllTextBoxs(const GameData &gameData)
+void Gui::RenderTextBoxList::render(const GameData &gameData)
 {
     DrawFPS(10, 10);
     updateTextBoxs(gameData);
