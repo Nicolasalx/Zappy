@@ -13,10 +13,10 @@
 
 namespace Gui
 {
-    constexpr float MAP_SCALE = 12.0;
+    constexpr float MAP_SCALE =  150.0;
     constexpr float WINDOW_WIDTH = 1920;
     constexpr float WINDOW_HEIGHT = 1080;
-    constexpr float ISLAND_SIZE = 2.0;
+    constexpr float ISLAND_SIZE = 70.0;
 
     struct Pos {
         float x;
