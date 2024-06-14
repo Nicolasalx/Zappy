@@ -19,6 +19,16 @@ void Gui::RenderMenu::renderOneComponent(const Gui::Component &component)
 {
     DrawRectangleLinesEx((Rectangle) {component.box.x, component.box.y, component.box.width, component.box.height}, 3, Gui::RenderColor::getColorFromGame(component.box.color));
     DrawText(component.text.contentText.c_str(), component.text.pos.x, component.text.pos.y, component.text.fontSize, Gui::RenderColor::getColorFromGame(component.box.color));
+
+    if (component.settingsComponent.triangleLeft.color > 8) {
+        return;
+    }
+    DrawTriangle(Vector2(component.settingsComponent.triangleLeft.topVertex.x, component.settingsComponent.triangleLeft.topVertex.y),
+        Vector2(component.settingsComponent.triangleLeft.bottomLeftVertex.x, component.settingsComponent.triangleLeft.bottomLeftVertex.y),
+        Vector2(component.settingsComponent.triangleLeft.bottomRightVertex.x, component.settingsComponent.triangleLeft.bottomRightVertex.y), Gui::RenderColor::getColorFromGame(component.settingsComponent.triangleLeft.color));
+    DrawTriangle(Vector2(component.settingsComponent.triangleRight.topVertex.x, component.settingsComponent.triangleRight.topVertex.y),
+        Vector2(component.settingsComponent.triangleRight.bottomLeftVertex.x, component.settingsComponent.triangleRight.bottomLeftVertex.y),
+        Vector2(component.settingsComponent.triangleRight.bottomRightVertex.x, component.settingsComponent.triangleRight.bottomRightVertex.y), Gui::RenderColor::getColorFromGame(component.settingsComponent.triangleRight.color));
 }
 
 void Gui::RenderMenu::render(const GameData &gameData)
