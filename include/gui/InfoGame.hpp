@@ -23,6 +23,11 @@ namespace Gui
         float y;
     };
 
+    struct Size {
+        float width;
+        float height;
+    };
+
     enum Elements {
         FOOD,
         LINEMATE,
@@ -141,7 +146,9 @@ namespace Gui
         INPUT_BOX_IP,
         ANNOUNCE_RETRY,
         GO_BACK_TO_MENU,
-        MODIFY_SETTINGS
+        MODIFY_SETTINGS,
+        MODIFY_RESOLUTION,
+        MODIFY_VOLUME
     };
 
     enum StateGame {
@@ -174,9 +181,9 @@ namespace Gui
         CursorState cursorState;
     };
 
-    struct WindowSize {
-        float width;
-        float height;
+    struct InfoWindow {
+        Size resolution;
+        int volume;
     };
 }
 

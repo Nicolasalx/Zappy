@@ -23,8 +23,6 @@ namespace Gui {
 
             StateGame stateGame;
         private:
-            int _windowWidth = 0;
-            int _windowHeight = 0;
     };
 }
 

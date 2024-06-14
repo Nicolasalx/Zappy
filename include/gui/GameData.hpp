@@ -28,6 +28,7 @@ namespace Gui
         std::vector<TextBoxData> textBox;
         RayInfoData rayInfo;
         DataMenu dataMenu;
+        InfoWindow infoWindow;
         bool ignoreKey;
     };
 }

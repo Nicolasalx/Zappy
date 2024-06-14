@@ -46,6 +46,8 @@ namespace Gui
             void screenSettings();
             void screenConnectionFailed();
 
+            void handleEventSettings(Component &component, const Gui::Event &event);
+
             void addBox(const Box &box, const std::string &contentText);
             void addText(const Text &text);
             void addComponent(ComponentType cmpType);
