@@ -9,5 +9,7 @@
 
 void Gui::PlayerParser::connectNbrReply(std::string args)
 {
+    int connectNbr = std::stoi(args);
 
+    // display connectNbr
 }
