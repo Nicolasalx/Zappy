@@ -9,5 +9,7 @@
 
 void Gui::PlayerParser::broadcastReply(std::string args)
 {
-
+    if (args == "ok\n") {
+        // print "broadcast successfully send"
+    }
 }
