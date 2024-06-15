@@ -43,7 +43,8 @@ Gui::Event Gui::SFMLRender::getEvent()
     guiEvent.windowSize.height = window.getSize().y;
     
     while (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {
+        if (event.type == sf::Event::Closed
+        || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
             guiEvent.eventType.push_back(Gui::EventType::EXIT);
             window.close();
         }
