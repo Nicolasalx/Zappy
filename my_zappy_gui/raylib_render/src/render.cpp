@@ -28,7 +28,7 @@ void Gui::Raylib::handleSoundSystem(const Gui::GameData &gameData)
     if (!IsSoundPlaying(this->window._soundGame)) {
         PlaySound(this->window._soundGame);
     }
-    SetSoundVolume(this->window._soundGame, gameData.infoWindow.volume / 10);
+    SetSoundVolume(this->window._soundGame, static_cast<float>(gameData.infoWindow.volume) / 100.0f);
 }
 
 void Gui::Raylib::render(const Gui::GameData &gameData)
