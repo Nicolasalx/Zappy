@@ -21,6 +21,7 @@ namespace Gui
             RenderIsland();
             ~RenderIsland() = default;
 
+            int selectLOD(const Gui::GameData &gameData, float x, float y);
             void render(const Gui::GameData &gameData);
 
         private:
