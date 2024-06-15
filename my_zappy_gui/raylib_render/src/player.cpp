@@ -33,16 +33,16 @@ Gui::RenderPlayer::RenderPlayer()
 
 void Gui::RenderPlayer::drawPlayerBox(const Gui::PlayerData &player)
 {
-    player_box.min = (Vector3){player.real_pos.x * Gui::MAP_SCALE -1.0, 0.0, player.real_pos.y * Gui::MAP_SCALE - 1.0};
-    player_box.max = (Vector3){player.real_pos.x * Gui::MAP_SCALE + 1.0, 3.0, player.real_pos.y * Gui::MAP_SCALE + 1.0};
+    player_box.min = (Vector3){player.real_pos.x * Gui::RenderIsland::map_scale -1.0f, 0.0f, player.real_pos.y * Gui::RenderIsland::map_scale - 1.0f};
+    player_box.max = (Vector3){player.real_pos.x * Gui::RenderIsland::map_scale + 1.0f, 3.0f, player.real_pos.y * Gui::RenderIsland::map_scale + 1.0f};
     DrawBoundingBox(player_box, GREEN);
-    this->drawModel((ModelInfo){0, (Vector3){player.real_pos.x * Gui::MAP_SCALE, 0.0, player.real_pos.y * Gui::MAP_SCALE},
+    this->drawModel((ModelInfo){0, (Vector3){player.real_pos.x * Gui::RenderIsland::map_scale, 0.0f, player.real_pos.y * Gui::RenderIsland::map_scale},
     (Vector3){0, 1, 0}, (float)player.real_orientation, (Vector3){3, 3, 3}, GREEN});
 }
 
 void Gui::RenderPlayer::drawPlayerModel(const Gui::PlayerData &player)
 {   
-    this->drawModel((ModelInfo){0, (Vector3){player.real_pos.x * Gui::MAP_SCALE, 0.0, player.real_pos.y * Gui::MAP_SCALE}, (Vector3){0, 1, 0}, 
+    this->drawModel((ModelInfo){0, (Vector3){player.real_pos.x * Gui::RenderIsland::map_scale, 0.0, player.real_pos.y * Gui::RenderIsland::map_scale}, (Vector3){0, 1, 0}, 
     (float)player.real_orientation, (Vector3){3 + player.level / 10.0f, 3 + player.level / 10.0f, 3 + player.level / 10.0f}, player_color[player.level]});
 }
 
