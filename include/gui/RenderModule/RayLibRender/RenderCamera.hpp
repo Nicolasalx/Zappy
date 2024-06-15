@@ -9,6 +9,7 @@
     #define RENDERCAMERA_H_
 
     #include "GameData.hpp"
+    #include "Event.hpp"
     #include <raylib.h>
 
 namespace Gui {
@@ -20,6 +21,7 @@ namespace Gui {
 
             void update();
             void handle_cursor();
+            void updatePlayerPos(Gui::Event &event);
 
             Camera3D _camera;
             bool cursor = true;
