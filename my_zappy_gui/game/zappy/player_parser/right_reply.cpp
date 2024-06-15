@@ -9,5 +9,7 @@
 
 void Gui::PlayerParser::rightReply(std::string args)
 {
-    
+    if (args == "ok\n") {
+        // turn right
+    }
 }
