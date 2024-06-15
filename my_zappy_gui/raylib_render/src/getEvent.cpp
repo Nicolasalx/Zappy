@@ -62,7 +62,6 @@ Gui::Event Gui::Raylib::getEvent()
         event.eventType.push_back(Gui::EventType::EXIT);
     }
     getKeyEvent(event);
-
     if (IsKeyPressed(KEY_M)) {
         event.eventType.push_back(Gui::EventType::KEY_M);
     }
@@ -75,7 +74,6 @@ Gui::Event Gui::Raylib::getEvent()
     if (IsKeyPressed(KEY_O)) {
         event.eventType.push_back(Gui::EventType::KEY_O);
     }
-
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         event.eventType.push_back(Gui::EventType::LEFT_CLICK);
     }
@@ -84,6 +82,7 @@ Gui::Event Gui::Raylib::getEvent()
     event.windowSize.width = window.windowSize.width;
     event.windowSize.height = window.windowSize.height;
 
+    this->island->changeIslandEvent();
     this->camera.handle_cursor();
     this->camera.update();
     this->camera.updatePlayerPos(event);
