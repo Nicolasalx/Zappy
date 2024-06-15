@@ -7,6 +7,7 @@
 
 #include "RenderParticle.hpp"
 #include "GameConfig.hpp"
+#include "RenderIsland.hpp"
 
 Gui::RenderParticle::RenderParticle()
 {
@@ -58,7 +59,7 @@ void Gui::RenderParticle::updateParticle(float time_delta)
 void Gui::RenderParticle::draw(Texture2D texture, Camera3D camera)
 {
     for (auto &particle: particles) {
-        DrawBillboard(camera, texture, (Vector3){pos.x * Gui::MAP_SCALE + particle.x, particle.y, pos.y * Gui::MAP_SCALE + particle.z}, 3.0, WHITE);
+        DrawBillboard(camera, texture, (Vector3){pos.x * Gui::RenderIsland::map_scale + particle.x, particle.y, pos.y * Gui::RenderIsland::map_scale + particle.z}, 3.0, WHITE);
     }
 }
 

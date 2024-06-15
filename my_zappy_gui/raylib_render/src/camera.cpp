@@ -28,6 +28,12 @@ void Gui::RenderCamera::handle_cursor()
     }
 }
 
+void Gui::RenderCamera::updatePlayerPos(Gui::Event &event)
+{
+    event.playerPos.x = this->_camera.position.x;
+    event.playerPos.y = this->_camera.position.z;
+}
+
 void Gui::RenderCamera::update()
 {
     if (IsCursorHidden()) {
@@ -53,7 +59,7 @@ void Gui::RenderCamera::update()
             UpdateCameraPro(&this->_camera, (Vector3){0.0f, 0.0f, 0.0f}, (Vector3){0.0f, GetFrameTime() * 30, 0.0f}, 0.0f);
         UpdateCameraPro(&this->_camera, (Vector3){0.0f, 0.0f, 0.0f}, (Vector3){0.0f, 0.0f, 0.0f}, -GetMouseWheelMove()*2.0f);
         UpdateCameraPro(&this->_camera, (Vector3){0.0f, 0.0f, 0.0f}, (Vector3){GetMouseDelta().x*0.05f, GetMouseDelta().y*0.05f, 0.0f}, 0.0f);
-
-        //UpdateCamera(&this->_camera, CAMERA_FREE);
     }
+    if (IsKeyPressed(KEY_F))
+        ToggleFullscreen();
 }

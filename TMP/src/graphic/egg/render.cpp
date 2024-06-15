@@ -11,6 +11,6 @@
 void Gui::Egg::render()
 {
     for (auto it = this->_gameState->eggs_list.begin(); it != this->_gameState->eggs_list.end(); it++) {
-        this->drawModel((ModelInfo){0, (Vector3){it->pos.x * Gui::MAP_SCALE - 2.3f, 1.0, it->pos.y * Gui::MAP_SCALE - 2.3f}, (Vector3){0, 0, 0}, 0, (Vector3){1, 1, 1}, WHITE});
+        this->drawModel((ModelInfo){0, (Vector3){it->pos.x * Gui::RenderIsland::map_scale - 2.3f, 1.0, it->pos.y * Gui::RenderIsland::map_scale - 2.3f}, (Vector3){0, 0, 0}, 0, (Vector3){1, 1, 1}, WHITE});
     }
 }

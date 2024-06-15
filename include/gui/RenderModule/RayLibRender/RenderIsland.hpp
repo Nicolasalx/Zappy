@@ -21,9 +21,15 @@ namespace Gui
             RenderIsland();
             ~RenderIsland() = default;
 
+            void changeIslandEvent();
+            int selectLOD(const Gui::GameData &gameData, float x, float y);
             void render(const Gui::GameData &gameData);
 
+            static float map_scale;
+            static float island_size;
+
         private:
+            int modelIndex = 0;
             BoundingBox _box;
             std::vector<Matrix> _islandTransform;
     };

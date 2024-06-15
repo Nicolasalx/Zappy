@@ -6,6 +6,7 @@
 */
 
 #include "RenderEgg.hpp"
+#include "RenderIsland.hpp"
 
 Gui::RenderEgg::RenderEgg()
 {
@@ -18,9 +19,9 @@ void Gui::RenderEgg::render(const Gui::GameData &gameData)
         this->drawModel(
             (Gui::ModelInfo){0,
                 {
-                    it->pos.x * Gui::MAP_SCALE - 2.3f,
+                    it->pos.x * Gui::RenderIsland::map_scale - 2.3f,
                     1.0,
-                    it->pos.y * Gui::MAP_SCALE - 2.3f
+                    it->pos.y * Gui::RenderIsland::map_scale - 2.3f
                 },
                 {0, 0, 0}, 0, {1, 1, 1}, WHITE});
     }
