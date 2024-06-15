@@ -28,6 +28,12 @@ void Gui::RenderCamera::handle_cursor()
     }
 }
 
+void Gui::RenderCamera::updatePlayerPos(Gui::Event &event)
+{
+    event.playerPos.x = this->_camera.position.x;
+    event.playerPos.y = this->_camera.position.z;
+}
+
 void Gui::RenderCamera::update()
 {
     if (IsCursorHidden()) {
