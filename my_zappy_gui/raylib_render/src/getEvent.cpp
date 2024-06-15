@@ -64,7 +64,6 @@ Gui::Event Gui::Raylib::getEvent()
     getKeyEvent(event);
 
     if (IsKeyPressed(KEY_M)) {
-        std::cout << "KEY M EVENT\n";
         event.eventType.push_back(Gui::EventType::KEY_M);
     }
     if (IsKeyPressed(KEY_N)) {
@@ -84,8 +83,10 @@ Gui::Event Gui::Raylib::getEvent()
     event.mouse.y = GetMouseY();
     event.windowSize.width = window.windowSize.width;
     event.windowSize.height = window.windowSize.height;
+
     this->camera.handle_cursor();
     this->camera.update();
+    this->camera.updatePlayerPos(event);
     this->rayInfo->addRayToEvent(event);
     return event;
 }
