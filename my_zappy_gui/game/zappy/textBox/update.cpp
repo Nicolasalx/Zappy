@@ -50,7 +50,7 @@ void Gui::TextBox::openClose(const Gui::Event &event)
 
 void Gui::TextBox::updateListPlayerLevel()
 {
-    if (isClosed(_gameData->textBox[0]))
+    if (_gameData->textBox.size() < 4 || isClosed(_gameData->textBox[0]))
         return;
     for (int i = 0; i < 8; ++i) {
         listLevelPlayer.at(i) = 0;
@@ -65,7 +65,7 @@ void Gui::TextBox::updateListPlayerLevel()
 
 void Gui::TextBox::updateGeneralInfo()
 {
-    if (isClosed(_gameData->textBox[0]))
+    if (_gameData->textBox.size() < 1 || isClosed(_gameData->textBox[0]))
         return;
     addText(_gameData->textBox[0], 0, "Number of players: " + std::to_string(_gameData->playerList.size()));
     addText(_gameData->textBox[0], 1, "Server frequency: " + std::to_string(_gameData->timeUnit));
@@ -73,7 +73,7 @@ void Gui::TextBox::updateGeneralInfo()
 
 void Gui::TextBox::updateServerResp()
 {
-    if (isClosed(_gameData->textBox[0]))
+    if (_gameData->textBox.size() < 5 || isClosed(_gameData->textBox[0]))
         return;
     for (size_t i = 0; i < this->_gameData->serverResp.size(); i++) {
         addText(_gameData->textBox[4], i, _gameData->serverResp[i]);
@@ -82,7 +82,7 @@ void Gui::TextBox::updateServerResp()
 
 void Gui::TextBox::updateOnePlayerInfo()
 {
-    if (_gameData->rayInfo.type == PLAYER) {
+    if (_gameData->rayInfo.type == PLAYER && _gameData->textBox.size() > 1) {
         _gameData->textBox[1]._state = NO_BUTTON;
         for (auto &player : _gameData->playerList) {
             if (player.n == _gameData->rayInfo.id) {
@@ -107,7 +107,7 @@ void Gui::TextBox::updateOnePlayerInfo()
 
 void Gui::TextBox::updateOneTileInfo()
 {
-    if (_gameData->rayInfo.type == ISLAND) {
+    if (_gameData->rayInfo.type == ISLAND && _gameData->textBox.size() > 2) {
         _gameData->textBox[2]._state = NO_BUTTON;
         addText(_gameData->textBox[2], 0, "Tile: (" + std::to_string(_gameData->rayInfo.x) + ", " + std::to_string(_gameData->rayInfo.y) + ")");
         addText(_gameData->textBox[2], 1, "Food: " + std::to_string(_gameData->objectPos[_gameData->rayInfo.y][_gameData->rayInfo.x][FOOD]));
