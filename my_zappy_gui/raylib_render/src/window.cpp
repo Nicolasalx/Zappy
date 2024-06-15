@@ -22,5 +22,7 @@ Gui::RenderWindow::RenderWindow()
 
 Gui::RenderWindow::~RenderWindow()
 {
+    UnloadSound(this->_soundGame);
+    CloseAudioDevice();
     CloseWindow();
 }
