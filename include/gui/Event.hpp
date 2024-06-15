@@ -23,6 +23,7 @@ namespace Gui
         WindowSize windowSize = {0, 0};
         double frame_time = 0;
         RayInfoData rayInfo;
+        Pos playerPos;
     };
 }
 
