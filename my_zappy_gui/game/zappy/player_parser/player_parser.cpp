@@ -40,6 +40,10 @@ void Gui::PlayerParser::update(std::vector<std::string> &messRecv)
 
 void Gui::PlayerParser::parse_server_reply(std::string reply_data)
 {
+    this->_gameData->serverResp.push_back(reply_data);
+    if (this->_gameData->serverResp.size() > 30) {
+        this->_gameData->serverResp.erase(this->_gameData->serverResp.begin());
+    }
     if (reply_data == "End of Game\n") {
 
     } else if (reply_data.compare(0, 7, "eject: ") == 0) {
