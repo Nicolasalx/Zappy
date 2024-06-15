@@ -18,17 +18,6 @@ Gui::RenderIsland::RenderIsland()
 
 void Gui::RenderIsland::render(const Gui::GameData &gameData)
 {
-    // if (gameData.islandInfo.size() > 0 && _islandTransform.size() == 0) {
-    //     for (int i = 0; i < gameData.islandInfo.size(); i++) {
-    //         Matrix transform;
-    //         float scale = Gui::ISLAND_SIZE;
-    //         Vector3 pos = {gameData.islandInfo[i].x * Gui::MAP_SCALE, 0.0f, gameData.islandInfo[i].y * Gui::MAP_SCALE};
-    //         Vector3 rotation = {0, 0, 0};
-    //         transform = MatrixMultiply(MatrixRotateXYZ(rotation), MatrixScale(scale, scale, scale));
-    //         transform = MatrixMultiply(MatrixTranslate(pos.x, pos.y, pos.z), transform);
-    //         _islandTransform.push_back(transform);
-    //     }
-    // }
     for (int i = 0; i < gameData.mapSize.x; i++) {
         for (int j = 0; j < gameData.mapSize.y; j++) {
             if (gameData.rayInfo.type == ISLAND && gameData.rayInfo.x == i && gameData.rayInfo.y == j) {
@@ -43,8 +32,4 @@ void Gui::RenderIsland::render(const Gui::GameData &gameData)
             }
         }
     }
-    // std::cout << "ISLAND SIZE: " << gameData.islandInfo.size() << std::endl;
-    // std::cout << "ISLAND TRANSFORM SIZE: " << _islandTransform.size() << std::endl;
-    //             DrawMeshInstanced(_models[0].meshes[0], _models[0].materials[0], _islandTransform.data(), gameData.islandInfo.size());
-
 }
