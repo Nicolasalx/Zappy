@@ -10,19 +10,22 @@
 
     #include "GameData.hpp"
     #include <raylib.h>
-    #include "ARayLibModel.hpp"
+    #include "RenderWindow.hpp"
 
 namespace Gui {
-    class RenderMenu: public virtual ARayLibModel
+    class RenderMenu
     {
         public:
             RenderMenu();
             ~RenderMenu() = default;
-            void render(const GameData &gameData);
+            void render(const GameData &gameData, Gui::RenderWindow &window);
             void renderOneComponent(const Gui::Component &component);
 
             StateGame stateGame;
+            bool needToResize = false;
         private:
+            int _windowWidth = 0;
+            int _windowHeight = 0;
     };
 }
 
