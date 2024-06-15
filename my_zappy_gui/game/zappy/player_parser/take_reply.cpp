@@ -9,5 +9,9 @@
 
 void Gui::PlayerParser::takeReply(std::string args)
 {
-
+    if (args == "ok\n") {
+        // success to take ressource in inventory
+    } else {
+        // fail to take ressource in inventory
+    }
 }
