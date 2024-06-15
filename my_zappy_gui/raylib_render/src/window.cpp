@@ -15,6 +15,9 @@ Gui::RenderWindow::RenderWindow()
     windowSize.width = GetScreenWidth();
     windowSize.height = GetScreenHeight();
     launched = false;
+    InitAudioDevice();
+    this->_soundGame = LoadSound(Gui::SOUND_GAME.data());
+    PlaySound(this->_soundGame);
 }
 
 Gui::RenderWindow::~RenderWindow()
