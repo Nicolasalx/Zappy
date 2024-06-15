@@ -9,5 +9,7 @@
 
 void Gui::PlayerParser::forkReply(std::string args)
 {
-
+    if (args == "ok\n") {
+        // display fork success
+    }
 }
