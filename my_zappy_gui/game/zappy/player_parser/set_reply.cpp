@@ -9,5 +9,9 @@
 
 void Gui::PlayerParser::setReply(std::string args)
 {
-
+    if (args == "ok\n") {
+        // success to set ressource in inventory
+    } else {
+        // fail to set ressource in inventory
+    }
 }
