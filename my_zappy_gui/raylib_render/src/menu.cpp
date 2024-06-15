@@ -32,9 +32,22 @@ void Gui::RenderMenu::renderOneComponent(const Gui::Component &component)
         Vector2(component.settingsComponent.triangleRight.bottomRightVertex.x, component.settingsComponent.triangleRight.bottomRightVertex.y), Gui::RenderColor::getColorFromGame(component.settingsComponent.triangleRight.color));
 }
 
-void Gui::RenderMenu::render(const GameData &gameData)
+void Gui::RenderMenu::render(const GameData &gameData, Gui::RenderWindow &window)
 {
     ClearBackground(LIGHTGRAY);
+
+    if (gameData.infoWindow.resolution.width != window.windowSize.width || gameData.infoWindow.resolution.height != window.windowSize.height) {
+        window.windowSize.width = gameData.infoWindow.resolution.width;
+        window.windowSize.height = gameData.infoWindow.resolution.height;
+
+        this->needToResize = true;
+
+        //EndDrawing();
+        //CloseWindow();
+        //InitWindow(window.windowSize.width, window.windowSize.height, "Zappy GUI");
+        //BeginDrawing();
+        return;
+    }
 
     this->stateGame = gameData.dataMenu.stateGame;
 
