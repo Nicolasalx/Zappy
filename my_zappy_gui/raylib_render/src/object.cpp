@@ -25,6 +25,8 @@ Gui::RenderObject::RenderObject()
 
 void Gui::RenderObject::render(const Gui::GameData &gameData)
 {
+    if (gameData.objectPos.size() == 0)
+        return;
     for (int i = 0; i < gameData.mapSize.x; i++) {
         for (int j = 0; j < gameData.mapSize.y; j++) {
             for (int k = 0; k < 7; k++) {
