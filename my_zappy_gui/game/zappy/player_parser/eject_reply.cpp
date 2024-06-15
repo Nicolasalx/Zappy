@@ -9,5 +9,7 @@
 
 void Gui::PlayerParser::ejectReply(std::string args)
 {
-    
+    if (args == "ok\n") {
+        // display ejection success
+    }
 }
