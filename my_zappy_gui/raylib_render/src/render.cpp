@@ -23,13 +23,23 @@ void Gui::Raylib::renderGame(const Gui::GameData &gameData)
     this->textBoxList->render(gameData);
 }
 
+void Gui::Raylib::handleSoundSystem(const Gui::GameData &gameData)
+{
+    if (!IsSoundPlaying(this->window._soundGame)) {
+        PlaySound(this->window._soundGame);
+    }
+    SetSoundVolume(this->window._soundGame, gameData.infoWindow.volume / 10);
+}
+
 void Gui::Raylib::render(const Gui::GameData &gameData)
 {
     BeginDrawing();
     this->_ignoreKey = gameData.ignoreKey;
+
+    handleSoundSystem(gameData);
     if (gameData.dataMenu.stateGame != IN_PLAYER_MODE &&
         gameData.dataMenu.stateGame != IN_SPECTATOR_MODE) {
-        this->menu.render(gameData);
+        this->menu.render(gameData, this->window);
         EndDrawing();
         return;
     }
