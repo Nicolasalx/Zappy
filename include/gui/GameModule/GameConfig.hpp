@@ -44,6 +44,8 @@ namespace Gui
 
     constexpr double sizeFontTextMenu = 0.05;
     constexpr std::string_view MENU_MARS_MODEL = "menu_scene.glb";
+
+    constexpr std::string_view SOUND_GAME = "./bonus/song/kids.wav";
 }
 
 #endif /* !GAMECONFIG_HPP_ */
