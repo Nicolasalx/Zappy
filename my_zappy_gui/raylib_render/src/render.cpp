@@ -37,7 +37,9 @@ void Gui::Raylib::render(const Gui::GameData &gameData)
     this->_ignoreKey = gameData.ignoreKey;
 
     handleSoundSystem(gameData);
-    if (gameData.dataMenu.stateGame == IN_MENU) {
+
+    if (gameData.dataMenu.stateGame != IN_PLAYER_MODE &&
+        gameData.dataMenu.stateGame != IN_SPECTATOR_MODE) {
         menu.renderMenu(gameData, this->camera._camera);
     } else {
         renderGame(gameData);
