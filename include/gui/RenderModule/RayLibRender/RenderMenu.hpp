@@ -11,21 +11,26 @@
     #include "GameData.hpp"
     #include <raylib.h>
     #include "RenderWindow.hpp"
+    #include "ARayLibModel.hpp"
 
 namespace Gui {
-    class RenderMenu
+    class RenderMenu : public virtual Gui::ARayLibModel
     {
         public:
             RenderMenu();
             ~RenderMenu() = default;
-            void render(const GameData &gameData, Gui::RenderWindow &window);
+            void render(const GameData &gameData);
             void renderOneComponent(const Gui::Component &component);
+            void render3DModel(Camera3D camera);
+            void renderMenu(const GameData &gameData, Camera3D camera);
 
             StateGame stateGame;
             bool needToResize = false;
+            Texture2D menuIsland;
         private:
             int _windowWidth = 0;
             int _windowHeight = 0;
+            float earthRotation = 0;
     };
 }
 
