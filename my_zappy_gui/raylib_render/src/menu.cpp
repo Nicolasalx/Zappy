@@ -9,10 +9,15 @@
 #include "RenderWindow.hpp"
 #include "RenderColor.hpp"
 #include "GameConfig.hpp"
+#include <complex>
 
 Gui::RenderMenu::RenderMenu()
 {
-    // this->addModel(Gui::MENU_MARS_MODEL.data());
+    this->addModel(Gui::EARTH_MODEL.data(), Gui::EARTH_TEXTURE.data());
+    this->addModel(Gui::EARTH_MODEL.data(), Gui::CLOUD_TEXTURE.data());
+    Image image = LoadImage(Gui::MENU_ISLAND.data());
+    menuIsland = LoadTextureFromImage(image);
+    UnloadImage(image);
 }
 
 void Gui::RenderMenu::renderOneComponent(const Gui::Component &component)
@@ -32,23 +37,30 @@ void Gui::RenderMenu::renderOneComponent(const Gui::Component &component)
         Vector2(component.settingsComponent.triangleRight.bottomRightVertex.x, component.settingsComponent.triangleRight.bottomRightVertex.y), Gui::RenderColor::getColorFromGame(component.settingsComponent.triangleRight.color));
 }
 
-void Gui::RenderMenu::render(const GameData &gameData, Gui::RenderWindow &window)
+void Gui::RenderMenu::render3DModel(Camera3D camera)
 {
-    ClearBackground(LIGHTGRAY);
+    BeginMode3D(camera);
+    this->drawModel((Gui::ModelInfo){0,
+        {1.4 + cos(earthRotation / 2.0) / 100.0, 9.75, 0.7 - cos(earthRotation / 2.0) / 100.0},
+        {0, 1, 0},
+        earthRotation,
+        {1, 1, 1},
+        WHITE}
+    );
+    this->drawModel((Gui::ModelInfo){1,
+        {1.4 + cos(earthRotation / 2.0f) / 100.0, 9.77, 0.7 - cos(earthRotation / 2.0) / 100.0},
+        {0, 1, 0},
+        earthRotation * 0.8,
+        {1.015, 1.015, 1.015},
+        WHITE}
+    );
+    EndMode3D();
+    earthRotation += 0.03;
+    DrawTextureEx(menuIsland, (Vector2){650, 350}, 0, 0.65, WHITE);
+}
 
-    if (gameData.infoWindow.resolution.width != window.windowSize.width || gameData.infoWindow.resolution.height != window.windowSize.height) {
-        window.windowSize.width = gameData.infoWindow.resolution.width;
-        window.windowSize.height = gameData.infoWindow.resolution.height;
-
-        this->needToResize = true;
-
-        //EndDrawing();
-        //CloseWindow();
-        //InitWindow(window.windowSize.width, window.windowSize.height, "Zappy GUI");
-        //BeginDrawing();
-        return;
-    }
-
+void Gui::RenderMenu::render(const GameData &gameData)
+{
     this->stateGame = gameData.dataMenu.stateGame;
 
     if (gameData.dataMenu.cursorState == SELECTIONNED) {
@@ -56,16 +68,25 @@ void Gui::RenderMenu::render(const GameData &gameData, Gui::RenderWindow &window
     } else {
         SetMouseCursor(MOUSE_CURSOR_DEFAULT);
     }
-
     for (auto &item: gameData.dataMenu.componentList) {
         renderOneComponent(item);
     }
-
-    // this->drawModel((Gui::ModelInfo){0,
-    //     {0, 0, 0},
-    //     {0, 0, 0},
-    //     0,
-    //     {1, 1, 1},
-    //     WHITE}
-    // );
 }
+
+void Gui::RenderMenu::renderMenu(const GameData &gameData, Camera3D camera)
+{
+    ClearBackground(BLACK);
+    render3DModel(camera);
+    render(gameData);
+}
+
+// if (gameData.infoWindow.resolution.width != window.windowSize.width || gameData.infoWindow.resolution.height != window.windowSize.height) {
+//     window.windowSize.width = gameData.infoWindow.resolution.width;
+//     window.windowSize.height = gameData.infoWindow.resolution.height;
+//     this->needToResize = true;
+//     //EndDrawing();
+//     //CloseWindow();
+//     //InitWindow(window.windowSize.width, window.windowSize.height, "Zappy GUI");
+//     //BeginDrawing();
+//     return;
+// }
