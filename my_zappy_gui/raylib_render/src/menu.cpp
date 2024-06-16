@@ -56,7 +56,7 @@ void Gui::RenderMenu::render3DModel(Camera3D camera)
     );
     EndMode3D();
     earthRotation += 0.03;
-    DrawTextureEx(menuIsland, (Vector2){650, 350}, 0, 0.65, WHITE);
+    DrawTextureEx(menuIsland, (Vector2){650, 350 + cos(earthRotation / 3.0f) * 10}, 0, 0.65, WHITE);
 }
 
 void Gui::RenderMenu::render(const GameData &gameData)
