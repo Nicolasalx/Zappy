@@ -25,6 +25,7 @@ namespace Gui
 
             void update(const Gui::Event &event);
             static bool isMousePressed(const Gui::Event &event);
+            static bool isMouseOnBox(const Box &box, const Pos &mousePos);
 
         private:
             void componentPlay();
@@ -55,7 +56,6 @@ namespace Gui
             void addText(const Text &text);
             void addComponent(ComponentType cmpType);
             void handleEvent(const Gui::Event &event);
-            bool isMouseOnBox(const Box &box, const Pos &mousePos);
             void checkMouseState(const Gui::Event &event, Component &component);
             void resize(const Gui::Event &event);
 
