@@ -13,7 +13,7 @@ void Gui::SFMLRenderTextBox::addText(sf::RenderWindow &window, const std::string
     sfText.setFont(font);
     sfText.setString(text);
     sfText.setFillColor(sf::Color::White);
-    sfText.setCharacterSize(static_cast<unsigned int>((_box.width * 2) * _boxInfo._text_size));
+    sfText.setCharacterSize(5);
 
     sfText.setPosition(_box.left + _box.width * 0.1f, _box.top + _box.height * ypos);
     window.draw(sfText);
