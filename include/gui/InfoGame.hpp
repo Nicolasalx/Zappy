@@ -185,12 +185,7 @@ namespace Gui
         CursorState cursorState;
     };
 
-    struct InfoWindow {
-        Size resolution;
-        int volume;
-    };
-
-    struct BoxSlider {
+    struct BoxOpt {
         Pos pos;
         Size size;
 
@@ -199,9 +194,18 @@ namespace Gui
         GameColor color;
     };
 
+    struct InfoWindow {
+        BoxOpt buttonNextDisplay;
+        Text textButtonNextDisp;
+        bool changeDisplayLib;
+
+        Size resolution;
+        int volume;
+    };
+
     struct InfoSlider {
-        BoxSlider sliderBar;
-        BoxSlider sliderHandle;
+        BoxOpt sliderBar;
+        BoxOpt sliderHandle;
         int sliderValue;
     };
 }
