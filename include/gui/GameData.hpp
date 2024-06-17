@@ -31,6 +31,7 @@ namespace Gui
         RayInfoData rayInfo;
         DataMenu dataMenu;
         InfoWindow infoWindow;
+        InfoSlider infoSlider;
         bool ignoreKey;
     };
 }
