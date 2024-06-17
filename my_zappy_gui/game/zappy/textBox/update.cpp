@@ -122,15 +122,29 @@ void Gui::TextBox::updateOneTileInfo()
     }
 }
 
+bool Gui::TextBox::isMouseOnBox(const BoxOpt &box, const Pos &mousePos)
+{
+    float boxLeft = box.pos.x;
+    float boxRight = box.pos.x + box.size.width;
+    float boxTop = box.pos.y;
+    float boxBottom = box.pos.y + box.size.height;
+
+    if (mousePos.x >= boxLeft && mousePos.x <= boxRight &&
+        mousePos.y >= boxTop && mousePos.y <= boxBottom) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 void Gui::TextBox::updateSlideBar(const Gui::Event &events)
 {
-    if (events.isKeyDown == true && events.mouse.x >= this->_gameData->infoSlider.sliderBar.pos.x - 0.004 * events.windowSize.width && events.mouse.x <= (this->_gameData->infoSlider.sliderBar.pos.x + this->_gameData->infoSlider.sliderBar.size.width) - 0.007 * events.windowSize.width) {
+    if (events.isKeyDown && events.mouse.x >= this->_gameData->infoSlider.sliderBar.pos.x - 0.004 * events.windowSize.width && events.mouse.x <= (this->_gameData->infoSlider.sliderBar.pos.x + this->_gameData->infoSlider.sliderBar.size.width) - 0.007 * events.windowSize.width
+        && events.mouse.y <= 0.2 * events.windowSize.height && events.mouse.y >= 0.16 * events.windowSize.height) {
         int newXPos = this->_gameData->infoSlider.sliderBar.pos.x - 0.007;
         int newWidth = (this->_gameData->infoSlider.sliderBar.pos.x + this->_gameData->infoSlider.sliderBar.size.width) - 0.007 * events.windowSize.width;
-
         this->_gameData->infoSlider.sliderValue = ((events.mouse.x - newXPos) / newWidth) * 100;
         this->_gameData->infoSlider.sliderValue = ((this->_gameData->infoSlider.sliderValue * 150) / 100) * 6;
-
         this->_gameData->infoSlider.sliderHandle.pos.x = events.mouse.x;
         if (this->_gameData->infoSlider.sliderValue <= 0) {
             this->_gameData->infoSlider.sliderValue = 1;
@@ -138,6 +152,16 @@ void Gui::TextBox::updateSlideBar(const Gui::Event &events)
             this->_gameData->infoSlider.sliderValue = 150;
         }
         this->_client->send("sst " + std::to_string(this->_gameData->infoSlider.sliderValue) + "\n");
+    }
+}
+
+void Gui::TextBox::updateButtonNextDisp(const Gui::Event &events)
+{
+    if (events.isKeyDown && this->isMouseOnBox(this->_gameData->infoWindow.buttonNextDisplay, events.mouse)) {
+        this->_gameData->infoWindow.buttonNextDisplay.color = RED_COLOR;
+        this->_gameData->infoWindow.changeDisplayLib = true;
+    } else {
+        this->_gameData->infoWindow.buttonNextDisplay.color = WHITE_COLOR;
     }
 }
 
@@ -149,6 +173,7 @@ void Gui::TextBox::update(const Gui::Event &events)
     updateOnePlayerInfo();
     updateOneTileInfo();
     updateSlideBar(events);
+    updateButtonNextDisp(events);
     for (auto &event : events.eventType) {
         if (event == Gui::EventType::WINDOW_RESIZED) {
             resize(_gameData->windowX, _gameData->windowY);

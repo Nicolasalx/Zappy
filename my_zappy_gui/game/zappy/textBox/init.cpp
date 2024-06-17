@@ -35,6 +35,15 @@ void Gui::TextBox::initSlideBar()
     this->_gameData->infoSlider.sliderValue = 50;
 }
 
+void Gui::TextBox::initButtonNextDisplay()
+{
+    this->_gameData->infoWindow.buttonNextDisplay.pos = {0.77, 0.23};
+    this->_gameData->infoWindow.buttonNextDisplay.size = {0.21, 0.1};
+    this->_gameData->infoWindow.buttonNextDisplay.color = WHITE_COLOR;
+    this->_gameData->infoWindow.buttonNextDisplay.realPos = this->_gameData->infoWindow.buttonNextDisplay.pos;
+    this->_gameData->infoWindow.buttonNextDisplay.realSize = this->_gameData->infoWindow.buttonNextDisplay.size;
+}
+
 Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client) : _gameData(gameData), _client(client)
 {
     TextBoxData boxInfo(0.77f, 0.04f, 0.21f, 0.18f, 0.038, LEFT_BUTTON);
@@ -49,4 +58,5 @@ Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<G
     _gameData->textBox.push_back(boxInfo4);
     listLevelPlayer.resize(8);
     initSlideBar();
+    initButtonNextDisplay();
 }
