@@ -41,22 +41,22 @@ void Gui::RenderMenu::render3DModel(Camera3D camera)
 {
     BeginMode3D(camera);
     this->drawModel((Gui::ModelInfo){0,
-        {1.4 + cos(earthRotation / 2.0) / 100.0, 9.75, 0.7 - cos(earthRotation / 2.0) / 100.0},
+        {float(1.4 + std::cos(earthRotation / 2.0) / 100.0), 9.75, float(0.7 - std::cos(earthRotation / 2.0) / 100.0)},
         {0, 1, 0},
         earthRotation,
         {1, 1, 1},
         WHITE}
     );
     this->drawModel((Gui::ModelInfo){1,
-        {1.4 + cos(earthRotation / 2.0f) / 100.0, 9.77, 0.7 - cos(earthRotation / 2.0) / 100.0},
+        {float(1.4 + std::cos(earthRotation / 2.0) / 100.0), 9.77, float(0.7 - std::cos(earthRotation / 2.0) / 100.0)},
         {0, 1, 0},
-        earthRotation * 0.8,
+        earthRotation * 0.8f,
         {1.015, 1.015, 1.015},
         WHITE}
     );
     EndMode3D();
     earthRotation += 0.03;
-    DrawTextureEx(menuIsland, (Vector2){650, 350 + cos(earthRotation / 3.0f) * 10}, 0, 0.65, WHITE);
+    DrawTextureEx(menuIsland, (Vector2){650, 350 + std::cos(earthRotation / 3.0f) * 10}, 0, 0.65, WHITE);
 }
 
 void Gui::RenderMenu::render(const GameData &gameData)
