@@ -27,8 +27,8 @@ void Gui::RenderRayInfo::selectEvent(const GameData &gameData, Camera3D camera)
         }
         for (int y = 0; y < gameData.mapSize.y; y++) {
             for (int x = 0; x < gameData.mapSize.y; x++) {
-                box.min = (Vector3){x * Gui::RenderIsland::map_scale - 2.0f * Gui::RenderIsland::island_size, -4.0f * Gui::RenderIsland::island_size, y * Gui::RenderIsland::map_scale - 2.0f * Gui::RenderIsland::island_size};
-                box.max = (Vector3){x * Gui::RenderIsland::map_scale + 2.0f * Gui::RenderIsland::island_size, 0.0f, y * Gui::RenderIsland::map_scale + 2.0f * Gui::RenderIsland::island_size};
+                box.min = (Vector3){x * Gui::RenderIsland::map_scale - Gui::RenderIsland::island_size, -Gui::RenderIsland::island_size * 2, y * Gui::RenderIsland::map_scale - Gui::RenderIsland::island_size};
+                box.max = (Vector3){x * Gui::RenderIsland::map_scale + Gui::RenderIsland::island_size, 0.0f, y * Gui::RenderIsland::map_scale + Gui::RenderIsland::island_size};
                 collision.hit = false;
                 collision = GetRayCollisionBox(ray, box);
                 if (this->collision.hit && collision.distance <  __FLT_MAX__) {
@@ -88,6 +88,8 @@ void Gui::RenderRayInfo::changePlayerSelected(const GameData &gameData)
 
 void Gui::RenderRayInfo::render(const GameData &gameData, Camera3D camera)
 {
+    if (gameData.rayInfo.type == 1)
+        this->rayInfo = gameData.rayInfo;
     this->selectEvent(gameData, camera);
     this->changePlayerSelected(gameData);
 }
