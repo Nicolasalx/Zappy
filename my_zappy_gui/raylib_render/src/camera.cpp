@@ -44,11 +44,6 @@ void Gui::RenderCamera::updatePlayerPos(Gui::Event &event)
 
 void Gui::RenderCamera::playerMode()
 {
-    if (this->isPlayerMode == false) {
-        this->_camera.position = (Vector3){playerPos.x * Gui::RenderIsland::map_scale + 4.0f, 4.0, playerPos.y * Gui::RenderIsland::map_scale + 4.0f};
-        this->_camera.target = (Vector3){playerPos.x * Gui::RenderIsland::map_scale, 2.0, playerPos.y * Gui::RenderIsland::map_scale};
-        this->isPlayerMode = true;
-    }
     _camera.target.x = playerPos.x * Gui::RenderIsland::map_scale;
     _camera.target.z = playerPos.y * Gui::RenderIsland::map_scale;
     if (sqrt(pow(_camera.position.x - playerPos.x * Gui::RenderIsland::map_scale, 2) + pow(_camera.position.z - playerPos.y * Gui::RenderIsland::map_scale, 2)) > 7.0f) {
