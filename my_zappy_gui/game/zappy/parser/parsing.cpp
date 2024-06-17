@@ -16,23 +16,23 @@ Gui::Parser::Parser(std::shared_ptr<GameData> gameData) : _gameData(gameData)
     _cmdMap.emplace("ppo", [this](std::vector<std::string> args) { this->ppo(args); });
     _cmdMap.emplace("plv", [this](std::vector<std::string> args) { this->plv(args); });
     _cmdMap.emplace("pin", [this](std::vector<std::string> args) { this->pin(args); });
-    // ! pex
-    // ! pbc
+    _cmdMap.emplace("pex", [this](std::vector<std::string> args) { this->pex(args); });
+    _cmdMap.emplace("pbc", [this](std::vector<std::string> args) { this->pbc(args); });
     _cmdMap.emplace("pic", [this](std::vector<std::string> args) { this->pic(args); });
     _cmdMap.emplace("pie", [this](std::vector<std::string> args) { this->pie(args); });
-    // ! pfk
-    // ! pdr
-    // ! pgt
+    _cmdMap.emplace("pfk", [this](std::vector<std::string> args) { this->pfk(args); });
+    _cmdMap.emplace("pdr", [this](std::vector<std::string> args) { this->pdr(args); });
+    _cmdMap.emplace("pgt", [this](std::vector<std::string> args) { this->pgt(args); });
     _cmdMap.emplace("pdi", [this](std::vector<std::string> args) { this->pdi(args); });
     _cmdMap.emplace("enw", [this](std::vector<std::string> args) { this->enw(args); });
     _cmdMap.emplace("ebo", [this](std::vector<std::string> args) { this->ebo(args); });
     _cmdMap.emplace("edi", [this](std::vector<std::string> args) { this->edi(args); });
     _cmdMap.emplace("sgt", [this](std::vector<std::string> args) { this->sgt(args); });
-    // ! sst
-    // ! seg
+    _cmdMap.emplace("sst", [this](std::vector<std::string> args) { this->sst(args); });
+    _cmdMap.emplace("seg", [this](std::vector<std::string> args) { this->seg(args); });
     _cmdMap.emplace("smg", [this](std::vector<std::string> args) { this->smg(args); });
-    // ! suc
-    // ! sbp
+    _cmdMap.emplace("suc", [this](std::vector<std::string> args) { this->suc(args); });
+    _cmdMap.emplace("sbp", [this](std::vector<std::string> args) { this->sbp(args); });
 }
 
 void Gui::Parser::update(std::vector<std::string> &messRecv)
