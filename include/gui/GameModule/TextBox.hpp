@@ -19,7 +19,7 @@ namespace Gui
     class TextBox
     {
         public:
-            TextBox(std::shared_ptr<Gui::GameData> gameData);
+            TextBox(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client);
             ~TextBox() = default;
 
             void addText(TextBoxData &textBox, size_t index, std::string text);
@@ -38,6 +38,7 @@ namespace Gui
 
         private:
             std::shared_ptr<Gui::GameData> _gameData;
+            std::shared_ptr<Gui::IClient> _client;
             std::vector<int> listLevelPlayer;
     };
 }

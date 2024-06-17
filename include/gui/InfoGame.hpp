@@ -202,7 +202,7 @@ namespace Gui
     struct InfoSlider {
         BoxSlider sliderBar;
         BoxSlider sliderHandle;
-        double sliderValue;
+        int sliderValue;
     };
 }
 
