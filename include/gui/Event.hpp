@@ -24,6 +24,7 @@ namespace Gui
         double frame_time = 0;
         RayInfoData rayInfo;
         Pos playerPos;
+        bool isKeyDown;
     };
 }
 
