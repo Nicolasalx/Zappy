@@ -23,12 +23,12 @@ Gui::TextBoxData::TextBoxData(float x, float y, float width, float height, float
 void Gui::TextBox::initSlideBar()
 {
     this->_gameData->infoSlider.sliderBar.size = {0.17, 0.01};
-    this->_gameData->infoSlider.sliderBar.pos = {0.79, 0.19};
+    this->_gameData->infoSlider.sliderBar.pos = {0.79, 0.21};
     this->_gameData->infoSlider.sliderBar.color = GRAY_COLOR;
     this->_gameData->infoSlider.sliderBar.realSize = this->_gameData->infoSlider.sliderBar.size;
     this->_gameData->infoSlider.sliderBar.realPos = this->_gameData->infoSlider.sliderBar.pos;
     this->_gameData->infoSlider.sliderHandle.size = {0.009, 0.03};
-    this->_gameData->infoSlider.sliderHandle.pos = {0.88, 0.18};
+    this->_gameData->infoSlider.sliderHandle.pos = {0.88, 0.20};
     this->_gameData->infoSlider.sliderHandle.realSize = this->_gameData->infoSlider.sliderHandle.size;
     this->_gameData->infoSlider.sliderHandle.realPos = this->_gameData->infoSlider.sliderHandle.pos;
     this->_gameData->infoSlider.sliderHandle.color = BLUE_COLOR;
@@ -37,7 +37,7 @@ void Gui::TextBox::initSlideBar()
 
 Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData) : _gameData(gameData)
 {
-    TextBoxData boxInfo(0.77f, 0.04f, 0.21f, 0.18f, 0.038, LEFT_BUTTON);
+    TextBoxData boxInfo(0.77f, 0.04f, 0.21f, 0.21f, 0.038, LEFT_BUTTON);
     _gameData->textBox.push_back(boxInfo);
     TextBoxData boxInfo1(0.77f, 0.47f, 0.21f, 0.51f, 0.040, 0);
     _gameData->textBox.push_back(boxInfo1);
