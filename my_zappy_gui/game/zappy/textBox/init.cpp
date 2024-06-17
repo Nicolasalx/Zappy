@@ -35,7 +35,7 @@ void Gui::TextBox::initSlideBar()
     this->_gameData->infoSlider.sliderValue = 50;
 }
 
-Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData) : _gameData(gameData)
+Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client) : _gameData(gameData), _client(client)
 {
     TextBoxData boxInfo(0.77f, 0.04f, 0.21f, 0.18f, 0.038, LEFT_BUTTON);
     _gameData->textBox.push_back(boxInfo);
