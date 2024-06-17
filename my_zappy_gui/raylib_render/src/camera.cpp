@@ -7,6 +7,7 @@
 
 #include "RenderCamera.hpp"
 #include "RenderIsland.hpp"
+#include <complex>
 
 Gui::RenderCamera::RenderCamera()
 {
@@ -49,18 +50,18 @@ void Gui::RenderCamera::playerMode()
         this->_camera.target = (Vector3){playerPos.x * Gui::RenderIsland::map_scale, 2.0, playerPos.y * Gui::RenderIsland::map_scale};
         this->isPlayerMode = true;
     }
-    std::cout << "playerPos.x: " << playerPos.x << std::endl;
-    std::cout << "playerPos.y: " << playerPos.y << std::endl;   
-    std::cout << "camera.position.x: " << _camera.position.x << std::endl;
-    std::cout << "camera.position.z: " << _camera.position.z << std::endl;
-    if (_camera.position.x < playerPos.x * Gui::RenderIsland::map_scale - 4.0f)
-        _camera.position.x += 1.0f;
-    if (_camera.position.x > playerPos.x * Gui::RenderIsland::map_scale + 4.0f)
-        _camera.position.x -= 1.0f;
-    if (_camera.position.z < playerPos.y * Gui::RenderIsland::map_scale - 4.0f)
-        _camera.position.z += 1.0f;
-    if (_camera.position.z > playerPos.y * Gui::RenderIsland::map_scale + 4.0f)
-        _camera.position.z -= 1.0f;
+    _camera.target.x = playerPos.x * Gui::RenderIsland::map_scale;
+    _camera.target.z = playerPos.y * Gui::RenderIsland::map_scale;
+    if (sqrt(pow(_camera.position.x - playerPos.x * Gui::RenderIsland::map_scale, 2) + pow(_camera.position.z - playerPos.y * Gui::RenderIsland::map_scale, 2)) > 7.0f) {
+        if (_camera.position.x < playerPos.x * Gui::RenderIsland::map_scale)
+            _camera.position.x += abs(playerPos.x * Gui::RenderIsland::map_scale - _camera.position.x) / 3.0f;
+        if (_camera.position.x > playerPos.x * Gui::RenderIsland::map_scale)
+            _camera.position.x -= abs(playerPos.x * Gui::RenderIsland::map_scale - _camera.position.x) / 3.0f;
+        if (_camera.position.z < playerPos.y * Gui::RenderIsland::map_scale)
+            _camera.position.z += abs(playerPos.y * Gui::RenderIsland::map_scale - _camera.position.z) / 3.0f;
+        if (_camera.position.z > playerPos.y * Gui::RenderIsland::map_scale)
+            _camera.position.z -= abs(playerPos.y * Gui::RenderIsland::map_scale - _camera.position.z) / 3.0f;
+    }
     UpdateCamera(&this->_camera, CAMERA_THIRD_PERSON);
 }
 
