@@ -24,6 +24,14 @@ namespace Gui
             Parser(std::shared_ptr<GameData> gameData);
             ~Parser() = default;
             void msz(std::vector<std::string> args);
+            void pdr(std::vector<std::string> args);
+            void pex(std::vector<std::string> args);
+            void pfk(std::vector<std::string> args);
+            void pgt(std::vector<std::string> args);
+            void sbp(std::vector<std::string> args);
+            void seg(std::vector<std::string> args);
+            void sst(std::vector<std::string> args);
+            void suc(std::vector<std::string> args);
             void bct(std::vector<std::string> args);
             void tna(std::vector<std::string> args);
             void pnw(std::vector<std::string> args);
@@ -32,6 +40,7 @@ namespace Gui
             void pin(std::vector<std::string> args);
             void pic(std::vector<std::string> args);
             void pie(std::vector<std::string> args);
+            void pbc(std::vector<std::string> args);
             void pdi(std::vector<std::string> args);
             void enw(std::vector<std::string> args);
             void ebo(std::vector<std::string> args);
