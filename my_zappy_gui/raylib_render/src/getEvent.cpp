@@ -78,6 +78,9 @@ Gui::Event Gui::Raylib::getEvent()
     if (IsKeyPressed(KEY_M)) {
         event.eventType.push_back(Gui::EventType::KEY_M);
     }
+    if (IsKeyDown(KEY_M)) {
+        std::cout << "KEY M PRESSED\n";
+    }
     if (IsKeyPressed(KEY_N)) {
         event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
     }

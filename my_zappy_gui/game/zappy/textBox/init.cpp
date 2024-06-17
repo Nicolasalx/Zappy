@@ -37,7 +37,7 @@ void Gui::TextBox::initSlideBar()
 
 void Gui::TextBox::initButtonNextDisplay()
 {
-    this->_gameData->infoWindow.buttonNextDisplay.pos = {0.77, 0.23};
+    this->_gameData->infoWindow.buttonNextDisplay.pos = {0.77, 0.27};
     this->_gameData->infoWindow.buttonNextDisplay.size = {0.21, 0.1};
     this->_gameData->infoWindow.buttonNextDisplay.color = WHITE_COLOR;
     this->_gameData->infoWindow.buttonNextDisplay.realPos = this->_gameData->infoWindow.buttonNextDisplay.pos;
