@@ -16,7 +16,6 @@ Gui::RenderCamera::RenderCamera()
     this->_camera.up = (Vector3){ 0.0, 1.0, 0.0 };
     this->_camera.fovy = 90.0;
     this->_camera.projection = CAMERA_PERSPECTIVE;
-    DisableCursor();
 }
 
 void Gui::RenderCamera::handle_cursor()

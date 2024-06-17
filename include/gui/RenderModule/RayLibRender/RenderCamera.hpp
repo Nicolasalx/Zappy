@@ -28,7 +28,7 @@ namespace Gui {
             void spectatorMode();
 
             Camera3D _camera;
-            bool cursor = false;
+            bool cursor = true;
             bool isPlayerMode = false;
             Pos playerPos;
         private:
