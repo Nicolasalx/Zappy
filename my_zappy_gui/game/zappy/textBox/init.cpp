@@ -47,6 +47,8 @@ Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData) : _gameData(gameD
     _gameData->textBox.push_back(boxInfo3);
     TextBoxData boxInfo4(0.01f, 0.04f, 0.15f, 0.51f, 0.030, RIGHT_BUTTON);
     _gameData->textBox.push_back(boxInfo4);
+    TextBoxData boxInfo5(0.77f, 0.40f, 0.21f, 0.21f, 0.038, LEFT_BUTTON);
+    _gameData->textBox.push_back(boxInfo5);
     listLevelPlayer.resize(8);
     initSlideBar();
 }
