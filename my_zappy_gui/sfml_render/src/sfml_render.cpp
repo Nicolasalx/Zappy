@@ -65,7 +65,10 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
     sf::Texture newTexture;
     sf::Sprite sprite;
     sf::Font font;
-    font.loadFromFile("bonus/assets/font.ttf");
+    if (!font.loadFromFile("bonus/assets/font.ttf")) {
+        std::cerr << "Error loading font" << std::endl;
+        return;
+    }
 
     newTexture.loadFromFile("bonus/assets/background.png");
     sprite.setTexture(newTexture);
@@ -80,7 +83,9 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
     this->object->render(gameData, window);
     this->egg->render(gameData, window);
     this->player->render(gameData, window);
+    // std::cout << "1\n";
     this->textBoxList->drawAllTextBoxs(window, font, gameData);
+    // std::cout << "fix\n";
     // if (std::find(eventList.eventType.begin(), eventList.eventType.end(), Gui::EventType::LEFT_CLICK) != eventList.eventType.end()) {
     //     sf::Vector2i cell = getClickedCase(gameData, eventList.mouse.x, eventList.mouse.y);
     //     if (cell.x != -1 && cell.y != -1) {
