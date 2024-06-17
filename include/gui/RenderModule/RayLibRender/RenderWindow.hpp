@@ -9,6 +9,7 @@
     #define RENDERWINDOW_H_
 
     #include "InfoGame.hpp"
+    #include <raylib.h>
 
 namespace Gui
 {
@@ -18,8 +19,9 @@ namespace Gui
             RenderWindow();
             ~RenderWindow();
 
-            WindowSize windowSize;
+            Size windowSize;
             bool launched;
+            Sound _soundGame;
         private:
     };
 }

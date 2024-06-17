@@ -9,10 +9,11 @@
     #define MENU_HPP_
 
     #include "IClient.hpp"
-    #include <memory>
-    #include <vector>
     #include "GameData.hpp"
     #include "Event.hpp"
+    #include <memory>
+    #include <map>
+    #include <vector>
 
 namespace Gui
 {
@@ -23,6 +24,7 @@ namespace Gui
             ~Menu() = default;
 
             void update(const Gui::Event &event);
+            static bool isMousePressed(const Gui::Event &event);
 
         private:
             void componentPlay();
@@ -30,6 +32,9 @@ namespace Gui
             void componentPlayerMode();
             void componentSpectatorMode();
             void componentQuit();
+            void addTriangle(Pos startPosTriangleLeft, ComponentType cmpType);
+
+            void textSettings();
 
             void inputBoxIP();
             void inputBoxPort();
@@ -39,6 +44,13 @@ namespace Gui
 
             void changeScreenMenu();
 
+            void screenMenu();
+            void screenSettings();
+            void screenConnectionFailed();
+
+
+            void handleEventSettings(Component &component, const Gui::Event &event);
+
             void addBox(const Box &box, const std::string &contentText);
             void addText(const Text &text);
             void addComponent(ComponentType cmpType);
@@ -46,6 +58,8 @@ namespace Gui
             bool isMouseOnBox(const Box &box, const Pos &mousePos);
             void checkMouseState(const Gui::Event &event, Component &component);
             void resize(const Gui::Event &event);
+
+            Pos resizePosition(const Pos position, const Gui::Event &event);
 
             std::shared_ptr<Gui::GameData> _gameData;
 
@@ -60,6 +74,13 @@ namespace Gui
             Component _component;
 
             StateGame _oldState = IN_MENU;
+
+            std::vector<OptionResolution> _optionResolution = {
+                {"1920x1080", {1920, 1080}},
+                {"1280x720", {1280, 720}},
+                {"720x480", {720, 480}}
+            };
+            int _idxOptionResolution = 0;
     };
 }
 

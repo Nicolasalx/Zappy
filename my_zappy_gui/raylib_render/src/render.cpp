@@ -9,6 +9,8 @@
 
 void Gui::Raylib::renderGame(const Gui::GameData &gameData)
 {
+    BeginMode3D(this->camera._camera);
+
     this->skyBox->render();
     this->player->render(gameData);
     this->object->render(gameData);
@@ -16,21 +18,31 @@ void Gui::Raylib::renderGame(const Gui::GameData &gameData)
     this->island->render(gameData);
     this->egg->render(gameData);
     this->rayInfo->render(gameData, this->camera._camera);
+
+    EndMode3D();
+    this->textBoxList->render(gameData);
+}
+
+void Gui::Raylib::handleSoundSystem(const Gui::GameData &gameData)
+{
+    if (!IsSoundPlaying(this->window._soundGame)) {
+        PlaySound(this->window._soundGame);
+    }
+    SetSoundVolume(this->window._soundGame, static_cast<float>(gameData.infoWindow.volume) / 100.0f);
 }
 
 void Gui::Raylib::render(const Gui::GameData &gameData)
 {
     BeginDrawing();
     this->_ignoreKey = gameData.ignoreKey;
+
+    handleSoundSystem(gameData);
+
     if (gameData.dataMenu.stateGame != IN_PLAYER_MODE &&
         gameData.dataMenu.stateGame != IN_SPECTATOR_MODE) {
-        this->menu.render(gameData);
-        EndDrawing();
-        return;
+        menu.renderMenu(gameData, this->camera._camera);
+    } else {
+        renderGame(gameData);
     }
-    BeginMode3D(this->camera._camera);
-    renderGame(gameData);
-    EndMode3D();
-    this->textBoxList->drawAllTextBoxs(gameData);
     EndDrawing();
 }

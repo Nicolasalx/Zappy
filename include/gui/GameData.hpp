@@ -19,6 +19,7 @@ namespace Gui
         int windowX;
         int windowY;
         double frameTime;
+        std::vector<Pos> islandInfo;
         std::vector<PlayerData> playerList;
         std::vector<Incant> incantList;
         std::vector<EggData> eggList;
@@ -26,8 +27,11 @@ namespace Gui
         std::vector<std::string> serverResp;
         std::vector<std::vector<std::vector<int>>> objectPos;
         std::vector<TextBoxData> textBox;
+        Pos playerPos;
         RayInfoData rayInfo;
         DataMenu dataMenu;
+        InfoWindow infoWindow;
+        InfoSlider infoSlider;
         bool ignoreKey;
     };
 }

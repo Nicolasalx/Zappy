@@ -61,10 +61,18 @@ Gui::Event Gui::Raylib::getEvent()
     if (this->menu.stateGame == IN_LEAVE) {
         event.eventType.push_back(Gui::EventType::EXIT);
     }
+    if (this->menu.needToResize == true) { // ! Don't touch i will modify it (Nico)
+        // event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
+        // event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
+        this->menu.needToResize = false;
+    }
     getKeyEvent(event);
-
+    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+        event.isKeyDown = true;
+    } else {
+        event.isKeyDown = false;
+    }
     if (IsKeyPressed(KEY_M)) {
-        std::cout << "KEY M EVENT\n";
         event.eventType.push_back(Gui::EventType::KEY_M);
     }
     if (IsKeyPressed(KEY_N)) {
@@ -76,7 +84,6 @@ Gui::Event Gui::Raylib::getEvent()
     if (IsKeyPressed(KEY_O)) {
         event.eventType.push_back(Gui::EventType::KEY_O);
     }
-
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         event.eventType.push_back(Gui::EventType::LEFT_CLICK);
     }
@@ -84,8 +91,14 @@ Gui::Event Gui::Raylib::getEvent()
     event.mouse.y = GetMouseY();
     event.windowSize.width = window.windowSize.width;
     event.windowSize.height = window.windowSize.height;
+
+    this->island->changeIslandEvent();
+
     this->camera.handle_cursor();
-    this->camera.update();
+    if (this->menu.stateGame != IN_MENU && this->menu.stateGame != IN_SETTINGS) {
+        this->camera.update();
+        this->camera.updatePlayerPos(event);
+    }
     this->rayInfo->addRayToEvent(event);
     return event;
 }

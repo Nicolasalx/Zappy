@@ -24,7 +24,8 @@ namespace Gui
 
             void addText(TextBoxData &textBox, size_t index, std::string text);
             void update(const Gui::Event &event);
-            void resize(int window_width, int window_height);
+            void resize(int windowWidth, int windowHeight);
+            void resizeSlideBar(int windowWidth, int windowHeight);
             void openClose(const Gui::Event &event);
             bool isClosed(TextBoxData &_text);
             void updateServerResp();
@@ -32,11 +33,12 @@ namespace Gui
             void updateListPlayerLevel();
             void updateOnePlayerInfo();
             void updateOneTileInfo();
+            void initSlideBar();
+            void updateSlideBar(const Gui::Event &events);
 
         private:
             std::shared_ptr<Gui::GameData> _gameData;
             std::vector<int> listLevelPlayer;
-            
     };
 }
 

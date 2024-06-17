@@ -60,6 +60,6 @@ void Gui::Particle::draw(Texture2D texture, Camera3D camera)
 {
     for (auto &particle : particles) {
         // std::cout << "draw particle" << std::endl;
-        DrawBillboard(camera, texture, (Vector3){pos.x * Gui::MAP_SCALE + particle.x, particle.y, pos.y * Gui::MAP_SCALE + particle.z}, 3.0, WHITE);
+        DrawBillboard(camera, texture, (Vector3){pos.x * Gui::RenderIsland::map_scale + particle.x, particle.y, pos.y * Gui::RenderIsland::map_scale + particle.z}, 3.0, WHITE);
     }
 }

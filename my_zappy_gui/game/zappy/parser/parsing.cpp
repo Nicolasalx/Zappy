@@ -16,14 +16,23 @@ Gui::Parser::Parser(std::shared_ptr<GameData> gameData) : _gameData(gameData)
     _cmdMap.emplace("ppo", [this](std::vector<std::string> args) { this->ppo(args); });
     _cmdMap.emplace("plv", [this](std::vector<std::string> args) { this->plv(args); });
     _cmdMap.emplace("pin", [this](std::vector<std::string> args) { this->pin(args); });
+    // ! pex
+    // ! pbc
     _cmdMap.emplace("pic", [this](std::vector<std::string> args) { this->pic(args); });
     _cmdMap.emplace("pie", [this](std::vector<std::string> args) { this->pie(args); });
+    // ! pfk
+    // ! pdr
+    // ! pgt
     _cmdMap.emplace("pdi", [this](std::vector<std::string> args) { this->pdi(args); });
     _cmdMap.emplace("enw", [this](std::vector<std::string> args) { this->enw(args); });
     _cmdMap.emplace("ebo", [this](std::vector<std::string> args) { this->ebo(args); });
     _cmdMap.emplace("edi", [this](std::vector<std::string> args) { this->edi(args); });
     _cmdMap.emplace("sgt", [this](std::vector<std::string> args) { this->sgt(args); });
+    // ! sst
+    // ! seg
     _cmdMap.emplace("smg", [this](std::vector<std::string> args) { this->smg(args); });
+    // ! suc
+    // ! sbp
 }
 
 void Gui::Parser::update(std::vector<std::string> &messRecv)
@@ -51,8 +60,8 @@ void Gui::Parser::parse_server_reply(std::string reply_data)
             cmd.erase(0, cmd.find(' ') + 1);
         }
         args.push_back(cmd);
-        if (_cmdMap.find(type) != _cmdMap.end()) {
-            _cmdMap[type](args);
+        if (_cmdMap.contains(type)) {
+            _cmdMap.at(type)(args);
         }
         reply_data.erase(0, pos + 1);
         args.clear();

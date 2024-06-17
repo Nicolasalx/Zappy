@@ -13,14 +13,19 @@
 
 namespace Gui
 {
-    constexpr float MAP_SCALE = 12.0;
+    constexpr float MAP_SCALE =  120.0;
     constexpr float WINDOW_WIDTH = 1920;
     constexpr float WINDOW_HEIGHT = 1080;
-    constexpr float ISLAND_SIZE = 2.0;
+    constexpr float ISLAND_SIZE = 70.0;
 
     struct Pos {
         float x;
         float y;
+    };
+
+    struct Size {
+        float width;
+        float height;
     };
 
     enum Elements {
@@ -42,6 +47,24 @@ namespace Gui
         CLOSED_LEFT,
         CLOSED_RIGHT,
         NOT_SHOWN
+    };
+
+    enum GameColor {
+        WHITE_COLOR,
+        BLACK_COLOR,
+        BLUE_COLOR,
+        GREEN_COLOR,
+        RED_COLOR,
+        GRAY_COLOR,
+        PURPLE_COLOR
+    };
+
+    struct Box {
+        float x;
+        float y;
+        float width;
+        float height;
+        GameColor color;
     };
 
     struct TextBoxData {
@@ -88,16 +111,6 @@ namespace Gui
         int anim_frame_counter;
     };
 
-    enum GameColor {
-        WHITE_COLOR,
-        BLACK_COLOR,
-        BLUE_COLOR,
-        GREEN_COLOR,
-        RED_COLOR,
-        GRAY_COLOR,
-        PURPLE_COLOR
-    };
-
     struct Text {
         std::string contentText;
         Pos pos;
@@ -105,17 +118,22 @@ namespace Gui
         GameColor color;
     };
 
-    struct Box {
-        float x;
-        float y;
-        float width;
-        float height;
+    struct Triangle {
+        Pos topVertex;
+        Pos bottomLeftVertex;
+        Pos bottomRightVertex;
         GameColor color;
+    };
+
+    struct SettingsComponent {
+        Triangle triangleLeft;
+        Triangle triangleRight;
     };
 
     struct StockStartData {
         Box box;
         Text text;
+        SettingsComponent settingsComponent;
     };
 
     enum ComponentType {
@@ -126,7 +144,10 @@ namespace Gui
         SPECTATOR_MODE,
         INPUT_BOX_IP,
         ANNOUNCE_RETRY,
-        GO_BACK_TO_MENU
+        GO_BACK_TO_MENU,
+        MODIFY_SETTINGS,
+        MODIFY_RESOLUTION,
+        MODIFY_VOLUME
     };
 
     enum StateGame {
@@ -145,9 +166,15 @@ namespace Gui
         SELECTIONNED
     };
 
+    struct OptionResolution {
+        std::string resText;
+        Size windowSize;
+    };
+
     struct Component {
         Box box;
         Text text;
+        SettingsComponent settingsComponent;
         StockStartData stockStartData;
         ComponentType componentType;
     };
@@ -158,9 +185,24 @@ namespace Gui
         CursorState cursorState;
     };
 
-    struct WindowSize {
-        float width;
-        float height;
+    struct InfoWindow {
+        Size resolution;
+        int volume;
+    };
+
+    struct BoxSlider {
+        Pos pos;
+        Size size;
+
+        Pos realPos;
+        Size realSize;
+        GameColor color;
+    };
+
+    struct InfoSlider {
+        BoxSlider sliderBar;
+        BoxSlider sliderHandle;
+        double sliderValue;
     };
 }
 

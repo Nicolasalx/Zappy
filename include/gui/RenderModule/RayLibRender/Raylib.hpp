@@ -30,10 +30,11 @@ namespace Gui
         public:
             Raylib();
             ~Raylib() override;
- 
+
             Gui::Event getEvent() override;
             void render(const Gui::GameData &gameData) override;
             void renderGame(const Gui::GameData &gameData);
+            void handleSoundSystem(const Gui::GameData &gameData);
 
             void getKeyEvent(Gui::Event &event);
 

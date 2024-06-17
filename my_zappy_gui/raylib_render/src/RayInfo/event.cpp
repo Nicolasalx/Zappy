@@ -7,6 +7,7 @@
 
 #include "ARayLibModel.hpp"
 #include "RenderRayInfo.hpp"
+#include "RenderIsland.hpp"
 #include <raylib.h>
 
 void Gui::RenderRayInfo::selectEvent(const GameData &gameData, Camera3D camera)
@@ -14,8 +15,8 @@ void Gui::RenderRayInfo::selectEvent(const GameData &gameData, Camera3D camera)
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         this->ray = GetMouseRay(GetMousePosition(), camera);
         for (auto &player : gameData.playerList) {
-            box.min = (Vector3){player.real_pos.x * Gui::MAP_SCALE -1.0, 0.0, player.real_pos.y * Gui::MAP_SCALE - 1.0};
-            box.max = (Vector3){player.real_pos.x * Gui::MAP_SCALE + 1.0, 3.0, player.real_pos.y * Gui::MAP_SCALE + 1.0};
+            box.min = (Vector3){player.real_pos.x * Gui::RenderIsland::map_scale -1.0f, 0.0f, player.real_pos.y * Gui::RenderIsland::map_scale - 1.0f};
+            box.max = (Vector3){player.real_pos.x * Gui::RenderIsland::map_scale + 1.0f, 3.0f, player.real_pos.y * Gui::RenderIsland::map_scale + 1.0f};
             collision.hit = false;
             collision = GetRayCollisionBox(ray, box);
             if (collision.hit && collision.distance < __FLT_MAX__) {
@@ -26,8 +27,8 @@ void Gui::RenderRayInfo::selectEvent(const GameData &gameData, Camera3D camera)
         }
         for (int y = 0; y < gameData.mapSize.y; y++) {
             for (int x = 0; x < gameData.mapSize.y; x++) {
-                box.min = (Vector3){x * Gui::MAP_SCALE - 2.0 * Gui::ISLAND_SIZE, -4.0 * Gui::ISLAND_SIZE, y * Gui::MAP_SCALE - 2.0 * Gui::ISLAND_SIZE};
-                box.max = (Vector3){x * Gui::MAP_SCALE + 2.0 * Gui::ISLAND_SIZE, 0.0, y * Gui::MAP_SCALE + 2.0 * Gui::ISLAND_SIZE};
+                box.min = (Vector3){x * Gui::RenderIsland::map_scale - 2.0f * Gui::RenderIsland::island_size, -4.0f * Gui::RenderIsland::island_size, y * Gui::RenderIsland::map_scale - 2.0f * Gui::RenderIsland::island_size};
+                box.max = (Vector3){x * Gui::RenderIsland::map_scale + 2.0f * Gui::RenderIsland::island_size, 0.0f, y * Gui::RenderIsland::map_scale + 2.0f * Gui::RenderIsland::island_size};
                 collision.hit = false;
                 collision = GetRayCollisionBox(ray, box);
                 if (this->collision.hit && collision.distance <  __FLT_MAX__) {

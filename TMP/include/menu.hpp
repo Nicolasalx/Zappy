@@ -17,6 +17,7 @@ namespace Gui
     enum ComponentType {
         NONE,
         SETTINGS,
+        PLAY,
         QUIT
     };
 

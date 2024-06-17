@@ -22,6 +22,7 @@ jobs:
     - name: check compilation
       run: |
           sudo dnf install raylib-devel -y
+          sudo dnf install asio-devel -y
           echo "## 🚀 Compilation result" >> $GITHUB_STEP_SUMMARY
           {
             set +e

@@ -22,7 +22,15 @@ namespace Gui
     constexpr std::string_view PLAYER_MODEL = "bonus/assets/Astronaut.iqm";
     constexpr std::string_view PLAYER_TEXTURE = "bonus/assets/AstronautColor.png";
 
-    constexpr std::string_view ISLAND_MODEL = "bonus/assets/plateform.obj";
+    constexpr std::string_view EARTH_MODEL = "bonus/assets/earth.obj";
+    constexpr std::string_view EARTH_TEXTURE = "bonus/assets/texture_earth.png";
+    constexpr std::string_view CLOUD_TEXTURE = "bonus/assets/texture_cloud.png";
+    constexpr std::string_view MENU_ISLAND = "bonus/assets/menu_island.png";
+
+    constexpr std::string_view ISLAND_MODEL = "bonus/assets/new_island3.gltf";
+    constexpr std::string_view ISLAND_LOW_POLY = "bonus/assets/new_island_low_poly1.gltf";
+    constexpr std::string_view ISLAND_LOW_POLY2 = "bonus/assets/new_island_low_poly4.gltf";
+    constexpr std::string_view ISLAND_PLATFORM = "bonus/assets/plateform.obj";
     constexpr std::string_view ISLAND_TEXTURE = "bonus/assets/plateform1.png";
 
     constexpr std::string_view FOOD_MODEL = "bonus/assets/food.glb";
@@ -44,6 +52,8 @@ namespace Gui
 
     constexpr double sizeFontTextMenu = 0.05;
     constexpr std::string_view MENU_MARS_MODEL = "menu_scene.glb";
+
+    constexpr std::string_view SOUND_GAME = "./bonus/song/kids.wav";
 }
 
 #endif /* !GAMECONFIG_HPP_ */

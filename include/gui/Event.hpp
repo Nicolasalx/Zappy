@@ -20,9 +20,11 @@ namespace Gui
         std::vector<Gui::EventType> eventType;
         std::string buffer;
         Pos mouse = {0, 0};
-        WindowSize windowSize = {0, 0};
+        Size windowSize = {0, 0};
         double frame_time = 0;
         RayInfoData rayInfo;
+        Pos playerPos;
+        bool isKeyDown;
     };
 }
 

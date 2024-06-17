@@ -6,6 +6,7 @@
 */
 
 #include "RenderTextBox.hpp"
+#include "RenderColor.hpp"
 
 void Gui::RenderTextBoxList::updateTextBoxs(const GameData &gameData)
 {
@@ -35,10 +36,17 @@ void Gui::RenderTextBoxList::updateTextBoxs(const GameData &gameData)
     }
 }
 
-void Gui::RenderTextBoxList::drawAllTextBoxs(const GameData &gameData)
+void Gui::RenderTextBoxList::updateSlideBar(const GameData &gameData)
+{
+    DrawRectangle(gameData.infoSlider.sliderBar.pos.x, gameData.infoSlider.sliderBar.pos.y, gameData.infoSlider.sliderBar.size.width, gameData.infoSlider.sliderBar.size.height, Gui::RenderColor::getColorFromGame(gameData.infoSlider.sliderBar.color));
+    DrawRectangle(gameData.infoSlider.sliderHandle.pos.x, gameData.infoSlider.sliderHandle.pos.y, gameData.infoSlider.sliderHandle.size.width, gameData.infoSlider.sliderHandle.size.height, Gui::RenderColor::getColorFromGame(gameData.infoSlider.sliderHandle.color));
+}
+
+void Gui::RenderTextBoxList::render(const GameData &gameData)
 {
     DrawFPS(10, 10);
     updateTextBoxs(gameData);
+    updateSlideBar(gameData);
     for (auto &textBox : _textBoxs) {
         textBox.draw();
     }

@@ -22,10 +22,11 @@
     #include <memory>
     #include "Particle.hpp"
     #include "Event.hpp"
+    #include "PlayerParser.hpp"
 
 namespace Gui
 {
-    class Zappy: virtual public AGameModule
+    class Zappy : virtual public AGameModule
     {
         public:
             Zappy(std::shared_ptr<Gui::IClient> client, std::shared_ptr<Gui::GameData> gameData);
@@ -37,6 +38,7 @@ namespace Gui
             std::shared_ptr<Gui::IClient> _client;
 
             Gui::Parser _parser;
+            Gui::PlayerParser _playerParser;
             Gui::Island _island;
             Gui::Object _object;
             Gui::Player _player;
