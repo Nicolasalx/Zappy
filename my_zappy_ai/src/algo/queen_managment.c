@@ -29,6 +29,7 @@ void queen_create_child(client_t *client)
 
 void queen_incantation(client_t *client)
 {
+    push_new_command(client, BROADCAST, "I'm here\n");
     push_new_command(client, INCANTATION, "Incantation\n");
     push_new_command(client, TAKE, "Take food\n");
     push_new_command(client, TAKE, "Take food\n");
