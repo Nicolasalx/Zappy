@@ -90,10 +90,9 @@ Gui::Event Gui::Raylib::getEvent()
     this->island->changeIslandEvent();
 
     this->camera.handle_cursor();
-    if (this->menu.stateGame != IN_MENU && this->menu.stateGame != IN_SETTINGS) {
-        this->camera.update();
-        this->camera.updatePlayerPos(event);
-    }
+    this->camera.update(menu.stateGame);
+    this->camera.updatePlayerPos(event);
+
     this->rayInfo->addRayToEvent(event);
     return event;
 }
