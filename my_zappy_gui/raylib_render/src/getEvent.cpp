@@ -66,6 +66,9 @@ Gui::Event Gui::Raylib::getEvent()
         // event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
         this->menu.needToResize = false;
     }
+    if (this->textBoxList->_changeDisplayLib) {
+        event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
+    }
     getKeyEvent(event);
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
         event.isKeyDown = true;
