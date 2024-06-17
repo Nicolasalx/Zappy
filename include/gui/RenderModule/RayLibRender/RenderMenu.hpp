@@ -24,7 +24,7 @@ namespace Gui {
             void render3DModel(Camera3D camera);
             void renderMenu(const GameData &gameData, Camera3D camera);
 
-            StateGame stateGame;
+            StateGame stateGame = IN_MENU;
             bool needToResize = false;
             Texture2D menuIsland;
         private:
