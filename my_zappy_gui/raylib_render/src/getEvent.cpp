@@ -88,9 +88,12 @@ Gui::Event Gui::Raylib::getEvent()
     event.windowSize.height = window.windowSize.height;
 
     this->island->changeIslandEvent();
+
     this->camera.handle_cursor();
-    this->camera.update();
-    this->camera.updatePlayerPos(event);
+    if (this->menu.stateGame != IN_MENU && this->menu.stateGame != IN_SETTINGS) {
+        this->camera.update();
+        this->camera.updatePlayerPos(event);
+    }
     this->rayInfo->addRayToEvent(event);
     return event;
 }
