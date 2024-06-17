@@ -67,6 +67,11 @@ Gui::Event Gui::Raylib::getEvent()
         this->menu.needToResize = false;
     }
     getKeyEvent(event);
+    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+        event.isKeyDown = true;
+    } else {
+        event.isKeyDown = false;
+    }
     if (IsKeyPressed(KEY_M)) {
         event.eventType.push_back(Gui::EventType::KEY_M);
     }
