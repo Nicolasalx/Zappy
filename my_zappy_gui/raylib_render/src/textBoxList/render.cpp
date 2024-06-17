@@ -35,17 +35,31 @@ void Gui::RenderTextBoxList::updateTextBoxs(const GameData &gameData)
     }
 }
 
-void Gui::RenderTextBoxList::updateSlideBar(const GameData &gameData)
+void Gui::RenderTextBoxList::renderSlideBar(const GameData &gameData)
 {
     DrawRectangle(gameData.infoSlider.sliderBar.pos.x, gameData.infoSlider.sliderBar.pos.y, gameData.infoSlider.sliderBar.size.width, gameData.infoSlider.sliderBar.size.height, Gui::RenderColor::getColorFromGame(gameData.infoSlider.sliderBar.color));
     DrawRectangle(gameData.infoSlider.sliderHandle.pos.x, gameData.infoSlider.sliderHandle.pos.y, gameData.infoSlider.sliderHandle.size.width, gameData.infoSlider.sliderHandle.size.height, Gui::RenderColor::getColorFromGame(gameData.infoSlider.sliderHandle.color));
+}
+
+void Gui::RenderTextBoxList::renderButtonNextDisp(const GameData &gameData)
+{
+    Color color = Gui::RenderColor::getColorFromGame(gameData.infoWindow.buttonNextDisplay.color);
+    Rectangle box = Rectangle(gameData.infoWindow.buttonNextDisplay.pos.x, gameData.infoWindow.buttonNextDisplay.pos.y,
+        gameData.infoWindow.buttonNextDisplay.size.width, gameData.infoWindow.buttonNextDisplay.size.height);
+
+    color.a = 100;
+    DrawRectangleRec(box, color);
+    color.a = 255;
+    DrawRectangleLinesEx(box, 1, color);
+    this->_changeDisplayLib = gameData.infoWindow.changeDisplayLib;
 }
 
 void Gui::RenderTextBoxList::render(const GameData &gameData)
 {
     DrawFPS(10, 10);
     updateTextBoxs(gameData);
-    updateSlideBar(gameData);
+    renderSlideBar(gameData);
+    renderButtonNextDisp(gameData);
     for (auto &textBox : _textBoxs) {
         textBox.draw();
     }
