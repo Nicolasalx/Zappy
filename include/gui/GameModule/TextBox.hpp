@@ -35,6 +35,10 @@ namespace Gui
             void updateOneTileInfo();
             void initSlideBar();
             void updateSlideBar(const Gui::Event &events);
+            void initButtonNextDisplay();
+            void resizeButtonNextDisp(int windowWidth, int windowHeight);
+            void updateButtonNextDisp(const Gui::Event &events);
+            static bool isMouseOnBox(const BoxOpt &box, const Pos &mousePos);
 
         private:
             std::shared_ptr<Gui::GameData> _gameData;
