@@ -32,10 +32,11 @@ Gui::Event Gui::SFMLRender::getEvent()
     Gui::Event guiEvent;
     sf::Event event;
 
+    guiEvent.frame_time = clock.restart().asSeconds();
+    // std::cout << "frame time: " << guiEvent.frame_time << std::endl;
     if (!window.isOpen()) {
         return Gui::Event();
     }
-    
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
     guiEvent.mouse.x = mousePos.x;
     guiEvent.mouse.y = mousePos.y;
@@ -64,6 +65,11 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
 {
     sf::Texture newTexture;
     sf::Sprite sprite;
+    sf::Font font;
+    if (!font.loadFromFile("bonus/assets/font.ttf")) {
+        std::cerr << "Error loading font" << std::endl;
+        return;
+    }
 
     newTexture.loadFromFile("bonus/assets/background.png");
     sprite.setTexture(newTexture);
@@ -71,19 +77,22 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
     if (!window.isOpen()) {
         return;
     }
-    const Gui::Event &eventList = this->getEvent();
+    // const Gui::Event &eventList = this->getEvent();
     window.clear();
     window.draw(sprite);
     this->map->render(gameData, window);
     this->object->render(gameData, window);
     this->egg->render(gameData, window);
     this->player->render(gameData, window);
-    if (std::find(eventList.eventType.begin(), eventList.eventType.end(), Gui::EventType::LEFT_CLICK) != eventList.eventType.end()) {
-        sf::Vector2i cell = getClickedCase(gameData, eventList.mouse.x, eventList.mouse.y);
-        if (cell.x != -1 && cell.y != -1) {
-            std::cout << "Case clicked: (" << cell.x << ", " << cell.y << ")\n";
-        }
-    }
+    // std::cout << "1\n";
+    this->textBoxList->drawAllTextBoxs(window, font, gameData);
+    // std::cout << "fix\n";
+    // if (std::find(eventList.eventType.begin(), eventList.eventType.end(), Gui::EventType::LEFT_CLICK) != eventList.eventType.end()) {
+    //     sf::Vector2i cell = getClickedCase(gameData, eventList.mouse.x, eventList.mouse.y);
+    //     if (cell.x != -1 && cell.y != -1) {
+    //         std::cout << "Case clicked: (" << cell.x << ", " << cell.y << ")\n";
+    //     }
+    // }
     window.display();
 }
 

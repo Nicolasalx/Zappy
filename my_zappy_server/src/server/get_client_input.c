@@ -53,7 +53,9 @@ void get_client_input(server_t *server, client_t *client)
     }
     if (nb_byte == 0) {
         printf(YELLOW("A client has left")"\n");
-        pdi_reply(server, client);
+        if (client->player.is_graphic == true) {
+            pdi_reply(server, client);
+        }
         remove_client(client);
         return;
     }

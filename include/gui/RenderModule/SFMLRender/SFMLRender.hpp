@@ -8,12 +8,13 @@
 #ifndef SFMLRENDER_HPP_
     #define SFMLRENDER_HPP_
 
-    #include <SFML/Graphics.hpp>
-    #include <ARenderModule.hpp>
-    #include <SFMLRenderPlayer.hpp>
-    #include <SFMLRenderEgg.hpp>
-    #include <SFMLRenderMap.hpp>
-    #include <SFMLRenderObject.hpp>
+    #include "SFML/Graphics.hpp"
+    #include "ARenderModule.hpp"
+    #include "SFMLRenderPlayer.hpp"
+    #include "SFMLRenderEgg.hpp"
+    #include "SFMLRenderMap.hpp"
+    #include "SFMLRenderObject.hpp"
+    #include "SFMLRenderTextBox.hpp"
     #include <memory>
     #include <vector>
 
@@ -28,12 +29,14 @@ namespace Gui
             Gui::Event getEvent() override;
             void render(const Gui::GameData &gameData) override;
         private:
+            sf::Clock clock;
             sf::RenderWindow window;
             std::unique_ptr<Gui::SFMLRenderPlayer> player;
             std::unique_ptr<Gui::SFMLRenderEgg> egg;
             std::unique_ptr<Gui::SFMLRenderMap> map;
             std::unique_ptr<Gui::SFMLRenderObject> object;
-
+            std::unique_ptr<Gui::SFMLRenderTextBoxList> textBoxList;
+            
 //          Gui::RenderWindow window;
 //          Gui::RenderCamera camera;
 //          std::unique_ptr<Gui::RenderSkyBox> skyBox;

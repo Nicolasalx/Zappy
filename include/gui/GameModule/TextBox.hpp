@@ -29,6 +29,7 @@ namespace Gui
             void openClose(const Gui::Event &event);
             bool isClosed(TextBoxData &_text);
             void updateServerResp();
+            void updateBroadcastResp();
             void updateGeneralInfo();
             void updateListPlayerLevel();
             void updateOnePlayerInfo();

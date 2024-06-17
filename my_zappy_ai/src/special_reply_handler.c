@@ -22,8 +22,11 @@ void end_of_game_cmd_reply(client_t *client, char *)
     exit_client(client, 0, NULL);
 }
 
-void eject_cmd_reply(client_t *, char *)
+void eject_cmd_reply(client_t *client, char *)
 {
+    push_new_command(client, RIGHT, NULL);
+    push_new_command(client, RIGHT, NULL);
+    push_new_command(client, FORWARD, NULL);
 }
 
 void message_cmd_reply(client_t *client, char *reply)
