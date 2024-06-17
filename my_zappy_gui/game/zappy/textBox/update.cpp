@@ -69,6 +69,7 @@ void Gui::TextBox::updateGeneralInfo()
         return;
     addText(_gameData->textBox[0], 0, "Number of players: " + std::to_string(_gameData->playerList.size()));
     addText(_gameData->textBox[0], 1, "Server frequency: " + std::to_string(_gameData->timeUnit));
+    addText(_gameData->textBox[0], 2, "Map size: " + std::to_string((int)_gameData->mapSize.x) + "x" + std::to_string((int)_gameData->mapSize.y));
 }
 
 void Gui::TextBox::updateServerResp()
