@@ -118,7 +118,7 @@ void Gui::TextBox::updateOnePlayerInfo()
 
 void Gui::TextBox::updateOneTileInfo()
 {
-    if (_gameData->rayInfo.type == ISLAND && _gameData->textBox.size() > 2) {
+    if (_gameData->rayInfo.type == ISLAND && _gameData->textBox.size() > 2 && _gameData->objectPos.size() > 0) {
         _gameData->textBox[2]._state = NO_BUTTON;
         addText(_gameData->textBox[2], 0, "Tile: (" + std::to_string(_gameData->rayInfo.x) + ", " + std::to_string(_gameData->rayInfo.y) + ")");
         addText(_gameData->textBox[2], 1, "Food: " + std::to_string(_gameData->objectPos[_gameData->rayInfo.y][_gameData->rayInfo.x][FOOD]));
@@ -148,7 +148,7 @@ void Gui::TextBox::updateSlideBar(const Gui::Event &events)
         } else if (this->_gameData->infoSlider.sliderValue > 150) {
             this->_gameData->infoSlider.sliderValue = 150;
         }
-        this->_gameData->timeUnit = this->_gameData->infoSlider.sliderValue;
+        this->_client->send("sst " + std::to_string(this->_gameData->infoSlider.sliderValue) + "\n");
     }
 }
 

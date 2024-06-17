@@ -11,7 +11,7 @@ void sst_cmd(int, char **argv, client_t *client, server_t *server)
 {
     char buffer[100] = {0};
 
-    if (my_str_only_cont(argv[0], "0123456789")) {
+    if (!my_str_only_cont(argv[0], "0123456789")) {
         send_msg_client(client->fd, "sbp\n");
         return;
     }
