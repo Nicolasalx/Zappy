@@ -24,6 +24,7 @@ namespace Gui
             ~Menu() = default;
 
             void update(const Gui::Event &event);
+            static bool isMousePressed(const Gui::Event &event);
 
         private:
             void componentPlay();
@@ -47,7 +48,6 @@ namespace Gui
             void screenSettings();
             void screenConnectionFailed();
 
-            bool isMousePressed(const Gui::Event &event);
 
             void handleEventSettings(Component &component, const Gui::Event &event);
 
