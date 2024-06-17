@@ -42,9 +42,19 @@ static void resizeEachBox(Gui::TextBoxData &textBox, int window_width, int windo
     }
 }
 
-void Gui::TextBox::resize(int window_width, int window_height)
+void Gui::TextBox::resizeSlideBar(int windowWidth, int windowHeight)
+{
+    this->_gameData->infoSlider.sliderBar.pos = { windowWidth * this->_gameData->infoSlider.sliderBar.realPos.x, windowHeight * this->_gameData->infoSlider.sliderBar.realPos.y };
+    this->_gameData->infoSlider.sliderBar.size = { windowWidth * this->_gameData->infoSlider.sliderBar.realSize.width, windowHeight * this->_gameData->infoSlider.sliderBar.realSize.height };
+
+    this->_gameData->infoSlider.sliderHandle.pos = { windowWidth * this->_gameData->infoSlider.sliderHandle.realPos.x, windowHeight * this->_gameData->infoSlider.sliderHandle.realPos.y };
+    this->_gameData->infoSlider.sliderHandle.size = { windowWidth * this->_gameData->infoSlider.sliderHandle.realSize.width, windowHeight * this->_gameData->infoSlider.sliderHandle.realSize.height };
+}
+
+void Gui::TextBox::resize(int windowWidth, int windowHeight)
 {
     for (auto &box : _gameData->textBox) {
-        resizeEachBox(box, window_width, window_height);
+        resizeEachBox(box, windowWidth, windowHeight);
     }
+    resizeSlideBar(windowWidth, windowHeight);
 }
