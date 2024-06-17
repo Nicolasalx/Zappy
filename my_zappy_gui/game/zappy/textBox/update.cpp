@@ -137,8 +137,7 @@ void Gui::TextBox::updateSlideBar(const Gui::Event &events)
         } else if (this->_gameData->infoSlider.sliderValue > 150) {
             this->_gameData->infoSlider.sliderValue = 150;
         }
-        this->_gameData->timeUnit = this->_gameData->infoSlider.sliderValue;
-        this->_client->send("sst " + std::to_string(this->_gameData->timeUnit) + "\n");
+        this->_client->send("sst " + std::to_string(this->_gameData->infoSlider.sliderValue) + "\n");
     }
 }
 
