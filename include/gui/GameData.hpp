@@ -25,6 +25,7 @@ namespace Gui
         std::vector<EggData> eggList;
         std::vector<std::string> teamName;
         std::vector<std::string> serverResp;
+        std::vector<std::string> broadcastResp;
         std::vector<std::vector<std::vector<int>>> objectPos;
         std::vector<TextBoxData> textBox;
         Pos playerPos;
