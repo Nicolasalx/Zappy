@@ -82,6 +82,15 @@ void Gui::TextBox::updateServerResp()
     }
 }
 
+void Gui::TextBox::updateBroadcastResp()
+{
+    if (_gameData->textBox.size() < 6 || isClosed(_gameData->textBox[0]))
+        return;
+    for (size_t i = 0; i < this->_gameData->broadcastResp.size(); i++) {
+        addText(_gameData->textBox[5], i, _gameData->broadcastResp[i]);
+    }
+}
+
 void Gui::TextBox::updateOnePlayerInfo()
 {
     if (_gameData->rayInfo.type == PLAYER && _gameData->textBox.size() > 1) {
@@ -148,6 +157,7 @@ void Gui::TextBox::update(const Gui::Event &events)
     updateGeneralInfo();
     updateListPlayerLevel();
     updateServerResp();
+    updateBroadcastResp();
     updateOnePlayerInfo();
     updateOneTileInfo();
     updateSlideBar(events);
