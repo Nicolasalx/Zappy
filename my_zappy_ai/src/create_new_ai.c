@@ -31,12 +31,14 @@ void remove_thread_from_list(void)
     current = get_thread_list(NULL)->thread_list;
     current_thread = pthread_self();
     if (head == NULL) {
+        pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
         return;
     }
     remove_node_from_list(head, current, current_thread);
     if (get_thread_list(NULL)->thread_list == NULL) {
         pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
         sem_post(&get_thread_list(NULL)->end_game);
+        return;
     }
     pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
 }
@@ -72,7 +74,8 @@ void create_new_ai(int port, struct in_addr *address, char *team_name)
     arg->port = port;
     arg->address = *address;
     strcpy(arg->team_name, team_name);
-    pthread_create(new_thread, NULL, create_new_ai_helper, arg);
+    if (pthread_create(new_thread, NULL, create_new_ai_helper, arg))
+        return;
     pthread_detach(*new_thread);
     pthread_mutex_lock(&get_thread_list(NULL)->mutex);
     append_node(&get_thread_list(NULL)->thread_list, create_node(new_thread));
@@ -88,9 +91,13 @@ void cancel_child(void)
     head = get_thread_list(NULL)->thread_list;
     current = get_thread_list(NULL)->thread_list;
     if (head == NULL) {
+        pthread_mutex_unlock(&get_thread_list(NULL)->mutex);
         return;
     }
     do {
+        if (!current) {
+            break;
+        }
         pthread_cancel(*GET_DATA(current, pthread_t));
         current = current->next;
     } while (current != head);
