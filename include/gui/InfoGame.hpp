@@ -49,6 +49,24 @@ namespace Gui
         NOT_SHOWN
     };
 
+    enum GameColor {
+        WHITE_COLOR,
+        BLACK_COLOR,
+        BLUE_COLOR,
+        GREEN_COLOR,
+        RED_COLOR,
+        GRAY_COLOR,
+        PURPLE_COLOR
+    };
+
+    struct Box {
+        float x;
+        float y;
+        float width;
+        float height;
+        GameColor color;
+    };
+
     struct TextBoxData {
         TextBoxData(float x, float y, float width, float height, float textSize, int state);
         Pos _pos;
@@ -93,28 +111,10 @@ namespace Gui
         int anim_frame_counter;
     };
 
-    enum GameColor {
-        WHITE_COLOR,
-        BLACK_COLOR,
-        BLUE_COLOR,
-        GREEN_COLOR,
-        RED_COLOR,
-        GRAY_COLOR,
-        PURPLE_COLOR
-    };
-
     struct Text {
         std::string contentText;
         Pos pos;
         double fontSize;
-        GameColor color;
-    };
-
-    struct Box {
-        float x;
-        float y;
-        float width;
-        float height;
         GameColor color;
     };
 
@@ -188,6 +188,21 @@ namespace Gui
     struct InfoWindow {
         Size resolution;
         int volume;
+    };
+
+    struct BoxSlider {
+        Pos pos;
+        Size size;
+
+        Pos realPos;
+        Size realSize;
+        GameColor color;
+    };
+
+    struct InfoSlider {
+        BoxSlider sliderBar;
+        BoxSlider sliderHandle;
+        double sliderValue;
     };
 }
 
