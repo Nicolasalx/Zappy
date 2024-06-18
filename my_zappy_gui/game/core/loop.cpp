@@ -91,7 +91,7 @@ bool Gui::Core::handleCoreEvent(const Gui::Event &eventList)
     return false;
 }
 
-void Gui::Core::handleGameState()
+void Gui::Core::handleGameState(Gui::GameData &gameData)
 {
     if (this->gameData->dataMenu.stateGame == TRY_SPECTATOR_MODE) {
         try {
@@ -103,6 +103,7 @@ void Gui::Core::handleGameState()
             return;
         }
         this->gameData->dataMenu.stateGame = IN_SPECTATOR_MODE;
+        std::cout << "IN SPECTATOR MODE SET\n";
     }
     if (this->gameData->dataMenu.stateGame == TRY_PLAYER_MODE) {
         try {
@@ -130,7 +131,7 @@ void Gui::Core::loop()
         if (handleCoreEvent(eventList)) {
             break;
         }
-        handleGameState();
+        handleGameState(*this->gameData.get());
         this->gameModule->update(messRecv, eventList);
         this->renderModule->render(*this->gameData.get());
         Gui::FrameRate::end();
