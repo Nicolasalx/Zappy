@@ -86,6 +86,10 @@ void Gui::TextBox::updateBroadcastResp()
 {
     if (_gameData->textBox.size() < 6 || isClosed(_gameData->textBox[0]))
         return;
+    while (_gameData->broadcastResp.size() > 7) {
+        _gameData->broadcastResp.erase(_gameData->broadcastResp.begin());
+    }
+
     for (size_t i = 0; i < this->_gameData->broadcastResp.size(); i++) {
         addText(_gameData->textBox[5], i, _gameData->broadcastResp[i]);
     }

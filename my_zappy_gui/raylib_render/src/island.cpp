@@ -59,8 +59,8 @@ void Gui::RenderIsland::render(const Gui::GameData &gameData)
     for (int i = 0; i < gameData.mapSize.x; i++) {
         for (int j = 0; j < gameData.mapSize.y; j++) {
             if (gameData.rayInfo.type == ISLAND && gameData.rayInfo.x == i && gameData.rayInfo.y == j) {
-                _box.min = (Vector3){i * Gui::RenderIsland::map_scale - 2.2f * Gui::RenderIsland::island_size, -4.2f * Gui::RenderIsland::island_size, j * Gui::RenderIsland::map_scale - 2.2f * Gui::RenderIsland::island_size};
-                _box.max = (Vector3){i * Gui::RenderIsland::map_scale + 2.2f * Gui::RenderIsland::island_size, 0.2f * Gui::RenderIsland::island_size, j * Gui::RenderIsland::map_scale + 2.2f * Gui::RenderIsland::island_size};
+                _box.min = (Vector3){i * Gui::RenderIsland::map_scale - 1.2f * Gui::RenderIsland::island_size, -Gui::RenderIsland::island_size * 2.2f, j * Gui::RenderIsland::map_scale - 1.2f * Gui::RenderIsland::island_size};
+                _box.max = (Vector3){i * Gui::RenderIsland::map_scale + 1.2f * Gui::RenderIsland::island_size, Gui::RenderIsland::island_size * 0.2f, j * Gui::RenderIsland::map_scale + 1.2f * Gui::RenderIsland::island_size};
                 DrawBoundingBox(_box, GREEN);
                 this->drawModel((ModelInfo){selectLOD(gameData, i * Gui::RenderIsland::map_scale, j * Gui::RenderIsland::map_scale), (Vector3){i * Gui::RenderIsland::map_scale, 0.0f, j * Gui::RenderIsland::map_scale},
                 (Vector3){0, 0, 0}, 0, (Vector3){Gui::RenderIsland::island_size, Gui::RenderIsland::island_size, Gui::RenderIsland::island_size}, GREEN});

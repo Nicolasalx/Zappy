@@ -48,6 +48,8 @@ namespace Gui
     constexpr std::string_view THYSTAME_MODEL = "bonus/assets/thystame.obj";
     constexpr std::string_view THYSTAME_TEXTURE = "bonus/assets/texture_thystame.png";
 
+    constexpr std::string_view SPACESHIP_MODEL = "bonus/assets/spaceship.gltf";
+
     constexpr std::string_view EVOLUTION_TEXTURE = "bonus/assets/evolution.png";
 
     constexpr double sizeFontTextMenu = 0.05;

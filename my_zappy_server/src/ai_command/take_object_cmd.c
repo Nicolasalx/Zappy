@@ -7,6 +7,15 @@
 
 #include "zappy_server.h"
 
+static void take_object_debug(server_t *server, client_t *client, int i)
+{
+    if (server->opt.is_debug == true) {
+        printf("[Debug] Object %s taken by %d on tile X:%d Y:%d\n",
+        object_list[i], client->player.id,
+            client->player.pos_x, client->player.pos_y);
+    }
+}
+
 void take_object_cmd(char *argv, client_t *client, server_t *server)
 {
     char *object = strtok(argv, "\n");
@@ -22,10 +31,7 @@ void take_object_cmd(char *argv, client_t *client, server_t *server)
             pgt_reply(server, client, i);
             pin_reply(server, client);
             bct_reply(server, client->player.pos_x, client->player.pos_y);
-            if (server->opt.is_debug == true) {
-                printf("[Debug] Object %s taken by %d on tile X:%d Y:%d\n",
-                object_list[i], client->player.id, client->player.pos_x, client->player.pos_y);
-            }
+            take_object_debug(server, client, i);
             return;
         }
     }
