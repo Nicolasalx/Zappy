@@ -10,6 +10,7 @@
 
     #include <iostream>
     #include <vector>
+    #include <functional>
 
 namespace Gui
 {
@@ -210,36 +211,13 @@ namespace Gui
         int volume;
     };
 
-    enum ButtonTypePlayerMode {
-        NOT_SELECTABLE,
-        LEFT,
-        FORWARD,
-        RIGHT,
-        LOOK,
-        EJECT,
-        INVENTORY,
-        FORK,
-        INCANTATION,
-        TAKE_FOOD,
-        TAKE_LINEMATE,
-        TAKE_DERAUMERE,
-        TAKE_SIBUR,
-        TAKE_MENDIANE,
-        TAKE_PHIRAS,
-        TAKE_THYSTAME,
-        SET_FOOD,
-        SET_LINEMATE,
-        SET_DERAUMERE,
-        SET_SIBUR,
-        SET_MENDIANE,
-        SET_PHIRAS,
-        SET_THYSTAME
-    };
+    typedef std::function<void()> ActionButtonPlayer;
 
     struct ButtonPlayerMode {
         BoxOpt button;
         Text text;
-        ButtonTypePlayerMode buttonType;
+
+        ActionButtonPlayer actPlayer;
     };
 
     struct PlayerMode {
