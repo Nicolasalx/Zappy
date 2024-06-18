@@ -1,6 +1,6 @@
 # Blender 3.6.5
 # www.blender.org
-mtllib linemate.mtl
+# mtllib linemate.mtl
 o Cube.001
 v -0.159898 -0.820733 0.586535
 v 0.597988 1.302637 -0.199229
