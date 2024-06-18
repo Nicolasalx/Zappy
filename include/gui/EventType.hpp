@@ -23,7 +23,8 @@ namespace Gui
         ENTER,
         WINDOW_RESIZED,
         ESCAPE,
-        KEY_M
+        KEY_M,
+        BACK_SPACE
     };
 }
 

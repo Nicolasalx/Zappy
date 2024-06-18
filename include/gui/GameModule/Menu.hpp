@@ -24,7 +24,7 @@ namespace Gui
             ~Menu() = default;
 
             void update(const Gui::Event &event);
-            static bool isMousePressed(const Gui::Event &event);
+            static bool isButtonPressed(const Gui::Event &event, const Gui::EventType &eventType);
             static bool isMouseOnBox(const Box &box, const Pos &mousePos);
 
         private:
