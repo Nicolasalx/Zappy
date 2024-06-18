@@ -29,7 +29,6 @@ namespace Gui {
 
             Camera3D _camera;
             bool cursor = true;
-            bool isPlayerMode = false;
             Pos playerPos;
         private:
     };

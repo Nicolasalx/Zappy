@@ -19,7 +19,7 @@ void Gui::Raylib::renderGame(const Gui::GameData &gameData)
     this->egg->render(gameData);
     this->rayInfo->render(gameData, this->camera._camera);
     this->camera.render(gameData);
-
+    this->endGame->render(gameData);
     EndMode3D();
     this->textBoxList->render(gameData);
 }

@@ -25,6 +25,7 @@ Gui::Raylib::Raylib() : window(), camera()
     this->particle = std::make_unique<Gui::RenderParticleSystem>();
     this->textBoxList = std::make_unique<Gui::RenderTextBoxList>();
     this->rayInfo = std::make_unique<Gui::RenderRayInfo>();
+    this->endGame = std::make_unique<Gui::RenderEndGame>();
 }
 
 Gui::Raylib::~Raylib()

@@ -20,6 +20,7 @@
     #include "RenderParticle.hpp"
     #include "RenderTextBox.hpp"
     #include "RenderRayInfo.hpp"
+    #include "RenderEndGame.hpp"
     #include <raylib.h>
     #include <iostream>
 
@@ -62,6 +63,7 @@ namespace Gui
             std::unique_ptr<Gui::RenderEgg> egg;
             std::unique_ptr<Gui::RenderTextBoxList> textBoxList;
             std::unique_ptr<Gui::RenderRayInfo> rayInfo;
+            std::unique_ptr<Gui::RenderEndGame> endGame;
             Gui::RenderMenu menu;
     };
 }

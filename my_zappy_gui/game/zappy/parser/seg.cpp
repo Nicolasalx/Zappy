@@ -9,5 +9,5 @@
 
 void Gui::Parser::seg(std::vector<std::string> args)
 {
-    ;
+    this->_gameData->rayInfo.type = 1;
 }
