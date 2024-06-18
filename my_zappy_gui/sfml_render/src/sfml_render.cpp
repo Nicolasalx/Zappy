@@ -21,6 +21,7 @@ Gui::SFMLRender::SFMLRender() : window(sf::VideoMode(1920, 1080), "ZAPPY")
     this->egg = std::make_unique<Gui::SFMLRenderEgg>();
     this->map = std::make_unique<Gui::SFMLRenderMap>();
     this->object = std::make_unique<Gui::SFMLRenderObject>();
+    this->textBoxList = std::make_unique<Gui::SFMLRenderTextBoxList>();
 }
 
 Gui::SFMLRender::~SFMLRender()
