@@ -41,14 +41,11 @@ bool isMouseOnTriangle(const Gui::Triangle &triangle, const Gui::Pos &mousePos)
     return std::abs(areaOrig - (area1 + area2 + area3)) <= 0.01;
 }
 
-bool Gui::Menu::isMousePressed(const Gui::Event &event)
+bool Gui::Menu::isButtonPressed(const Gui::Event &event, const Gui::EventType &eventType)
 {
-    for (const auto &evt: event.eventType) {
-        switch (evt) {
-            case Gui::EventType::LEFT_CLICK:
-                return true;
-            default:
-                break;
+    for (const auto &evt : event.eventType) {
+        if (evt == eventType) {
+            return true;
         }
     }
     return false;
@@ -59,7 +56,7 @@ void Gui::Menu::checkMouseState(const Gui::Event &event, Component &component)
     if (this->_gameData->ignoreKey && component.componentType == INPUT_BOX_IP) {
         component.text.contentText = event.buffer;
     }
-    if (!isMousePressed(event)) {
+    if (!isButtonPressed(event, Gui::EventType::LEFT_CLICK)) {
         return;
     }
     if (component.componentType == SPECTATOR_MODE) {
@@ -83,7 +80,7 @@ void Gui::Menu::checkMouseState(const Gui::Event &event, Component &component)
 
 void Gui::Menu::handleEventSettings(Component &component, const Gui::Event &event)
 {
-    if (isMouseOnTriangle(component.settingsComponent.triangleRight, event.mouse) && isMousePressed(event)) {
+    if (isMouseOnTriangle(component.settingsComponent.triangleRight, event.mouse) && isButtonPressed(event, Gui::EventType::LEFT_CLICK)) {
         if (component.componentType == MODIFY_RESOLUTION) {
             if ((std::size_t)_idxOptionResolution + 1 >= _optionResolution.size()) {
                 _idxOptionResolution = 0;
@@ -97,7 +94,7 @@ void Gui::Menu::handleEventSettings(Component &component, const Gui::Event &even
             component.text.contentText = std::to_string(this->_gameData->infoWindow.volume) + " %";
         }
         component.settingsComponent.triangleRight.color = RED_COLOR;
-    } else if (isMouseOnTriangle(component.settingsComponent.triangleLeft, event.mouse) && isMousePressed(event)) {
+    } else if (isMouseOnTriangle(component.settingsComponent.triangleLeft, event.mouse) && isButtonPressed(event, Gui::EventType::LEFT_CLICK)) {
         if (component.componentType == MODIFY_RESOLUTION) {
             if (_idxOptionResolution - 1 < 0) {
                 _idxOptionResolution = 2;
