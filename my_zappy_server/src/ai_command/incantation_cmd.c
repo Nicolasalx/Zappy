@@ -39,6 +39,17 @@ static void cancel_elevation(client_t *client)
     free_linked_list(&client->player.incentation_mate);
 }
 
+static void elevation_success(node_t *current, client_t *client, server_t *server,
+    char *buffer)
+{
+    send_msg_client((*GET_DATA(current, client_t *))->fd, buffer);
+    plv_reply(server, (*GET_DATA(current, client_t *)));
+    if (server->opt.is_debug == true)
+        printf("[Debug] Player %d level up to level %d\n",
+            (*GET_DATA(current, client_t *))->player.id,
+                (*GET_DATA(current, client_t *))->player.level);
+}
+
 static void end_elevation(server_t *server, client_t *client)
 {
     node_t *current = client->player.incentation_mate;
@@ -51,16 +62,14 @@ static void end_elevation(server_t *server, client_t *client)
     plv_reply(server, client);
     if (client->player.incentation_mate == NULL) {
         if (server->opt.is_debug == true)
-            printf("[Debug] Player %d level up to level %d\n", client->player.id, client->player.level);
+            printf("[Debug] Player %d level up to level %d\n",
+                client->player.id, client->player.level);
         return;
     }
     do {
         (*GET_DATA(current, client_t *))->player.in_incentation = false;
         (*GET_DATA(current, client_t *))->player.level += 1;
-        send_msg_client((*GET_DATA(current, client_t *))->fd, buffer);
-        plv_reply(server, (*GET_DATA(current, client_t *)));
-        if (server->opt.is_debug == true)
-            printf("[Debug] Player %d level up to level %d\n", (*GET_DATA(current, client_t *))->player.id, (*GET_DATA(current, client_t *))->player.level);
+        elevation_success(current, client, server, buffer);
         current = current->next;
     } while (current != client->player.incentation_mate);
     free_linked_list(&client->player.incentation_mate);
@@ -107,7 +116,8 @@ void incatation_cmd(char *, client_t *client, server_t *server)
     remove_elevation_req(client, server, client->player.level);
     end_elevation(server, client);
     if (server->opt.is_debug == true)
-        printf("[Debug] Incantation of player %d finished\n", client->player.id);
+        printf("[Debug] Incantation of player %d finished\n",
+            client->player.id);
     pie_reply(server, client, true);
     winning_team = condition_win(server);
     if (winning_team) {
