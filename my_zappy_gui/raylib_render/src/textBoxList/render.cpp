@@ -45,6 +45,9 @@ void Gui::RenderTextBoxList::renderSlideBar(const GameData &gameData)
     if (textBox._state == Gui::CLOSED_LEFT) {
         return;
     }
+    if (gameData.dataMenu.stateGame == IN_PLAYER_MODE || gameData.dataMenu.stateGame == TRY_PLAYER_MODE) {
+        return;
+    }
     DrawRectangle(gameData.infoSlider.sliderBar.pos.x, gameData.infoSlider.sliderBar.pos.y, gameData.infoSlider.sliderBar.size.width, gameData.infoSlider.sliderBar.size.height, Gui::RenderColor::getColorFromGame(gameData.infoSlider.sliderBar.color));
     DrawRectangle(gameData.infoSlider.sliderHandle.pos.x, gameData.infoSlider.sliderHandle.pos.y, gameData.infoSlider.sliderHandle.size.width, gameData.infoSlider.sliderHandle.size.height, Gui::RenderColor::getColorFromGame(gameData.infoSlider.sliderHandle.color));
 }
