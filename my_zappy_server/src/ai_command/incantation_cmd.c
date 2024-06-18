@@ -50,6 +50,14 @@ static void elevation_success(node_t *current, client_t *client,
                 (*GET_DATA(current, client_t *))->player.level);
 }
 
+static void end_elevation_debug(server_t *server, client_t *client)
+{
+    if (server->opt.is_debug == true) {
+        printf("[Debug] Player %d level up to level %d\n",
+            client->player.id, client->player.level);
+    }
+}
+
 static void end_elevation(server_t *server, client_t *client)
 {
     node_t *current = client->player.incentation_mate;
@@ -61,9 +69,7 @@ static void end_elevation(server_t *server, client_t *client)
     send_msg_client(client->fd, buffer);
     plv_reply(server, client);
     if (client->player.incentation_mate == NULL) {
-        if (server->opt.is_debug == true)
-            printf("[Debug] Player %d level up to level %d\n",
-                client->player.id, client->player.level);
+        end_elevation_debug(server, client);
         return;
     }
     do {
@@ -101,6 +107,14 @@ team_t *condition_win(server_t *server)
     return NULL;
 }
 
+static void incantation_debug(server_t *server, client_t *client)
+{
+    if (server->opt.is_debug == true) {
+        printf("[Debug] Incantation of player %d finished\n",
+            client->player.id);
+    }
+}
+
 void incatation_cmd(char *, client_t *client, server_t *server)
 {
     team_t *winning_team = NULL;
@@ -115,9 +129,7 @@ void incatation_cmd(char *, client_t *client, server_t *server)
     }
     remove_elevation_req(client, server, client->player.level);
     end_elevation(server, client);
-    if (server->opt.is_debug == true)
-        printf("[Debug] Incantation of player %d finished\n",
-            client->player.id);
+    incantation_debug(server, client);
     pie_reply(server, client, true);
     winning_team = condition_win(server);
     if (winning_team) {
