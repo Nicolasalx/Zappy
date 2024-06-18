@@ -23,7 +23,8 @@ void set_object_cmd(char *argv, client_t *client, server_t *server)
             bct_reply(server, client->player.pos_x, client->player.pos_y);
             if (server->opt.is_debug == true) {
                 printf("[Debug] Object %s set by %d on tile X:%d Y:%d\n",
-                object_list[i], client->player.id, client->player.pos_x, client->player.pos_y);
+                object_list[i], client->player.id, client->player.pos_x,
+                    client->player.pos_y);
             }
             return;
         }
