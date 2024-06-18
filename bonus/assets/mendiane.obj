@@ -1,6 +1,6 @@
 # Blender 3.6.5
 # www.blender.org
-mtllib mendiane.mtl
+# mtllib mendiane.mtl
 o Cube.001
 v -0.995028 -0.667133 0.528480
 v -0.995028 0.667133 0.528480

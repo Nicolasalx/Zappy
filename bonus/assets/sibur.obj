@@ -1,6 +1,6 @@
 # Blender v3.6.5 OBJ File: ''
 # www.blender.org
-mtllib sibur.mtl
+# mtllib sibur.mtl
 o Cube_Cube.001
 v -0.761386 1.533680 0.365370
 v 0.375244 1.533680 -0.756568

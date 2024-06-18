@@ -1,6 +1,6 @@
 # Blender 3.6.5
 # www.blender.org
-mtllib deraumere.mtl
+# mtllib deraumere.mtl
 o Cube
 v 0.000000 -1.385285 0.000000
 v -0.012796 1.000000 1.414156

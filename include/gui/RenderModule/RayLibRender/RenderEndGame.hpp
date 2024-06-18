@@ -24,8 +24,14 @@ namespace Gui
 
         void render(const GameData &gameData);
 
-        private:
-            bool _isEndGame = false;
+        static bool _isEndGame;
+        static bool _isGameFinished;
+
+        float x;
+        float y;
+        float z;
+        float _timer = 0;
+            
     };
 }
 

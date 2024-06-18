@@ -1,6 +1,6 @@
 # Blender 3.6.5
 # www.blender.org
-mtllib egg.mtl
+# mtllib egg.mtl
 o Cylinder
 v 0.000000 -0.755774 -1.217059
 v -0.043624 0.880959 -0.539824
