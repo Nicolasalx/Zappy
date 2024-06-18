@@ -40,51 +40,113 @@ void remove_elevation_req(client_t *client, server_t *server, int level)
     bct_reply(server, client->player.pos_x, client->player.pos_y);
 }
 
+static bool check_elevation_item_req_4(server_t *server, client_t *client,
+    char *buffer, elevation_requirement_t req)
+{
+    bool check = true;
+
+    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
+    item[DERAUMERE] < req.deraumere) {
+        snprintf(buffer, sizeof(buffer), "- %d deraumere "
+            "missing\n", req.deraumere -
+            server->game.world.map[client->player.pos_y][client->player.pos_x].
+    item[DERAUMERE]);
+        check = false;
+    }
+    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
+    item[THYSTAME] < req.thystame) {
+        snprintf(buffer, sizeof(buffer), "- %d thystame "
+            "missing\n", req.thystame -
+            server->game.world.map[client->player.pos_y][client->player.pos_x].
+    item[THYSTAME]);
+        check = false;
+    }
+    if (!check)
+        return false;
+    return true;
+}
+
+static bool check_elevation_item_req_3(server_t *server, client_t *client,
+    char *buffer, elevation_requirement_t req)
+{
+    bool check = true;
+
+    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
+    item[LINEMATE] < req.linemate) {
+        snprintf(buffer, sizeof(buffer), "- %d linemate "
+            "missing\n", req.linemate -
+            server->game.world.map[client->player.pos_y][client->player.pos_x].
+    item[LINEMATE]);
+        check = false;
+    }
+    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
+    item[MENDIANE] < req.mendiane) {
+        snprintf(buffer, sizeof(buffer), "- %d mendiane "
+            "missing\n", req.mendiane -
+            server->game.world.map[client->player.pos_y][client->player.pos_x].
+    item[MENDIANE]);
+        check = false;
+    }
+    if (!check)
+        return false;
+    return true;
+}
+
+static bool check_elevation_item_req_2(server_t *server, client_t *client,
+   char *buffer, elevation_requirement_t req)
+{
+    bool check = true;
+
+    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
+    item[PHIRAS] < req.phiras) {
+        snprintf(buffer, sizeof(buffer), "- %d phiras missing\n", req.phiras -
+            server->game.world.map[client->player.pos_y]
+                [client->player.pos_x].item[PHIRAS]);
+        check = false;
+    }
+    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
+    item[SIBUR] < req.sibur) {
+        snprintf(buffer, sizeof(buffer), "- %d sibur missing\n", req.sibur -
+            server->game.world.map[client->player.pos_y]
+                [client->player.pos_x].
+    item[SIBUR]);
+        check = false;
+    }
+    if (!check)
+        return false;
+    return true;
+}
+
 static bool check_elevation_item_req(server_t *server,
     client_t *client, elevation_requirement_t req)
 {
     char buffer[100] = {0};
     bool check = true;
 
-    snprintf(buffer, sizeof(buffer), "[Debug] Incantation requirements failed:\n");
-    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[DERAUMERE] < req.deraumere) {
-        snprintf(buffer, sizeof(buffer), "- %d deraumere missing\n", req.deraumere - server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[DERAUMERE]);
+    snprintf(buffer, sizeof(buffer), "[Debug] "
+        "Incantation requirements failed:\n");
+    if (!check_elevation_item_req_2(server, client, buffer, req))
         check = false;
-    }
-    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[LINEMATE] < req.linemate) {
-        snprintf(buffer, sizeof(buffer), "- %d linemate missing\n", req.linemate - server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[LINEMATE]);
+    if (!check_elevation_item_req_3(server, client, buffer, req))
         check = false;
-    }
-    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[MENDIANE] < req.mendiane) {
-        snprintf(buffer, sizeof(buffer), "- %d mendiane missing\n", req.mendiane - server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[MENDIANE]);
+    if (!check_elevation_item_req_4(server, client, buffer, req))
         check = false;
-    }
-    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[PHIRAS] < req.phiras) {
-        snprintf(buffer, sizeof(buffer), "- %d phiras missing\n", req.phiras - server->game.world.map[client->player.pos_y][client->player.pos_x].item[PHIRAS]);
-        check = false;
-    }
-    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[SIBUR] < req.sibur) {
-        snprintf(buffer, sizeof(buffer), "- %d sibur missing\n", req.sibur - server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[SIBUR]);
-        check = false;
-    }
-    if (server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[THYSTAME] < req.thystame) {
-        snprintf(buffer, sizeof(buffer), "- %d thystame missing\n", req.thystame - server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[THYSTAME]);
-        check = false;
-    }
     if (!check) {
         if (server->opt.is_debug == true) {
             printf("%s", buffer);
+        }
+        return false;
+    }
+    return true;
+}
+
+static bool check_number_player(server_t *server, int nb_player,
+    elevation_requirement_t req)
+{
+    if (nb_player < req.nb_players) {
+        if (server->opt.is_debug == true) {
+            printf("[Debug] Incantation players requirements failed:\n- %d "
+                "missing players", req.nb_players - nb_player);
         }
         return false;
     }
@@ -111,11 +173,7 @@ bool check_elevation_req(client_t *client,
             nb_player += 1;
         }
     }
-    if (nb_player < req.nb_players) {
-        if (server->opt.is_debug == true) {
-            printf("[Debug] Incantation players requirements failed:\n- %d missing players", req.nb_players - nb_player);
-        }
+    if (check_number_player(server, nb_player, req) == false)
         return false;
-    }
     return true;
 }
