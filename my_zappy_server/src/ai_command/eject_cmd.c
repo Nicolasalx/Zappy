@@ -22,7 +22,8 @@ static bool eject_egg(client_t *client, server_t *server, int i, bool *ejected)
             delete_node(&server->game.team_list[i].egg_list, current);
             *ejected = true;
             if (server->opt.is_debug == true) {
-                printf("Egg %d ejected by player %d\n", GET_DATA(current, egg_t)->nb, client->player.id);
+                printf("Egg %d ejected by player %d\n",
+                    GET_DATA(current, egg_t)->nb, client->player.id);
             }
         }
         if (server->game.team_list[i].egg_list == NULL) {
@@ -83,7 +84,8 @@ void eject_cmd(char *, client_t *client, server_t *server)
                 ppo_reply(server, &server->clients[i]);
                 ejected = true;
                 if (server->opt.is_debug == true) {
-                    printf("Player %d ejected by player %d\n", server->clients[i].player.id, client->player.id);
+                    printf("Player %d ejected by player %d\n",
+                        server->clients[i].player.id, client->player.id);
                 }
         }
     }
