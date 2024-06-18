@@ -7,6 +7,17 @@
 
 #include "zappy_server.h"
 
+static void delete_egg_from_team(
+    client_t *client, server_t *server, int i, node_t *current)
+{
+    edi_reply(server, &server->clients[i], GET_DATA(current, egg_t));
+    delete_node(&server->game.team_list[i].egg_list, current);
+    if (server->opt.is_debug == true) {
+        printf("Egg %d ejected by player %d\n",
+            GET_DATA(current, egg_t)->nb, client->player.id);
+    }
+}
+
 static bool eject_egg(client_t *client, server_t *server, int i, bool *ejected)
 {
     node_t *current = NULL;
@@ -18,13 +29,8 @@ static bool eject_egg(client_t *client, server_t *server, int i, bool *ejected)
     do {
         if (GET_DATA(current, egg_t)->pos_x == client->player.pos_x
         && GET_DATA(current, egg_t)->pos_y == client->player.pos_y) {
-            edi_reply(server, &server->clients[i], GET_DATA(current, egg_t));
-            delete_node(&server->game.team_list[i].egg_list, current);
+            delete_egg_from_team(client, server, i, current);
             *ejected = true;
-            if (server->opt.is_debug == true) {
-                printf("Egg %d ejected by player %d\n",
-                    GET_DATA(current, egg_t)->nb, client->player.id);
-            }
         }
         if (server->game.team_list[i].egg_list == NULL) {
             return true;
@@ -69,24 +75,30 @@ static void eject_player_in_orientation(server_t *server,
     }
 }
 
+static void try_eject_player(client_t *client,
+    server_t *server, int i, bool *ejected)
+{
+    eject_player_in_orientation(server, client, i);
+    pex_reply(server, &server->clients[i]);
+    ppo_reply(server, &server->clients[i]);
+    *ejected = true;
+    if (server->opt.is_debug == true) {
+        printf("Player %d ejected by player %d\n",
+            server->clients[i].player.id, client->player.id);
+    }
+}
+
 void eject_cmd(char *, client_t *client, server_t *server)
 {
     bool ejected = false;
 
     for (int i = 0; i < MAX_CLIENT; ++i) {
         if (server->clients[i].fd != 0 &&
-            server->clients[i].player.is_graphic != true
-            && server->clients[i].player.pos_x == client->player.pos_x
-            && server->clients[i].player.pos_y == client->player.pos_y
-            && server->clients[i].player.id != client->player.id) {
-                eject_player_in_orientation(server, client, i);
-                pex_reply(server, &server->clients[i]);
-                ppo_reply(server, &server->clients[i]);
-                ejected = true;
-                if (server->opt.is_debug == true) {
-                    printf("Player %d ejected by player %d\n",
-                        server->clients[i].player.id, client->player.id);
-                }
+        server->clients[i].player.is_graphic != true
+        && server->clients[i].player.pos_x == client->player.pos_x
+        && server->clients[i].player.pos_y == client->player.pos_y
+        && server->clients[i].player.id != client->player.id) {
+            try_eject_player(client, server, i, &ejected);
         }
     }
     eject_egg_from_tile(client, server, &ejected);
