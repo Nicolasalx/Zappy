@@ -14,13 +14,11 @@ void Gui::Zappy::update(std::vector<std::string> &messRecv, const Gui::Event &ev
     this->_gameData->windowY = event.windowSize.height;
     this->_gameData->rayInfo = event.rayInfo;
     this->_gameData->playerPos = event.playerPos;
-
     if (this->_gameData->dataMenu.stateGame == Gui::IN_SPECTATOR_MODE) {
         this->_parser.update(messRecv);
     } else if (this->_gameData->dataMenu.stateGame == Gui::IN_PLAYER_MODE) {
         this->_playerParser.update(messRecv);
     }
-
     this->_island.update(event);
     this->_object.update(event);
     this->_player.update(event);
