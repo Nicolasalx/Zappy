@@ -39,8 +39,8 @@ static void cancel_elevation(client_t *client)
     free_linked_list(&client->player.incentation_mate);
 }
 
-static void elevation_success(node_t *current, client_t *client, server_t *server,
-    char *buffer)
+static void elevation_success(node_t *current, client_t *client,
+    server_t *server, char *buffer)
 {
     send_msg_client((*GET_DATA(current, client_t *))->fd, buffer);
     plv_reply(server, (*GET_DATA(current, client_t *)));
