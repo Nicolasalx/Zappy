@@ -41,7 +41,7 @@ namespace Gui
             void updateTextBoxs(const GameData &gameData);
             void drawAllTextBoxs(sf::RenderWindow &window, const sf::Font &font, const GameData &gameData);
 
-            std::vector<Gui::SFMLRenderTextBox> _textBoxs;
+            std::vector<SFMLRenderTextBox> _textBoxs;
     };
 }
 
