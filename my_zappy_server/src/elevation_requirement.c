@@ -115,7 +115,6 @@ static bool check_elevation_item_req_2(server_t *server, client_t *client,
 static bool check_elevation_item_req(server_t *server,
     client_t *client, elevation_requirement_t req)
 {
-    char buffer[100] = {0};
     bool check = true;
 
     if (!check_elevation_item_req_2(server, client, req))
