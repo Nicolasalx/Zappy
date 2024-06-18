@@ -7,6 +7,16 @@
 
 #include "zappy_server.h"
 
+void forward_cmd_debug(server_t *server, client_t *client)
+{
+    send_msg_client(client->fd, "ok\n");
+    ppo_reply(server, client);
+    if (server->opt.is_debug == true)
+        printf("[Debug] Player %d forward, new position: X:%d Y:%d O:%d\n",
+        client->player.id, client->player.pos_x,
+            client->player.pos_y, client->player.orientation);
+}
+
 void forward_cmd(char *, client_t *client, server_t *server)
 {
     switch (client->player.orientation) {
@@ -27,8 +37,5 @@ void forward_cmd(char *, client_t *client, server_t *server)
                 + 1) % server->game.world.size_x;
             break;
     }
-    send_msg_client(client->fd, "ok\n");
-    ppo_reply(server, client);
-    if (server->opt.is_debug == true)
-        printf("[Debug] Player %d forward, new position: X:%d Y:%d O:%d\n", client->player.id, client->player.pos_x, client->player.pos_y, client->player.orientation);
+    forward_cmd_debug(server, client);
 }
