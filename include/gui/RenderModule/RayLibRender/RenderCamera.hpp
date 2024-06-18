@@ -26,10 +26,19 @@ namespace Gui {
             void updatePlayerPos(Gui::Event &event);
             void playerMode();
             void spectatorMode();
+            void spectatorTopMode();
+            void changeSpectatorMode();
+            void endGameMode();
+            void setPlayerEndGamePos(float x, float y, float z);
 
             Camera3D _camera;
             bool cursor = true;
+            bool topViewMode = false;
             Pos playerPos;
+            Pos map_dimension;
+            float _x = 0;
+            float _y = 0;
+            float _z = 0;
         private:
     };
 }
