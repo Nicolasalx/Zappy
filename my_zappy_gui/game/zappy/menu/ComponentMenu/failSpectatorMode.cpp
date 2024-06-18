@@ -10,7 +10,7 @@
 
 void Gui::Menu::announceRetry()
 {
-    addText(Text("Failed to connect to the server !", {0.28, 0.2}, sizeFontTextMenu, WHITE_COLOR));
+    addText(Text{ .contentText = "Failed to connect to the server !", .pos = {0.28, 0.2}, .realPos = {0.28, 0.2}, .fontSize = sizeFontTextMenu, .color = WHITE_COLOR});
     addComponent(ANNOUNCE_RETRY);
 }
 
