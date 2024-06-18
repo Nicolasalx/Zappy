@@ -21,6 +21,7 @@ Gui::SFMLRender::SFMLRender() : window(sf::VideoMode(1920, 1080), "ZAPPY")
     this->egg = std::make_unique<Gui::SFMLRenderEgg>();
     this->map = std::make_unique<Gui::SFMLRenderMap>();
     this->object = std::make_unique<Gui::SFMLRenderObject>();
+    this->textBoxList = std::make_unique<Gui::SFMLRenderTextBoxList>();
 }
 
 Gui::SFMLRender::~SFMLRender()
@@ -85,7 +86,7 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
     this->egg->render(gameData, window);
     this->player->render(gameData, window);
     // std::cout << "1\n";
-    // this->textBoxList->drawAllTextBoxs(window, font, gameData);
+    this->textBoxList->drawAllTextBoxs(window, font, gameData);
     // std::cout << "fix\n";
     // if (std::find(eventList.eventType.begin(), eventList.eventType.end(), Gui::EventType::LEFT_CLICK) != eventList.eventType.end()) {
     //     sf::Vector2i cell = getClickedCase(gameData, eventList.mouse.x, eventList.mouse.y);
