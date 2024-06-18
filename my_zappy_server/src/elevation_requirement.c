@@ -41,80 +41,75 @@ void remove_elevation_req(client_t *client, server_t *server, int level)
 }
 
 static bool check_elevation_item_req_4(server_t *server, client_t *client,
-    char *buffer, elevation_requirement_t req)
+    elevation_requirement_t req)
 {
     bool check = true;
 
     if (server->game.world.map[client->player.pos_y][client->player.pos_x].
     item[DERAUMERE] < req.deraumere) {
-        snprintf(buffer, sizeof(buffer), "- %d deraumere "
-            "missing\n", req.deraumere -
-            server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[DERAUMERE]);
+        if (server->opt.is_debug == true)
+            printf("- %d deraumere missing\n", req.deraumere -
+                server->game.world.map[client->player.pos_y]
+                [client->player.pos_x].item[DERAUMERE]);
         check = false;
     }
     if (server->game.world.map[client->player.pos_y][client->player.pos_x].
     item[THYSTAME] < req.thystame) {
-        snprintf(buffer, sizeof(buffer), "- %d thystame "
-            "missing\n", req.thystame -
-            server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[THYSTAME]);
+        if (server->opt.is_debug == true)
+            printf("- %d thystame missing\n", req.thystame -
+                server->game.world.map[client->player.pos_y]
+                [client->player.pos_x].item[THYSTAME]);
         check = false;
     }
-    if (!check)
-        return false;
-    return true;
+    return check;
 }
 
 static bool check_elevation_item_req_3(server_t *server, client_t *client,
-    char *buffer, elevation_requirement_t req)
+    elevation_requirement_t req)
 {
     bool check = true;
 
     if (server->game.world.map[client->player.pos_y][client->player.pos_x].
     item[LINEMATE] < req.linemate) {
-        snprintf(buffer, sizeof(buffer), "- %d linemate "
-            "missing\n", req.linemate -
-            server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[LINEMATE]);
+        if (server->opt.is_debug == true)
+            printf("- %d linemate missing\n", req.linemate -
+                server->game.world.map[client->player.pos_y]
+                [client->player.pos_x].item[LINEMATE]);
         check = false;
     }
     if (server->game.world.map[client->player.pos_y][client->player.pos_x].
     item[MENDIANE] < req.mendiane) {
-        snprintf(buffer, sizeof(buffer), "- %d mendiane "
-            "missing\n", req.mendiane -
-            server->game.world.map[client->player.pos_y][client->player.pos_x].
-    item[MENDIANE]);
+        if (server->opt.is_debug == true)
+            printf("- %d mendiane missing\n", req.mendiane -
+                server->game.world.map[client->player.pos_y]
+                [client->player.pos_x].item[MENDIANE]);
         check = false;
     }
-    if (!check)
-        return false;
-    return true;
+    return check;
 }
 
 static bool check_elevation_item_req_2(server_t *server, client_t *client,
-   char *buffer, elevation_requirement_t req)
+    elevation_requirement_t req)
 {
     bool check = true;
 
     if (server->game.world.map[client->player.pos_y][client->player.pos_x].
     item[PHIRAS] < req.phiras) {
-        snprintf(buffer, sizeof(buffer), "- %d phiras missing\n", req.phiras -
-            server->game.world.map[client->player.pos_y]
-                [client->player.pos_x].item[PHIRAS]);
+        if (server->opt.is_debug == true)
+            printf("- %d phiras missing\n", req.phiras -
+                server->game.world.map[client->player.pos_y]
+                    [client->player.pos_x].item[PHIRAS]);
         check = false;
     }
     if (server->game.world.map[client->player.pos_y][client->player.pos_x].
     item[SIBUR] < req.sibur) {
-        snprintf(buffer, sizeof(buffer), "- %d sibur missing\n", req.sibur -
-            server->game.world.map[client->player.pos_y]
-                [client->player.pos_x].
-    item[SIBUR]);
+        if (server->opt.is_debug == true)
+            printf("- %d sibur missing\n", req.sibur -
+                server->game.world.map[client->player.pos_y]
+                    [client->player.pos_x].item[SIBUR]);
         check = false;
     }
-    if (!check)
-        return false;
-    return true;
+    return check;
 }
 
 static bool check_elevation_item_req(server_t *server,
@@ -123,17 +118,16 @@ static bool check_elevation_item_req(server_t *server,
     char buffer[100] = {0};
     bool check = true;
 
-    snprintf(buffer, sizeof(buffer), "[Debug] "
-        "Incantation requirements failed:\n");
-    if (!check_elevation_item_req_2(server, client, buffer, req))
+    if (!check_elevation_item_req_2(server, client, req))
         check = false;
-    if (!check_elevation_item_req_3(server, client, buffer, req))
+    if (!check_elevation_item_req_3(server, client, req))
         check = false;
-    if (!check_elevation_item_req_4(server, client, buffer, req))
+    if (!check_elevation_item_req_4(server, client, req))
         check = false;
     if (!check) {
         if (server->opt.is_debug == true) {
-            printf("%s", buffer);
+            printf("[Debug] Incantation failed"
+                " because ressources are missing\n");
         }
         return false;
     }
