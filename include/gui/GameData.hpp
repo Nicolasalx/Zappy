@@ -33,6 +33,7 @@ namespace Gui
         DataMenu dataMenu;
         InfoWindow infoWindow;
         InfoSlider infoSlider;
+        PlayerMode playerMode;
         bool ignoreKey;
     };
 }
