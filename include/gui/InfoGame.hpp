@@ -211,13 +211,11 @@ namespace Gui
         int volume;
     };
 
-    typedef std::function<void()> ActionButtonPlayer;
-
     struct ButtonPlayerMode {
         BoxOpt button;
         Text text;
 
-        ActionButtonPlayer actPlayer;
+        std::function<void()> actPlayer;
     };
 
     struct DataPlayerMode {
