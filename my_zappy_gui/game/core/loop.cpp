@@ -103,7 +103,6 @@ void Gui::Core::handleGameState(Gui::GameData &gameData)
             return;
         }
         this->gameData->dataMenu.stateGame = IN_SPECTATOR_MODE;
-        std::cout << "IN SPECTATOR MODE SET\n";
     }
     if (this->gameData->dataMenu.stateGame == TRY_PLAYER_MODE) {
         try {
