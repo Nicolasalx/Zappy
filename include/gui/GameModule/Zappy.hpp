@@ -23,6 +23,7 @@
     #include "Particle.hpp"
     #include "Event.hpp"
     #include "PlayerParser.hpp"
+    #include "PlayerMode.hpp"
 
 namespace Gui
 {
@@ -45,6 +46,7 @@ namespace Gui
             Gui::Egg _egg;
             Gui::TextBox _textBox;
             Gui::Menu _menu;
+            Gui::PlayerMode _playerMode;
     };
 };
 

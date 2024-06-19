@@ -21,6 +21,7 @@
     #include "RenderTextBox.hpp"
     #include "RenderRayInfo.hpp"
     #include "RenderEndGame.hpp"
+    #include "RenderPlayerMode.hpp"
     #include <raylib.h>
     #include <iostream>
 
@@ -64,6 +65,7 @@ namespace Gui
             std::unique_ptr<Gui::RenderTextBoxList> textBoxList;
             std::unique_ptr<Gui::RenderRayInfo> rayInfo;
             std::unique_ptr<Gui::RenderEndGame> endGame;
+            std::unique_ptr<Gui::RenderPlayerMode> playerMode;
             Gui::RenderMenu menu;
     };
 }

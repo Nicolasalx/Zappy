@@ -18,13 +18,12 @@ namespace Gui
     class RenderPlayerMode: public virtual ARayLibModel
     {
         public:
-            RenderPlayerMode();
+            RenderPlayerMode() = default;
             ~RenderPlayerMode() = default;
 
             void render(const GameData &gameData);
 
         private:
-
     };
 }
 
