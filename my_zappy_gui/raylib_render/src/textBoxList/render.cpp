@@ -10,7 +10,6 @@
 
 void Gui::RenderTextBoxList::updateTextBoxs(const GameData &gameData)
 {
-    // std::cout << "size: " << _textBoxs.size() << "\n";
     while (_textBoxs.size() < gameData.textBox.size()) {
         RenderTextBox newTextBox(gameData.textBox[_textBoxs.size()]);
         _textBoxs.push_back(newTextBox);
