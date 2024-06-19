@@ -12,7 +12,6 @@ static void send_player_level_reply(
 {
     if (winning_team) {
         seg_reply(server, winning_team);
-        server->opt.end_game = true;
     }
 }
 

@@ -192,7 +192,14 @@ Usage: immortal `bool`
 
 ### Pause and resume command
 
-You canse use this command to pause the game or resume
+You can use this command to pause the game or resume
 
 Usage: pause
 	   resume
+
+### Debug command
+
+You can use this command to have info about what is happening with the server and the client.
+
+Usage: debug `bool`
+> bool is a boolean variable that controls if the server is in debug mode or not. Its value must be either true or false.

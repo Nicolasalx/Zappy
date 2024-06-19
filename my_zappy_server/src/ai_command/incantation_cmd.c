@@ -135,6 +135,5 @@ void incatation_cmd(char *, client_t *client, server_t *server)
     if (winning_team) {
         printf("[Debug] Team %s won the game\n", winning_team->name);
         seg_reply(server, winning_team);
-        server->opt.end_game = true;
     }
 }

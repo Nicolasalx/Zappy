@@ -78,22 +78,28 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
     if (!window.isOpen()) {
         return;
     }
-    // const Gui::Event &eventList = this->getEvent();
+    const Gui::Event &eventList = this->getEvent();
     window.clear();
     window.draw(sprite);
     this->map->render(gameData, window);
     this->object->render(gameData, window);
     this->egg->render(gameData, window);
     this->player->render(gameData, window);
-    // std::cout << "1\n";
     this->textBoxList->drawAllTextBoxs(window, font, gameData);
-    // std::cout << "fix\n";
-    // if (std::find(eventList.eventType.begin(), eventList.eventType.end(), Gui::EventType::LEFT_CLICK) != eventList.eventType.end()) {
-    //     sf::Vector2i cell = getClickedCase(gameData, eventList.mouse.x, eventList.mouse.y);
-    //     if (cell.x != -1 && cell.y != -1) {
-    //         std::cout << "Case clicked: (" << cell.x << ", " << cell.y << ")\n";
-    //     }
-    // }
+    if (std::find(eventList.eventType.begin(), eventList.eventType.end(), Gui::EventType::LEFT_CLICK) != eventList.eventType.end()) {
+        sf::Vector2i cell = getClickedCase(gameData, eventList.mouse.x, eventList.mouse.y);
+        if (cell.x != -1 && cell.y != -1) {
+            addText(_gameData->textBox[2], 0, "Tile: (" + std::to_string(cell.x) + ", " + std::to_string(cell.y) + ")");
+            addText(_gameData->textBox[2], 1, "Food: " + std::to_string(_gameData->objectPos[cell.y][cell.x][FOOD]));
+            addText(_gameData->textBox[2], 2, "Linemate: " + std::to_string(_gameData->objectPos[cell.y][cell.x][LINEMATE]));
+            addText(_gameData->textBox[2], 3, "Deraumere: " + std::to_string(_gameData->objectPos[cell.y][cell.x][DERAUMERE]));
+            addText(_gameData->textBox[2], 4, "Sibur: " + std::to_string(_gameData->objectPos[cell.y][cell.x][SIBUR]));
+            addText(_gameData->textBox[2], 5, "Mendiane: " + std::to_string(_gameData->objectPos[cell.y][cell.x][MENDIANE]));
+            addText(_gameData->textBox[2], 6, "Phiras: " + std::to_string(_gameData->objectPos[cell.y][cell.x][PHIRAS]));
+            addText(_gameData->textBox[2], 7, "Thystame: " + std::to_string(_gameData->objectPos[cell.y][cell.x][THYSTAME]));
+            std::cout << "Case clicked: (" << cell.x << ", " << cell.y << ")\n";
+        }
+    }
     window.display();
 }
 
