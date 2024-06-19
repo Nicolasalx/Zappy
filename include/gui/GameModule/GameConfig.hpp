@@ -54,6 +54,8 @@ namespace Gui
 
     constexpr double sizeFontTextMenu = 0.05;
     constexpr std::string_view MENU_MARS_MODEL = "menu_scene.glb";
+    constexpr std::string_view SPACE_TEXTURE = "bonus/assets/texture_space.png";
+    constexpr std::string_view ZAPPY_LOGO = "bonus/assets/zappy_logo.png";
 
     constexpr std::string_view SOUND_GAME = "./bonus/song/kids.wav";
     constexpr std::string_view SOUND_ENDGAME = "./bonus/song/zappy_end_song.wav";
