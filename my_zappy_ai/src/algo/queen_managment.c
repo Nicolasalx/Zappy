@@ -29,7 +29,13 @@ void queen_create_child(client_t *client)
 
 void queen_incantation(client_t *client)
 {
-    push_new_command(client, BROADCAST, "Broadcast I'm here\n");
+    char message[100] = "I'm here";
+    char buffer[100] = {0};
+
+    time(NULL);
+    encrypt_message(message, (rand() + 33) % 127);
+    snprintf(buffer, 111, "Broadcast %s\n", message);
+    push_new_command(client, BROADCAST, buffer);
     push_new_command(client, INCANTATION, "Incantation\n");
     push_new_command(client, TAKE, "Take food\n");
     push_new_command(client, TAKE, "Take food\n");
