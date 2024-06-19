@@ -10,6 +10,7 @@
 void Gui::PlayerParser::forwardReply(std::string args)
 {
     if (args == "ok\n") {
+        std::cout << "ANIMATION FORWARD\n";
         // go forward
     }
 }

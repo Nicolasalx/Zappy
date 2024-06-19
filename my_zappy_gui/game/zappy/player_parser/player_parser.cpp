@@ -9,6 +9,8 @@
 
 Gui::PlayerParser::PlayerParser(std::shared_ptr<GameData> gameData) : _gameData(gameData)
 {
+    this->_sendedMessage = std::make_shared<std::queue<Gui::PlayerCmd>>();
+
     _replyHandler.emplace(Gui::PlayerCmd::WELCOME, [this](std::string) {});
     _replyHandler.emplace(Gui::PlayerCmd::CLIENT_NUM, [this](std::string) {});
     _replyHandler.emplace(Gui::PlayerCmd::MAP_SIZE, [this](std::string args) { this->mapSizeReply(args); });
@@ -25,9 +27,14 @@ Gui::PlayerParser::PlayerParser(std::shared_ptr<GameData> gameData) : _gameData(
     _replyHandler.emplace(Gui::PlayerCmd::SET, [this](std::string args) { this->setReply(args); });
     _replyHandler.emplace(Gui::PlayerCmd::INCANTATION, [this](std::string args) { this->incantationReply(args); });
 
-    this->_sendedMessage.push(Gui::PlayerCmd::WELCOME);
-    this->_sendedMessage.push(Gui::PlayerCmd::CLIENT_NUM);
-    this->_sendedMessage.push(Gui::PlayerCmd::MAP_SIZE);
+    this->_sendedMessage->push(Gui::PlayerCmd::WELCOME);
+    this->_sendedMessage->push(Gui::PlayerCmd::CLIENT_NUM);
+    this->_sendedMessage->push(Gui::PlayerCmd::MAP_SIZE);
+}
+
+std::shared_ptr<std::queue<Gui::PlayerCmd>> Gui::PlayerParser::getSendedMessage()
+{
+    return this->_sendedMessage;
 }
 
 void Gui::PlayerParser::update(std::vector<std::string> &messRecv)
@@ -55,11 +62,11 @@ void Gui::PlayerParser::parse_server_reply(std::string reply_data)
     } else if (reply_data == "Elevation underway\n") {
 
     } else {
-        if (this->_sendedMessage.empty()) {
+        if (this->_sendedMessage->empty()) {
             std::cout << "[WARNING] ignored message: " << reply_data;
             return;
         }
-        this->_replyHandler.at(this->_sendedMessage.front())(reply_data);
-        this->_sendedMessage.pop();
+        this->_replyHandler.at(this->_sendedMessage->front())(reply_data);
+        this->_sendedMessage->pop();
     }
 }

@@ -181,18 +181,6 @@ void Gui::TextBox::updateButtonNextDisp(const Gui::Event &events)
     }
 }
 
-void Gui::TextBox::updatePlayerMode(const Gui::Event &events)
-{
-    for (auto &button: this->_gameData->playerMode.buttonPlayerMode) {
-        if (events.isKeyDown && this->isMouseOnBox(button.button, events.mouse) && button.actPlayer != NULL) {
-            button.button.color = RED_COLOR;
-            button.actPlayer();
-        } else {
-            button.button.color = WHITE_COLOR;
-        }
-    }
-}
-
 void Gui::TextBox::update(const Gui::Event &events)
 {
     updateGeneralInfo();
@@ -203,7 +191,6 @@ void Gui::TextBox::update(const Gui::Event &events)
     updateOneTileInfo();
     updateSlideBar(events);
     updateButtonNextDisp(events);
-    updatePlayerMode(events);
     for (auto &event : events.eventType) {
         if (event == Gui::EventType::WINDOW_RESIZED) {
             resize(_gameData->windowX, _gameData->windowY);
