@@ -9,6 +9,7 @@
 #include "RenderRayInfo.hpp"
 #include "RenderIsland.hpp"
 #include <raylib.h>
+#include <vector>
 
 void Gui::RenderRayInfo::selectEvent(const GameData &gameData, Camera3D camera)
 {
