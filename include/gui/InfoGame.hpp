@@ -220,7 +220,7 @@ namespace Gui
         ActionButtonPlayer actPlayer;
     };
 
-    struct PlayerMode {
+    struct DataPlayerMode {
         std::vector<ButtonPlayerMode> buttonPlayerMode;
     };
 

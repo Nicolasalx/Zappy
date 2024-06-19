@@ -31,9 +31,9 @@ namespace Gui
         Pos playerPos;
         RayInfoData rayInfo;
         DataMenu dataMenu;
-        InfoWindow infoWindow;
+        InfoWindow infoWindow; 
         InfoSlider infoSlider;
-        PlayerMode playerMode;
+        DataPlayerMode playerMode;
         bool ignoreKey;
     };
 }
