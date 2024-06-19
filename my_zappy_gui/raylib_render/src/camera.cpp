@@ -7,6 +7,7 @@
 
 #include "RenderCamera.hpp"
 #include "RenderIsland.hpp"
+#include "RenderEndGame.hpp"
 #include <complex>
 
 Gui::RenderCamera::RenderCamera()
@@ -31,7 +32,9 @@ void Gui::RenderCamera::handle_cursor()
 
 void Gui::RenderCamera::render(const GameData &gameData)
 {
-    if (gameData.playerList.size() == 0)
+    map_dimension.x = gameData.mapSize.x;
+    map_dimension.y = gameData.mapSize.y;
+    if (gameData.playerList.size() == 0 || Gui::RenderEndGame::_isEndGame)
         return;
     playerPos = gameData.playerList.at(0).pos;
 }
@@ -42,21 +45,32 @@ void Gui::RenderCamera::updatePlayerPos(Gui::Event &event)
     event.playerPos.y = this->_camera.position.z;
 }
 
+void Gui::RenderCamera::setPlayerEndGamePos(float x, float y, float z)
+{
+    if (Gui::RenderEndGame::_isEndGame) {
+        _x = x;
+        _y = y;
+        _z = z;
+    }
+}
+
 void Gui::RenderCamera::playerMode()
 {
-    _camera.target.x = playerPos.x * Gui::RenderIsland::map_scale;
-    _camera.target.z = playerPos.y * Gui::RenderIsland::map_scale;
-    if (sqrt(pow(_camera.position.x - playerPos.x * Gui::RenderIsland::map_scale, 2) + pow(_camera.position.z - playerPos.y * Gui::RenderIsland::map_scale, 2)) > 7.0f) {
-        if (_camera.position.x < playerPos.x * Gui::RenderIsland::map_scale)
-            _camera.position.x += abs(playerPos.x * Gui::RenderIsland::map_scale - _camera.position.x) / 3.0f;
-        if (_camera.position.x > playerPos.x * Gui::RenderIsland::map_scale)
-            _camera.position.x -= abs(playerPos.x * Gui::RenderIsland::map_scale - _camera.position.x) / 3.0f;
-        if (_camera.position.z < playerPos.y * Gui::RenderIsland::map_scale)
-            _camera.position.z += abs(playerPos.y * Gui::RenderIsland::map_scale - _camera.position.z) / 3.0f;
-        if (_camera.position.z > playerPos.y * Gui::RenderIsland::map_scale)
-            _camera.position.z -= abs(playerPos.y * Gui::RenderIsland::map_scale - _camera.position.z) / 3.0f;
+    if (IsCursorHidden()) {
+        _camera.target.x = playerPos.x * Gui::RenderIsland::map_scale;
+        _camera.target.z = playerPos.y * Gui::RenderIsland::map_scale;
+        if (sqrt(pow(_camera.position.x - playerPos.x * Gui::RenderIsland::map_scale, 2) + pow(_camera.position.z - playerPos.y * Gui::RenderIsland::map_scale, 2)) > 7.0f) {
+            if (_camera.position.x < playerPos.x * Gui::RenderIsland::map_scale)
+                _camera.position.x += abs(playerPos.x * Gui::RenderIsland::map_scale - _camera.position.x) / 3.0f;
+            if (_camera.position.x > playerPos.x * Gui::RenderIsland::map_scale)
+                _camera.position.x -= abs(playerPos.x * Gui::RenderIsland::map_scale - _camera.position.x) / 3.0f;
+            if (_camera.position.z < playerPos.y * Gui::RenderIsland::map_scale)
+                _camera.position.z += abs(playerPos.y * Gui::RenderIsland::map_scale - _camera.position.z) / 3.0f;
+            if (_camera.position.z > playerPos.y * Gui::RenderIsland::map_scale)
+                _camera.position.z -= abs(playerPos.y * Gui::RenderIsland::map_scale - _camera.position.z) / 3.0f;
+        }
+        UpdateCamera(&this->_camera, CAMERA_THIRD_PERSON);
     }
-    UpdateCamera(&this->_camera, CAMERA_THIRD_PERSON);
 }
 
 void Gui::RenderCamera::spectatorMode()
@@ -87,10 +101,71 @@ void Gui::RenderCamera::spectatorMode()
     }
 }
 
+void Gui::RenderCamera::spectatorTopMode()
+{
+    _camera.position.x = (map_dimension.x - 1) / 2.0f * Gui::RenderIsland::map_scale - 1;
+    _camera.position.y = 100.0f;
+    _camera.position.z = (map_dimension.x - 1) / 2.0f * Gui::RenderIsland::map_scale;
+    _camera.target.x = (map_dimension.x - 1) / 2.0f * Gui::RenderIsland::map_scale;
+    _camera.target.y = 0.0f;
+    _camera.target.z = (map_dimension.x - 1) / 2.0f * Gui::RenderIsland::map_scale;
+    _camera.fovy = Gui::RenderIsland::map_scale * 10.0f;
+}
+
+void Gui::RenderCamera::endGameMode()
+{
+    _camera.target.x = _x + 5 * Gui::RenderIsland::map_scale;
+    _camera.target.y = _y;
+    _camera.target.z = _z + 5 * Gui::RenderIsland::map_scale;
+    float distance = sqrt(pow(_camera.position.x - (_x + 5 * Gui::RenderIsland::map_scale), 2) + pow(_camera.position.z - (_z + 5 * Gui::RenderIsland::map_scale), 2)
+        + pow(_camera.position.y - (_y), 2));
+    if (distance > 50.0f) {
+        if (_camera.position.x < _x + 5.0f * Gui::RenderIsland::map_scale - 20)
+            _camera.position.x += distance * GetFrameTime();
+        if (_camera.position.x > _x + 5.0f * Gui::RenderIsland::map_scale + 20)
+            _camera.position.x -= distance * GetFrameTime();
+        if (_camera.position.z < _z + 5.0f * Gui::RenderIsland::map_scale)
+            _camera.position.z += distance * GetFrameTime();
+        if (_camera.position.z > _z + 5.0f * Gui::RenderIsland::map_scale)
+            _camera.position.z -= distance * GetFrameTime();
+        if (_camera.position.y < _y - 20)
+            _camera.position.y += distance * GetFrameTime();
+        if (_camera.position.y > _y + 20)
+            _camera.position.y -= distance * GetFrameTime();
+    }
+    UpdateCamera(&this->_camera, CAMERA_THIRD_PERSON);
+}
+
+void Gui::RenderCamera::changeSpectatorMode()
+{
+    if (IsKeyPressed(KEY_T)) {
+        if (!topViewMode) {
+            topViewMode = true;
+            _camera.position = (Vector3){ (map_dimension.x - 1) / 2.0f * Gui::RenderIsland::map_scale - 1, 100.0f, (map_dimension.x - 1) / 2.0f * Gui::RenderIsland::map_scale};
+            _camera.target = (Vector3){ (map_dimension.x - 1) / 2.0f * Gui::RenderIsland::map_scale, 0.0f, (map_dimension.x - 1) / 2.0f * Gui::RenderIsland::map_scale};
+            _camera.fovy = Gui::RenderIsland::map_scale * 10.0f;
+            _camera.projection = CAMERA_ORTHOGRAPHIC;
+        } else {
+            topViewMode = false;
+            this->_camera.position = (Vector3){ 0.0, 10.0, 0.0 };
+            this->_camera.target = (Vector3){ 50.0, 0.0, 50.0 };
+            _camera.fovy = 90.0f;
+            _camera.projection = CAMERA_PERSPECTIVE;
+        }
+    }
+}
+
 void Gui::RenderCamera::update(int state)
 {
     if (IsKeyPressed(KEY_F))
         ToggleFullscreen();
+
+    if (Gui::RenderEndGame::_isEndGame) {
+        endGameMode();
+        return;
+    }
+
+    changeSpectatorMode();
 
     if (state == IN_MENU && state == IN_SETTINGS)
         return;
@@ -99,6 +174,9 @@ void Gui::RenderCamera::update(int state)
         return;
     }
     if (state == IN_SPECTATOR_MODE || state == TRY_SPECTATOR_MODE) {
-        spectatorMode();
+        if (topViewMode)
+            spectatorTopMode();
+        else
+            spectatorMode();
     }
 }

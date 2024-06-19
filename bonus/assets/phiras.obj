@@ -1,6 +1,6 @@
 # Blender 3.6.5
 # www.blender.org
-mtllib phiras.mtl
+# mtllib phiras.mtl
 o Sphere
 v -0.277415 1.238885 -0.581334
 v 0.268968 0.273630 -1.344715

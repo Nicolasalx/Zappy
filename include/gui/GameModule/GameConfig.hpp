@@ -56,6 +56,7 @@ namespace Gui
     constexpr std::string_view MENU_MARS_MODEL = "menu_scene.glb";
 
     constexpr std::string_view SOUND_GAME = "./bonus/song/kids.wav";
+    constexpr std::string_view SOUND_ENDGAME = "./bonus/song/zappy_end_song.wav";
 }
 
 #endif /* !GAMECONFIG_HPP_ */

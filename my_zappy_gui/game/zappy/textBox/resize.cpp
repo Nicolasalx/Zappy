@@ -57,6 +57,15 @@ void Gui::TextBox::resizeButtonNextDisp(int windowWidth, int windowHeight)
     this->_gameData->infoWindow.buttonNextDisplay.size = { windowWidth * this->_gameData->infoWindow.buttonNextDisplay.realSize.width, windowHeight * this->_gameData->infoWindow.buttonNextDisplay.realSize.height };
 }
 
+void Gui::TextBox::resizeButtonPlayerMode(int windowWidth, int windowHeight)
+{
+    for (auto &button: this->_gameData->playerMode.buttonPlayerMode) {
+        button.button.pos = { windowWidth * button.button.realPos.x, windowHeight * button.button.realPos.y };
+        button.button.size = { windowWidth * button.button.realSize.width, windowHeight * button.button.realSize.height };
+        button.text.pos = { windowWidth * button.text.realPos.x, windowHeight * button.text.realPos.y };
+    }
+}
+
 void Gui::TextBox::resize(int windowWidth, int windowHeight)
 {
     for (auto &box : _gameData->textBox) {
@@ -64,4 +73,5 @@ void Gui::TextBox::resize(int windowWidth, int windowHeight)
     }
     resizeSlideBar(windowWidth, windowHeight);
     resizeButtonNextDisp(windowWidth, windowHeight);
+    resizeButtonPlayerMode(windowWidth, windowHeight);
 }

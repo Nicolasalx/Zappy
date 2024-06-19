@@ -26,8 +26,13 @@ void Gui::Raylib::renderGame(const Gui::GameData &gameData)
 
 void Gui::Raylib::handleSoundSystem(const Gui::GameData &gameData)
 {
-    if (!IsSoundPlaying(this->window._soundGame)) {
+    if (!IsSoundPlaying(this->window._soundGame) && !Gui::RenderEndGame::_isEndGame && !Gui::RenderEndGame::_isGameFinished) {
+        StopSound(this->window._soundEndGame);
         PlaySound(this->window._soundGame);
+    }
+    if (!IsSoundPlaying(this->window._soundEndGame) && Gui::RenderEndGame::_isEndGame) {
+        StopSound(this->window._soundGame);
+        PlaySound(this->window._soundEndGame);
     }
     SetSoundVolume(this->window._soundGame, static_cast<float>(gameData.infoWindow.volume) / 100.0f);
 }

@@ -32,7 +32,7 @@ Gui::RenderSkyBox::~RenderSkyBox()
 
 void Gui::RenderSkyBox::render()
 {
-    ClearBackground(RAYWHITE);
+    ClearBackground(BLACK);
     rlDisableBackfaceCulling();
     rlDisableDepthMask();
         DrawModel(model, (Vector3){0, 0, 0}, 1.0, WHITE);
