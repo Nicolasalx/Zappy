@@ -17,7 +17,14 @@ Gui::RenderMenu::RenderMenu()
     this->addModel(Gui::EARTH_MODEL.data(), Gui::CLOUD_TEXTURE.data());
     Image image = LoadImage(Gui::MENU_ISLAND.data());
     menuIsland = LoadTextureFromImage(image);
+    Image image2 = LoadImage(Gui::SPACE_TEXTURE.data());
+    spaceTexture = LoadTextureFromImage(image2);
+    Image image3 = LoadImage(Gui::ZAPPY_LOGO.data());
+    zappyLogo = LoadTextureFromImage(image3);
+
     UnloadImage(image);
+    UnloadImage(image2);
+    UnloadImage(image3);
 }
 
 void Gui::RenderMenu::renderOneComponent(const Gui::Component &component)
@@ -39,6 +46,8 @@ void Gui::RenderMenu::renderOneComponent(const Gui::Component &component)
 
 void Gui::RenderMenu::render3DModel(Camera3D camera)
 {
+    DrawTextureEx(spaceTexture, (Vector2){0, 0}, 0, 0.35f, WHITE);
+    DrawTextureEx(zappyLogo, (Vector2){1250, 70}, 0, 0.8f, WHITE);
     BeginMode3D(camera);
     this->drawModel((Gui::ModelInfo){0,
         {float(1.4 + std::cos(earthRotation / 2.0) / 100.0), 9.75, float(0.7 - std::cos(earthRotation / 2.0) / 100.0)},
