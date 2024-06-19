@@ -58,12 +58,13 @@ namespace Gui
             void takeReply(std::string args);
             void setReply(std::string args);
             void incantationReply(std::string args);
+            std::shared_ptr<std::queue<Gui::PlayerCmd>> getSendedMessage();
 
             void parse_server_reply(std::string reply_data);
             void update(std::vector<std::string> &messRecv);
 
         private:
-            std::queue<Gui::PlayerCmd> _sendedMessage;
+            std::shared_ptr<std::queue<Gui::PlayerCmd>> _sendedMessage;
             std::shared_ptr<GameData> _gameData;
             std::map<Gui::PlayerCmd, std::function<void(std::string)>> _replyHandler;
     };
