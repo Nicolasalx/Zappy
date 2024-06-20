@@ -111,7 +111,7 @@ void Gui::Core::handleGameState(Gui::GameData &gameData)
     if (this->gameData->dataMenu.stateGame == TRY_PLAYER_MODE) {
         try {
             this->clientModule->connect(this->ip, this->port);
-            this->clientModule->send("Team1\n"); // ! to change
+            this->clientModule->send(gameData.dataMenu.dataConnection.teamName);
         } catch(...) {
             // dispay red message
             this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
