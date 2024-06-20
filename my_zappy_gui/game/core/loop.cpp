@@ -96,11 +96,11 @@ void Gui::Core::handleGameState()
     if (this->gameData->dataMenu.stateGame == TRY_SPECTATOR_MODE) {
         try {
             this->clientModule->connect(
-                !gameData.dataMenu.dataConnection.ip.empty() ? gameData.dataMenu.dataConnection.ip : this->ip,
-                !gameData.dataMenu.dataConnection.port.empty() ? gameData.dataMenu.dataConnection.port : this->port
+                !this->gameData->dataMenu.dataConnection.ip.empty() ? gameData->dataMenu.dataConnection.ip : this->ip,
+                !gameData->dataMenu.dataConnection.port.empty() ? gameData->dataMenu.dataConnection.port : this->port
             );
             this->clientModule->send("GRAPHIC\n");
-        } catch(...) {
+        } catch (const std::exception &e) {
             // dispay red message
             this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
             return;
@@ -110,8 +110,8 @@ void Gui::Core::handleGameState()
     if (this->gameData->dataMenu.stateGame == TRY_PLAYER_MODE) {
         try {
             this->clientModule->connect(this->ip, this->port);
-            this->clientModule->send(gameData.dataMenu.dataConnection.teamName);
-        } catch(...) {
+            this->clientModule->send(gameData->dataMenu.dataConnection.teamName);
+        } catch (const std::exception &e) {
             // dispay red message
             this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
             return;
