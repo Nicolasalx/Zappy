@@ -55,6 +55,8 @@ void Gui::TextBox::resizeButtonNextDisp(int windowWidth, int windowHeight)
 {
     this->_gameData->infoWindow.buttonNextDisplay.pos = { windowWidth * this->_gameData->infoWindow.buttonNextDisplay.realPos.x, windowHeight * this->_gameData->infoWindow.buttonNextDisplay.realPos.y };
     this->_gameData->infoWindow.buttonNextDisplay.size = { windowWidth * this->_gameData->infoWindow.buttonNextDisplay.realSize.width, windowHeight * this->_gameData->infoWindow.buttonNextDisplay.realSize.height };
+
+    this->_gameData->infoWindow.textButtonNextDisp.pos = { windowWidth * this->_gameData->infoWindow.textButtonNextDisp.realPos.x, windowHeight * this->_gameData->infoWindow.textButtonNextDisp.realPos.y };
 }
 
 void Gui::TextBox::resize(int windowWidth, int windowHeight)
