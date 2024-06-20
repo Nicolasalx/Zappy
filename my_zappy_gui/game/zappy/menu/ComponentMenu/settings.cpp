@@ -10,13 +10,13 @@
 
 void Gui::Menu::textSettings()
 {
-    addText(Text("Settings", {0.1, 0.1}, sizeFontTextMenu, WHITE_COLOR));
+    addText(Text{ .contentText = "Settings", .pos = {0.1, 0.1}, .realPos = {0.1, 0.1}, .fontSize = sizeFontTextMenu, .color = WHITE_COLOR});
     addComponent(MODIFY_SETTINGS);
 
-    addText(Text("Resolution", {0.2, 0.37}, sizeFontTextMenu, WHITE_COLOR));
+    addText(Text{ .contentText = "Resolution", .pos = {0.2, 0.37}, .realPos = {0.2, 0.37}, .fontSize = sizeFontTextMenu, .color = WHITE_COLOR});
     addComponent(MODIFY_SETTINGS);
 
-    addText(Text("Volume", {0.2, 0.57}, sizeFontTextMenu, WHITE_COLOR));
+    addText(Text{ .contentText = "Volume", .pos = {0.2, 0.57}, .realPos = {0.2, 0.57}, .fontSize = sizeFontTextMenu, .color = WHITE_COLOR});
     addComponent(MODIFY_SETTINGS);
 
     addTriangle(Pos(0.4, 0.4), MODIFY_RESOLUTION);

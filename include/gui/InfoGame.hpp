@@ -10,6 +10,7 @@
 
     #include <iostream>
     #include <vector>
+    #include <functional>
 
 namespace Gui
 {
@@ -114,6 +115,7 @@ namespace Gui
     struct Text {
         std::string contentText;
         Pos pos;
+        Pos realPos;
         double fontSize;
         GameColor color;
     };
@@ -161,6 +163,12 @@ namespace Gui
         IN_LEAVE
     };
 
+    enum SizeButton {
+        BIG,
+        MIDDLE,
+        LITTLE
+    };
+
     enum CursorState {
         DEFAULT,
         SELECTIONNED
@@ -201,6 +209,19 @@ namespace Gui
 
         Size resolution;
         int volume;
+    };
+
+    typedef std::function<void()> ActionButtonPlayer;
+
+    struct ButtonPlayerMode {
+        BoxOpt button;
+        Text text;
+
+        ActionButtonPlayer actPlayer;
+    };
+
+    struct PlayerMode {
+        std::vector<ButtonPlayerMode> buttonPlayerMode;
     };
 
     struct InfoSlider {

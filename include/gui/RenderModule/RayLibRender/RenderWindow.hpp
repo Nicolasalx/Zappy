@@ -22,6 +22,7 @@ namespace Gui
             Size windowSize;
             bool launched;
             Sound _soundGame;
+            Sound _soundEndGame;
         private:
     };
 }

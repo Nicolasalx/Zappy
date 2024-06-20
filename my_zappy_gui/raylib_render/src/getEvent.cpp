@@ -91,6 +91,9 @@ Gui::Event Gui::Raylib::getEvent()
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         event.eventType.push_back(Gui::EventType::LEFT_CLICK);
     }
+    if (IsKeyPressed(KEY_C)) {
+        Gui::RenderEndGame::_isEndGame = true;
+    }
     event.mouse.x = GetMouseX();
     event.mouse.y = GetMouseY();
     event.windowSize.width = window.windowSize.width;
@@ -103,5 +106,8 @@ Gui::Event Gui::Raylib::getEvent()
     this->camera.updatePlayerPos(event);
 
     this->rayInfo->addRayToEvent(event);
+
+    this->camera.setPlayerEndGamePos(this->endGame->x,
+    this->endGame->y, this->endGame->z);
     return event;
 }

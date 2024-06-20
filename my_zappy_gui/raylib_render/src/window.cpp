@@ -17,7 +17,7 @@ Gui::RenderWindow::RenderWindow()
     launched = false;
     InitAudioDevice();
     this->_soundGame = LoadSound(Gui::SOUND_GAME.data());
-    PlaySound(this->_soundGame);
+    this->_soundEndGame = LoadSound(Gui::SOUND_ENDGAME.data());
 }
 
 Gui::RenderWindow::~RenderWindow()

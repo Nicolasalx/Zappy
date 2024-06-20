@@ -15,7 +15,7 @@ void Gui::Menu::addBox(const Box &box, const std::string &contentText)
     this->_component.stockStartData.box = this->_component.box;
 
     double startTextPosX = (box.width - (contentText.size() * 0.02)) / 2;
-    addText(Text(contentText, { box.x + startTextPosX , box.y + 0.03 }, sizeFontTextMenu, WHITE_COLOR));
+    addText(Text{.contentText = contentText, .pos = { box.x + (float) startTextPosX , box.y + 0.03f }, .realPos = {0.1, 0.1}, .fontSize = sizeFontTextMenu, .color = WHITE_COLOR});
 }
 
 void Gui::Menu::addText(const Text &text)
@@ -60,9 +60,9 @@ void Gui::Menu::addTriangle(Pos startPosTriangleLeft, ComponentType cmpType)
     this->_component.settingsComponent.triangleRight.color = BLUE_COLOR;
 
     if (cmpType == MODIFY_VOLUME) {
-        addText(Text(std::to_string(this->_gameData->infoWindow.volume) + " %", {0.6, 0.57}, 0.1, WHITE_COLOR));
+        addText(Text{.contentText = std::to_string(this->_gameData->infoWindow.volume) + " %", .pos = {0.6, 0.57}, .realPos = {0.6, 0.57}, .fontSize = 0.1, .color = WHITE_COLOR});
     } else {
-        addText(Text(_optionResolution.at(0).resText, {0.53, 0.36}, 0.1, WHITE_COLOR));
+        addText(Text{.contentText = _optionResolution.at(0).resText, .pos = {0.53, 0.36}, .realPos = {0.53, 0.36}, .fontSize = 0.1, .color = WHITE_COLOR});
     }
 }
 
