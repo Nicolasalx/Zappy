@@ -45,7 +45,7 @@ namespace Gui
             PlayerParser(std::shared_ptr<GameData> gameData);
             ~PlayerParser() = default;
 
-            void clientNumReply(std::string args, std::queue<Gui::PlayerCmd> &messageQueue);
+            void clientNumReply(std::string args);
             void mapSizeReply(std::string args);
             void forwardReply(std::string args);
             void rightReply(std::string args);
