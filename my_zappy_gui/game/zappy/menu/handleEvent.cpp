@@ -53,17 +53,27 @@ bool Gui::Menu::isButtonPressed(const Gui::Event &event, const Gui::EventType &e
 
 void Gui::Menu::checkMouseState(const Gui::Event &event, Component &component)
 {
-    if (this->_gameData->ignoreKey && component.componentType == INPUT_BOX_IP) {
-        component.text.contentText = event.buffer;
-    }
     if (!isButtonPressed(event, Gui::EventType::LEFT_CLICK)) {
         return;
+    }
+    if (component.componentType == INPUT_BOX_IP) {
+        this->_gameData->dataMenu.cursorState = SELECTIONNED;
+        this->_gameData->ignoreKey = true;
     }
     if (component.componentType == SPECTATOR_MODE) {
         this->_gameData->dataMenu.stateGame = TRY_SPECTATOR_MODE;
     } else if (component.componentType == INPUT_BOX_IP) {
         this->_gameData->dataMenu.cursorState = SELECTIONNED;
         this->_gameData->ignoreKey = true;
+        this->_gameData->dataMenu.inputSelect = IP;
+    } else if (component.componentType == INPUT_PORT) {
+        this->_gameData->dataMenu.cursorState = SELECTIONNED;
+        this->_gameData->ignoreKey = true;
+        this->_gameData->dataMenu.inputSelect = PORT;
+    } else if (component.componentType == INPUT_TEAM_NAME) {
+        this->_gameData->dataMenu.cursorState = SELECTIONNED;
+        this->_gameData->ignoreKey = true;
+        this->_gameData->dataMenu.inputSelect = TEAM_NAME;
     } else if (component.componentType == PLAYER_MODE) {
         this->_gameData->dataMenu.stateGame = TRY_PLAYER_MODE;
     } else if (component.componentType == SETTINGS) {
@@ -72,10 +82,8 @@ void Gui::Menu::checkMouseState(const Gui::Event &event, Component &component)
         this->_gameData->dataMenu.stateGame = IN_LEAVE;
     } else if (component.componentType == GO_BACK_TO_MENU) {
         this->_gameData->dataMenu.stateGame = IN_MENU;
-    } else {
-        this->_gameData->dataMenu.cursorState = DEFAULT;
-        this->_gameData->ignoreKey = false;
     }
+    _cmpSelectionned = component.componentType;
 }
 
 void Gui::Menu::handleEventSettings(Component &component, const Gui::Event &event)
@@ -116,24 +124,31 @@ void Gui::Menu::handleEventSettings(Component &component, const Gui::Event &even
 
 void Gui::Menu::handleEvent(const Gui::Event &event)
 {
+    bool enterInAComponent = false;
+
     for (auto &component: this->_gameData->dataMenu.componentList) {
         if (isMouseOnBox(component.box, event.mouse)) {
             component.box.color = RED_COLOR;
             checkMouseState(event, component);
+            enterInAComponent = true;
         } else if (component.componentType == MODIFY_RESOLUTION || component.componentType == MODIFY_VOLUME) {
             handleEventSettings(component, event);
+            enterInAComponent = true;
         } else {
             component.box.color = WHITE_COLOR;
         }
-    }
-
-    for (const auto &evt : event.eventType) {
-        switch (evt) {
-            case Gui::EventType::KEY_M:
-                this->_gameData->dataMenu.stateGame = IN_MENU;
-                break;
-            default:
-                break;
+        if (this->_gameData->ignoreKey && _cmpSelectionned == component.componentType) {
+            if (component.componentType == INPUT_BOX_IP) {
+                component.text.contentText = event.bufferIP;
+            } else if (component.componentType == INPUT_PORT) {
+                component.text.contentText = event.bufferPort;
+            } else if (component.componentType == INPUT_TEAM_NAME) {
+                component.text.contentText = event.bufferTeamName;
+            }
         }
+    }
+    if (!enterInAComponent && isButtonPressed(event, Gui::EventType::LEFT_CLICK) && (_cmpSelectionned == INPUT_BOX_IP || _cmpSelectionned == INPUT_PORT || _cmpSelectionned == INPUT_TEAM_NAME)) {
+        this->_gameData->dataMenu.cursorState = DEFAULT;
+        this->_gameData->ignoreKey = false;
     }
 }
