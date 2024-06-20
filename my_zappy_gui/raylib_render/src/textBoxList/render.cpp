@@ -62,6 +62,7 @@ void Gui::RenderTextBoxList::renderButtonNextDisp(const GameData &gameData)
     color.a = 255;
     DrawRectangleLinesEx(box, 1, color);
     this->_changeDisplayLib = gameData.infoWindow.changeDisplayLib;
+    DrawText(gameData.infoWindow.textButtonNextDisp.contentText.c_str(), gameData.infoWindow.textButtonNextDisp.pos.x, gameData.infoWindow.textButtonNextDisp.pos.y, gameData.infoWindow.textButtonNextDisp.fontSize, Gui::RenderColor::getColorFromGame(gameData.infoWindow.textButtonNextDisp.color));
 }
 
 void Gui::RenderTextBoxList::render(const GameData &gameData)
