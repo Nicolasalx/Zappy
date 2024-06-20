@@ -73,7 +73,7 @@ void Gui::RenderMenu::render(const GameData &gameData)
     this->stateGame = gameData.dataMenu.stateGame;
     this->inputSelect = gameData.dataMenu.inputSelect;
 
-    if (gameData.dataMenu.cursorState == SELECTIONNED) {
+    if (gameData.dataMenu.cursorState == SELECTIONNED && gameData.dataMenu.stateGame == IN_MENU) {
         SetMouseCursor(MOUSE_CURSOR_IBEAM);
     } else {
         SetMouseCursor(MOUSE_CURSOR_DEFAULT);

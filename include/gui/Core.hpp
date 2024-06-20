@@ -41,6 +41,7 @@ namespace Gui
             bool eventContain(const Gui::Event &eventList, const Gui::EventType &eventType);
             bool handleCoreEvent(const Gui::Event &eventList);
             void handleGameState();
+            std::vector<std::string> recvMessages();
 
             std::shared_ptr<Gui::IRenderModule> renderModule;
             std::shared_ptr<Gui::IClient> clientModule;
@@ -54,6 +55,8 @@ namespace Gui
 
             std::string port = "4242";
             std::string ip = "127.0.0.1";
+
+            bool _isConnectedToServer = false;
 
             bool displayType;
     };

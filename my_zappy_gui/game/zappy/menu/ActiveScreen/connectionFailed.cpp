@@ -11,6 +11,7 @@ void Gui::Menu::screenConnectionFailed()
 {
     if (_oldState != this->_gameData->dataMenu.stateGame) {
         this->_gameData->dataMenu.componentList.clear();
+        this->_gameData->dataMenu.componentsTitle.clear();
         announceRetry();
         goBackToTheMenu();
         _oldState = this->_gameData->dataMenu.stateGame;

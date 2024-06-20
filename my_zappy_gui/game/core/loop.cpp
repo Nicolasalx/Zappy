@@ -100,8 +100,9 @@ void Gui::Core::handleGameState()
                 !gameData->dataMenu.dataConnection.port.empty() ? gameData->dataMenu.dataConnection.port : this->port
             );
             this->clientModule->send("GRAPHIC\n");
-        } catch (const std::exception &e) {
-            // dispay red message
+            _isConnectedToServer = true;
+        } catch (...) {
+            std::cerr << "An unknown error occurred." << std::endl;
             this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
             return;
         }
@@ -109,15 +110,30 @@ void Gui::Core::handleGameState()
     }
     if (this->gameData->dataMenu.stateGame == TRY_PLAYER_MODE) {
         try {
-            this->clientModule->connect(this->ip, this->port);
+            this->clientModule->connect(
+                !this->gameData->dataMenu.dataConnection.ip.empty() ? gameData->dataMenu.dataConnection.ip : this->ip,
+                !gameData->dataMenu.dataConnection.port.empty() ? gameData->dataMenu.dataConnection.port : this->port
+            );
             this->clientModule->send(gameData->dataMenu.dataConnection.teamName);
-        } catch (const std::exception &e) {
-            // dispay red message
+            _isConnectedToServer = true;
+        } catch (...) {
+            std::cerr << "An unknown error occurred." << std::endl;
             this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
             return;
         }
         this->gameData->dataMenu.stateGame = IN_PLAYER_MODE;
     }
+}
+
+std::vector<std::string> Gui::Core::recvMessages()
+{
+    std::vector<std::string> messages;
+    try {
+        messages = this->clientModule->recv();
+    } catch (...) {
+        this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
+    }
+    return messages;
 }
 
 void Gui::Core::loop()
@@ -126,8 +142,11 @@ void Gui::Core::loop()
 
     while (true) {
         Gui::FrameRate::start();
+        std::vector<std::string> messRecv;
 
-        std::vector<std::string> messRecv = this->clientModule->recv();
+        if (_isConnectedToServer) {
+            messRecv = recvMessages();
+        }
         const Gui::Event &eventList = this->renderModule->getEvent();
 
         if (handleCoreEvent(eventList)) {
