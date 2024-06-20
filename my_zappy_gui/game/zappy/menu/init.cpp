@@ -16,6 +16,7 @@ Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData): _gameData(gameData)
     componentQuit();
     inputBoxIP();
     inputBoxPort();
+    inputBoxTeamName();
     this->_gameData->infoWindow.resolution = {WINDOW_WIDTH, WINDOW_HEIGHT};
     this->_gameData->infoWindow.volume = 10;
 }
