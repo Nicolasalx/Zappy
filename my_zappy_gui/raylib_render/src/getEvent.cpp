@@ -7,7 +7,7 @@
 
 #include "Raylib.hpp"
 
-void Gui::Raylib::putEventInBuffer(Gui::Event &event)
+void Gui::Raylib::putEventInBuffer(Gui::Event &event, std::string &bufferToFill)
 {
     int charPressed = GetCharPressed();
 
@@ -17,12 +17,12 @@ void Gui::Raylib::putEventInBuffer(Gui::Event &event)
     if (IsKeyPressed(KEY_ENTER)) {
         event.eventType.push_back(Gui::EventType::ENTER);
     } else if (charPressed == 61) {
-        if (!_event.buffer.empty()) {
-            _event.buffer.pop_back();
+        if (!bufferToFill.empty()) {
+            bufferToFill.pop_back();
             event.eventType.push_back(Gui::EventType::BACK_SPACE);
         }
     } else {
-        _event.buffer += (char) charPressed;
+        bufferToFill += (char) charPressed;
     }
 }
 
@@ -35,14 +35,54 @@ void Gui::Raylib::putEventInEventList(Gui::Event &event)
     }
 }
 
+void Gui::Raylib::handleKeyEvent(Gui::Event event)
+{
+    if (IsKeyPressed(KEY_M)) {
+        event.eventType.push_back(Gui::EventType::KEY_M);
+    }
+    if (IsKeyPressed(KEY_N)) {
+        event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
+    }
+    if (IsKeyPressed(KEY_I)) {
+        event.eventType.push_back(Gui::EventType::KEY_I);
+    }
+    if (IsKeyPressed(KEY_O)) {
+        event.eventType.push_back(Gui::EventType::KEY_O);
+    }
+    if (IsKeyPressed(KEY_C)) {
+        Gui::RenderEndGame::_isEndGame = true;
+    }
+    if (IsKeyPressed(KEY_F))
+        ToggleFullscreen();
+}
+
 void Gui::Raylib::getKeyEvent(Gui::Event &event)
 {
+    std::string bufferToFill;
+
+    if (this->menu.inputSelect == IP) {
+        bufferToFill = this->_event.bufferIP;
+    } else if (this->menu.inputSelect == PORT) {
+        bufferToFill = this->_event.bufferPort;
+    } else if (this->menu.inputSelect == TEAM_NAME) {
+        bufferToFill = this->_event.bufferTeamName;
+    }
     if (this->_ignoreKey) {
-        this->putEventInBuffer(event);
+        this->putEventInBuffer(event, bufferToFill);
     } else {
         this->putEventInEventList(event);
+        handleKeyEvent(event);
     }
-    event.buffer = this->_event.buffer;
+    if (this->menu.inputSelect == IP) {
+        _event.bufferIP = bufferToFill;
+        event.bufferIP = bufferToFill;
+    } else if (this->menu.inputSelect == PORT) {
+        _event.bufferPort = bufferToFill;
+        event.bufferPort = bufferToFill;
+    } else if (this->menu.inputSelect == TEAM_NAME) {
+        _event.bufferTeamName = bufferToFill;
+        event.bufferTeamName = bufferToFill;
+    }
 }
 
 Gui::Event Gui::Raylib::getEvent()
@@ -70,29 +110,15 @@ Gui::Event Gui::Raylib::getEvent()
     if (this->textBoxList->_changeDisplayLib) {
         event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
     }
+
     getKeyEvent(event);
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
         event.isKeyDown = true;
     } else {
         event.isKeyDown = false;
     }
-    if (IsKeyPressed(KEY_M)) {
-        event.eventType.push_back(Gui::EventType::KEY_M);
-    }
-    if (IsKeyPressed(KEY_N)) {
-        event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
-    }
-    if (IsKeyPressed(KEY_I)) {
-        event.eventType.push_back(Gui::EventType::KEY_I);
-    }
-    if (IsKeyPressed(KEY_O)) {
-        event.eventType.push_back(Gui::EventType::KEY_O);
-    }
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         event.eventType.push_back(Gui::EventType::LEFT_CLICK);
-    }
-    if (IsKeyPressed(KEY_C)) {
-        Gui::RenderEndGame::_isEndGame = true;
     }
     event.mouse.x = GetMouseX();
     event.mouse.y = GetMouseY();
