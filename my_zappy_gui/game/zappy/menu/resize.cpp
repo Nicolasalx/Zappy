@@ -35,4 +35,7 @@ void Gui::Menu::resize(const Gui::Event &event)
         component.settingsComponent.triangleRight.bottomLeftVertex = resizePosition(component.stockStartData.settingsComponent.triangleRight.bottomLeftVertex, event);
         component.settingsComponent.triangleRight.bottomRightVertex = resizePosition(component.stockStartData.settingsComponent.triangleRight.bottomRightVertex, event);
     }
+    for (auto &text: this->_gameData->dataMenu.componentsTitle) {
+        text.pos = { event.windowSize.width * text.realPos.x, event.windowSize.height * text.realPos.y };
+    }
 }

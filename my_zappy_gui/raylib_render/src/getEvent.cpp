@@ -54,6 +54,7 @@ void Gui::Raylib::handleKeyEvent(Gui::Event event)
     }
     if (IsKeyPressed(KEY_F))
         ToggleFullscreen();
+    this->camera.update(menu.stateGame);
 }
 
 void Gui::Raylib::getKeyEvent(Gui::Event &event)
@@ -128,7 +129,6 @@ Gui::Event Gui::Raylib::getEvent()
     this->island->changeIslandEvent();
 
     this->camera.handle_cursor();
-    this->camera.update(menu.stateGame);
     this->camera.updatePlayerPos(event);
 
     this->rayInfo->addRayToEvent(event);

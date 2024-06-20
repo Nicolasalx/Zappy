@@ -26,6 +26,7 @@ namespace Gui {
 
             StateGame stateGame = IN_MENU;
             bool needToResize = false;
+            InputSelectionned inputSelect = NO;
             Texture2D menuIsland;
             Texture2D spaceTexture;
             Texture2D zappyLogo;

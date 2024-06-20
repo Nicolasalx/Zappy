@@ -145,6 +145,8 @@ namespace Gui
         PLAYER_MODE,
         SPECTATOR_MODE,
         INPUT_BOX_IP,
+        INPUT_PORT,
+        INPUT_TEAM_NAME,
         ANNOUNCE_RETRY,
         GO_BACK_TO_MENU,
         MODIFY_SETTINGS,
@@ -187,10 +189,26 @@ namespace Gui
         ComponentType componentType;
     };
 
+    enum InputSelectionned {
+        NO,
+        IP,
+        PORT,
+        TEAM_NAME
+    };
+
+    struct DataConnection {
+        std::string ip;
+        std::string port;
+        std::string teamName;
+    };
+
     struct DataMenu {
         StateGame stateGame = IN_MENU;
         std::vector<Gui::Component> componentList;
         CursorState cursorState;
+        InputSelectionned inputSelect;
+        std::vector<Text> componentsTitle;
+        DataConnection dataConnection;
     };
 
     struct BoxOpt {

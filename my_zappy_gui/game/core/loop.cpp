@@ -95,7 +95,11 @@ void Gui::Core::handleGameState(Gui::GameData &gameData)
 {
     if (this->gameData->dataMenu.stateGame == TRY_SPECTATOR_MODE) {
         try {
-            this->clientModule->connect(this->ip, this->port);
+            this->clientModule->connect(
+                !gameData.dataMenu.dataConnection.ip.empty() ? gameData.dataMenu.dataConnection.ip : this->ip,
+                !gameData.dataMenu.dataConnection.port.empty() ? gameData.dataMenu.dataConnection.port : this->port
+            );
+            // this->clientModule->connect( si gameData.dataMenu.dataConnection.ip pas empty alors passer gameData.dataMenu.dataConnection.ip sinon: this->ip, this->port);
             this->clientModule->send("GRAPHIC\n");
         } catch(...) {
             // dispay red message

@@ -40,5 +40,12 @@ void Gui::Menu::inputBoxIP()
 
 void Gui::Menu::inputBoxPort()
 {
+    addBox({Box(0.55, 0.6, 0.4, 0.1, BLUE_COLOR)}, "");
+    addComponent(INPUT_PORT);
+}
 
+void Gui::Menu::inputBoxTeamName()
+{
+    addBox({Box(0.55, 0.8, 0.4, 0.1, BLUE_COLOR)}, "");
+    addComponent(INPUT_TEAM_NAME);
 }

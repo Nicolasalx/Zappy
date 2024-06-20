@@ -24,8 +24,6 @@ void Gui::Menu::addText(const Text &text)
     this->_component.stockStartData.text = text;
 }
 
-#include <map>
-
 void Gui::Menu::addTriangle(Pos startPosTriangleLeft, ComponentType cmpType)
 {
     Triangle triangleLeft;

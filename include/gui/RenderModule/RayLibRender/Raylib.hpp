@@ -40,8 +40,10 @@ namespace Gui
 
             void getKeyEvent(Gui::Event &event);
 
-            void putEventInBuffer(Gui::Event &event);
+            void putEventInBuffer(Gui::Event &event, std::string &bufferToFill);
             void putEventInEventList(Gui::Event &event);
+
+            void handleKeyEvent(Gui::Event event);
 
         private:
             std::vector<std::pair<KeyboardKey, Gui::EventType>> _keyBind = {

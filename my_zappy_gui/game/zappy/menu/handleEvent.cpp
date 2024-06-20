@@ -140,10 +140,17 @@ void Gui::Menu::handleEvent(const Gui::Event &event)
         if (this->_gameData->ignoreKey && _cmpSelectionned == component.componentType) {
             if (component.componentType == INPUT_BOX_IP) {
                 component.text.contentText = event.bufferIP;
+                if (event.bufferIP == "localhost") {
+                    this->_gameData->dataMenu.dataConnection.ip = "127.0.0.1";
+                } else {
+                    this->_gameData->dataMenu.dataConnection.ip = event.bufferIP;
+                }
             } else if (component.componentType == INPUT_PORT) {
                 component.text.contentText = event.bufferPort;
+                this->_gameData->dataMenu.dataConnection.port = event.bufferPort;
             } else if (component.componentType == INPUT_TEAM_NAME) {
                 component.text.contentText = event.bufferTeamName;
+                this->_gameData->dataMenu.dataConnection.teamName = event.bufferTeamName;
             }
         }
     }

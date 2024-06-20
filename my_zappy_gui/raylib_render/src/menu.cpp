@@ -71,6 +71,7 @@ void Gui::RenderMenu::render3DModel(Camera3D camera)
 void Gui::RenderMenu::render(const GameData &gameData)
 {
     this->stateGame = gameData.dataMenu.stateGame;
+    this->inputSelect = gameData.dataMenu.inputSelect;
 
     if (gameData.dataMenu.cursorState == SELECTIONNED) {
         SetMouseCursor(MOUSE_CURSOR_IBEAM);
@@ -79,6 +80,9 @@ void Gui::RenderMenu::render(const GameData &gameData)
     }
     for (auto &item: gameData.dataMenu.componentList) {
         renderOneComponent(item);
+    }
+    for (auto &text: gameData.dataMenu.componentsTitle) {
+        DrawText(text.contentText.c_str(), text.pos.x, text.pos.y, text.fontSize, Gui::RenderColor::getColorFromGame(text.color));
     }
 }
 

@@ -162,8 +162,6 @@ void Gui::RenderCamera::update(int state)
         return;
     }
 
-    changeSpectatorMode();
-
     if (state == IN_MENU && state == IN_SETTINGS)
         return;
     if (state == IN_PLAYER_MODE || state == TRY_PLAYER_MODE) {

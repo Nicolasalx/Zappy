@@ -17,6 +17,9 @@ Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData): _gameData(gameData)
     inputBoxIP();
     inputBoxPort();
     inputBoxTeamName();
+    this->_gameData->dataMenu.componentsTitle.push_back(Text("IP", {0.55, 0.35}, {0.55, 0.35}, 60, WHITE_COLOR));
+    this->_gameData->dataMenu.componentsTitle.push_back(Text("Port", {0.55, 0.55}, {0.55, 0.55}, 60, WHITE_COLOR));
+    this->_gameData->dataMenu.componentsTitle.push_back(Text("Team Name", {0.55, 0.75}, {0.55, 0.75}, 60, WHITE_COLOR));
     this->_gameData->infoWindow.resolution = {WINDOW_WIDTH, WINDOW_HEIGHT};
     this->_gameData->infoWindow.volume = 10;
 }

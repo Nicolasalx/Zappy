@@ -33,38 +33,28 @@ namespace Gui
             void componentPlayerMode();
             void componentSpectatorMode();
             void componentQuit();
+            void inputBoxTeamName();
             void addTriangle(Pos startPosTriangleLeft, ComponentType cmpType);
-
             void textSettings();
-
             void inputBoxIP();
             void inputBoxPort();
-
             void announceRetry();
             void goBackToTheMenu();
-
             void changeScreenMenu();
-
             void screenMenu();
             void screenSettings();
             void screenConnectionFailed();
-
-
             void handleEventSettings(Component &component, const Gui::Event &event);
-
             void addBox(const Box &box, const std::string &contentText);
             void addText(const Text &text);
             void addComponent(ComponentType cmpType);
             void handleEvent(const Gui::Event &event);
             void checkMouseState(const Gui::Event &event, Component &component);
             void resize(const Gui::Event &event);
-
             Pos resizePosition(const Pos position, const Gui::Event &event);
 
             std::shared_ptr<Gui::GameData> _gameData;
-
             ComponentType _cmpSelectionned = NONE;
-
             int _windowWidth = 0;
             int _windowHeight = 0;
 
