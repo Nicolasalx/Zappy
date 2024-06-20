@@ -7,9 +7,9 @@
 
 #include "PlayerParser.hpp"
 
-void Gui::PlayerParser::connectNbrReply(std::string args)
+void Gui::PlayerParser::connectNbrReply(std::string /*args*/)
 {
-    int connectNbr = std::stoi(args);
+//    int connectNbr = std::stoi(args);
 
     // display connectNbr
 }
