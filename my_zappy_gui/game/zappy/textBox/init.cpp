@@ -32,7 +32,7 @@ void Gui::TextBox::initSlideBar()
     this->_gameData->infoSlider.sliderHandle.realSize = this->_gameData->infoSlider.sliderHandle.size;
     this->_gameData->infoSlider.sliderHandle.realPos = this->_gameData->infoSlider.sliderHandle.pos;
     this->_gameData->infoSlider.sliderHandle.color = BLUE_COLOR;
-    this->_gameData->infoSlider.sliderValue = 50;
+    // this->_gameData->infoSlider.sliderValue = this->_gameData->timeUnit;
 }
 
 void Gui::TextBox::initButtonNextDisplay()
@@ -42,6 +42,12 @@ void Gui::TextBox::initButtonNextDisplay()
     this->_gameData->infoWindow.buttonNextDisplay.color = WHITE_COLOR;
     this->_gameData->infoWindow.buttonNextDisplay.realPos = this->_gameData->infoWindow.buttonNextDisplay.pos;
     this->_gameData->infoWindow.buttonNextDisplay.realSize = this->_gameData->infoWindow.buttonNextDisplay.size;
+
+    this->_gameData->infoWindow.textButtonNextDisp.contentText = "Switch to SFML";
+    this->_gameData->infoWindow.textButtonNextDisp.fontSize = 35;
+    this->_gameData->infoWindow.textButtonNextDisp.pos = {0.42, 0.035};
+    this->_gameData->infoWindow.textButtonNextDisp.realPos = this->_gameData->infoWindow.textButtonNextDisp.pos;
+    this->_gameData->infoWindow.textButtonNextDisp.color = WHITE_COLOR;
 }
 
 Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client) : _gameData(gameData), _client(client)
