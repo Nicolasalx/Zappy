@@ -7,7 +7,7 @@
 
 #include "Parser.hpp"
 
-void Gui::Parser::suc(std::vector<std::string> args)
+void Gui::Parser::suc(std::vector<std::string> /*args*/)
 {
     ;
 }

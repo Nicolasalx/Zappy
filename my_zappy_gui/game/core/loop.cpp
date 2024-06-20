@@ -91,7 +91,7 @@ bool Gui::Core::handleCoreEvent(const Gui::Event &eventList)
     return false;
 }
 
-void Gui::Core::handleGameState(Gui::GameData &gameData)
+void Gui::Core::handleGameState()
 {
     if (this->gameData->dataMenu.stateGame == TRY_SPECTATOR_MODE) {
         try {
@@ -133,7 +133,7 @@ void Gui::Core::loop()
         if (handleCoreEvent(eventList)) {
             break;
         }
-        handleGameState(*this->gameData.get());
+        handleGameState();
         this->gameModule->update(messRecv, eventList);
         this->renderModule->render(*this->gameData.get());
         Gui::FrameRate::end();

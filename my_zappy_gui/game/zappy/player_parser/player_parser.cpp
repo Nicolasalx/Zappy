@@ -12,7 +12,7 @@ Gui::PlayerParser::PlayerParser(std::shared_ptr<GameData> gameData) : _gameData(
     this->_sendedMessage = std::make_shared<std::queue<Gui::PlayerCmd>>();
 
     _replyHandler.emplace(Gui::PlayerCmd::WELCOME, [this](std::string) {});
-    _replyHandler.emplace(Gui::PlayerCmd::CLIENT_NUM, [this](std::string) {});
+    _replyHandler.emplace(Gui::PlayerCmd::CLIENT_NUM, [this](std::string args) { this->clientNumReply(args); });
     _replyHandler.emplace(Gui::PlayerCmd::MAP_SIZE, [this](std::string args) { this->mapSizeReply(args); });
     _replyHandler.emplace(Gui::PlayerCmd::FORWARD, [this](std::string args) { this->forwardReply(args); });
     _replyHandler.emplace(Gui::PlayerCmd::RIGHT, [this](std::string args) { this->rightReply(args); });

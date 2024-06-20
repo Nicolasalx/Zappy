@@ -44,7 +44,7 @@ static void eject_egg_from_tile(client_t *client, server_t *server,
     bool *ejected)
 {
     for (int i = 0; i < server->game.team_count; ++i) {
-        if (eject_egg(client, server, i, &*ejected)) {
+        if (eject_egg(client, server, i, ejected)) {
             return;
         }
     }
