@@ -39,7 +39,7 @@ static void cancel_elevation(client_t *client)
     free_linked_list(&client->player.incentation_mate);
 }
 
-static void elevation_success(node_t *current, client_t *client,
+static void elevation_success(node_t *current,
     server_t *server, char *buffer)
 {
     send_msg_client((*GET_DATA(current, client_t *))->fd, buffer);
@@ -75,7 +75,7 @@ static void end_elevation(server_t *server, client_t *client)
     do {
         (*GET_DATA(current, client_t *))->player.in_incentation = false;
         (*GET_DATA(current, client_t *))->player.level += 1;
-        elevation_success(current, client, server, buffer);
+        elevation_success(current, server, buffer);
         current = current->next;
     } while (current != client->player.incentation_mate);
     free_linked_list(&client->player.incentation_mate);
