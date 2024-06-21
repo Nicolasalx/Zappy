@@ -21,7 +21,7 @@ void init_ai_thread(ai_thread_t *ai_thread, ai_arg_t *ai_arg)
     get_thread_list(ai_thread);
     pthread_mutex_init(&ai_thread->mutex, NULL);
     sem_init(&ai_thread->end_game, 0, 0);
-    signal(SIGINT, close_ai);
+    //signal(SIGINT, close_ai);
     create_new_ai(ai_arg->port,
         &ai_arg->address, ai_arg->team_name);
 }
