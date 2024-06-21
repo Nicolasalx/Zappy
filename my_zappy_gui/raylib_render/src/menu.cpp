@@ -96,14 +96,3 @@ void Gui::RenderMenu::renderMenu(const GameData &gameData, Camera3D camera)
     render3DModel(camera);
     render(gameData);
 }
-
-// if (gameData.infoWindow.resolution.width != window.windowSize.width || gameData.infoWindow.resolution.height != window.windowSize.height) {
-//     window.windowSize.width = gameData.infoWindow.resolution.width;
-//     window.windowSize.height = gameData.infoWindow.resolution.height;
-//     this->needToResize = true;
-//     //EndDrawing();
-//     //CloseWindow();
-//     //InitWindow(window.windowSize.width, window.windowSize.height, "Zappy GUI");
-//     //BeginDrawing();
-//     return;
-// }

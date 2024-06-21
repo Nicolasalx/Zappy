@@ -102,11 +102,7 @@ Gui::Event Gui::Raylib::getEvent()
     if (this->menu.stateGame == IN_LEAVE) {
         event.eventType.push_back(Gui::EventType::EXIT);
     }
-    if (this->menu.needToResize == true) { // ! Don't touch i will modify it (Nico)
-        // event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
-        // event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
-        this->menu.needToResize = false;
-    }
+
     if (this->textBoxList->_changeDisplayLib) {
         event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
     }
