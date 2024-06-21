@@ -52,6 +52,10 @@ void Gui::Raylib::handleKeyEvent(Gui::Event event)
     if (IsKeyPressed(KEY_C)) {
         Gui::RenderEndGame::_isEndGame = true;
     }
+    if (IsKeyPressed(KEY_DELETE)) {
+        event.eventType.push_back(Gui::EventType::BACK_SPACE);
+    }
+
     this->camera.update(menu.stateGame);
     this->camera.handle_cursor();
 }
