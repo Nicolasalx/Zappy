@@ -146,6 +146,25 @@ bool Gui::TextBox::isMouseOnBox(const BoxOpt &box, const Pos &mousePos)
         mousePos.y >= boxTop && mousePos.y <= boxBottom;
 }
 
+void Gui::TextBox::moveSlideBar(const Gui::Event &events)
+{
+    if (events.isKeyDown && events.mouse.x >= this->_gameData->infoSlider.sliderBar.pos.x - 0.004 * events.windowSize.width && events.mouse.x <= (this->_gameData->infoSlider.sliderBar.pos.x + this->_gameData->infoSlider.sliderBar.size.width) - 0.007 * events.windowSize.width
+        && events.mouse.y <= 0.2 * events.windowSize.height && events.mouse.y >= 0.16 * events.windowSize.height) {
+        int newXPos = this->_gameData->infoSlider.sliderBar.pos.x - 0.007;
+        int newWidth = (this->_gameData->infoSlider.sliderBar.pos.x + this->_gameData->infoSlider.sliderBar.size.width) - 0.007 * events.windowSize.width;
+        this->_gameData->infoSlider.sliderValue = ((events.mouse.x - newXPos) / newWidth) * 100;
+        this->_gameData->infoSlider.sliderValue = ((this->_gameData->infoSlider.sliderValue * 150) / 100) * 6;
+        this->_gameData->infoSlider.sliderHandle.pos.x = events.mouse.x;
+        if (this->_gameData->infoSlider.sliderValue <= 0) {
+            this->_gameData->infoSlider.sliderValue = 1;
+        } else if (this->_gameData->infoSlider.sliderValue > 150) {
+            this->_gameData->infoSlider.sliderValue = 150;
+        }
+        this->_gameData->timeUnit = this->_gameData->infoSlider.sliderValue;
+        this->_client->send("sst " + std::to_string(this->_gameData->timeUnit) + "\n");
+    }
+}
+
 void Gui::TextBox::updateSlideBar(const Gui::Event &events)
 {
     if (this->_gameData->dataMenu.stateGame != IN_SPECTATOR_MODE) {
@@ -161,23 +180,8 @@ void Gui::TextBox::updateSlideBar(const Gui::Event &events)
         this->_gameData->infoSlider.sliderHandle.pos.x = this->_gameData->infoSlider.sliderBar.pos.x + newWidthSlider;
         _hasGetFrequency = GET_DATA;
     }
-    if (_hasGetFrequency != GET_DATA) {
-        return;
-    }
-    if (events.isKeyDown && events.mouse.x >= this->_gameData->infoSlider.sliderBar.pos.x - 0.004 * events.windowSize.width && events.mouse.x <= (this->_gameData->infoSlider.sliderBar.pos.x + this->_gameData->infoSlider.sliderBar.size.width) - 0.007 * events.windowSize.width
-        && events.mouse.y <= 0.2 * events.windowSize.height && events.mouse.y >= 0.16 * events.windowSize.height) {
-        int newXPos = this->_gameData->infoSlider.sliderBar.pos.x - 0.007;
-        int newWidth = (this->_gameData->infoSlider.sliderBar.pos.x + this->_gameData->infoSlider.sliderBar.size.width) - 0.007 * events.windowSize.width;
-        this->_gameData->infoSlider.sliderValue = ((events.mouse.x - newXPos) / newWidth) * 100;
-        this->_gameData->infoSlider.sliderValue = ((this->_gameData->infoSlider.sliderValue * 150) / 100) * 6;
-        this->_gameData->infoSlider.sliderHandle.pos.x = events.mouse.x;
-        if (this->_gameData->infoSlider.sliderValue <= 0) {
-            this->_gameData->infoSlider.sliderValue = 1;
-        } else if (this->_gameData->infoSlider.sliderValue > 150) {
-            this->_gameData->infoSlider.sliderValue = 150;
-        }
-        this->_gameData->timeUnit = this->_gameData->infoSlider.sliderValue;
-        this->_client->send("sst " + std::to_string(this->_gameData->timeUnit) + "\n");
+    if (_hasGetFrequency == GET_DATA) {
+        moveSlideBar(events);
     }
 }
 
