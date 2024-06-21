@@ -193,7 +193,6 @@ void Gui::TextBox::updateButtonNextDisp(const Gui::Event &events)
     } else {
         this->_gameData->infoWindow.buttonNextDisplay.color = WHITE_COLOR;
     }
-    std::cout << "ENTER\n";
     if (this->_gameData->dataMenu.stateGame != IN_MENU) {
         this->_gameData->ignoreKey = false;
     }

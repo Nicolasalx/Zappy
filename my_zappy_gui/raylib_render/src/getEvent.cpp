@@ -49,12 +49,6 @@ void Gui::Raylib::putEventInEventList(Gui::Event &event)
 
 void Gui::Raylib::handleKeyEvent(Gui::Event event)
 {
-    if (IsKeyPressed(KEY_M)) {
-        event.eventType.push_back(Gui::EventType::KEY_M);
-    }
-    if (IsKeyPressed(KEY_N)) {
-        event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
-    }
     if (IsKeyPressed(KEY_I)) {
         event.eventType.push_back(Gui::EventType::KEY_I);
     }
