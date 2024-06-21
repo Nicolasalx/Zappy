@@ -25,6 +25,10 @@ void Gui::Menu::resize(const Gui::Event &event)
         component.box.height = event.windowSize.height * component.stockStartData.box.height;
 
         component.text.pos = resizePosition(component.stockStartData.text.pos, event);
+        if (component.componentType == INPUT_BOX_IP || component.componentType == INPUT_PORT || component.componentType == INPUT_TEAM_NAME) {
+            component.text.pos = { component.stockStartData.text.pos.x * event.windowSize.width - (0.13f * event.windowSize.width), component.stockStartData.text.pos.y * event.windowSize.height };
+        }
+
         component.text.fontSize = event.windowSize.height * component.stockStartData.text.fontSize;
 
         component.settingsComponent.triangleLeft.topVertex = resizePosition(component.stockStartData.settingsComponent.triangleLeft.topVertex, event);

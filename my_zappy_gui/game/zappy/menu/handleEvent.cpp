@@ -86,39 +86,69 @@ void Gui::Menu::checkMouseState(const Gui::Event &event, Component &component)
     _cmpSelectionned = component.componentType;
 }
 
+void Gui::Menu::handleCursorRight(Component &component)
+{
+    if (component.componentType == MODIFY_RESOLUTION) {
+        if ((std::size_t)_idxDataResolution + 1 >= _dataResolution.size()) {
+            _idxDataResolution = 0;
+        } else {
+            _idxDataResolution += 1;
+        }
+        component.text.contentText = _dataResolution.at(_idxDataResolution).resText;
+        this->_gameData->infoWindow.resolution = _dataResolution.at(_idxDataResolution).windowSize;
+    } else if (component.componentType == MODIFY_VOLUME && this->_gameData->infoWindow.volume + 10 <= 100) {
+        this->_gameData->infoWindow.volume += 10;
+        component.text.contentText = std::to_string(this->_gameData->infoWindow.volume) + " %";
+    }
+    component.settingsComponent.triangleRight.color = RED_COLOR;
+}
+
+void Gui::Menu::handleCursorLeft(Component &component)
+{
+    if (component.componentType == MODIFY_RESOLUTION) {
+        if (_idxDataResolution - 1 < 0) {
+            _idxDataResolution = _dataResolution.size() - 1;
+        } else {
+            _idxDataResolution -= 1;
+        }
+        component.text.contentText = _dataResolution.at(_idxDataResolution).resText;
+        this->_gameData->infoWindow.resolution = _dataResolution.at(_idxDataResolution).windowSize;
+    } else if (component.componentType == MODIFY_VOLUME && this->_gameData->infoWindow.volume - 10 >= 0) {
+        this->_gameData->infoWindow.volume -= 10;
+        component.text.contentText = std::to_string(this->_gameData->infoWindow.volume) + " %";
+    }
+    component.settingsComponent.triangleLeft.color = RED_COLOR;
+}
+
 void Gui::Menu::handleEventSettings(Component &component, const Gui::Event &event)
 {
     if (isMouseOnTriangle(component.settingsComponent.triangleRight, event.mouse) && isButtonPressed(event, Gui::EventType::LEFT_CLICK)) {
-        if (component.componentType == MODIFY_RESOLUTION) {
-            if ((std::size_t)_idxDataResolution + 1 >= _dataResolution.size()) {
-                _idxDataResolution = 0;
-            } else {
-                _idxDataResolution += 1;
-            }
-            component.text.contentText = _dataResolution.at(_idxDataResolution).resText;
-            this->_gameData->infoWindow.resolution = _dataResolution.at(_idxDataResolution).windowSize;
-        } else if (component.componentType == MODIFY_VOLUME && this->_gameData->infoWindow.volume + 10 <= 100) {
-            this->_gameData->infoWindow.volume += 10;
-            component.text.contentText = std::to_string(this->_gameData->infoWindow.volume) + " %";
-        }
-        component.settingsComponent.triangleRight.color = RED_COLOR;
+        handleCursorRight(component);
     } else if (isMouseOnTriangle(component.settingsComponent.triangleLeft, event.mouse) && isButtonPressed(event, Gui::EventType::LEFT_CLICK)) {
-        if (component.componentType == MODIFY_RESOLUTION) {
-            if (_idxDataResolution - 1 < 0) {
-                _idxDataResolution = _dataResolution.size() - 1;
-            } else {
-                _idxDataResolution -= 1;
-            }
-            component.text.contentText = _dataResolution.at(_idxDataResolution).resText;
-            this->_gameData->infoWindow.resolution = _dataResolution.at(_idxDataResolution).windowSize;
-        } else if (component.componentType == MODIFY_VOLUME && this->_gameData->infoWindow.volume - 10 >= 0) {
-            this->_gameData->infoWindow.volume -= 10;
-            component.text.contentText = std::to_string(this->_gameData->infoWindow.volume) + " %";
-        }
-        component.settingsComponent.triangleLeft.color = RED_COLOR;
+        handleCursorLeft(component);
     } else {
         component.settingsComponent.triangleLeft.color = WHITE_COLOR;
         component.settingsComponent.triangleRight.color = WHITE_COLOR;
+    }
+}
+
+void Gui::Menu::handleInputUser(Component &component, const Gui::Event &event)
+{
+    if (this->_gameData->ignoreKey && _cmpSelectionned == component.componentType) {
+        if (component.componentType == INPUT_BOX_IP) {
+            component.text.contentText = event.bufferIP;
+            if (event.bufferIP == "localhost") {
+                this->_gameData->dataMenu.dataConnection.ip = "127.0.0.1";
+            } else {
+                this->_gameData->dataMenu.dataConnection.ip = event.bufferIP;
+            }
+        } else if (component.componentType == INPUT_PORT) {
+            component.text.contentText = event.bufferPort;
+            this->_gameData->dataMenu.dataConnection.port = event.bufferPort;
+        } else if (component.componentType == INPUT_TEAM_NAME) {
+            component.text.contentText = event.bufferTeamName;
+            this->_gameData->dataMenu.dataConnection.teamName = event.bufferTeamName;
+        }
     }
 }
 
@@ -139,24 +169,10 @@ void Gui::Menu::handleEvent(const Gui::Event &event)
             component.box.color = WHITE_COLOR;
             component.text.color = WHITE_COLOR;
         }
-        if (this->_gameData->ignoreKey && _cmpSelectionned == component.componentType) {
-            if (component.componentType == INPUT_BOX_IP) {
-                component.text.contentText = event.bufferIP;
-                if (event.bufferIP == "localhost") {
-                    this->_gameData->dataMenu.dataConnection.ip = "127.0.0.1";
-                } else {
-                    this->_gameData->dataMenu.dataConnection.ip = event.bufferIP;
-                }
-            } else if (component.componentType == INPUT_PORT) {
-                component.text.contentText = event.bufferPort;
-                this->_gameData->dataMenu.dataConnection.port = event.bufferPort;
-            } else if (component.componentType == INPUT_TEAM_NAME) {
-                component.text.contentText = event.bufferTeamName;
-                this->_gameData->dataMenu.dataConnection.teamName = event.bufferTeamName;
-            }
-        }
+        handleInputUser(component, event);
     }
-    if (!enterInAComponent && isButtonPressed(event, Gui::EventType::LEFT_CLICK) && (_cmpSelectionned == INPUT_BOX_IP || _cmpSelectionned == INPUT_PORT || _cmpSelectionned == INPUT_TEAM_NAME)) {
+    if (!enterInAComponent && isButtonPressed(event, Gui::EventType::LEFT_CLICK) && (_cmpSelectionned == INPUT_BOX_IP ||
+        _cmpSelectionned == INPUT_PORT || _cmpSelectionned == INPUT_TEAM_NAME)) {
         this->_gameData->dataMenu.cursorState = DEFAULT;
         this->_gameData->ignoreKey = false;
     }

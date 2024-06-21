@@ -26,14 +26,11 @@ namespace Gui {
             void renderMenu(const GameData &gameData, Camera3D camera);
 
             StateGame stateGame = IN_MENU;
-            bool needToResize = false;
             InputSelectionned inputSelect = NO;
             Texture2D menuIsland;
             Texture2D spaceTexture;
             Texture2D zappyLogo;
         private:
-            int _windowWidth = 0;
-            int _windowHeight = 0;
             float earthRotation = 0;
             OptionResolution _optionResolution = WINDOWED;
     };

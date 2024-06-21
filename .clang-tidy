@@ -15,11 +15,12 @@ Checks:
   -readability-magic-numbers,
   -readability-else-after-return,
   -readability-braces-around-statements
+  -readability-uppercase-literal-suffix
+  -modernize-use-trailing-return-type,
   ## -readability-identifier-naming,
   ## -performance-enum-size,
   ## -performance-move-constructor-init,
   ## -performance-no-int-to-ptr,
-  ## -modernize-use-trailing-return-type,
   ## -modernize-redundant-void-arg,
   ## -readability-uppercase-literal-suffix,
   ## -readability-implicit-bool-conversion,
