@@ -21,7 +21,7 @@ namespace Gui
             RenderPlayerMode() = default;
             ~RenderPlayerMode() = default;
 
-            void render(const GameData &gameData);
+            void render(const GameData &gameData) override;
 
         private:
     };
