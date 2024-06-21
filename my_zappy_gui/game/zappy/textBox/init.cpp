@@ -37,15 +37,15 @@ void Gui::TextBox::initSlideBar()
 
 void Gui::TextBox::initButtonNextDisplay()
 {
-    this->_gameData->infoWindow.buttonNextDisplay.pos = {0.38, 0.0};
-    this->_gameData->infoWindow.buttonNextDisplay.size = {0.21, 0.1};
+    this->_gameData->infoWindow.buttonNextDisplay.pos = {0.415, 0.0};
+    this->_gameData->infoWindow.buttonNextDisplay.size = {0.15, 0.06};
     this->_gameData->infoWindow.buttonNextDisplay.color = WHITE_COLOR;
     this->_gameData->infoWindow.buttonNextDisplay.realPos = this->_gameData->infoWindow.buttonNextDisplay.pos;
     this->_gameData->infoWindow.buttonNextDisplay.realSize = this->_gameData->infoWindow.buttonNextDisplay.size;
 
     this->_gameData->infoWindow.textButtonNextDisp.contentText = "Switch to SFML";
     this->_gameData->infoWindow.textButtonNextDisp.fontSize = 35;
-    this->_gameData->infoWindow.textButtonNextDisp.pos = {0.42, 0.035};
+    this->_gameData->infoWindow.textButtonNextDisp.pos = {0.42, 0.015};
     this->_gameData->infoWindow.textButtonNextDisp.realPos = this->_gameData->infoWindow.textButtonNextDisp.pos;
     this->_gameData->infoWindow.textButtonNextDisp.color = WHITE_COLOR;
 }
