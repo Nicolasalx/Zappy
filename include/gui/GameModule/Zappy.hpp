@@ -20,7 +20,6 @@
     #include "Parser.hpp"
     #include "Client.hpp"
     #include <memory>
-    #include "Particle.hpp"
     #include "Event.hpp"
     #include "PlayerParser.hpp"
     #include "PlayerMode.hpp"

@@ -20,7 +20,7 @@ namespace Gui {
         public:
             RenderMenu();
             ~RenderMenu() = default;
-            void render(const GameData &gameData);
+            void render(const GameData &gameData) override;
             void renderOneComponent(const Gui::Component &component);
             void render3DModel(Camera3D camera);
             void renderMenu(const GameData &gameData, Camera3D camera);

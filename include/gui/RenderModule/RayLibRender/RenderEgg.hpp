@@ -22,7 +22,7 @@ namespace Gui
         RenderEgg();
         ~RenderEgg() = default;
 
-        void render(const GameData &gameData);
+        void render(const GameData &gameData) override;
     };
 }
 

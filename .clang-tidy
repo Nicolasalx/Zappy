@@ -17,6 +17,7 @@ Checks:
   -readability-braces-around-statements
   -readability-uppercase-literal-suffix
   -modernize-use-trailing-return-type,
+  -modernize-redundant-void-arg
   ## -readability-identifier-naming,
   ## -performance-enum-size,
   ## -performance-move-constructor-init,

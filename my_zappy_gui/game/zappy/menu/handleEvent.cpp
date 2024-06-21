@@ -14,12 +14,8 @@ bool Gui::Menu::isMouseOnBox(const Box &box, const Pos &mousePos)
     float boxTop = box.y;
     float boxBottom = box.y + box.height;
 
-    if (mousePos.x >= boxLeft && mousePos.x <= boxRight &&
-        mousePos.y >= boxTop && mousePos.y <= boxBottom) {
-        return true;
-    } else {
-        return false;
-    }
+    return (mousePos.x >= boxLeft && mousePos.x <= boxRight &&
+        mousePos.y >= boxTop && mousePos.y <= boxBottom);
 }
 
 float areaOfTriangle(const Gui::Pos &a, const Gui::Pos &b, const Gui::Pos &c)

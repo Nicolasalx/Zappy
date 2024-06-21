@@ -7,7 +7,7 @@
 
 #include "Menu.hpp"
 
-Gui::Pos Gui::Menu::resizePosition(const Pos position, const Gui::Event &event)
+Gui::Pos Gui::Menu::resizePosition(const Pos &position, const Gui::Event &event)
 {
     Pos newPosition;
 

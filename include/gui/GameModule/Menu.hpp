@@ -51,7 +51,7 @@ namespace Gui
             void handleEvent(const Gui::Event &event);
             void checkMouseState(const Gui::Event &event, Component &component);
             void resize(const Gui::Event &event);
-            Pos resizePosition(const Pos position, const Gui::Event &event);
+            Pos resizePosition(const Pos &position, const Gui::Event &event);
             void handleInputUser(Component &component, const Gui::Event &event);
             void handleCursorRight(Component &component);
             void handleCursorLeft(Component &component);
