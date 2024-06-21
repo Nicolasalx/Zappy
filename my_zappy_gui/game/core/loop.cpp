@@ -114,7 +114,7 @@ void Gui::Core::handleGameState()
                 !this->gameData->dataMenu.dataConnection.ip.empty() ? gameData->dataMenu.dataConnection.ip : this->ip,
                 !gameData->dataMenu.dataConnection.port.empty() ? gameData->dataMenu.dataConnection.port : this->port
             );
-            this->clientModule->send(gameData->dataMenu.dataConnection.teamName);
+            this->clientModule->send(gameData->dataMenu.dataConnection.teamName + "\n");
             _isConnectedToServer = true;
         } catch (...) {
             std::cerr << "An unknown error occurred." << std::endl;

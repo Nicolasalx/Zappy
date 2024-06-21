@@ -28,7 +28,6 @@ void Gui::Raylib::putEventInBuffer(Gui::Event &event, std::string &bufferToFill)
         }
         return;
     }
-
     if (charPressed == 0) {
         return;
     }
