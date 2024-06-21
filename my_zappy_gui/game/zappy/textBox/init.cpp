@@ -53,7 +53,7 @@ void Gui::TextBox::initButtonNextDisplay()
     this->_gameData->infoWindow.textButtonNextDisp.color = WHITE_COLOR;
 }
 
-Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client) : _gameData(std::move(std::move(gameData))), _client(std::move(std::move(client)))
+Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client) : _gameData(std::move(gameData)), _client(std::move(client))
 {
     TextBoxData boxInfo(0.77f, 0.04f, 0.21f, 0.21f, 0.038, LEFT_BUTTON);
     _gameData->textBox.push_back(boxInfo);
