@@ -5,10 +5,6 @@
 ** initTextBox
 */
 
-#include <utility>
-
-#include <utility>
-
 #include "TextBox.hpp"
 
 Gui::TextBoxData::TextBoxData(float x, float y, float width, float height, float textSize, int state) : _text_size(textSize), _state(state), _text({})
