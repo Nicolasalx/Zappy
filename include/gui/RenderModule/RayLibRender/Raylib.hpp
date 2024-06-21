@@ -42,6 +42,7 @@ namespace Gui
             void putEventInEventList(Gui::Event &event);
             void handleKeyEvent(Gui::Event event);
             bool isEventInList(const Gui::Event &event, const Gui::EventType &eventType);
+            void detectEventKeyBoard(Gui::Event &event);
 
         private:
             std::vector<std::pair<KeyboardKey, Gui::EventType>> _keyBind = {

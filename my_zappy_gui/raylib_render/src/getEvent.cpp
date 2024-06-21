@@ -91,11 +91,8 @@ void Gui::Raylib::getKeyEvent(Gui::Event &event)
     }
 }
 
-Gui::Event Gui::Raylib::getEvent()
+void Gui::Raylib::detectEventKeyBoard(Gui::Event &event)
 {
-    Gui::Event event;
-
-    event.frame_time = GetFrameTime();
     if (WindowShouldClose()) {
         event.eventType.push_back(Gui::EventType::EXIT);
     }
@@ -108,11 +105,9 @@ Gui::Event Gui::Raylib::getEvent()
     if (this->menu.stateGame == IN_LEAVE) {
         event.eventType.push_back(Gui::EventType::EXIT);
     }
-
     if (this->textBoxList->_changeDisplayLib) {
         event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
     }
-
     getKeyEvent(event);
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
         event.isKeyDown = true;
@@ -122,6 +117,14 @@ Gui::Event Gui::Raylib::getEvent()
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         event.eventType.push_back(Gui::EventType::LEFT_CLICK);
     }
+}
+
+Gui::Event Gui::Raylib::getEvent()
+{
+    Gui::Event event;
+
+    event.frame_time = GetFrameTime();
+    detectEventKeyBoard(event);
     event.mouse.x = GetMouseX();
     event.mouse.y = GetMouseY();
     event.windowSize.width = window.windowSize.width;
