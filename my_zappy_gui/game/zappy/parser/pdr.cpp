@@ -7,7 +7,7 @@
 
 #include "Parser.hpp"
 
-void Gui::Parser::pdr(std::vector<std::string> /*args*/)
+void Gui::Parser::pdr(const std::vector<std::string>& /*args*/)
 {
     ;
 }

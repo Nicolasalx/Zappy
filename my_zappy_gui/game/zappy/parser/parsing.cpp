@@ -5,34 +5,38 @@
 ** parsing
 */
 
+#include <utility>
+
+#include <utility>
+
 #include "Parser.hpp"
 
-Gui::Parser::Parser(std::shared_ptr<GameData> gameData) : _gameData(gameData)
+Gui::Parser::Parser(std::shared_ptr<GameData> gameData) : _gameData(std::move(std::move(gameData)))
 {
-    _cmdMap.emplace("msz", [this](std::vector<std::string> args) { this->msz(args); });
-    _cmdMap.emplace("bct", [this](std::vector<std::string> args) { this->bct(args); });
-    _cmdMap.emplace("tna", [this](std::vector<std::string> args) { this->tna(args); });
-    _cmdMap.emplace("pnw", [this](std::vector<std::string> args) { this->pnw(args); });
-    _cmdMap.emplace("ppo", [this](std::vector<std::string> args) { this->ppo(args); });
-    _cmdMap.emplace("plv", [this](std::vector<std::string> args) { this->plv(args); });
-    _cmdMap.emplace("pin", [this](std::vector<std::string> args) { this->pin(args); });
-    _cmdMap.emplace("pex", [this](std::vector<std::string> args) { this->pex(args); });
-    _cmdMap.emplace("pbc", [this](std::vector<std::string> args) { this->pbc(args); });
-    _cmdMap.emplace("pic", [this](std::vector<std::string> args) { this->pic(args); });
-    _cmdMap.emplace("pie", [this](std::vector<std::string> args) { this->pie(args); });
-    _cmdMap.emplace("pfk", [this](std::vector<std::string> args) { this->pfk(args); });
-    _cmdMap.emplace("pdr", [this](std::vector<std::string> args) { this->pdr(args); });
-    _cmdMap.emplace("pgt", [this](std::vector<std::string> args) { this->pgt(args); });
-    _cmdMap.emplace("pdi", [this](std::vector<std::string> args) { this->pdi(args); });
-    _cmdMap.emplace("enw", [this](std::vector<std::string> args) { this->enw(args); });
-    _cmdMap.emplace("ebo", [this](std::vector<std::string> args) { this->ebo(args); });
-    _cmdMap.emplace("edi", [this](std::vector<std::string> args) { this->edi(args); });
-    _cmdMap.emplace("sgt", [this](std::vector<std::string> args) { this->sgt(args); });
-    _cmdMap.emplace("sst", [this](std::vector<std::string> args) { this->sst(args); });
-    _cmdMap.emplace("seg", [this](std::vector<std::string> args) { this->seg(args); });
-    _cmdMap.emplace("smg", [this](std::vector<std::string> args) { this->smg(args); });
-    _cmdMap.emplace("suc", [this](std::vector<std::string> args) { this->suc(args); });
-    _cmdMap.emplace("sbp", [this](std::vector<std::string> args) { this->sbp(args); });
+    _cmdMap.emplace("msz", [this](std::vector<std::string> args) { this->msz(std::move(args)); });
+    _cmdMap.emplace("bct", [this](std::vector<std::string> args) { this->bct(std::move(args)); });
+    _cmdMap.emplace("tna", [this](std::vector<std::string> args) { this->tna(std::move(args)); });
+    _cmdMap.emplace("pnw", [this](std::vector<std::string> args) { this->pnw(std::move(args)); });
+    _cmdMap.emplace("ppo", [this](std::vector<std::string> args) { this->ppo(std::move(args)); });
+    _cmdMap.emplace("plv", [this](std::vector<std::string> args) { this->plv(std::move(args)); });
+    _cmdMap.emplace("pin", [this](std::vector<std::string> args) { this->pin(std::move(args)); });
+    _cmdMap.emplace("pex", [this](std::vector<std::string> args) { this->pex(std::move(args)); });
+    _cmdMap.emplace("pbc", [this](std::vector<std::string> args) { this->pbc(std::move(args)); });
+    _cmdMap.emplace("pic", [this](std::vector<std::string> args) { this->pic(std::move(args)); });
+    _cmdMap.emplace("pie", [this](std::vector<std::string> args) { this->pie(std::move(args)); });
+    _cmdMap.emplace("pfk", [this](std::vector<std::string> args) { this->pfk(std::move(args)); });
+    _cmdMap.emplace("pdr", [this](std::vector<std::string> args) { this->pdr(std::move(args)); });
+    _cmdMap.emplace("pgt", [this](std::vector<std::string> args) { this->pgt(std::move(args)); });
+    _cmdMap.emplace("pdi", [this](std::vector<std::string> args) { this->pdi(std::move(args)); });
+    _cmdMap.emplace("enw", [this](std::vector<std::string> args) { this->enw(std::move(args)); });
+    _cmdMap.emplace("ebo", [this](std::vector<std::string> args) { this->ebo(std::move(args)); });
+    _cmdMap.emplace("edi", [this](std::vector<std::string> args) { this->edi(std::move(args)); });
+    _cmdMap.emplace("sgt", [this](std::vector<std::string> args) { this->sgt(std::move(args)); });
+    _cmdMap.emplace("sst", [this](std::vector<std::string> args) { this->sst(std::move(args)); });
+    _cmdMap.emplace("seg", [this](std::vector<std::string> args) { this->seg(std::move(args)); });
+    _cmdMap.emplace("smg", [this](std::vector<std::string> args) { this->smg(std::move(args)); });
+    _cmdMap.emplace("suc", [this](std::vector<std::string> args) { this->suc(std::move(args)); });
+    _cmdMap.emplace("sbp", [this](std::vector<std::string> args) { this->sbp(std::move(args)); });
 }
 
 void Gui::Parser::update(std::vector<std::string> &messRecv)

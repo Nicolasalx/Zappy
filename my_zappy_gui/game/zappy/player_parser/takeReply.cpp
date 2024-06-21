@@ -7,7 +7,7 @@
 
 #include "PlayerParser.hpp"
 
-void Gui::PlayerParser::takeReply(std::string args)
+void Gui::PlayerParser::takeReply(const std::string& args)
 {
     if (args == "ok\n") {
         // success to take ressource in inventory

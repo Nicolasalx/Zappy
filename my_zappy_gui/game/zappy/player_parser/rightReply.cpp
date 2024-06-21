@@ -7,7 +7,7 @@
 
 #include "PlayerParser.hpp"
 
-void Gui::PlayerParser::rightReply(std::string args)
+void Gui::PlayerParser::rightReply(const std::string& args)
 {
     if (args == "ok\n") {
         // turn right

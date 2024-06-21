@@ -7,7 +7,7 @@
 
 #include "PlayerParser.hpp"
 
-void Gui::PlayerParser::forwardReply(std::string args)
+void Gui::PlayerParser::forwardReply(const std::string& args)
 {
     if (args == "ok\n") {
         std::cout << "ANIMATION FORWARD\n";

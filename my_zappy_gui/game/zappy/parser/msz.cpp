@@ -18,11 +18,13 @@ void Gui::Parser::msz(std::vector<std::string> args)
     _gameData->mapSize.x = std::stoi(args[0]);
     _gameData->mapSize.y = std::stoi(args[1]);
     std::vector<int> tmp;
-    for (int i = 0; i < 7; i++) {
+    tmp.reserve(7);
+for (int i = 0; i < 7; i++) {
         tmp.push_back(0);
     }
     std::vector<std::vector<int>> tmp2;
-    for (int i = 0; i < _gameData->mapSize.x; i++) {
+    tmp2.reserve(_gameData->mapSize.x);
+for (int i = 0; i < _gameData->mapSize.x; i++) {
         tmp2.push_back(tmp);
     }
     for (int i = 0; i < _gameData->mapSize.y; i++) {

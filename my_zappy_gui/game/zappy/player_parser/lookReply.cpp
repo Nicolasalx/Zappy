@@ -8,7 +8,7 @@
 #include "PlayerParser.hpp"
 #include "split_string.hpp"
 
-void Gui::PlayerParser::lookReply(std::string args)
+void Gui::PlayerParser::lookReply(const std::string& args)
 {
     std::vector<std::string> tile;
     std::vector<std::string> tileContent;

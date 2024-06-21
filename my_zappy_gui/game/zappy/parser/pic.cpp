@@ -9,8 +9,8 @@
 
 static bool check_if_already_exist(std::vector<Gui::Incant> incant_list, Gui::Incant incant)
 {
-    for (size_t i = 0; i < incant_list.size(); i++) {
-        if (incant_list[i].pos.x == incant.pos.x && incant_list[i].pos.y == incant.pos.y) {
+    for (auto & i : incant_list) {
+        if (i.pos.x == incant.pos.x && i.pos.y == incant.pos.y) {
             return true;
         }
     }

@@ -5,6 +5,10 @@
 ** init
 */
 
+#include <utility>
+
+#include <utility>
+
 #include "PlayerMode.hpp"
 
 void Gui::PlayerMode::addButtonPlayerMode(const std::string &contentText, Pos pos, const SizeButton &sizeButton, std::function<void()> actPlayer)
@@ -27,7 +31,7 @@ void Gui::PlayerMode::addButtonPlayerMode(const std::string &contentText, Pos po
     }
     buttonPlayerMode.button = {.pos = pos, .size = size, .realPos = pos, .realSize = size, .color = WHITE_COLOR};
     buttonPlayerMode.text = {.contentText = contentText, .pos = posText, .realPos = posText, .fontSize = 15, .color = BLACK_COLOR};
-    buttonPlayerMode.actPlayer = actPlayer;
+    buttonPlayerMode.actPlayer = std::move(actPlayer);
     this->_gameData->playerMode.buttonPlayerMode.push_back(buttonPlayerMode);
 }
 
@@ -165,12 +169,12 @@ void Gui::PlayerMode::initButtonPlayerMode()
 void Gui::PlayerMode::setSendedMessageQueue(std::shared_ptr<std::queue<Gui::PlayerCmd>> messageQueue)
 {
     if (!_hasBeenUpdatedMessQueue) {
-        this->_messageQueue = messageQueue;
+        this->_messageQueue = std::move(messageQueue);
         this->_hasBeenUpdatedMessQueue = true;
     }
 }
 
-Gui::PlayerMode::PlayerMode(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client) : _gameData(gameData), _client(client)
+Gui::PlayerMode::PlayerMode(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client) : _gameData(std::move(std::move(gameData))), _client(std::move(std::move(client)))
 {
     initButtonPlayerMode();
 }

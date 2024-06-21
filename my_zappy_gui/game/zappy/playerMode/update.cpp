@@ -15,7 +15,7 @@ void Gui::PlayerMode::update(const Gui::Event &event)
     }
     resize(event);
     for (auto &button: this->_gameData->playerMode.buttonPlayerMode) {
-        if (event.isKeyDown && Gui::TextBox::isMouseOnBox(button.button, event.mouse) && button.actPlayer != NULL) {
+        if (event.isKeyDown && Gui::TextBox::isMouseOnBox(button.button, event.mouse) && button.actPlayer != nullptr) {
             button.button.color = RED_COLOR;
             button.actPlayer();
         } else {
