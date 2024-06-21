@@ -49,7 +49,7 @@ void Gui::PlayerParser::update(std::vector<std::string> &messRecv)
     }
 }
 
-void Gui::PlayerParser::parse_server_reply(const std::string& reply_data)
+void Gui::PlayerParser::parse_server_reply(const std::string &reply_data)
 {
     this->_gameData->serverResp.push_back(reply_data);
     if (this->_gameData->serverResp.size() > 30) {

@@ -29,7 +29,7 @@ namespace Gui
     class Zappy : virtual public AGameModule
     {
         public:
-            Zappy(const std::shared_ptr<Gui::IClient>& client, const std::shared_ptr<Gui::GameData>& gameData);
+            Zappy(const std::shared_ptr<Gui::IClient> &client, const std::shared_ptr<Gui::GameData> &gameData);
             ~Zappy() override = default;
 
             void update(std::vector<std::string> &messRecv, const Gui::Event &event) override;

@@ -7,7 +7,7 @@
 
 #include "PlayerParser.hpp"
 
-void Gui::PlayerParser::broadcastReply(const std::string& args)
+void Gui::PlayerParser::broadcastReply(const std::string &args)
 {
     if (args == "ok\n") {
         // print "broadcast successfully send"

@@ -7,7 +7,7 @@
 
 #include "TextBox.hpp"
 
-void Gui::TextBox::addText(TextBoxData &textBox, size_t index, const std::string& text)
+void Gui::TextBox::addText(TextBoxData &textBox, size_t index, const std::string &text)
 {
     if (textBox._text.size() <= index) {
         textBox._text.push_back(text);

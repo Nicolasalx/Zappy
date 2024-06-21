@@ -7,7 +7,7 @@
 
 #include "PlayerParser.hpp"
 
-void Gui::PlayerParser::forkReply(const std::string& args)
+void Gui::PlayerParser::forkReply(const std::string &args)
 {
     if (args == "ok\n") {
         // display fork success

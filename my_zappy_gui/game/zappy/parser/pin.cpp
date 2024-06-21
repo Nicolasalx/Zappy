@@ -12,7 +12,7 @@ void Gui::Parser::pin(std::vector<std::string> args)
     if (args.size() != 10)
         return;
     int player_id = std::stoi(args[0]);
-    for (auto & it : _gameData->playerList) {
+    for (auto &it : _gameData->playerList) {
         if (it.n == player_id) {
             it.pos.x = std::stoi(args[1]);
             it.pos.y = std::stoi(args[2]);

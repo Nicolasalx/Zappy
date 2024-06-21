@@ -9,7 +9,7 @@
 
 static bool check_if_already_exist(std::vector<Gui::Incant> incant_list, Gui::Incant incant)
 {
-    for (auto & i : incant_list) {
+    for (auto &i : incant_list) {
         if (i.pos.x == incant.pos.x && i.pos.y == incant.pos.y) {
             return true;
         }

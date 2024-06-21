@@ -22,7 +22,7 @@ namespace Gui
             TextBox(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client);
             ~TextBox() = default;
 
-            void addText(TextBoxData &textBox, size_t index, const std::string& text);
+            void addText(TextBoxData &textBox, size_t index, const std::string &text);
             void update(const Gui::Event &event);
             void resize(int windowWidth, int windowHeight);
             void resizeSlideBar(int windowWidth, int windowHeight);

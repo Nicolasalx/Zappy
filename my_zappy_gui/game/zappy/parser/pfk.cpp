@@ -7,7 +7,7 @@
 
 #include "Parser.hpp"
 
-void Gui::Parser::pfk(const std::vector<std::string>& /*args*/)
+void Gui::Parser::pfk(const std::vector<std::string> &/*args*/)
 {
     ;
 }

@@ -8,7 +8,7 @@
 #include "PlayerParser.hpp"
 #include <sstream>
 
-void Gui::PlayerParser::mapSizeReply(const std::string& args)
+void Gui::PlayerParser::mapSizeReply(const std::string &args)
 {
     std::stringstream strstream(args);
 

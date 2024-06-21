@@ -7,7 +7,7 @@
 
 #include "PlayerParser.hpp"
 
-void Gui::PlayerParser::ejectReply(const std::string& args)
+void Gui::PlayerParser::ejectReply(const std::string &args)
 {
     if (args == "ok\n") {
         // display ejection success
