@@ -128,7 +128,8 @@ void Gui::Menu::handleEvent(const Gui::Event &event)
 
     for (auto &component: this->_gameData->dataMenu.componentList) {
         if (isMouseOnBox(component.box, event.mouse)) {
-            component.box.color = RED_COLOR;
+            component.box.color = BLUE_COLOR;
+            component.text.color = BLUE_COLOR;
             checkMouseState(event, component);
             enterInAComponent = true;
         } else if (component.componentType == MODIFY_RESOLUTION || component.componentType == MODIFY_VOLUME) {
@@ -136,6 +137,7 @@ void Gui::Menu::handleEvent(const Gui::Event &event)
             enterInAComponent = true;
         } else {
             component.box.color = WHITE_COLOR;
+            component.text.color = WHITE_COLOR;
         }
         if (this->_gameData->ignoreKey && _cmpSelectionned == component.componentType) {
             if (component.componentType == INPUT_BOX_IP) {
