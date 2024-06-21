@@ -7,7 +7,7 @@
 
 #include "PlayerParser.hpp"
 
-void Gui::PlayerParser::setReply(std::string args)
+void Gui::PlayerParser::setReply(const std::string &args)
 {
     if (args == "ok\n") {
         // success to set ressource in inventory

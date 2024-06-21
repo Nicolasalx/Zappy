@@ -12,9 +12,9 @@ void Gui::Parser::plv(std::vector<std::string> args)
     if (args.size() != 2)
         return;
     int player_id = std::stoi(args[0]);
-    for (auto it = _gameData->playerList.begin(); it != _gameData->playerList.end(); it++) {
-        if (it->n == player_id) {
-            it->level = std::stoi(args[1]);
+    for (auto &it : _gameData->playerList) {
+        if (it.n == player_id) {
+            it.level = std::stoi(args[1]);
             break;
         }
     }

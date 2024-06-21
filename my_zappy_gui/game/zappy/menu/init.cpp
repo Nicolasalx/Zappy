@@ -5,10 +5,14 @@
 ** initMenu
 */
 
+#include <utility>
+
+#include <utility>
+
 #include "Menu.hpp"
 #include "GameConfig.hpp"
 
-Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData): _gameData(gameData)
+Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData): _gameData(std::move(std::move(gameData)))
 {
     componentPlayerMode();
     componentSpectatorMode();

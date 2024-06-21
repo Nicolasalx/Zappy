@@ -7,7 +7,7 @@
 
 #include "PlayerParser.hpp"
 
-void Gui::PlayerParser::incantationReply(std::string args)
+void Gui::PlayerParser::incantationReply(const std::string &args)
 {
     if (args == "ko\n") {
         // incantion fail (not enough ressource or player)

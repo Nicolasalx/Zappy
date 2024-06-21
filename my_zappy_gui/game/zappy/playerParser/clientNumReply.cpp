@@ -7,7 +7,7 @@
 
 #include "PlayerParser.hpp"
 
-void Gui::PlayerParser::clientNumReply(std::string args)
+void Gui::PlayerParser::clientNumReply(const std::string &args)
 {
     if (args == "ko\n") {
         while (!this->_sendedMessage->empty()) {

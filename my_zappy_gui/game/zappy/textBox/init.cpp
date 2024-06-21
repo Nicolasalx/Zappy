@@ -5,19 +5,23 @@
 ** initTextBox
 */
 
+#include <utility>
+
+#include <utility>
+
 #include "TextBox.hpp"
 
-Gui::TextBoxData::TextBoxData(float x, float y, float width, float height, float textSize, int state)
+Gui::TextBoxData::TextBoxData(float x, float y, float width, float height, float textSize, int state) : _text_size(textSize), _state(state), _text({})
 {
     this->_pos = {x, y};
     this->_size = {width, height};
     this->_real_pos = {0.0f, 0.0f};
     this->_real_size = {0.0f, 0.0f};
-    this->_text_size = textSize;
+    
     this->_buttonPos = {0.0f, 0.0f};
     this->_buttonSize = {0.0f, 0.0f};
-    this->_state = state;
-    this->_text = {};
+    
+    
 }
 
 void Gui::TextBox::initSlideBar()
@@ -49,7 +53,7 @@ void Gui::TextBox::initButtonNextDisplay()
     this->_gameData->infoWindow.textButtonNextDisp.color = WHITE_COLOR;
 }
 
-Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client) : _gameData(gameData), _client(client)
+Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client) : _gameData(std::move(std::move(gameData))), _client(std::move(std::move(client)))
 {
     TextBoxData boxInfo(0.77f, 0.04f, 0.21f, 0.21f, 0.038, LEFT_BUTTON);
     _gameData->textBox.push_back(boxInfo);
