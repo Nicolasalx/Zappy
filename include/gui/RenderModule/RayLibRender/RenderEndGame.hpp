@@ -22,7 +22,7 @@ namespace Gui
         RenderEndGame();
         ~RenderEndGame() = default;
 
-        void render(const GameData &gameData);
+        void render(const GameData &gameData) override;
 
         static bool _isEndGame;
         static bool _isGameFinished;
@@ -31,7 +31,6 @@ namespace Gui
         float y;
         float z;
         float _timer = 0;
-            
     };
 }
 

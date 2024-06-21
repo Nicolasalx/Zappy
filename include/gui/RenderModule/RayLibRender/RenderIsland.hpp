@@ -23,7 +23,7 @@ namespace Gui
 
             void changeIslandEvent();
             int selectLOD(const Gui::GameData &gameData, float x, float y);
-            void render(const Gui::GameData &gameData);
+            void render(const Gui::GameData &gameData) override;
 
             static float map_scale;
             static float island_size;

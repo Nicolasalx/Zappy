@@ -29,9 +29,9 @@ void Gui::Parser::msz(std::vector<std::string> args)
         _gameData->objectPos.push_back(tmp2);
     }
 
-    for (float i = 0; i < _gameData->mapSize.x; i++) {
-        for (float j = 0; j < _gameData->mapSize.y; j++) {
-            _gameData->islandInfo.push_back(Pos{i, j});
+    for (int i = 0; i < _gameData->mapSize.x; i++) {
+        for (int j = 0; j < _gameData->mapSize.y; j++) {
+            _gameData->islandInfo.push_back(Pos{float(i), float(j)});
         }
     }
 }

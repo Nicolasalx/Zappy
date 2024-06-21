@@ -154,7 +154,7 @@ void Gui::Core::loop()
         }
         handleGameState();
         this->gameModule->update(messRecv, eventList);
-        this->renderModule->render(*this->gameData.get());
+        this->renderModule->render(*this->gameData);
         Gui::FrameRate::end();
     }
 }

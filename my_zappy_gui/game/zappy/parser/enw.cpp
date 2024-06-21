@@ -14,8 +14,8 @@ void Gui::Parser::enw(std::vector<std::string> args)
     egg.player_number = std::stoi(args[1]);
     egg.pos.x = std::stoi(args[2]);
     egg.pos.y = std::stoi(args[3]);
-    for (auto it = _gameData->eggList.begin(); it != _gameData->eggList.end(); it++) {
-        if (it->pos.x == egg.pos.x && it->pos.y == egg.pos.y) {
+    for (const auto &it : _gameData->eggList) {
+        if (it.pos.x == egg.pos.x && it.pos.y == egg.pos.y) {
             return;
         }
     }
