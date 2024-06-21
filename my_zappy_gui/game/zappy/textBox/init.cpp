@@ -7,7 +7,8 @@
 
 #include "TextBox.hpp"
 
-Gui::TextBoxData::TextBoxData(float x, float y, float width, float height, float textSize, int state) : _text_size(textSize), _state(state), _text({})
+Gui::TextBoxData::TextBoxData(float x, float y, float width, float height, float textSize, int state)
+    : _text_size(textSize), _state(state), _text({})
 {
     this->_pos = {x, y};
     this->_size = {width, height};

@@ -19,6 +19,7 @@ Checks:
   -modernize-use-trailing-return-type,
   -modernize-redundant-void-arg
   -readability-convert-member-functions-to-static
+  -readability-use-anyofallof
   ## -readability-identifier-naming,
   ## -performance-enum-size,
   ## -performance-move-constructor-init,
@@ -26,7 +27,3 @@ Checks:
   ## -modernize-redundant-void-arg,
   ## -readability-uppercase-literal-suffix,
   ## -readability-implicit-bool-conversion,
-
-CheckOptions:
-  - key: readability-function-size.ParameterThreshold
-    value: 5
