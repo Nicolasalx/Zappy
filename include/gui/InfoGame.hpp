@@ -176,9 +176,14 @@ namespace Gui
         SELECTIONNED
     };
 
-    struct OptionResolution {
+    enum OptionResolution {
+        FULLSCREEN,
+        WINDOWED
+    };
+
+    struct DataResolution {
         std::string resText;
-        Size windowSize;
+        OptionResolution windowSize;
     };
 
     struct Component {
@@ -225,7 +230,7 @@ namespace Gui
         Text textButtonNextDisp;
         bool changeDisplayLib;
 
-        Size resolution;
+        OptionResolution resolution;
         int volume;
     };
 

@@ -52,8 +52,6 @@ void Gui::Raylib::handleKeyEvent(Gui::Event event)
     if (IsKeyPressed(KEY_C)) {
         Gui::RenderEndGame::_isEndGame = true;
     }
-    if (IsKeyPressed(KEY_F))
-        ToggleFullscreen();
     this->camera.update(menu.stateGame);
     this->camera.handle_cursor();
 }

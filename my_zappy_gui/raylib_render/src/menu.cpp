@@ -78,6 +78,10 @@ void Gui::RenderMenu::render(const GameData &gameData)
     } else {
         SetMouseCursor(MOUSE_CURSOR_DEFAULT);
     }
+    if (gameData.infoWindow.resolution != _optionResolution) {
+        ToggleFullscreen();
+        _optionResolution = gameData.infoWindow.resolution;
+    }
     for (auto &item: gameData.dataMenu.componentList) {
         renderOneComponent(item);
     }

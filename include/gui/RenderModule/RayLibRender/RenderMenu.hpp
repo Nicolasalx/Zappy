@@ -12,6 +12,7 @@
     #include <raylib.h>
     #include "RenderWindow.hpp"
     #include "ARayLibModel.hpp"
+    #include "InfoGame.hpp"
 
 namespace Gui {
     class RenderMenu : public virtual Gui::ARayLibModel
@@ -34,6 +35,7 @@ namespace Gui {
             int _windowWidth = 0;
             int _windowHeight = 0;
             float earthRotation = 0;
+            OptionResolution _optionResolution = WINDOWED;
     };
 }
 

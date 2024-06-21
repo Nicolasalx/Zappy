@@ -64,13 +64,11 @@ namespace Gui
             Component _component;
 
             StateGame _oldState = IN_MENU;
-
-            std::vector<OptionResolution> _optionResolution = {
-                {"1920x1080", {1920, 1080}},
-                {"1280x720", {1280, 720}},
-                {"720x480", {720, 480}}
+            std::vector<DataResolution> _dataResolution = {
+                {"Windowwed", WINDOWED},
+                {"FullScreen", FULLSCREEN}
             };
-            int _idxOptionResolution = 0;
+            int _idxDataResolution = 0;
     };
 }
 

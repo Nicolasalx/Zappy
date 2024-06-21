@@ -60,7 +60,7 @@ void Gui::Menu::addTriangle(Pos startPosTriangleLeft, ComponentType cmpType)
     if (cmpType == MODIFY_VOLUME) {
         addText(Text{.contentText = std::to_string(this->_gameData->infoWindow.volume) + " %", .pos = {0.6, 0.57}, .realPos = {0.6, 0.57}, .fontSize = 0.1, .color = WHITE_COLOR});
     } else {
-        addText(Text{.contentText = _optionResolution.at(0).resText, .pos = {0.53, 0.36}, .realPos = {0.53, 0.36}, .fontSize = 0.1, .color = WHITE_COLOR});
+        addText(Text{.contentText = _dataResolution.at(0).resText, .pos = {0.53, 0.36}, .realPos = {0.53, 0.36}, .fontSize = 0.1, .color = WHITE_COLOR});
     }
 }
 
