@@ -32,7 +32,6 @@ void Gui::TextBox::initSlideBar()
     this->_gameData->infoSlider.sliderHandle.realSize = this->_gameData->infoSlider.sliderHandle.size;
     this->_gameData->infoSlider.sliderHandle.realPos = this->_gameData->infoSlider.sliderHandle.pos;
     this->_gameData->infoSlider.sliderHandle.color = BLUE_COLOR;
-    // this->_gameData->infoSlider.sliderValue = this->_gameData->timeUnit;
 }
 
 void Gui::TextBox::initButtonNextDisplay()

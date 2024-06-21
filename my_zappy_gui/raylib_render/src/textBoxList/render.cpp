@@ -67,11 +67,6 @@ void Gui::RenderTextBoxList::renderButtonNextDisp(const GameData &gameData)
 
 void Gui::RenderTextBoxList::render(const GameData &gameData)
 {
-    // Get Slide Bar Value
-    if (!_hasGetFrequency) {
-        
-    }
-
     DrawFPS(10, 10);
     updateTextBoxs(gameData);
     renderSlideBar(gameData);

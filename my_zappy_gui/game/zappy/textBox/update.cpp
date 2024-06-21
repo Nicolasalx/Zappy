@@ -154,6 +154,11 @@ bool Gui::TextBox::isMouseOnBox(const BoxOpt &box, const Pos &mousePos)
 
 void Gui::TextBox::updateSlideBar(const Gui::Event &events)
 {
+    // Get Slide Bar Value
+    if (!_hasGetFrequency) {
+        
+    }
+
     if (events.isKeyDown && events.mouse.x >= this->_gameData->infoSlider.sliderBar.pos.x - 0.004 * events.windowSize.width && events.mouse.x <= (this->_gameData->infoSlider.sliderBar.pos.x + this->_gameData->infoSlider.sliderBar.size.width) - 0.007 * events.windowSize.width
         && events.mouse.y <= 0.2 * events.windowSize.height && events.mouse.y >= 0.16 * events.windowSize.height) {
         int newXPos = this->_gameData->infoSlider.sliderBar.pos.x - 0.007;

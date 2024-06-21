@@ -44,7 +44,6 @@ namespace Gui
 
             std::vector<Gui::RenderTextBox> _textBoxs;
             bool _changeDisplayLib = false;
-            bool _hasGetFrequency = false;
     };
 }
 
