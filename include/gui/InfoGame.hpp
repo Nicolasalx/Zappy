@@ -171,6 +171,12 @@ namespace Gui
         LITTLE
     };
 
+    enum StateFrequency {
+        NOT_SEND,
+        SEND_DATA,
+        GET_DATA
+    };
+
     enum CursorState {
         DEFAULT,
         SELECTIONNED
