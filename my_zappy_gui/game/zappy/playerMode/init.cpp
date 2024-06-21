@@ -13,14 +13,16 @@ void Gui::PlayerMode::addButtonPlayerMode(const std::string &contentText, Pos po
     Size size;
     Pos posText;
 
+    int nbLetter = 12 - contentText.size();
+
     if (sizeButton == BIG) {
-        size = { 0.18, 0.21 };
+        size = { 0.167, 0.21 };
         posText = {pos.x + 0.05f, pos.y - 0.03f };
     } else if (sizeButton == MIDDLE) {
         size = {0.06, 0.1};
-        posText = pos;
+        posText = {pos.x + (nbLetter * 0.0025f), pos.y + 0.04f};
     } else {
-        posText = pos;
+        posText = {pos.x , pos.y + 0.03f};
         size = {0.035, 0.06};
     }
     buttonPlayerMode.button = {.pos = pos, .size = size, .realPos = pos, .realSize = size, .color = WHITE_COLOR};
@@ -142,18 +144,18 @@ void Gui::PlayerMode::initButtonPlayerMode()
     addButtonPlayerMode("INCANTATION", {pos.x + 0.29f, pos.y}, MIDDLE, [this]() {this->incantation();});
 
     addButtonPlayerMode("TAKE OBJECT", {pos.x + 0.38f, pos.y - 0.11f}, BIG, nullptr);
-    addButtonPlayerMode("FOOD", {pos.x + 0.385f, pos.y - 0.10f}, LITTLE, [this]() {this->takeElement(FOOD);});
-    addButtonPlayerMode("LINEMATE", {pos.x + 0.44f, pos.y - 0.10f}, LITTLE, [this]() {this->takeElement(LINEMATE);});
-    addButtonPlayerMode("DERAUMERE", {pos.x + 0.49f, pos.y - 0.10f}, LITTLE, [this]() {this->takeElement(DERAUMERE);});
+    addButtonPlayerMode("FOOD", {pos.x + 0.395f, pos.y - 0.09f}, LITTLE, [this]() {this->takeElement(FOOD);});
+    addButtonPlayerMode("LINEMATE", {pos.x + 0.445f, pos.y - 0.09f}, LITTLE, [this]() {this->takeElement(LINEMATE);});
+    addButtonPlayerMode("DERAUMERE", {pos.x + 0.495f, pos.y - 0.09f}, LITTLE, [this]() {this->takeElement(DERAUMERE);});
     addButtonPlayerMode("SIBUR", {pos.x + 0.385f, pos.y}, LITTLE, [this]() {this->takeElement(SIBUR);});
     addButtonPlayerMode("MENDIANE", {pos.x + 0.425f, pos.y}, LITTLE, [this]() {this->takeElement(MENDIANE);});
     addButtonPlayerMode("PHIRAS", {pos.x + 0.465f, pos.y}, LITTLE, [this]() {this->takeElement(PHIRAS);});
     addButtonPlayerMode("THYSTAME", {pos.x + 0.505f, pos.y}, LITTLE, [this]() {this->takeElement(THYSTAME);});
 
     addButtonPlayerMode("SET OBJECT", {pos.x + 0.58f, pos.y - 0.11f}, BIG, nullptr);
-    addButtonPlayerMode("FOOD", {pos.x + 0.585f, pos.y - 0.10f}, LITTLE, [this]() {this->setElement(FOOD);});
-    addButtonPlayerMode("LINEMATE", {pos.x + 0.64f, pos.y - 0.10f}, LITTLE, [this]() {this->setElement(LINEMATE);});
-    addButtonPlayerMode("DERAUMERE", {pos.x + 0.69f, pos.y - 0.10f}, LITTLE, [this]() {this->setElement(DERAUMERE);});
+    addButtonPlayerMode("FOOD", {pos.x + 0.595f, pos.y - 0.09f}, LITTLE, [this]() {this->setElement(FOOD);});
+    addButtonPlayerMode("LINEMATE", {pos.x + 0.645f, pos.y - 0.09f}, LITTLE, [this]() {this->setElement(LINEMATE);});
+    addButtonPlayerMode("DERAUMERE", {pos.x + 0.695f, pos.y - 0.09f}, LITTLE, [this]() {this->setElement(DERAUMERE);});
     addButtonPlayerMode("SIBUR", {pos.x + 0.585f, pos.y}, LITTLE, [this]() {this->setElement(SIBUR);});
     addButtonPlayerMode("MENDIANE", {pos.x + 0.625f, pos.y}, LITTLE, [this]() {this->setElement(MENDIANE);});
     addButtonPlayerMode("PHIRAS", {pos.x + 0.665f, pos.y}, LITTLE, [this]() {this->setElement(PHIRAS);});
