@@ -55,7 +55,7 @@ Gui::TextBox::TextBox(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<G
     _gameData->textBox.push_back(boxInfo);
     TextBoxData boxInfo1(0.77f, 0.50f, 0.21f, 0.48f, 0.040, 0);
     _gameData->textBox.push_back(boxInfo1);
-    TextBoxData boxInfo2(0.77f, 0.53f, 0.21f, 0.40f, 0.040, 0);
+    TextBoxData boxInfo2(0.77f, 0.50f, 0.21f, 0.48f, 0.040, 0);
     _gameData->textBox.push_back(boxInfo2);
     TextBoxData boxInfo3(0.01f, 0.57f, 0.15f, 0.40f, 0.053, RIGHT_BUTTON);
     _gameData->textBox.push_back(boxInfo3);
