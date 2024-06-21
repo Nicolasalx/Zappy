@@ -7,20 +7,33 @@
 
 #include "Raylib.hpp"
 
+bool Gui::Raylib::isEventInList(const Gui::Event &event, const Gui::EventType &eventType)
+{
+    for (const auto &evt : event.eventType) {
+        if (evt == eventType) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void Gui::Raylib::putEventInBuffer(Gui::Event &event, std::string &bufferToFill)
 {
     int charPressed = GetCharPressed();
+
+    if (IsKeyPressed(KEY_BACKSPACE)) {
+        if (!bufferToFill.empty()) {
+            bufferToFill.pop_back();
+            event.eventType.push_back(Gui::EventType::BACK_SPACE);
+        }
+        return;
+    }
 
     if (charPressed == 0) {
         return;
     }
     if (IsKeyPressed(KEY_ENTER)) {
         event.eventType.push_back(Gui::EventType::ENTER);
-    } else if (charPressed == 61) {
-        if (!bufferToFill.empty()) {
-            bufferToFill.pop_back();
-            event.eventType.push_back(Gui::EventType::BACK_SPACE);
-        }
     } else {
         bufferToFill += (char) charPressed;
     }
@@ -52,10 +65,6 @@ void Gui::Raylib::handleKeyEvent(Gui::Event event)
     if (IsKeyPressed(KEY_C)) {
         Gui::RenderEndGame::_isEndGame = true;
     }
-    if (IsKeyPressed(KEY_DELETE)) {
-        event.eventType.push_back(Gui::EventType::BACK_SPACE);
-    }
-
     this->camera.update(menu.stateGame);
     this->camera.handle_cursor();
 }
