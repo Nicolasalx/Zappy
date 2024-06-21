@@ -52,23 +52,22 @@ namespace Gui
             void checkMouseState(const Gui::Event &event, Component &component);
             void resize(const Gui::Event &event);
             Pos resizePosition(const Pos position, const Gui::Event &event);
+            void handleInputUser(Component &component, const Gui::Event &event);
+            void handleCursorRight(Component &component);
+            void handleCursorLeft(Component &component);
 
             std::shared_ptr<Gui::GameData> _gameData;
             ComponentType _cmpSelectionned = NONE;
-            int _windowWidth = 0;
-            int _windowHeight = 0;
-
-            char name[9 + 1] = "\0";
-            int letterCount = 0;
-
             Component _component;
-
             StateGame _oldState = IN_MENU;
             std::vector<DataResolution> _dataResolution = {
-                {"Windowwed", WINDOWED},
+                {"Windowed", WINDOWED},
                 {"FullScreen", FULLSCREEN}
             };
             int _idxDataResolution = 0;
+
+            char name[9 + 1] = "\0";
+            int letterCount = 0;
     };
 }
 

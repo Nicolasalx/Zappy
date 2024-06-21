@@ -10,6 +10,10 @@
 
 void Gui::PlayerMode::update(const Gui::Event &event)
 {
+    if (this->_gameData->dataMenu.stateGame != IN_PLAYER_MODE && this->_gameData->dataMenu.stateGame != TRY_PLAYER_MODE) {
+        return;
+    }
+
     resize(event);
     for (auto &button: this->_gameData->playerMode.buttonPlayerMode) {
         if (event.isKeyDown && Gui::TextBox::isMouseOnBox(button.button, event.mouse) && button.actPlayer != NULL) {
