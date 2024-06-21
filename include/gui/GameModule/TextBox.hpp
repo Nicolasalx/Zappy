@@ -45,6 +45,7 @@ namespace Gui
             std::shared_ptr<Gui::GameData> _gameData;
             std::shared_ptr<Gui::IClient> _client;
             std::vector<int> listLevelPlayer;
+            bool _hasGetFrequency = false;
     };
 }
 
