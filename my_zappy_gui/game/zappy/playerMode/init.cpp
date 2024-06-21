@@ -5,10 +5,6 @@
 ** init
 */
 
-#include <utility>
-
-#include <utility>
-
 #include "PlayerMode.hpp"
 
 void Gui::PlayerMode::addButtonPlayerMode(const std::string &contentText, Pos pos, const SizeButton &sizeButton, std::function<void()> actPlayer)
@@ -174,7 +170,7 @@ void Gui::PlayerMode::setSendedMessageQueue(std::shared_ptr<std::queue<Gui::Play
     }
 }
 
-Gui::PlayerMode::PlayerMode(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client) : _gameData(std::move(std::move(gameData))), _client(std::move(std::move(client)))
+Gui::PlayerMode::PlayerMode(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client) : _gameData(std::move(gameData)), _client(std::move(client))
 {
     initButtonPlayerMode();
 }

@@ -5,13 +5,9 @@
 ** initParticle
 */
 
-#include <utility>
-
-#include <utility>
-
 #include "Particle.hpp"
 
-Gui::Particle::Particle(std::shared_ptr<Gui::GameData> gameData) : _gameData(std::move(std::move(gameData)))
+Gui::Particle::Particle(std::shared_ptr<Gui::GameData> gameData) : _gameData(std::move(gameData))
 {
 
 }
