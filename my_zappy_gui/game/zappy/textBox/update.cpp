@@ -154,11 +154,28 @@ bool Gui::TextBox::isMouseOnBox(const BoxOpt &box, const Pos &mousePos)
 
 void Gui::TextBox::updateSlideBar(const Gui::Event &events)
 {
-    // Get Slide Bar Value
-    if (!_hasGetFrequency) {
-        
+    if (this->_gameData->dataMenu.stateGame != IN_SPECTATOR_MODE) {
+        return;
     }
+    if (_hasGetFrequency == NOT_SEND) {
+        this->_client->send("sgt\n");
+        _hasGetFrequency = SEND_DATA;
+    }
+    if (_hasGetFrequency == SEND_DATA && this->_gameData->timeUnit > 0) {
+        std::cout << "TIME UNIT: " << this->_gameData->timeUnit << "\n";
+        this->_gameData->infoSlider.sliderValue = this->_gameData->timeUnit;
+        std::cout << "OLD SIZE: " << this->_gameData->infoSlider.sliderBar.size.width << "\n";
+        double newWidthSlider = (this->_gameData->infoSlider.sliderValue * this->_gameData->infoSlider.sliderBar.size.width) / 150;
+        std::cout << "NEW SIZE: " << newWidthSlider << "\n";
+        this->_gameData->infoSlider.sliderHandle.pos.x = this->_gameData->infoSlider.sliderBar.pos.x + newWidthSlider;
+        std::cout << "NEW POS X: " << newWidthSlider << "\n";
 
+        _hasGetFrequency = GET_DATA;
+        std::cout << "FINISH SEND DATA\n";
+    }
+    if (_hasGetFrequency != GET_DATA) {
+        return;
+    }
     if (events.isKeyDown && events.mouse.x >= this->_gameData->infoSlider.sliderBar.pos.x - 0.004 * events.windowSize.width && events.mouse.x <= (this->_gameData->infoSlider.sliderBar.pos.x + this->_gameData->infoSlider.sliderBar.size.width) - 0.007 * events.windowSize.width
         && events.mouse.y <= 0.2 * events.windowSize.height && events.mouse.y >= 0.16 * events.windowSize.height) {
         int newXPos = this->_gameData->infoSlider.sliderBar.pos.x - 0.007;
