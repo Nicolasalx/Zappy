@@ -277,6 +277,7 @@ void immortal_cmd(int, char **argv, server_t *server);
 void tpegg_cmd(int, char **argv, server_t *server);
 void killegg_cmd(int, char **argv, server_t *server);
 void debug_cmd(int, char **argv, server_t *server);
+void kill_cmd(int, char **argv, server_t *server);
 
 // game
 void init_player(client_t *client, server_t *server);
