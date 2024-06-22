@@ -20,6 +20,7 @@ Checks:
   -modernize-redundant-void-arg
   -readability-convert-member-functions-to-static
   -readability-use-anyofallof
+  -clang-analyzer-core.NonNullParamChecker
   ## -readability-identifier-naming,
   ## -performance-enum-size,
   ## -performance-move-constructor-init,
