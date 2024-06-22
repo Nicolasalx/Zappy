@@ -47,6 +47,7 @@ const server_handler_t server_cmd_handler[] =
     {"resume", 0, resume_cmd, "resume"},
     {"immortal", 1, immortal_cmd, "immortal [true/false]"},
     {"tpegg", 3, tpegg_cmd, "tpegg [n egg] [x] [y]"},
+    {"kill", 1 , kill_cmd, "kill [n player]"},
     {"killegg", 1, killegg_cmd, "killegg [n egg]"},
     {"debug", 1, debug_cmd, "debug [true/false]"},
     {NULL, 0, NULL, NULL}
