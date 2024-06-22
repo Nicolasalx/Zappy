@@ -174,4 +174,5 @@ void Gui::RenderCamera::update(int state)
         else
             spectatorMode();
     }
+    changeSpectatorMode();
 }
