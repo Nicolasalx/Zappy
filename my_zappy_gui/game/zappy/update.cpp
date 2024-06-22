@@ -17,8 +17,14 @@ void Gui::Zappy::update(std::vector<std::string> &messRecv, const Gui::Event &ev
     if (this->_gameData->dataMenu.stateGame == Gui::IN_SPECTATOR_MODE) {
         this->_parser.update(messRecv);
     } else if (this->_gameData->dataMenu.stateGame == Gui::IN_PLAYER_MODE) {
-        this->_playerParser.update(messRecv);
+        try {
+            this->_playerParser.update(messRecv);
+        } catch(...) {
+            this->_gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
+        }
     }
+    this->_playerMode.setSendedMessageQueue(this->_playerParser.getSendedMessage());
+    this->_playerMode.update(event);
     this->_island.update(event);
     this->_object.update(event);
     this->_player.update(event);

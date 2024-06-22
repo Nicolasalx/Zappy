@@ -157,15 +157,10 @@ void Gui::RenderCamera::changeSpectatorMode()
 
 void Gui::RenderCamera::update(int state)
 {
-    if (IsKeyPressed(KEY_F))
-        ToggleFullscreen();
-
     if (Gui::RenderEndGame::_isEndGame) {
         endGameMode();
         return;
     }
-
-    changeSpectatorMode();
 
     if (state == IN_MENU && state == IN_SETTINGS)
         return;

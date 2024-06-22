@@ -7,7 +7,7 @@
 
 #include "Egg.hpp"
 
-Gui::Egg::Egg(std::shared_ptr<Gui::GameData> gameData): _gameData(gameData)
+Gui::Egg::Egg(std::shared_ptr<Gui::GameData> gameData): _gameData(std::move(gameData))
 {
 
 }

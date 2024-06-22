@@ -145,6 +145,8 @@ namespace Gui
         PLAYER_MODE,
         SPECTATOR_MODE,
         INPUT_BOX_IP,
+        INPUT_PORT,
+        INPUT_TEAM_NAME,
         ANNOUNCE_RETRY,
         GO_BACK_TO_MENU,
         MODIFY_SETTINGS,
@@ -169,14 +171,25 @@ namespace Gui
         LITTLE
     };
 
+    enum StateFrequency {
+        NOT_SEND,
+        SEND_DATA,
+        GET_DATA
+    };
+
     enum CursorState {
         DEFAULT,
         SELECTIONNED
     };
 
-    struct OptionResolution {
+    enum OptionResolution {
+        FULLSCREEN,
+        WINDOWED
+    };
+
+    struct DataResolution {
         std::string resText;
-        Size windowSize;
+        OptionResolution windowSize;
     };
 
     struct Component {
@@ -187,10 +200,27 @@ namespace Gui
         ComponentType componentType;
     };
 
+    enum InputSelectionned {
+        NO,
+        IP,
+        PORT,
+        TEAM_NAME
+    };
+
+    struct DataConnection {
+        std::string ip;
+        std::string port;
+        std::string teamName;
+        bool needToClearBuffer;
+    };
+
     struct DataMenu {
         StateGame stateGame = IN_MENU;
         std::vector<Gui::Component> componentList;
         CursorState cursorState;
+        InputSelectionned inputSelect;
+        std::vector<Text> componentsTitle;
+        DataConnection dataConnection;
     };
 
     struct BoxOpt {
@@ -207,20 +237,18 @@ namespace Gui
         Text textButtonNextDisp;
         bool changeDisplayLib;
 
-        Size resolution;
+        OptionResolution resolution;
         int volume;
     };
-
-    typedef std::function<void()> ActionButtonPlayer;
 
     struct ButtonPlayerMode {
         BoxOpt button;
         Text text;
 
-        ActionButtonPlayer actPlayer;
+        std::function<void()> actPlayer;
     };
 
-    struct PlayerMode {
+    struct DataPlayerMode {
         std::vector<ButtonPlayerMode> buttonPlayerMode;
     };
 

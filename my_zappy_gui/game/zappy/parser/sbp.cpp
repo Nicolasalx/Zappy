@@ -7,7 +7,7 @@
 
 #include "Parser.hpp"
 
-void Gui::Parser::sbp(std::vector<std::string> args)
+void Gui::Parser::sbp(const std::vector<std::string> &/*args*/)
 {
     ;
 }

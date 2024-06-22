@@ -21,6 +21,7 @@
     #include "RenderTextBox.hpp"
     #include "RenderRayInfo.hpp"
     #include "RenderEndGame.hpp"
+    #include "RenderPlayerMode.hpp"
     #include <raylib.h>
     #include <iostream>
 
@@ -36,11 +37,12 @@ namespace Gui
             void render(const Gui::GameData &gameData) override;
             void renderGame(const Gui::GameData &gameData);
             void handleSoundSystem(const Gui::GameData &gameData);
-
             void getKeyEvent(Gui::Event &event);
-
-            void putEventInBuffer(Gui::Event &event);
+            void putEventInBuffer(Gui::Event &event, std::string &bufferToFill);
             void putEventInEventList(Gui::Event &event);
+            void handleKeyEvent(Gui::Event event);
+            bool isEventInList(const Gui::Event &event, const Gui::EventType &eventType);
+            void detectEventKeyBoard(Gui::Event &event);
 
         private:
             std::vector<std::pair<KeyboardKey, Gui::EventType>> _keyBind = {
@@ -64,6 +66,7 @@ namespace Gui
             std::unique_ptr<Gui::RenderTextBoxList> textBoxList;
             std::unique_ptr<Gui::RenderRayInfo> rayInfo;
             std::unique_ptr<Gui::RenderEndGame> endGame;
+            std::unique_ptr<Gui::RenderPlayerMode> playerMode;
             Gui::RenderMenu menu;
     };
 }

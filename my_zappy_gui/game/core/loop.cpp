@@ -91,14 +91,17 @@ bool Gui::Core::handleCoreEvent(const Gui::Event &eventList)
     return false;
 }
 
-void Gui::Core::handleGameState(Gui::GameData &gameData)
+void Gui::Core::handleGameState()
 {
     if (this->gameData->dataMenu.stateGame == TRY_SPECTATOR_MODE) {
         try {
-            this->clientModule->connect(this->ip, this->port);
+            this->clientModule->connect(
+                !this->gameData->dataMenu.dataConnection.ip.empty() ? gameData->dataMenu.dataConnection.ip : this->ip,
+                !gameData->dataMenu.dataConnection.port.empty() ? gameData->dataMenu.dataConnection.port : this->port
+            );
             this->clientModule->send("GRAPHIC\n");
-        } catch(...) {
-            // dispay red message
+            _isConnectedToServer = true;
+        } catch (...) {
             this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
             return;
         }
@@ -106,15 +109,29 @@ void Gui::Core::handleGameState(Gui::GameData &gameData)
     }
     if (this->gameData->dataMenu.stateGame == TRY_PLAYER_MODE) {
         try {
-            this->clientModule->connect(this->ip, this->port);
-            this->clientModule->send("Team1\n"); // ! to change
-        } catch(...) {
-            // dispay red message
+            this->clientModule->connect(
+                !this->gameData->dataMenu.dataConnection.ip.empty() ? gameData->dataMenu.dataConnection.ip : this->ip,
+                !gameData->dataMenu.dataConnection.port.empty() ? gameData->dataMenu.dataConnection.port : this->port
+            );
+            this->clientModule->send(gameData->dataMenu.dataConnection.teamName + "\n");
+            _isConnectedToServer = true;
+        } catch (...) {
             this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
             return;
         }
         this->gameData->dataMenu.stateGame = IN_PLAYER_MODE;
     }
+}
+
+std::vector<std::string> Gui::Core::recvMessages()
+{
+    std::vector<std::string> messages;
+    try {
+        messages = this->clientModule->recv();
+    } catch (...) {
+        this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
+    }
+    return messages;
 }
 
 void Gui::Core::loop()
@@ -123,16 +140,19 @@ void Gui::Core::loop()
 
     while (true) {
         Gui::FrameRate::start();
+        std::vector<std::string> messRecv;
 
-        std::vector<std::string> messRecv = this->clientModule->recv();
+        if (_isConnectedToServer) {
+            messRecv = recvMessages();
+        }
         const Gui::Event &eventList = this->renderModule->getEvent();
 
         if (handleCoreEvent(eventList)) {
             break;
         }
-        handleGameState(*this->gameData.get());
+        handleGameState();
         this->gameModule->update(messRecv, eventList);
-        this->renderModule->render(*this->gameData.get());
+        this->renderModule->render(*this->gameData);
         Gui::FrameRate::end();
     }
 }

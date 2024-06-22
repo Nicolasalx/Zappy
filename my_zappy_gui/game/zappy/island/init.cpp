@@ -7,7 +7,7 @@
 
 #include "Island.hpp"
 
-Gui::Island::Island(std::shared_ptr<Gui::GameData> gameData): _gameData(gameData)
+Gui::Island::Island(std::shared_ptr<Gui::GameData> gameData): _gameData(std::move(gameData))
 {
 
 }

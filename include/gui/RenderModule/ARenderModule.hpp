@@ -15,11 +15,6 @@ namespace Gui
 {
     class ARenderModule : virtual public IRenderModule
     {
-        public:
-            virtual ~ARenderModule() = default;
-            virtual Event getEvent() = 0;
-            virtual void render(const Gui::GameData &gameData) = 0;
-
         protected:
             bool _ignoreKey = false;
     };

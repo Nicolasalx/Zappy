@@ -18,7 +18,9 @@ namespace Gui
     struct Event
     {
         std::vector<Gui::EventType> eventType;
-        std::string buffer;
+        std::string bufferIP;
+        std::string bufferPort;
+        std::string bufferTeamName;
         Pos mouse = {0, 0};
         Size windowSize = {0, 0};
         double frame_time = 0;

@@ -8,7 +8,7 @@
 #include "Menu.hpp"
 #include "GameConfig.hpp"
 
-Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData): _gameData(gameData)
+Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData): _gameData(std::move(gameData))
 {
     componentPlayerMode();
     componentSpectatorMode();
@@ -16,6 +16,10 @@ Gui::Menu::Menu(std::shared_ptr<Gui::GameData> gameData): _gameData(gameData)
     componentQuit();
     inputBoxIP();
     inputBoxPort();
-    this->_gameData->infoWindow.resolution = {WINDOW_WIDTH, WINDOW_HEIGHT};
+    inputBoxTeamName();
+    this->_gameData->dataMenu.componentsTitle.push_back(Text("IP", {0.55, 0.35}, {0.55, 0.35}, 60, WHITE_COLOR));
+    this->_gameData->dataMenu.componentsTitle.push_back(Text("Port", {0.55, 0.55}, {0.55, 0.55}, 60, WHITE_COLOR));
+    this->_gameData->dataMenu.componentsTitle.push_back(Text("Team Name", {0.55, 0.75}, {0.55, 0.75}, 60, WHITE_COLOR));
+    this->_gameData->infoWindow.resolution = WINDOWED;
     this->_gameData->infoWindow.volume = 10;
 }

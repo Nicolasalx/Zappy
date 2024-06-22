@@ -26,6 +26,7 @@ Gui::Raylib::Raylib() : window(), camera()
     this->textBoxList = std::make_unique<Gui::RenderTextBoxList>();
     this->rayInfo = std::make_unique<Gui::RenderRayInfo>();
     this->endGame = std::make_unique<Gui::RenderEndGame>();
+    this->playerMode = std::make_unique<Gui::RenderPlayerMode>();
 }
 
 Gui::Raylib::~Raylib()

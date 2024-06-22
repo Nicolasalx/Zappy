@@ -15,19 +15,15 @@ Checks:
   -readability-magic-numbers,
   -readability-else-after-return,
   -readability-braces-around-statements
+  -readability-uppercase-literal-suffix
+  -modernize-use-trailing-return-type,
+  -modernize-redundant-void-arg
+  -readability-convert-member-functions-to-static
+  -readability-use-anyofallof
   ## -readability-identifier-naming,
   ## -performance-enum-size,
   ## -performance-move-constructor-init,
   ## -performance-no-int-to-ptr,
-  ## -modernize-use-trailing-return-type,
   ## -modernize-redundant-void-arg,
   ## -readability-uppercase-literal-suffix,
   ## -readability-implicit-bool-conversion,
-
-CheckOptions:
-  - key: readability-function-size.StatementThreshold
-    value: 25
-  - key: readability-function-size.NestingThreshold
-    value: 3
-  - key: readability-function-size.ParameterThreshold
-    value: 5

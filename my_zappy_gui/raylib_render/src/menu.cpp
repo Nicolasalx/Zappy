@@ -71,14 +71,23 @@ void Gui::RenderMenu::render3DModel(Camera3D camera)
 void Gui::RenderMenu::render(const GameData &gameData)
 {
     this->stateGame = gameData.dataMenu.stateGame;
+    this->inputSelect = gameData.dataMenu.inputSelect;
+    this->needToClearBuffer = gameData.dataMenu.dataConnection.needToClearBuffer;
 
-    if (gameData.dataMenu.cursorState == SELECTIONNED) {
+    if (gameData.dataMenu.cursorState == SELECTIONNED && gameData.dataMenu.stateGame == IN_MENU) {
         SetMouseCursor(MOUSE_CURSOR_IBEAM);
     } else {
         SetMouseCursor(MOUSE_CURSOR_DEFAULT);
     }
+    if (gameData.infoWindow.resolution != _optionResolution) {
+        ToggleFullscreen();
+        _optionResolution = gameData.infoWindow.resolution;
+    }
     for (auto &item: gameData.dataMenu.componentList) {
         renderOneComponent(item);
+    }
+    for (auto &text: gameData.dataMenu.componentsTitle) {
+        DrawText(text.contentText.c_str(), text.pos.x, text.pos.y, text.fontSize, Gui::RenderColor::getColorFromGame(text.color));
     }
 }
 
@@ -88,14 +97,3 @@ void Gui::RenderMenu::renderMenu(const GameData &gameData, Camera3D camera)
     render3DModel(camera);
     render(gameData);
 }
-
-// if (gameData.infoWindow.resolution.width != window.windowSize.width || gameData.infoWindow.resolution.height != window.windowSize.height) {
-//     window.windowSize.width = gameData.infoWindow.resolution.width;
-//     window.windowSize.height = gameData.infoWindow.resolution.height;
-//     this->needToResize = true;
-//     //EndDrawing();
-//     //CloseWindow();
-//     //InitWindow(window.windowSize.width, window.windowSize.height, "Zappy GUI");
-//     //BeginDrawing();
-//     return;
-// }

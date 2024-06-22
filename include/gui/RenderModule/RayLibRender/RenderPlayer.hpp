@@ -23,7 +23,7 @@ namespace Gui
             void updateAnimation(const PlayerData &player);
             void drawPlayerModel(const PlayerData &player);
             void drawPlayerBox(const Gui::PlayerData &player);
-            void render(const GameData &gameData);
+            void render(const GameData &gameData) override;
 
             ModelAnimation *player_animation;
             BoundingBox player_box;

@@ -7,7 +7,7 @@
 
 #include "TextBox.hpp"
 
-void Gui::TextBox::addText(TextBoxData &textBox, size_t index, std::string text)
+void Gui::TextBox::addText(TextBoxData &textBox, size_t index, const std::string &text)
 {
     if (textBox._text.size() <= index) {
         textBox._text.push_back(text);
@@ -18,9 +18,7 @@ void Gui::TextBox::addText(TextBoxData &textBox, size_t index, std::string text)
 
 bool Gui::TextBox::isClosed(TextBoxData &_text)
 {
-    if (_text._state == CLOSED_RIGHT || _text._state == CLOSED_LEFT)
-        return true;
-    return false;
+    return _text._state == CLOSED_RIGHT || _text._state == CLOSED_LEFT;
 }
 
 void Gui::TextBox::openClose(const Gui::Event &event)
@@ -65,7 +63,7 @@ void Gui::TextBox::updateListPlayerLevel()
 
 void Gui::TextBox::updateGeneralInfo()
 {
-    if (_gameData->textBox.size() < 1 || isClosed(_gameData->textBox[0]))
+    if (_gameData->textBox.empty() || isClosed(_gameData->textBox[0]))
         return;
     addText(_gameData->textBox[0], 0, "Number of players: " + std::to_string(_gameData->playerList.size()));
     addText(_gameData->textBox[0], 1, "Server frequency: " + std::to_string(_gameData->timeUnit));
@@ -122,7 +120,7 @@ void Gui::TextBox::updateOnePlayerInfo()
 
 void Gui::TextBox::updateOneTileInfo()
 {
-    if (_gameData->rayInfo.type == ISLAND && _gameData->textBox.size() > 2 && _gameData->objectPos.size() > 0) {
+    if (_gameData->rayInfo.type == ISLAND && _gameData->textBox.size() > 2 && !_gameData->objectPos.empty()) {
         _gameData->textBox[2]._state = NO_BUTTON;
         addText(_gameData->textBox[2], 0, "Tile: (" + std::to_string(_gameData->rayInfo.x) + ", " + std::to_string(_gameData->rayInfo.y) + ")");
         addText(_gameData->textBox[2], 1, "Food: " + std::to_string(_gameData->objectPos[_gameData->rayInfo.y][_gameData->rayInfo.x][FOOD]));
@@ -144,15 +142,11 @@ bool Gui::TextBox::isMouseOnBox(const BoxOpt &box, const Pos &mousePos)
     float boxTop = box.pos.y;
     float boxBottom = box.pos.y + box.size.height;
 
-    if (mousePos.x >= boxLeft && mousePos.x <= boxRight &&
-        mousePos.y >= boxTop && mousePos.y <= boxBottom) {
-        return true;
-    } else {
-        return false;
-    }
+    return mousePos.x >= boxLeft && mousePos.x <= boxRight &&
+        mousePos.y >= boxTop && mousePos.y <= boxBottom;
 }
 
-void Gui::TextBox::updateSlideBar(const Gui::Event &events)
+void Gui::TextBox::moveSlideBar(const Gui::Event &events)
 {
     if (events.isKeyDown && events.mouse.x >= this->_gameData->infoSlider.sliderBar.pos.x - 0.004 * events.windowSize.width && events.mouse.x <= (this->_gameData->infoSlider.sliderBar.pos.x + this->_gameData->infoSlider.sliderBar.size.width) - 0.007 * events.windowSize.width
         && events.mouse.y <= 0.2 * events.windowSize.height && events.mouse.y >= 0.16 * events.windowSize.height) {
@@ -171,6 +165,26 @@ void Gui::TextBox::updateSlideBar(const Gui::Event &events)
     }
 }
 
+void Gui::TextBox::updateSlideBar(const Gui::Event &events)
+{
+    if (this->_gameData->dataMenu.stateGame != IN_SPECTATOR_MODE) {
+        return;
+    }
+    if (_hasGetFrequency == NOT_SEND) {
+        this->_client->send("sgt\n");
+        _hasGetFrequency = SEND_DATA;
+    }
+    if (_hasGetFrequency == SEND_DATA && this->_gameData->timeUnit > 0) {
+        this->_gameData->infoSlider.sliderValue = this->_gameData->timeUnit;
+        double newWidthSlider = (this->_gameData->infoSlider.sliderValue * this->_gameData->infoSlider.sliderBar.size.width) / 150;
+        this->_gameData->infoSlider.sliderHandle.pos.x = this->_gameData->infoSlider.sliderBar.pos.x + newWidthSlider;
+        _hasGetFrequency = GET_DATA;
+    }
+    if (_hasGetFrequency == GET_DATA) {
+        moveSlideBar(events);
+    }
+}
+
 void Gui::TextBox::updateButtonNextDisp(const Gui::Event &events)
 {
     if (events.isKeyDown && this->isMouseOnBox(this->_gameData->infoWindow.buttonNextDisplay, events.mouse)) {
@@ -179,17 +193,8 @@ void Gui::TextBox::updateButtonNextDisp(const Gui::Event &events)
     } else {
         this->_gameData->infoWindow.buttonNextDisplay.color = WHITE_COLOR;
     }
-}
-
-void Gui::TextBox::updatePlayerMode(const Gui::Event &events)
-{
-    for (auto &button: this->_gameData->playerMode.buttonPlayerMode) {
-        if (events.isKeyDown && this->isMouseOnBox(button.button, events.mouse) && button.actPlayer != NULL) {
-            button.button.color = RED_COLOR;
-            button.actPlayer();
-        } else {
-            button.button.color = WHITE_COLOR;
-        }
+    if (this->_gameData->dataMenu.stateGame != IN_MENU) {
+        this->_gameData->ignoreKey = false;
     }
 }
 
@@ -203,8 +208,7 @@ void Gui::TextBox::update(const Gui::Event &events)
     updateOneTileInfo();
     updateSlideBar(events);
     updateButtonNextDisp(events);
-    updatePlayerMode(events);
-    for (auto &event : events.eventType) {
+    for (const auto &event : events.eventType) {
         if (event == Gui::EventType::WINDOW_RESIZED) {
             resize(_gameData->windowX, _gameData->windowY);
         }

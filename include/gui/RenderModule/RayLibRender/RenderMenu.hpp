@@ -12,6 +12,7 @@
     #include <raylib.h>
     #include "RenderWindow.hpp"
     #include "ARayLibModel.hpp"
+    #include "InfoGame.hpp"
 
 namespace Gui {
     class RenderMenu : public virtual Gui::ARayLibModel
@@ -19,20 +20,20 @@ namespace Gui {
         public:
             RenderMenu();
             ~RenderMenu() = default;
-            void render(const GameData &gameData);
+            void render(const GameData &gameData) override;
             void renderOneComponent(const Gui::Component &component);
             void render3DModel(Camera3D camera);
             void renderMenu(const GameData &gameData, Camera3D camera);
 
             StateGame stateGame = IN_MENU;
-            bool needToResize = false;
+            InputSelectionned inputSelect = NO;
             Texture2D menuIsland;
             Texture2D spaceTexture;
             Texture2D zappyLogo;
+            bool needToClearBuffer = false;
         private:
-            int _windowWidth = 0;
-            int _windowHeight = 0;
             float earthRotation = 0;
+            OptionResolution _optionResolution = WINDOWED;
     };
 }
 

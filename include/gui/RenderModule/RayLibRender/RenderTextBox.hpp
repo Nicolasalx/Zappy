@@ -41,7 +41,6 @@ namespace Gui
             void render(const GameData &gameData);
             void renderSlideBar(const GameData &gameData);
             void renderButtonNextDisp(const GameData &gameData);
-            void renderButtonPlayerMode(const GameData &GameData);
 
             std::vector<Gui::RenderTextBox> _textBoxs;
             bool _changeDisplayLib = false;

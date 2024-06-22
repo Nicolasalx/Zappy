@@ -22,7 +22,7 @@ namespace Gui
             TextBox(std::shared_ptr<Gui::GameData> gameData, std::shared_ptr<Gui::IClient> client);
             ~TextBox() = default;
 
-            void addText(TextBoxData &textBox, size_t index, std::string text);
+            void addText(TextBoxData &textBox, size_t index, const std::string &text);
             void update(const Gui::Event &event);
             void resize(int windowWidth, int windowHeight);
             void resizeSlideBar(int windowWidth, int windowHeight);
@@ -40,17 +40,13 @@ namespace Gui
             void resizeButtonNextDisp(int windowWidth, int windowHeight);
             void updateButtonNextDisp(const Gui::Event &events);
             static bool isMouseOnBox(const BoxOpt &box, const Pos &mousePos);
-            void initButtonPlayerMode();
-            void addButtonPlayerMode(const std::string &contentText, Pos pos, const SizeButton &sizeButton, ActionButtonPlayer actPlayer);
-            void resizeButtonPlayerMode(int windowWidth, int windowHeight);
-            void updatePlayerMode(const Gui::Event &events);
-
-            void turnLeft();
+            void moveSlideBar(const Gui::Event &events);
 
         private:
             std::shared_ptr<Gui::GameData> _gameData;
             std::shared_ptr<Gui::IClient> _client;
             std::vector<int> listLevelPlayer;
+            StateFrequency _hasGetFrequency = NOT_SEND;
     };
 }
 

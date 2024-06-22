@@ -23,12 +23,9 @@ namespace Gui
             RenderObject();
             ~RenderObject() = default;
 
-            void render(const GameData &gameData);
+            void render(const GameData &gameData) override;
 
             float object_padding[7][2];
-
-        private:
-
     };
 }
 

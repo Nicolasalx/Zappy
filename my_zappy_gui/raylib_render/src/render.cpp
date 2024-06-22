@@ -12,6 +12,7 @@ void Gui::Raylib::renderGame(const Gui::GameData &gameData)
     BeginMode3D(this->camera._camera);
 
     this->skyBox->render();
+
     this->player->render(gameData);
     this->object->render(gameData);
     this->particle->render(gameData, this->camera._camera);
@@ -22,6 +23,7 @@ void Gui::Raylib::renderGame(const Gui::GameData &gameData)
     this->endGame->render(gameData);
     EndMode3D();
     this->textBoxList->render(gameData);
+    this->playerMode->render(gameData);
 }
 
 void Gui::Raylib::handleSoundSystem(const Gui::GameData &gameData)

@@ -20,16 +20,16 @@
     #include "Parser.hpp"
     #include "Client.hpp"
     #include <memory>
-    #include "Particle.hpp"
     #include "Event.hpp"
     #include "PlayerParser.hpp"
+    #include "PlayerMode.hpp"
 
 namespace Gui
 {
     class Zappy : virtual public AGameModule
     {
         public:
-            Zappy(std::shared_ptr<Gui::IClient> client, std::shared_ptr<Gui::GameData> gameData);
+            Zappy(const std::shared_ptr<Gui::IClient> &client, const std::shared_ptr<Gui::GameData> &gameData);
             ~Zappy() override = default;
 
             void update(std::vector<std::string> &messRecv, const Gui::Event &event) override;
@@ -45,6 +45,7 @@ namespace Gui
             Gui::Egg _egg;
             Gui::TextBox _textBox;
             Gui::Menu _menu;
+            Gui::PlayerMode _playerMode;
     };
 };
 
