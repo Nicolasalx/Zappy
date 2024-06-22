@@ -59,6 +59,9 @@ Gui::Event Gui::Raylib::getEvent()
         window.windowSize.height = GetScreenHeight();
         window.launched = true;
     }
+    if (this->textBoxList->_changeDisplayLib) {
+        // event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
+    }
     if (this->menu.stateGame == IN_LEAVE) {
         event.eventType.push_back(Gui::EventType::EXIT);
     }
@@ -66,9 +69,6 @@ Gui::Event Gui::Raylib::getEvent()
         // event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
         // event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
         this->menu.needToResize = false;
-    }
-    if (this->textBoxList->_changeDisplayLib) {
-        event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
     }
     getKeyEvent(event);
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
