@@ -14,6 +14,8 @@
 void Gui::RenderRayInfo::selectEvent(const GameData &gameData, Camera3D camera)
 {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (GetMousePosition().y > gameData.windowY * 1.5f && (gameData.dataMenu.stateGame == IN_PLAYER_MODE || gameData.dataMenu.stateGame == TRY_PLAYER_MODE))
+            return;
         this->ray = GetMouseRay(GetMousePosition(), camera);
         for (auto &player : gameData.playerList) {
             box.min = (Vector3){player.real_pos.x * Gui::RenderIsland::map_scale -1.0f, 0.0f, player.real_pos.y * Gui::RenderIsland::map_scale - 1.0f};
