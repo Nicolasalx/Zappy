@@ -34,7 +34,6 @@ Gui::Event Gui::SFMLRender::getEvent()
     sf::Event event;
 
     guiEvent.frame_time = clock.restart().asSeconds();
-    // std::cout << "frame time: " << guiEvent.frame_time << std::endl;
     if (!window.isOpen()) {
         return Gui::Event();
     }
@@ -45,10 +44,6 @@ Gui::Event Gui::SFMLRender::getEvent()
     guiEvent.windowSize.height = window.getSize().y;
     
     while (window.pollEvent(event)) {
-        if (this->textBoxList->_changeDisplayLib) {
-            std::cout << "printed\n";
-            guiEvent.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
-        }
         if (event.type == sf::Event::Closed
         || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
             guiEvent.eventType.push_back(Gui::EventType::EXIT);
@@ -61,6 +56,9 @@ Gui::Event Gui::SFMLRender::getEvent()
             if (sf::Keyboard::isKeyPressed(currentKey.first)) {
                 guiEvent.eventType.push_back(currentKey.second);
             }
+        }
+        if (this->textBoxList->_changeDisplayLib) {
+            guiEvent.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
         }
     }
     return guiEvent;
@@ -80,7 +78,6 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
     if (!window.isOpen()) {
         return;
     }
-    const Gui::Event &eventList = this->getEvent();
     window.clear();
     window.draw(sprite);
     this->map->render(gameData, window);
@@ -88,12 +85,6 @@ void Gui::SFMLRender::render(const Gui::GameData &gameData)
     this->egg->render(gameData, window);
     this->player->render(gameData, window);
     this->textBoxList->drawAllTextBoxs(window, font, gameData);
-    if (std::find(eventList.eventType.begin(), eventList.eventType.end(), Gui::EventType::LEFT_CLICK) != eventList.eventType.end()) {
-        sf::Vector2i cell = getClickedCase(gameData, eventList.mouse.x, eventList.mouse.y);
-        if (cell.x < 0 && cell.y < 0) {
-            std::cout << "Case clicked: (" << cell.x << ", " << cell.y << ")\n";
-        }
-    }
     window.display();
 }
 

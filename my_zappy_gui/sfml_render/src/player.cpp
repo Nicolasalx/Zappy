@@ -24,7 +24,7 @@ void Gui::SFMLRenderPlayer::render(const GameData &gameData, sf::RenderWindow &w
         sprite.setScale(player_scale, player_scale);
         double sprite_offset_x = 0.5 * cell_size - (sprite.getLocalBounds().width * sprite.getScale().x) / 2;
         double sprite_offset_y = 0.5 * cell_size - (sprite.getLocalBounds().height * sprite.getScale().y) / 2;
-        sprite.setPosition(offset_x + gameData.playerList[i].real_pos.x * cell_size + sprite_offset_x, offset_y + gameData.playerList[i].real_pos.y * cell_size + sprite_offset_y);
+        sprite.setPosition(offset_x + gameData.playerList[i].pos.x * cell_size + sprite_offset_x, offset_y + gameData.playerList[i].pos.y * cell_size + sprite_offset_y);
         window.draw(sprite);
     }
 }

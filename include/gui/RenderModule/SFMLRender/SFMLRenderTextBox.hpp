@@ -40,7 +40,7 @@ namespace Gui
             ~SFMLRenderTextBoxList() = default;
             void updateTextBoxs(const GameData &gameData);
             void drawAllTextBoxs(sf::RenderWindow &window, const sf::Font &font, const GameData &gameData);
-            void renderButtonNextDisp(sf::RenderWindow &window, const GameData &gameData);
+            void renderButtonNextDisp(sf::RenderWindow &window, const sf::Font &font, const GameData &gameData);
             std::vector<SFMLRenderTextBox> _textBoxs;
             bool _changeDisplayLib = false;
     };
