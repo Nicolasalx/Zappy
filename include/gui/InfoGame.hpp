@@ -211,6 +211,7 @@ namespace Gui
         std::string ip;
         std::string port;
         std::string teamName;
+        bool needToClearBuffer;
     };
 
     struct DataMenu {

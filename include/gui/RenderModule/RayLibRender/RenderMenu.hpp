@@ -30,6 +30,7 @@ namespace Gui {
             Texture2D menuIsland;
             Texture2D spaceTexture;
             Texture2D zappyLogo;
+            bool needToClearBuffer = false;
         private:
             float earthRotation = 0;
             OptionResolution _optionResolution = WINDOWED;

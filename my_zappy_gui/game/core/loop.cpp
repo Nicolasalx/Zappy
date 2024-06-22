@@ -102,7 +102,6 @@ void Gui::Core::handleGameState()
             this->clientModule->send("GRAPHIC\n");
             _isConnectedToServer = true;
         } catch (...) {
-            std::cerr << "An unknown error occurred." << std::endl;
             this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
             return;
         }
@@ -117,7 +116,6 @@ void Gui::Core::handleGameState()
             this->clientModule->send(gameData->dataMenu.dataConnection.teamName + "\n");
             _isConnectedToServer = true;
         } catch (...) {
-            std::cerr << "An unknown error occurred." << std::endl;
             this->gameData->dataMenu.stateGame = Gui::CONNECTION_FAILED_MENU;
             return;
         }

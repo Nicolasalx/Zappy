@@ -66,6 +66,12 @@ void Gui::Raylib::getKeyEvent(Gui::Event &event)
 {
     std::string bufferToFill;
 
+    if (this->menu.needToClearBuffer) {
+        _event.bufferIP.clear();
+        _event.bufferPort.clear();
+        _event.bufferTeamName.clear();
+    }
+
     if (this->menu.inputSelect == IP) {
         bufferToFill = this->_event.bufferIP;
     } else if (this->menu.inputSelect == PORT) {

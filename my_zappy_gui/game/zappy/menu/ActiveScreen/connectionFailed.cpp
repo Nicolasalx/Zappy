@@ -14,6 +14,10 @@ void Gui::Menu::screenConnectionFailed()
         this->_gameData->dataMenu.componentsTitle.clear();
         announceRetry();
         goBackToTheMenu();
+        this->_gameData->dataMenu.dataConnection.ip.clear();
+        this->_gameData->dataMenu.dataConnection.port.clear();
+        this->_gameData->dataMenu.dataConnection.teamName.clear();
+        this->_gameData->dataMenu.dataConnection.needToClearBuffer = true;
         _oldState = this->_gameData->dataMenu.stateGame;
     }
 }
