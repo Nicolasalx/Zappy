@@ -130,13 +130,14 @@ Gui::Event Gui::Raylib::getEvent()
     Gui::Event event;
 
     event.frame_time = GetFrameTime();
+
+    this->island->changeIslandEvent();
+
     detectEventKeyBoard(event);
     event.mouse.x = GetMouseX();
     event.mouse.y = GetMouseY();
     event.windowSize.width = window.windowSize.width;
     event.windowSize.height = window.windowSize.height;
-
-    this->island->changeIslandEvent();
 
     this->camera.updatePlayerPos(event);
 
