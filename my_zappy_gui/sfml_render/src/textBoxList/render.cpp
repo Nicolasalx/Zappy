@@ -34,10 +34,27 @@ void Gui::SFMLRenderTextBoxList::updateTextBoxs(const GameData &gameData)
     }
 }
 
+void Gui::SFMLRenderTextBoxList::renderButtonNextDisp(sf::RenderWindow &window, const GameData &gameData)
+{
+     sf::RectangleShape box(sf::Vector2f(gameData.infoWindow.buttonNextDisplay.size.width,
+                                        gameData.infoWindow.buttonNextDisplay.size.height));
+    box.setPosition(gameData.infoWindow.buttonNextDisplay.pos.x,
+                    gameData.infoWindow.buttonNextDisplay.pos.y);
+
+    sf::Color color = {255, 255, 255};
+    color.a = 100;
+    box.setFillColor(color);
+    color.a = 255;
+    box.setOutlineColor(color);
+    box.setOutlineThickness(1);
+    window.draw(box);
+    this->_changeDisplayLib = gameData.infoWindow.changeDisplayLib;
+}
 
 void Gui::SFMLRenderTextBoxList::drawAllTextBoxs(sf::RenderWindow &window, const sf::Font &font, const GameData &gameData)
 {
     updateTextBoxs(gameData);
+    renderButtonNextDisp(window, gameData);
     for (auto &textBox : _textBoxs) {
         textBox.draw(window, font);
     }
