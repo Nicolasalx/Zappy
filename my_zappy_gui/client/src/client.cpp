@@ -29,9 +29,13 @@ Gui::Client::~Client()
 
 void Gui::Client::connect(const std::string &ip, const std::string &port)
 {
-    connected = true;
+    if ((ip != "localhost" && std::count(ip.begin(), ip.end(), '.') != 3)
+    || port.find_first_not_of("0123456789") != std::string::npos) {
+        throw std::runtime_error("Invalid port or ip\n");
+    }
     endpoint_ = asio::ip::tcp::resolver::results_type(resolver_.resolve(ip, port));
     asio::connect(socket_, endpoint_);
+    connected = true;
 }
 
 void Gui::Client::send(const std::string &message)
