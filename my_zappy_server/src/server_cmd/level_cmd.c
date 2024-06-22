@@ -24,6 +24,7 @@ static bool level_up_player(server_t *server, int id, int level)
         && server->clients[i].player.is_graphic == false
         && server->clients[i].player.team) {
             server->clients[i].player.level = level;
+            plv_reply(server, &server->clients[i].player);
             printf("Player %d is now level %d\n", id, level);
             winning_team = condition_win(server);
             send_player_level_reply(server, winning_team);
