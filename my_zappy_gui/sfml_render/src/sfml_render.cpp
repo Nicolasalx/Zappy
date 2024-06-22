@@ -45,6 +45,10 @@ Gui::Event Gui::SFMLRender::getEvent()
     guiEvent.windowSize.height = window.getSize().y;
     
     while (window.pollEvent(event)) {
+        if (this->textBoxList->_changeDisplayLib) {
+            std::cout << "printed\n";
+            guiEvent.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
+        }
         if (event.type == sf::Event::Closed
         || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
             guiEvent.eventType.push_back(Gui::EventType::EXIT);
