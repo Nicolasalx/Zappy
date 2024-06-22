@@ -46,7 +46,6 @@ namespace Gui
 
         private:
             std::vector<std::pair<KeyboardKey, Gui::EventType>> _keyBind = {
-                {KEY_N, Gui::EventType::NEXT_DISPLAY},
                 {KEY_M, Gui::EventType::BACK_MENU},
                 {KEY_R, Gui::EventType::RESTART},
                 {KEY_ENTER, Gui::EventType::ENTER}

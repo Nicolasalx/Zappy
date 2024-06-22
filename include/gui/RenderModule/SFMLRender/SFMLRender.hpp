@@ -50,7 +50,6 @@ namespace Gui
                 {sf::Keyboard::I, Gui::EventType::KEY_I},
                 {sf::Keyboard::O, Gui::EventType::KEY_O},
                 {sf::Keyboard::P, Gui::EventType::KEY_P},
-                {sf::Keyboard::N, Gui::EventType::NEXT_DISPLAY},
                 {sf::Keyboard::M, Gui::EventType::BACK_MENU},
                 {sf::Keyboard::R, Gui::EventType::RESTART},
                 {sf::Keyboard::Enter, Gui::EventType::ENTER}
