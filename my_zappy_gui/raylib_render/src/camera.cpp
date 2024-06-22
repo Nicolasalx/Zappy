@@ -58,15 +58,21 @@ void Gui::RenderCamera::playerMode()
 {
     _camera.target.x = playerPos.x * Gui::RenderIsland::map_scale;
     _camera.target.z = playerPos.y * Gui::RenderIsland::map_scale;
-    if (sqrt(pow(_camera.position.x - playerPos.x * Gui::RenderIsland::map_scale, 2) + pow(_camera.position.z - playerPos.y * Gui::RenderIsland::map_scale, 2)) > 7.0f) {
+    float distance = sqrt(pow(_camera.position.x - playerPos.x * Gui::RenderIsland::map_scale, 2) + pow(_camera.position.z - playerPos.y * Gui::RenderIsland::map_scale, 2)
+    + pow(_camera.position.y - 0.0f, 2));
+    if (distance > 10.0f) {
         if (_camera.position.x < playerPos.x * Gui::RenderIsland::map_scale)
-            _camera.position.x += abs(playerPos.x * Gui::RenderIsland::map_scale - _camera.position.x) / 3.0f;
+            _camera.position.x += distance * GetFrameTime();
         if (_camera.position.x > playerPos.x * Gui::RenderIsland::map_scale)
-            _camera.position.x -= abs(playerPos.x * Gui::RenderIsland::map_scale - _camera.position.x) / 3.0f;
+            _camera.position.x -= distance * GetFrameTime();
         if (_camera.position.z < playerPos.y * Gui::RenderIsland::map_scale)
-            _camera.position.z += abs(playerPos.y * Gui::RenderIsland::map_scale - _camera.position.z) / 3.0f;
+            _camera.position.z += distance * GetFrameTime();
         if (_camera.position.z > playerPos.y * Gui::RenderIsland::map_scale)
-            _camera.position.z -= abs(playerPos.y * Gui::RenderIsland::map_scale - _camera.position.z) / 3.0f;
+            _camera.position.z -= distance * GetFrameTime();
+        if (_camera.position.y < 5.0f)
+            _camera.position.y += distance * GetFrameTime();
+        if (_camera.position.y > 5.0f)
+            _camera.position.y -= distance * GetFrameTime();
     }
     if (IsCursorHidden()) {
         UpdateCamera(&this->_camera, CAMERA_THIRD_PERSON);
@@ -161,6 +167,9 @@ void Gui::RenderCamera::update(int state)
         endGameMode();
         return;
     }
+
+    if (IsKeyPressed(KEY_F))
+        ToggleFullscreen();
 
     if (state == IN_PLAYER_MODE || state == TRY_PLAYER_MODE) {
         playerMode();
