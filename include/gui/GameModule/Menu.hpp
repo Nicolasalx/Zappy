@@ -65,9 +65,6 @@ namespace Gui
                 {"FullScreen", FULLSCREEN}
             };
             int _idxDataResolution = 0;
-
-            char name[9 + 1] = "\0";
-            int letterCount = 0;
     };
 }
 
