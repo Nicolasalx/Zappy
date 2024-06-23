@@ -10,6 +10,10 @@
 void Gui::PlayerParser::rightReply(const std::string &args)
 {
     if (args == "ok\n") {
-        // turn right
+        if (_gameData->playerList.empty())
+            return;
+        _gameData->playerList[0].orientation += 1;
+        if (_gameData->playerList[0].orientation > 4)
+            _gameData->playerList[0].orientation = 1;
     }
 }
