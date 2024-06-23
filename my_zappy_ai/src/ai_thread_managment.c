@@ -22,5 +22,4 @@ void destroy_ai_thread(ai_thread_t *ai_thread)
     cancel_child();
     sem_destroy(&ai_thread->end_game);
     pthread_mutex_destroy(&ai_thread->mutex);
-    free_all_alloc();
 }
