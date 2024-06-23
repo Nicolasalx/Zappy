@@ -55,7 +55,7 @@ void Gui::Raylib::handleKeyEvent(Gui::Event event)
     if (IsKeyPressed(KEY_O)) {
         event.eventType.push_back(Gui::EventType::KEY_O);
     }
-    if (IsKeyPressed(KEY_C)) {
+    if (IsKeyPressed(KEY_C) && (menu.stateGame == IN_SPECTATOR_MODE || menu.stateGame == TRY_SPECTATOR_MODE)) {
         Gui::RenderEndGame::_isEndGame = true;
     }
     this->camera.update(menu.stateGame);

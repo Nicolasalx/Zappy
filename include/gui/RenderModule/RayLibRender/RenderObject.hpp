@@ -25,7 +25,7 @@ namespace Gui
 
             void render(const GameData &gameData) override;
 
-            std::array<std::array<float, 7>, 2> object_padding;
+            float object_padding[7][2];
     };
 }
 
