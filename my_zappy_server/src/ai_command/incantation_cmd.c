@@ -100,6 +100,7 @@ team_t *condition_win(server_t *server)
             level_up_player(server, i, j, &nb_player_lvl_8);
         }
         if (nb_player_lvl_8 >= 6) {
+            server->opt.end_game = true;
             return &server->game.team_list[i];
         }
         nb_player_lvl_8 = 0;
