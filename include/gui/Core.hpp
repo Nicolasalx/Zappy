@@ -33,7 +33,7 @@ namespace Gui
             Core();
             ~Core();
 
-            void parseArgs(int argc, const char **argv);
+            void parseArgs(int argc, const char **argv, char **env);
             void launch();
             void loop();
 
