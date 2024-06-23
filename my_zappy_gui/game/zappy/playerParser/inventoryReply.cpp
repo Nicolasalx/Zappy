@@ -21,4 +21,7 @@ void Gui::PlayerParser::inventoryReply(std::string args)
     }
 
     // update inventory with "ressource" array
+    for (std::size_t i = 0; i < ressource.size(); ++i) {
+        _gameData->playerList[0].inventory[i] = ressource[i];
+    }
 }
