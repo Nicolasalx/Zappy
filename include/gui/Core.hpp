@@ -58,7 +58,7 @@ namespace Gui
 
             bool _isConnectedToServer = false;
 
-            bool displayType = false;
+            bool displayType = true;
     };
 }
 

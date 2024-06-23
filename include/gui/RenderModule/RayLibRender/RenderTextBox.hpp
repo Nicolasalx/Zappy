@@ -43,7 +43,7 @@ namespace Gui
             void renderButtonNextDisp(const GameData &gameData);
 
             std::vector<Gui::RenderTextBox> _textBoxs;
-            bool _changeDisplayLib = false;
+            ChangeDisplayLib _changeDisplayLib = DONT_CHANGE;
     };
 }
 

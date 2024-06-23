@@ -36,7 +36,7 @@ namespace Gui
             std::unique_ptr<Gui::SFMLRenderMap> map;
             std::unique_ptr<Gui::SFMLRenderObject> object;
             std::unique_ptr<Gui::SFMLRenderTextBoxList> textBoxList;
-            
+
 //          Gui::RenderWindow window;
 //          Gui::RenderCamera camera;
 //          std::unique_ptr<Gui::RenderSkyBox> skyBox;

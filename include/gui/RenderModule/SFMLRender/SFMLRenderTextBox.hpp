@@ -41,8 +41,9 @@ namespace Gui
             void updateTextBoxs(const GameData &gameData);
             void drawAllTextBoxs(sf::RenderWindow &window, const sf::Font &font, const GameData &gameData);
             void renderButtonNextDisp(sf::RenderWindow &window, const sf::Font &font, const GameData &gameData);
+            void renderSlideBar(sf::RenderWindow &window, const GameData &gameData);
             std::vector<SFMLRenderTextBox> _textBoxs;
-            bool _changeDisplayLib = false;
+            ChangeDisplayLib _changeDisplayLib = DONT_CHANGE;
     };
 }
 
