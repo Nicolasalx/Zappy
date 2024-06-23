@@ -8,12 +8,12 @@
 #include "Client.hpp"
 #include "Core.hpp"
 
-int main(int argc, char const *argv[])
+int main(int argc, char const *argv[], char **env)
 {
     Gui::Core core;
 
     try {
-        core.parseArgs(argc, argv);
+        core.parseArgs(argc, argv, env);
         core.launch();
         core.loop();
     } catch (std::exception &exception) {
