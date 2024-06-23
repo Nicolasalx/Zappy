@@ -13,7 +13,7 @@ static void delete_egg_from_team(
     edi_reply(server, &server->clients[i], GET_DATA(current, egg_t));
     delete_node(&server->game.team_list[i].egg_list, current);
     if (server->opt.is_debug == true) {
-        printf("Egg %d ejected by player %d\n",
+        printf("[Debug] Egg %d ejected by player %d\n",
             GET_DATA(current, egg_t)->nb, client->player.id);
     }
 }
@@ -83,7 +83,7 @@ static void try_eject_player(client_t *client,
     ppo_reply(server, &server->clients[i]);
     *ejected = true;
     if (server->opt.is_debug == true) {
-        printf("Player %d ejected by player %d\n",
+        printf("[Debug] Player %d ejected by player %d\n",
             server->clients[i].player.id, client->player.id);
     }
 }
