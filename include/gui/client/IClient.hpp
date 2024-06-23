@@ -19,6 +19,7 @@ namespace Gui
         virtual ~IClient() = default;
 
         virtual void connect(const std::string &ip, const std::string &port) = 0;
+        virtual void disconnect() = 0;
         virtual void send(const std::string &message) = 0;
         virtual std::vector<std::string> recv() = 0;
     };
