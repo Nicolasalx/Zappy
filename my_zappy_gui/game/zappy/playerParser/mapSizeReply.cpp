@@ -37,12 +37,12 @@ void Gui::PlayerParser::mapSizeReply(const std::string &args)
 
     std::vector<int> tmp;
     tmp.reserve(7);
-for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 7; i++) {
         tmp.push_back(0);
     }
     std::vector<std::vector<int>> tmp2;
     tmp2.reserve(_gameData->mapSize.x);
-for (int i = 0; i < _gameData->mapSize.x; i++) {
+    for (int i = 0; i < _gameData->mapSize.x; i++) {
         tmp2.push_back(tmp);
     }
     for (int i = 0; i < _gameData->mapSize.y; i++) {
