@@ -185,11 +185,14 @@ void Gui::TextBox::updateSlideBar(const Gui::Event &events)
     }
 }
 
+#include "Menu.hpp"
+
 void Gui::TextBox::updateButtonNextDisp(const Gui::Event &events)
 {
-    if (events.isKeyDown && this->isMouseOnBox(this->_gameData->infoWindow.buttonNextDisplay, events.mouse)) {
+    this->_gameData->infoWindow.changeDisplayLib = DONT_CHANGE;
+    if (Gui::Menu::isButtonPressed(events, Gui::EventType::LEFT_CLICK) && this->isMouseOnBox(this->_gameData->infoWindow.buttonNextDisplay, events.mouse)) {
         this->_gameData->infoWindow.buttonNextDisplay.color = RED_COLOR;
-        this->_gameData->infoWindow.changeDisplayLib = true;
+        this->_gameData->infoWindow.changeDisplayLib = CHANGE;
     } else {
         this->_gameData->infoWindow.buttonNextDisplay.color = WHITE_COLOR;
     }
