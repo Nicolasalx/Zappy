@@ -14,9 +14,11 @@ Gui::SFMLRenderEgg::SFMLRenderEgg()
 
 void Gui::SFMLRenderEgg::render(const GameData &gameData, sf::RenderWindow &window)
 {
-    double cell_size = std::min(window.getSize().x / gameData.mapSize.x, window.getSize().y / gameData.mapSize.y);
-    double offset_x = (window.getSize().x - (cell_size * gameData.mapSize.x)) / 2;
-    double offset_y = (window.getSize().y - (cell_size * gameData.mapSize.y)) / 2;
+    double window_width = window.getSize().x;
+    double window_height = window.getSize().y - 75;
+    double cell_size = std::min(window_width / gameData.mapSize.x, window_height / gameData.mapSize.y);
+    double offset_x = (window_width - (cell_size * gameData.mapSize.x)) / 2;
+    double offset_y = (window_height - (cell_size * gameData.mapSize.y)) / 2 + 75;
 
     for (size_t i = 0; i < gameData.eggList.size(); ++i) {
         sf::Sprite sprite(this->getTexture("bonus/assets/egg.png"));
