@@ -42,7 +42,7 @@ namespace Gui
     class PlayerParser
     {
         public:
-            PlayerParser(std::shared_ptr<GameData> gameData);
+            PlayerParser(std::shared_ptr<GameData> gameData, std::shared_ptr<Gui::IClient> client);
             ~PlayerParser() = default;
 
             void clientNumReply(const std::string &args);
@@ -67,6 +67,7 @@ namespace Gui
         private:
             std::shared_ptr<std::queue<Gui::PlayerCmd>> _sendedMessage;
             std::shared_ptr<GameData> _gameData;
+            std::shared_ptr<Gui::IClient> _client;
             std::map<Gui::PlayerCmd, std::function<void(std::string)>> _replyHandler;
     };
 }
