@@ -73,12 +73,6 @@ void Gui::PlayerParser::lookReply(const std::string &args)
             }
         }
     }
-    for (std::size_t i = 0; i < res.size(); ++i) {
-        for (std::size_t j = 0; j < res[i].size(); ++j) {
-            std::cout << res[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
 
     cleanObjectPos(_gameData->objectPos);
 
