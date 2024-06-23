@@ -153,6 +153,8 @@ test_valid_arg_server "-y 10 -c 4 -n Team1 Team2 Team3 Team4"
 test_valid_arg_server "-c 4"
 test_valid_arg_server "-c 4 -n Team1 Team2 Team3 Team4"
 test_valid_arg_server "-n Team1 Team2 Team3 Team4"
+test_valid_arg_server "-x 10 -y 10 -c 10 -p 4242 -n Team1 -f 100"
+test_valid_arg_server "-x 10 -y 10 -p 4242 -n Team1 -f 100"
 
 ## ? END TEST
 
