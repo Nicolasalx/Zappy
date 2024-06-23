@@ -24,9 +24,9 @@ void end_of_game_cmd_reply(client_t *client, char *)
 
 void eject_cmd_reply(client_t *client, char *)
 {
-    push_new_command(client, RIGHT, NULL);
-    push_new_command(client, RIGHT, NULL);
-    push_new_command(client, FORWARD, NULL);
+    push_new_command(client, RIGHT, "Right\n");
+    push_new_command(client, RIGHT, "Right\n");
+    push_new_command(client, FORWARD, "Forward\n");
 }
 
 void message_cmd_reply(client_t *client, char *reply)
