@@ -7,7 +7,7 @@
 
 #include "PlayerParser.hpp"
 
-Gui::PlayerParser::PlayerParser(std::shared_ptr<GameData> gameData) : _gameData(std::move(gameData))
+Gui::PlayerParser::PlayerParser(std::shared_ptr<GameData> gameData, std::shared_ptr<Gui::IClient> client) : _gameData(std::move(gameData)), _client(std::move(client))
 {
     this->_sendedMessage = std::make_shared<std::queue<Gui::PlayerCmd>>();
 
@@ -58,7 +58,7 @@ void Gui::PlayerParser::parse_server_reply(const std::string &reply_data)
     } else if (reply_data.compare(0, 8, "message ") == 0) {
 
     } else if (reply_data == "dead\n") {
-
+        this->_client->disconnect();
     } else if (reply_data == "Elevation underway\n") {
 
     } else {
