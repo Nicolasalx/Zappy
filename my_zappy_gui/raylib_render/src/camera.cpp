@@ -180,6 +180,6 @@ void Gui::RenderCamera::update(int state)
             spectatorTopMode();
         else
             spectatorMode();
+        changeSpectatorMode();
     }
-    changeSpectatorMode();
 }
