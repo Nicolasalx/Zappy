@@ -36,9 +36,9 @@ void Gui::SFMLRenderTextBoxList::updateTextBoxs(const GameData &gameData)
 
 void Gui::SFMLRenderTextBoxList::renderButtonNextDisp(sf::RenderWindow &window, const sf::Font &font, const GameData &gameData)
 {
-     sf::RectangleShape box(sf::Vector2f(gameData.infoWindow.buttonNextDisplay.size.width,
+    sf::RectangleShape box(sf::Vector2f(gameData.infoWindow.buttonNextDisplay.size.width,
         gameData.infoWindow.buttonNextDisplay.size.height));
-    box.setPosition(gameData.infoWindow.buttonNextDisplay.pos.x, 960);
+    box.setPosition(gameData.infoWindow.buttonNextDisplay.pos.x, gameData.infoWindow.buttonNextDisplay.pos.y);
     sf::Color color = {255, 255, 255};
     color.a = 100;
     box.setFillColor(color);
@@ -49,7 +49,7 @@ void Gui::SFMLRenderTextBoxList::renderButtonNextDisp(sf::RenderWindow &window, 
     sf::Text text;
     text.setFont(font);
     text.setString("Switch to RAYLIB");
-    text.setPosition(gameData.infoWindow.textButtonNextDisp.pos.x, 960);
+    text.setPosition(gameData.infoWindow.textButtonNextDisp.pos.x, gameData.infoWindow.buttonNextDisplay.pos.y);
     text.setCharacterSize(gameData.infoWindow.textButtonNextDisp.fontSize);
     window.draw(text);
 }
