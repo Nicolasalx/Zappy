@@ -36,7 +36,7 @@ void Gui::RenderCamera::render(const GameData &gameData)
     map_dimension.y = gameData.mapSize.y;
     if (gameData.playerList.size() == 0 || Gui::RenderEndGame::_isEndGame)
         return;
-    playerPos = gameData.playerList.at(0).pos;
+    playerPos = gameData.playerList.at(0).real_pos;
 }
 
 void Gui::RenderCamera::updatePlayerPos(Gui::Event &event)
