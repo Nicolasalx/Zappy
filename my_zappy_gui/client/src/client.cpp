@@ -38,9 +38,16 @@ void Gui::Client::connect(const std::string &ip, const std::string &port)
     connected = true;
 }
 
+void Gui::Client::disconnect()
+{
+    connected = false;
+}
+
 void Gui::Client::send(const std::string &message)
 {
-    asio::write(socket_, asio::buffer(message));
+    if (connected) {
+        asio::write(socket_, asio::buffer(message));
+    }
 }
 
 void Gui::Client::bufferisingReply(std::string reply, std::vector<std::string> &message)

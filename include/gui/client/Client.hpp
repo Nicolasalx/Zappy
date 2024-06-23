@@ -32,6 +32,7 @@ namespace Gui
         ~Client() override;
 
         void connect(const std::string &ip, const std::string &port) override;
+        void disconnect(void) override;
         void send(const std::string &message) override;
         std::vector<std::string> recv() override;
     };

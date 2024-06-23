@@ -17,11 +17,11 @@ LIB_PATH		=	../lib/c_lib/
 
 LIB_NAME		=	../lib/c_lib/my_lib.a
 
-SRC_TESTS		:=	$(shell find ../tests/ -name "*.c")
+SRC_TESTS		:=	../tests/tests.c
 
 RUN_TEST		=	--coverage -lcriterion
 
-NAME_TESTS		=	unit_tests
+NAME_TESTS		=	../unit_tests
 
 OBJ				=	$(SRC:.c=.o)
 

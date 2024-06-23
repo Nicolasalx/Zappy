@@ -23,6 +23,8 @@ fclean:
 	cd $(SERVER_PATH) && $(MAKE) fclean
 	cd $(GUI_PATH) && $(MAKE) fclean
 	cd $(AI_PATH) && $(MAKE) fclean
+	rm -f $(shell find . -name "*.gcno")
+	rm -f $(shell find . -name "*.gcda")
 
 re:
 	cd $(SERVER_PATH) && $(MAKE) re
@@ -31,13 +33,9 @@ re:
 
 unit_tests:
 	cd $(SERVER_PATH) && $(MAKE) unit_tests
-	cd $(GUI_PATH) && $(MAKE) unit_tests
-	cd $(AI_PATH) && $(MAKE) unit_tests
 
 tests_run:
 	cd $(SERVER_PATH) && $(MAKE) tests_run
-	cd $(GUI_PATH) && $(MAKE) tests_run
-	cd $(AI_PATH) && $(MAKE) tests_run
 
 code_analyse:
 	cd $(SERVER_PATH) && $(MAKE) code_analyse

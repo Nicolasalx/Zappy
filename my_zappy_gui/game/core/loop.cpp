@@ -8,7 +8,7 @@
 #include "Core.hpp"
 #include "FrameRate.hpp"
 
-void Gui::Core::parseArgs(int argc, const char **argv)
+void Gui::Core::parseArgs(int argc, const char **argv, char **env)
 {
     for (int i = 1; i < argc; i++) {
         if (argv[i] == std::string("-p")) {
@@ -28,6 +28,9 @@ void Gui::Core::parseArgs(int argc, const char **argv)
     }
     if (this->ip == "localhost") {
         this->ip = "127.0.0.1";
+    }
+    if (env[0] == nullptr) {
+        throw my::tracked_exception("No env found.\n");
     }
 }
 
