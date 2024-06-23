@@ -232,10 +232,16 @@ namespace Gui
         GameColor color;
     };
 
+    enum ChangeDisplayLib {
+        CHANGE,
+        WAIT,
+        DONT_CHANGE
+    };
+
     struct InfoWindow {
         BoxOpt buttonNextDisplay;
         Text textButtonNextDisp;
-        bool changeDisplayLib;
+        ChangeDisplayLib changeDisplayLib;
 
         OptionResolution resolution;
         int volume;
