@@ -111,8 +111,10 @@ void Gui::Raylib::detectEventKeyBoard(Gui::Event &event)
     if (this->menu.stateGame == IN_LEAVE) {
         event.eventType.push_back(Gui::EventType::EXIT);
     }
-    if (this->textBoxList->_changeDisplayLib) {
+
+    if (this->textBoxList->_changeDisplayLib == CHANGE) {
         event.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
+        this->textBoxList->_changeDisplayLib = WAIT;
     }
     getKeyEvent(event);
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {

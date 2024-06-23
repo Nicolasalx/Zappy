@@ -61,7 +61,12 @@ void Gui::RenderTextBoxList::renderButtonNextDisp(const GameData &gameData)
     DrawRectangleRec(box, color);
     color.a = 255;
     DrawRectangleLinesEx(box, 1, color);
-    this->_changeDisplayLib = gameData.infoWindow.changeDisplayLib;
+    if (gameData.infoWindow.changeDisplayLib == CHANGE && this->_changeDisplayLib != WAIT) {
+        this->_changeDisplayLib = gameData.infoWindow.changeDisplayLib;
+    }
+    if (gameData.infoWindow.changeDisplayLib == DONT_CHANGE && this->_changeDisplayLib == WAIT) {
+        this->_changeDisplayLib = DONT_CHANGE;
+    }
     DrawText(gameData.infoWindow.textButtonNextDisp.contentText.c_str(), gameData.infoWindow.textButtonNextDisp.pos.x, gameData.infoWindow.textButtonNextDisp.pos.y, gameData.infoWindow.textButtonNextDisp.fontSize, Gui::RenderColor::getColorFromGame(gameData.infoWindow.textButtonNextDisp.color));
 }
 
