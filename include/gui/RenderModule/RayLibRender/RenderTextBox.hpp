@@ -44,6 +44,7 @@ namespace Gui
 
             std::vector<Gui::RenderTextBox> _textBoxs;
             ChangeDisplayLib _changeDisplayLib = DONT_CHANGE;
+            StateGame stateGame = IN_MENU;
     };
 }
 

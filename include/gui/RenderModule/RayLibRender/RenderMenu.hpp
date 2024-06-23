@@ -25,7 +25,6 @@ namespace Gui {
             void render3DModel(Camera3D camera);
             void renderMenu(const GameData &gameData, Camera3D camera);
 
-            StateGame stateGame = IN_MENU;
             InputSelectionned inputSelect = NO;
             Texture2D menuIsland;
             Texture2D spaceTexture;
