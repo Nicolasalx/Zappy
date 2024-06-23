@@ -52,6 +52,10 @@ static void fill_arg(server_t *server)
         printf("No frequency set, default frequency is 100 tps\n");
         server->opt.freq = 100;
     }
+    for (int i = 0; i < server->game.team_count; ++i) {
+        server->game.team_list[i].
+        remaining_spot = server->opt.client_nb;
+    }
 }
 
 static void check_server_arg(server_t *server)
