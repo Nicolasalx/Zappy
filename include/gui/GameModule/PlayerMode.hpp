@@ -50,6 +50,7 @@ namespace Gui
             std::shared_ptr<Gui::IClient> _client;
             std::shared_ptr<std::queue<Gui::PlayerCmd>> _messageQueue;
             bool _hasBeenUpdatedMessQueue = false;
+            bool _buttonAlreadyClicked = false;
     };
 }
 

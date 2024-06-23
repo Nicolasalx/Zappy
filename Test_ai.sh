@@ -105,7 +105,7 @@ test_invalid_arg_ai "-p 0"
 test_invalid_arg_ai "-p -1"
 test_invalid_arg_ai "-p 65536"
 test_invalid_arg_ai "-n @@@__###"
-
+test_invalid_arg_ai "-n GRAPHIC"
 
 ## ? END TEST
 

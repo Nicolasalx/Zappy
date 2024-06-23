@@ -14,7 +14,7 @@
 void Gui::RenderRayInfo::selectEvent(const GameData &gameData, Camera3D camera)
 {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-        if (GetMousePosition().y > gameData.windowY * 1.5f && (gameData.dataMenu.stateGame == IN_PLAYER_MODE || gameData.dataMenu.stateGame == TRY_PLAYER_MODE))
+        if (GetMousePosition().y > gameData.windowY * 0.75f && (gameData.dataMenu.stateGame == IN_PLAYER_MODE || gameData.dataMenu.stateGame == TRY_PLAYER_MODE))
             return;
         this->ray = GetMouseRay(GetMousePosition(), camera);
         for (auto &player : gameData.playerList) {

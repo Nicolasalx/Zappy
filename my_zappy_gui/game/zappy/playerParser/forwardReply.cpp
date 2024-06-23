@@ -11,6 +11,15 @@ void Gui::PlayerParser::forwardReply(const std::string &args)
 {
     if (args == "ok\n") {
         std::cout << "ANIMATION FORWARD\n";
-        // go forward
+        if (_gameData->playerList.empty())
+            return;
+        if (_gameData->playerList[0].orientation == 0)
+            _gameData->playerList[0].pos.x -= 1;
+        if (_gameData->playerList[0].orientation == 1)
+            _gameData->playerList[0].pos.y += 1;
+        if (_gameData->playerList[0].orientation == 2)
+            _gameData->playerList[0].pos.x += 1;
+        if (_gameData->playerList[0].orientation == 3)
+            _gameData->playerList[0].pos.y -= 1;
     }
 }
