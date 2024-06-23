@@ -31,9 +31,9 @@ namespace Gui {
             Texture2D spaceTexture;
             Texture2D zappyLogo;
             bool needToClearBuffer = false;
+            OptionResolution _optionResolution = WINDOWED;
         private:
             float earthRotation = 0;
-            OptionResolution _optionResolution = WINDOWED;
     };
 }
 
