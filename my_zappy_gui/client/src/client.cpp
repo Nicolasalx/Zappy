@@ -45,7 +45,7 @@ void Gui::Client::disconnect()
 
 void Gui::Client::send(const std::string &message)
 {
-    if (connected) {
+    if (connected && socket_.is_open()) {
         asio::write(socket_, asio::buffer(message));
     }
 }
@@ -77,7 +77,7 @@ std::vector<std::string> Gui::Client::recv()
     char data[buffer_size_ + 1] = {0};
     std::size_t length = 0;
 
-    if (!connected || socket_.available() <= 0) {
+    if (!connected || !socket_.is_open() || socket_.available() <= 0) {
         return std::vector<std::string>();
     }
     length = socket_.read_some(asio::buffer(data, buffer_size_));
