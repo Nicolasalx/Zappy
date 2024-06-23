@@ -62,8 +62,6 @@ void get_teams_name(const char **argv, server_t *server, int i, int argc)
         get_teams_name_error(argv, server, i);
         strcpy(server->game.team_list[server->game.team_count].name, argv[i]);
         server->game.team_list[server->game.team_count].
-        remaining_spot = server->opt.client_nb;
-        server->game.team_list[server->game.team_count].
         player_max = 0;
         server->game.team_count += 1;
     }
