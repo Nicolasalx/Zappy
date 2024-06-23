@@ -46,7 +46,13 @@ void Gui::Client::disconnect()
 void Gui::Client::send(const std::string &message)
 {
     if (connected && socket_.is_open()) {
-        asio::write(socket_, asio::buffer(message));
+        try {
+            asio::write(socket_, asio::buffer(message));
+        } catch (const std::exception &e) {
+            return;
+        }
+    } else {
+        return;
     }
 }
 
