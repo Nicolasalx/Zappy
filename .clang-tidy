@@ -21,6 +21,7 @@ Checks:
   -readability-convert-member-functions-to-static
   -readability-use-anyofallof
   -clang-analyzer-core.NonNullParamChecker
+  -modernize-avoid-c-arrays
   ## -readability-identifier-naming,
   ## -performance-enum-size,
   ## -performance-move-constructor-init,
