@@ -22,6 +22,8 @@ Checks:
   -readability-use-anyofallof
   -clang-analyzer-core.NonNullParamChecker
   -modernize-avoid-c-arrays
+  -modernize-loop-convert
+  -readability-function-cognitive-complexity
   ## -readability-identifier-naming,
   ## -performance-enum-size,
   ## -performance-move-constructor-init,
