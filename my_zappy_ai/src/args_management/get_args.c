@@ -66,6 +66,10 @@ static void get_team_name(const char **argv, ai_arg_t *ai_arg, int i)
             printf("Error: Team name must be alphanumeric\n");
             my_exit(84);
         }
+        if (strcmp(argv[i + 1], "GRAPHIC") == 0) {
+            printf("Error: Team name cannot be GRAPHIC\n");
+            my_exit(84);
+        }
         strcpy(ai_arg->team_name, argv[i + 1]);
     }
 }
