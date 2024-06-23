@@ -69,7 +69,7 @@ void get_args(int argc, const char **argv, server_t *server)
         if (check_args(argv, argc, server, i)) {
             i++;
         } else {
-            i += server->game.team_count + 1;
+            i += server->game.team_count;
         }
     }
     check_arg_validity(server);
