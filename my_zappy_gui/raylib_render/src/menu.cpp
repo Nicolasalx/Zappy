@@ -70,7 +70,6 @@ void Gui::RenderMenu::render3DModel(Camera3D camera)
 
 void Gui::RenderMenu::render(const GameData &gameData)
 {
-    this->stateGame = gameData.dataMenu.stateGame;
     this->inputSelect = gameData.dataMenu.inputSelect;
     this->needToClearBuffer = gameData.dataMenu.dataConnection.needToClearBuffer;
 

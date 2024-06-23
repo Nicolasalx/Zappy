@@ -37,6 +37,7 @@ void Gui::RenderTextBoxList::updateTextBoxs(const GameData &gameData)
 
 void Gui::RenderTextBoxList::renderSlideBar(const GameData &gameData)
 {
+    this->stateGame = gameData.dataMenu.stateGame;
     if (gameData.textBox.size() < 2) {
         return;
     }

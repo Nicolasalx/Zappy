@@ -55,10 +55,10 @@ void Gui::Raylib::handleKeyEvent(Gui::Event event)
     if (IsKeyPressed(KEY_O)) {
         event.eventType.push_back(Gui::EventType::KEY_O);
     }
-    if (IsKeyPressed(KEY_C) && (menu.stateGame == IN_SPECTATOR_MODE || menu.stateGame == TRY_SPECTATOR_MODE)) {
+    if (IsKeyPressed(KEY_C) && (textBoxList->stateGame == IN_SPECTATOR_MODE || textBoxList->stateGame == TRY_SPECTATOR_MODE)) {
         Gui::RenderEndGame::_isEndGame = true;
     }
-    this->camera.update(menu.stateGame);
+    this->camera.update(textBoxList->stateGame);
     this->camera.handle_cursor();
 }
 
@@ -108,7 +108,7 @@ void Gui::Raylib::detectEventKeyBoard(Gui::Event &event)
         window.windowSize.height = GetScreenHeight();
         window.launched = true;
     }
-    if (this->menu.stateGame == IN_LEAVE) {
+    if (this->textBoxList->stateGame == IN_LEAVE) {
         event.eventType.push_back(Gui::EventType::EXIT);
     }
 
