@@ -52,12 +52,42 @@ void Gui::SFMLRenderTextBoxList::renderButtonNextDisp(sf::RenderWindow &window, 
     text.setPosition(gameData.infoWindow.textButtonNextDisp.pos.x, gameData.infoWindow.buttonNextDisplay.pos.y);
     text.setCharacterSize(gameData.infoWindow.textButtonNextDisp.fontSize);
     window.draw(text);
+    if (gameData.infoWindow.changeDisplayLib == CHANGE && this->_changeDisplayLib != WAIT) {
+        this->_changeDisplayLib = gameData.infoWindow.changeDisplayLib;
+    }
+    if (gameData.infoWindow.changeDisplayLib == DONT_CHANGE && this->_changeDisplayLib == WAIT) {
+        this->_changeDisplayLib = DONT_CHANGE;
+    }
+}
+
+void Gui::SFMLRenderTextBoxList::renderSlideBar(sf::RenderWindow &window, const GameData &gameData)
+{
+    if (gameData.textBox.size() < 2) {
+        return;
+    }
+    Gui::TextBoxData textBox = gameData.textBox.at(0);
+    if (textBox._state == Gui::CLOSED_LEFT) {
+        return;
+    }
+    if (gameData.dataMenu.stateGame == IN_PLAYER_MODE || gameData.dataMenu.stateGame == TRY_PLAYER_MODE) {
+        return;
+    }
+    sf::RectangleShape slideBar(sf::Vector2f(gameData.infoSlider.sliderBar.size.width, gameData.infoSlider.sliderBar.size.height));
+    slideBar.setPosition(gameData.infoSlider.sliderBar.pos.x, gameData.infoSlider.sliderBar.pos.y);
+    slideBar.setFillColor(sf::Color(255, 255, 255));
+    window.draw(slideBar);
+
+    sf::RectangleShape handler(sf::Vector2f(gameData.infoSlider.sliderHandle.size.width, gameData.infoSlider.sliderHandle.size.height));
+    handler.setPosition(gameData.infoSlider.sliderHandle.pos.x, gameData.infoSlider.sliderHandle.pos.y);
+    handler.setFillColor(sf::Color(0, 0, 255));
+    window.draw(handler);
 }
 
 void Gui::SFMLRenderTextBoxList::drawAllTextBoxs(sf::RenderWindow &window, const sf::Font &font, const GameData &gameData)
 {
     updateTextBoxs(gameData);
     renderButtonNextDisp(window, font, gameData);
+    renderSlideBar(window, gameData);
     for (auto &textBox : _textBoxs) {
         textBox.draw(window, font);
     }

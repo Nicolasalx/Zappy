@@ -33,6 +33,8 @@ Gui::Event Gui::SFMLRender::getEvent()
     Gui::Event guiEvent;
     sf::Event event;
 
+    guiEvent.isKeyDown = false;
+
     guiEvent.frame_time = clock.restart().asSeconds();
     if (!window.isOpen()) {
         return Gui::Event();
@@ -42,7 +44,7 @@ Gui::Event Gui::SFMLRender::getEvent()
     guiEvent.mouse.y = mousePos.y;
     guiEvent.windowSize.width = window.getSize().x;
     guiEvent.windowSize.height = window.getSize().y;
-    
+
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed
         || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
@@ -51,14 +53,17 @@ Gui::Event Gui::SFMLRender::getEvent()
         }
         if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
             guiEvent.eventType.push_back(Gui::EventType::LEFT_CLICK);
+            guiEvent.isKeyDown = true;
         }
         for (const auto &currentKey : this->keyBind) {
             if (sf::Keyboard::isKeyPressed(currentKey.first)) {
                 guiEvent.eventType.push_back(currentKey.second);
             }
         }
-        if (this->textBoxList->_changeDisplayLib) {
+
+        if (this->textBoxList->_changeDisplayLib == CHANGE) {
             guiEvent.eventType.push_back(Gui::EventType::NEXT_DISPLAY);
+            this->textBoxList->_changeDisplayLib = WAIT;
         }
     }
     return guiEvent;
