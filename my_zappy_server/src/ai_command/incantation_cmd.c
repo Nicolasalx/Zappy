@@ -134,9 +134,8 @@ void incatation_cmd(char *, client_t *client, server_t *server)
     pie_reply(server, client, true);
     winning_team = condition_win(server);
     if (winning_team) {
-        if (server->opt.is_debug == true) {
+        if (server->opt.is_debug == true)
             printf("[Debug] Team %s won the game\n", winning_team->name);
-        }
         seg_reply(server, winning_team);
     }
 }
