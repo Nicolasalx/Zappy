@@ -51,8 +51,6 @@ void Gui::Client::send(const std::string &message)
         } catch (const std::exception &e) {
             return;
         }
-    } else {
-        return;
     }
 }
 
